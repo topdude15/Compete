@@ -1,0 +1,10 @@
+<manifest xmlns:ml="magicleap" ml:developer_id="38b77cd9-c4ec-4390-8572-6dbe497dcf92" ml:package="com.keyloftstudios.compete" ml:version_code="9" ml:version_name="Compete_Beta">
+  <application ml:min_api_level="3" ml:sdk_version="1.0" ml:visible_name="Compete">
+    <uses-privilege ml:name="LowLatencyLightwear" />
+    <uses-privilege ml:name="ControllerPose" />
+    <uses-privilege ml:name="WorldReconstruction" />
+    <component ml:binary_name="bin/Player.elf" ml:name=".fullscreen" ml:type="Fullscreen" ml:visible_name="Compete">
+      <icon ml:model_folder="Icon/Model" ml:portal_folder="Icon/Portal" />
+    </component>
+  </application>
+</manifest>

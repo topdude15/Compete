@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{6A53A8D9-4CE6-798A-69CC-375AD4F22730}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bowling/BowlingManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MainMenu.cs" Line="23" Column="54" />
+      <File FileName="Assets/Scripts/Bowling/BowlingManager.cs" Line="295" Column="9" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="59" Column="19" />
+      <File FileName="Assets/Scripts/Darts/DartsManager.cs" Line="37" Column="17" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

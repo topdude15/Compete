@@ -1,0 +1,429 @@
+{
+ "entries": [
+  {
+   "compression": 8,
+   "hash": "a6449d6ca12680eee9880cb3b9c6f3205a9666da",
+   "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
+   "size": 4005132,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "332ff95d655b0f11fecfe3428710c003f3045d8b",
+   "pkgpath": "bin/libil2cpp.so",
+   "size": 65045048,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "db58b926b64ab87c0d8b25cf5ee43df8eab9d3bc",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/libil2cpp.so-11c398e798df7585",
+   "xfrm_size": 65045806
+  },
+  {
+   "compression": 8,
+   "hash": "6b3b1067e8eeb28457c572292a209cc931e93089",
+   "pkgpath": "bin/AudioPluginMSASpatializer.so",
+   "size": 269360,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "d37b2a6ce549087803cd74510496a66e1f6dc616",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/AudioPluginMSASpatializer.so-52e2f5b712d0ea9d",
+   "xfrm_size": 270118
+  },
+  {
+   "compression": 8,
+   "hash": "f846522b30c006667df848732870aa00c9b35e7b",
+   "pkgpath": "bin/UnityEngine.TestRunner.dll",
+   "size": 100864,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityEngine.TestRunner.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "06995ecae530eca2b6f5337b27dbdfcb727599da",
+   "pkgpath": "bin/UnityMagicLeap.so",
+   "size": 1495800,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "b90437992ea818b1f039fc140c7da4bae6d7d744",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/UnityMagicLeap.so-52e2f5b712d0ea9d",
+   "xfrm_size": 1496558
+  },
+  {
+   "compression": 8,
+   "hash": "9e0c89a0c6410fccfbfc6211ad7a07f9559d7847",
+   "pkgpath": "bin/libRealtimeClient.so",
+   "size": 7297728,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/libRealtimeClient.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "fb1c8716ac924429282ca93069a72d3d70fdba45",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/libRealtimeClient.so-52e2f5b712d0ea9d",
+   "xfrm_size": 7298486
+  },
+  {
+   "compression": 8,
+   "hash": "e36553e9a3113280d39db515a350a0036cda878d",
+   "pkgpath": "bin/libml_camera_plugin.so",
+   "size": 14184,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "7b9be94c82dc19f928a4ec0047275d695a035d66",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/libml_camera_plugin.so-52e2f5b712d0ea9d",
+   "xfrm_size": 14942
+  },
+  {
+   "compression": 8,
+   "hash": "0ee8bd5ed3f83c8d11c84a597fb375ec525b0642",
+   "pkgpath": "bin/libml_mediaplayer_plugin.so",
+   "size": 67624,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "3a62f847fb188a9449f077b33cca1268d9e63c20",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/libml_mediaplayer_plugin.so-52e2f5b712d0ea9d",
+   "xfrm_size": 68382
+  },
+  {
+   "compression": 8,
+   "hash": "984e4d2049ed5491b970ba15d1e8c8cadac0896e",
+   "pkgpath": "bin/nunit.framework.dll",
+   "size": 339968,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Plugins/nunit.framework.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "e6124da6073b916e29e013cf3ae3f58a4c5fdb0e",
+   "pkgpath": "Data/Resources/mscorlib.dll-resources.dat",
+   "size": 337563,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Resources/mscorlib.dll-resources.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "63c7ca62020949b1c87b1439f31b7a9719db98c1",
+   "pkgpath": "Data/Resources/unity default resources",
+   "size": 3652028,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Resources/unity default resources"
+  },
+  {
+   "compression": 8,
+   "hash": "a790a7762ddc9d7a370e2293050bd89509a814c1",
+   "pkgpath": "Data/Resources/unity_builtin_extra",
+   "size": 807524,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/Resources/unity_builtin_extra"
+  },
+  {
+   "compression": 8,
+   "hash": "07a1a6072f5e1bb3a3f4905632232dc66e76c2d5",
+   "pkgpath": "Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json",
+   "size": 168,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json"
+  },
+  {
+   "compression": 8,
+   "hash": "9f9d9fdfae69214ea57a2416e60a9fe924367caa",
+   "pkgpath": "Data/boot.config",
+   "size": 144,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/boot.config"
+  },
+  {
+   "compression": 8,
+   "hash": "c46c5cb39a743604c12730e905d2be0db3c5b2b6",
+   "pkgpath": "Data/globalgamemanagers",
+   "size": 58136,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
+  },
+  {
+   "compression": 8,
+   "hash": "e795cb78cb844c286379dbddcc2ba70e9a1f0a74",
+   "pkgpath": "Data/globalgamemanagers.assets",
+   "size": 67180,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "9ed2fe582aaaa4421bc0d9bb22ab25368e9382e1",
+   "pkgpath": "Data/level0",
+   "size": 7700,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level0"
+  },
+  {
+   "compression": 8,
+   "hash": "bca9c84a2e47152894a06628d351c463ee1b63b5",
+   "pkgpath": "Data/level0.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level0.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "cc9e161c8f606a9855f2872ccd68a143ac175e81",
+   "pkgpath": "Data/level1",
+   "size": 15708,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level1"
+  },
+  {
+   "compression": 8,
+   "hash": "e62bebe87aee54892b1f3b4a69fc23a9560e8c8b",
+   "pkgpath": "Data/level2",
+   "size": 32884,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level2"
+  },
+  {
+   "compression": 8,
+   "hash": "bca9c84a2e47152894a06628d351c463ee1b63b5",
+   "pkgpath": "Data/level2.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level2.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "1caed9c7f875bca6b1e470abb627eab3660e94b1",
+   "pkgpath": "Data/level3",
+   "size": 23868,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level3"
+  },
+  {
+   "compression": 8,
+   "hash": "f885fe0115232ca9327ecb7d6c2d2cb579955dea",
+   "pkgpath": "Data/level3.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/level3.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "8d6608afbf0b5da94a022233a58d723d13d4bacc",
+   "pkgpath": "Data/resources.assets",
+   "size": 1324172,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "10e9f550bf8e99d6ca353b49281d81d70963a43d",
+   "pkgpath": "Data/resources.assets.resS",
+   "size": 2457672,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/resources.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "317636c5a25defa09fada508b98552e11f3f9663",
+   "pkgpath": "Data/resources.resource",
+   "size": 12448,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/resources.resource"
+  },
+  {
+   "compression": 8,
+   "hash": "dbdadb18f0b464ed759e177c1ef9263780ad308e",
+   "pkgpath": "Data/sharedassets0.assets",
+   "size": 448182,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets0.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "05887193e82360bfb0942a09b9e59917652f112a",
+   "pkgpath": "Data/sharedassets1.assets",
+   "size": 1016090,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "43d0c3f14ac9ce34b86dbacfff58f54ff42ddd25",
+   "pkgpath": "Data/sharedassets1.assets.resS",
+   "size": 3145880,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "00d831f2fbcb7938a973446ac938f1cc30b65d6a",
+   "pkgpath": "Data/sharedassets2.assets",
+   "size": 640068,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "0bb01706f7f153bb9925b62c40789128b6c5af27",
+   "pkgpath": "Data/sharedassets2.assets.resS",
+   "size": 2162848,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "464f2c5136e359fbb93466a25478f4c88c56cb70",
+   "pkgpath": "Data/sharedassets3.assets",
+   "size": 238832,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "5790338af77c467a36c15aff566c0c85a4c0ccb3",
+   "pkgpath": "Data/sharedassets3.assets.resS",
+   "size": 349552,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "227fb4a392fd3ac692c7657fcf9dee33a811cd51",
+   "pkgpath": "Data/sharedassets3.resource",
+   "size": 8096,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.resource"
+  },
+  {
+   "compression": 8,
+   "hash": "058c816500ce21f26e2261dd8ff57873c241f138",
+   "pkgpath": "Icon/Model/model.fbx",
+   "size": 192968,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Model/model.fbx"
+  },
+  {
+   "compression": 8,
+   "hash": "59b059719d9cb2fb3bf626d45a0838bb2b39a44d",
+   "pkgpath": "Icon/Model/model.kmat",
+   "size": 175,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Model/model.kmat"
+  },
+  {
+   "compression": 8,
+   "hash": "070f63e104647ee2aba964c41e2fe2920ed9f9bc",
+   "pkgpath": "Icon/Model/model.png",
+   "size": 31364,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Model/model.png"
+  },
+  {
+   "compression": 8,
+   "hash": "37657195304703a25bce32399be8fb4cb137e5af",
+   "pkgpath": "Icon/Portal/portal.fbx",
+   "size": 47296,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Portal/portal.fbx"
+  },
+  {
+   "compression": 8,
+   "hash": "dfd5fe5a5b496c3f54355f14794ef2e949682814",
+   "pkgpath": "Icon/Portal/portal.kmat",
+   "size": 319,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Portal/portal.kmat"
+  },
+  {
+   "compression": 8,
+   "hash": "8fa3b5889efa9207fd128d2a1977390a03e30fb0",
+   "pkgpath": "Icon/Portal/portal.png",
+   "size": 34964,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Icon/Portal/portal.png"
+  },
+  {
+   "compression": 8,
+   "hash": "450fabc81782e32b28a1611d931a353ba01aa8c8",
+   "pkgpath": "bin/Player.elf",
+   "size": 20263912,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/Player.elf",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "8e06182afc6ca89e760bb261bde799687199e4c2",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/Player.elf-d5bbd3c644a99314",
+   "xfrm_size": 20264670
+  },
+  {
+   "compression": 8,
+   "hash": "77fd7e8e7b8d216305d37fd9821ddc9e5aba618f",
+   "pkgpath": "manifest.xml",
+   "size": 3452,
+   "src": "/Users/topdude15/Desktop/Compete/Temp/StagingArea/manifest.xml",
+   "xfrm_flags": {
+    "manifest": {
+     "cert_hash": "e598875791efb18b6739e93d099b51fbd81ac6b1",
+     "developer_id": "14c938f1-4b2d-43f6-bc52-aea702880c34"
+    }
+   },
+   "xfrm_hash": "6de0fc426af591fa0ca9e260af2722af74afc9d2",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/manifest.xml-d5bbd3c644a99314",
+   "xfrm_size": 884
+  },
+  {
+   "compression": 8,
+   "hash": "5925de9f4d7b83c65d1fd7b25ced5f0bf8c27e73",
+   "pkgpath": "bin/libc++_shared.so",
+   "size": 976832,
+   "src": "/Users/topdude15/MagicLeap/mlsdk/v0.20.0/lumin/stl/libc++/lib/libc++_shared.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "e79cd05939f2a37bca3b33c6f362afa46b366964",
+   "xfrm_path": "/Users/topdude15/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapaheadstudios.compete-e7e12cfc3697e131/libc++_shared.so-0699b9a7b70090cc",
+   "xfrm_size": 977590
+  }
+ ],
+ "pkgflags": {
+  "signed": {
+   "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+  },
+  "taildata": {
+   "debuggable": true,
+   "devcert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert",
+   "sbox": "USER",
+   "version": 3
+  }
+ }
+}

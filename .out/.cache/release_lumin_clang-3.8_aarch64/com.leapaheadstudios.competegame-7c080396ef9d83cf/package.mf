@@ -1,0 +1,420 @@
+{
+ "entries": [
+  {
+   "compression": 8,
+   "hash": "d536089df76ff8c4075259e7012bba35a2f24cae",
+   "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
+   "size": 4007744,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "121f8e9bd70c2de630bb1c5e39d5100344f38f22",
+   "pkgpath": "bin/libil2cpp.so",
+   "size": 65075520,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Native/libil2cpp.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "02c0e76841e70be8078fb6f29fb6295103764149",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/libil2cpp.so-c840f18dcd72bce0",
+   "xfrm_size": 65076278
+  },
+  {
+   "compression": 8,
+   "hash": "6b3b1067e8eeb28457c572292a209cc931e93089",
+   "pkgpath": "bin/AudioPluginMSASpatializer.so",
+   "size": 269360,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "8207454d8dc6b43217be4fe94aafdb925952b083",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/AudioPluginMSASpatializer.so-261bace3d45affc2",
+   "xfrm_size": 270118
+  },
+  {
+   "compression": 8,
+   "hash": "f846522b30c006667df848732870aa00c9b35e7b",
+   "pkgpath": "bin/UnityEngine.TestRunner.dll",
+   "size": 100864,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/UnityEngine.TestRunner.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "06995ecae530eca2b6f5337b27dbdfcb727599da",
+   "pkgpath": "bin/UnityMagicLeap.so",
+   "size": 1495800,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "b1de05757282876708c2ca8710fd9ad58296c884",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/UnityMagicLeap.so-261bace3d45affc2",
+   "xfrm_size": 1496558
+  },
+  {
+   "compression": 8,
+   "hash": "9e0c89a0c6410fccfbfc6211ad7a07f9559d7847",
+   "pkgpath": "bin/libRealtimeClient.so",
+   "size": 7297728,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/libRealtimeClient.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "88740c6d4b32c7397c2b78ccdf45b105d51fe911",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/libRealtimeClient.so-261bace3d45affc2",
+   "xfrm_size": 7298486
+  },
+  {
+   "compression": 8,
+   "hash": "e36553e9a3113280d39db515a350a0036cda878d",
+   "pkgpath": "bin/libml_camera_plugin.so",
+   "size": 14184,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "755860f38cc5b323c946663c3ae5d3a57745b6f2",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/libml_camera_plugin.so-261bace3d45affc2",
+   "xfrm_size": 14942
+  },
+  {
+   "compression": 8,
+   "hash": "0ee8bd5ed3f83c8d11c84a597fb375ec525b0642",
+   "pkgpath": "bin/libml_mediaplayer_plugin.so",
+   "size": 67624,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "45eaa50589b4b5cf0ba2691122bd696d6356fb0c",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/libml_mediaplayer_plugin.so-261bace3d45affc2",
+   "xfrm_size": 68382
+  },
+  {
+   "compression": 8,
+   "hash": "984e4d2049ed5491b970ba15d1e8c8cadac0896e",
+   "pkgpath": "bin/nunit.framework.dll",
+   "size": 339968,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Plugins/nunit.framework.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "e6124da6073b916e29e013cf3ae3f58a4c5fdb0e",
+   "pkgpath": "Data/Resources/mscorlib.dll-resources.dat",
+   "size": 337563,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Resources/mscorlib.dll-resources.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "63c7ca62020949b1c87b1439f31b7a9719db98c1",
+   "pkgpath": "Data/Resources/unity default resources",
+   "size": 3652028,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Resources/unity default resources"
+  },
+  {
+   "compression": 8,
+   "hash": "a790a7762ddc9d7a370e2293050bd89509a814c1",
+   "pkgpath": "Data/Resources/unity_builtin_extra",
+   "size": 807524,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/Resources/unity_builtin_extra"
+  },
+  {
+   "compression": 8,
+   "hash": "07a1a6072f5e1bb3a3f4905632232dc66e76c2d5",
+   "pkgpath": "Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json",
+   "size": 168,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json"
+  },
+  {
+   "compression": 8,
+   "hash": "9f9d9fdfae69214ea57a2416e60a9fe924367caa",
+   "pkgpath": "Data/boot.config",
+   "size": 144,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/boot.config"
+  },
+  {
+   "compression": 8,
+   "hash": "68dc91ff6fde9d93991e6fbd628a7f1fef74eae1",
+   "pkgpath": "Data/globalgamemanagers",
+   "size": 80632,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/globalgamemanagers"
+  },
+  {
+   "compression": 8,
+   "hash": "1818aa99d8a6d58126eeebf99d4cf2832a00878d",
+   "pkgpath": "Data/globalgamemanagers.assets",
+   "size": 67292,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/globalgamemanagers.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "f4a635c77409ed9747db9ea9eda70c86d629d29d",
+   "pkgpath": "Data/level0",
+   "size": 15068,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level0"
+  },
+  {
+   "compression": 8,
+   "hash": "bca9c84a2e47152894a06628d351c463ee1b63b5",
+   "pkgpath": "Data/level0.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level0.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "125b43b0e077401a9e86b9b21c0eb4c37caa3b3b",
+   "pkgpath": "Data/level1",
+   "size": 15708,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level1"
+  },
+  {
+   "compression": 8,
+   "hash": "4a3d97fb640259b6120f6f6c95ef572369a843fb",
+   "pkgpath": "Data/level2",
+   "size": 64116,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level2"
+  },
+  {
+   "compression": 8,
+   "hash": "bca9c84a2e47152894a06628d351c463ee1b63b5",
+   "pkgpath": "Data/level2.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level2.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "8ac9f907b6766862e3567fa0860ee5c8533bd62a",
+   "pkgpath": "Data/level3",
+   "size": 51572,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level3"
+  },
+  {
+   "compression": 8,
+   "hash": "f885fe0115232ca9327ecb7d6c2d2cb579955dea",
+   "pkgpath": "Data/level3.resS",
+   "size": 131232,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/level3.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "2875081bd53f2ebbc90512cf7863a98ac02e4510",
+   "pkgpath": "Data/resources.assets",
+   "size": 2213064,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/resources.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "7635d452d373c960c5ae7926c80e79fe3d07d9b1",
+   "pkgpath": "Data/resources.assets.resS",
+   "size": 3156736,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/resources.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "e5b40fe9bdcb09ae800a35fffc862e1f7cf8c938",
+   "pkgpath": "Data/resources.resource",
+   "size": 20544,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/resources.resource"
+  },
+  {
+   "compression": 8,
+   "hash": "1dd833433a3adc78260cbf88c82b77e83940923c",
+   "pkgpath": "Data/sharedassets0.assets",
+   "size": 2032646,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets0.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "8e2938b7af755f19da8b51ff226a3c8aecadedde",
+   "pkgpath": "Data/sharedassets0.assets.resS",
+   "size": 524288,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets0.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "93fb156475f057526c62c9c3722f7d6cb3b7b819",
+   "pkgpath": "Data/sharedassets1.assets",
+   "size": 382314,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets1.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "e74eec2cf332a17cba5271aa3439f07aa926d6d9",
+   "pkgpath": "Data/sharedassets1.assets.resS",
+   "size": 2446816,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets1.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "0ca50d82d53193affcc50f12f9106d6cc08493f5",
+   "pkgpath": "Data/sharedassets2.assets",
+   "size": 17392,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets2.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "4952fbaa5f14e34e2b9afd6036790b25a3b48443",
+   "pkgpath": "Data/sharedassets2.assets.resS",
+   "size": 2861952,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets2.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "722670e0c012e71cdd62cd5810ccb34a8d12ac27",
+   "pkgpath": "Data/sharedassets3.assets",
+   "size": 7632,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets3.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "5790338af77c467a36c15aff566c0c85a4c0ccb3",
+   "pkgpath": "Data/sharedassets3.assets.resS",
+   "size": 349552,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Data/sharedassets3.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "058c816500ce21f26e2261dd8ff57873c241f138",
+   "pkgpath": "Icon/Model/model.fbx",
+   "size": 192968,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Model/model.fbx"
+  },
+  {
+   "compression": 8,
+   "hash": "59b059719d9cb2fb3bf626d45a0838bb2b39a44d",
+   "pkgpath": "Icon/Model/model.kmat",
+   "size": 175,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Model/model.kmat"
+  },
+  {
+   "compression": 8,
+   "hash": "070f63e104647ee2aba964c41e2fe2920ed9f9bc",
+   "pkgpath": "Icon/Model/model.png",
+   "size": 31364,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Model/model.png"
+  },
+  {
+   "compression": 8,
+   "hash": "37657195304703a25bce32399be8fb4cb137e5af",
+   "pkgpath": "Icon/Portal/portal.fbx",
+   "size": 47296,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Portal/portal.fbx"
+  },
+  {
+   "compression": 8,
+   "hash": "dfd5fe5a5b496c3f54355f14794ef2e949682814",
+   "pkgpath": "Icon/Portal/portal.kmat",
+   "size": 319,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Portal/portal.kmat"
+  },
+  {
+   "compression": 8,
+   "hash": "8fa3b5889efa9207fd128d2a1977390a03e30fb0",
+   "pkgpath": "Icon/Portal/portal.png",
+   "size": 34964,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Icon/Portal/portal.png"
+  },
+  {
+   "compression": 8,
+   "hash": "450fabc81782e32b28a1611d931a353ba01aa8c8",
+   "pkgpath": "bin/Player.elf",
+   "size": 20263912,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/Player.elf",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "eca82c1cc99bb17e236d2475fc4768646dc5efb6",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/Player.elf-ea9a45d8f4d2f42b",
+   "xfrm_size": 20264670
+  },
+  {
+   "compression": 8,
+   "hash": "aea4a19818cc9672fcb77b43caa1fd4448b562aa",
+   "pkgpath": "manifest.xml",
+   "size": 3447,
+   "src": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/Temp/StagingArea/manifest.xml",
+   "xfrm_flags": {
+    "manifest": {
+     "cert_hash": "e598875791efb18b6739e93d099b51fbd81ac6b1",
+     "developer_id": "14c938f1-4b2d-43f6-bc52-aea702880c34"
+    }
+   },
+   "xfrm_hash": "1d450e62eb3942fec9742a0ad7b96b72dc47ff69",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/manifest.xml-ea9a45d8f4d2f42b",
+   "xfrm_size": 925
+  },
+  {
+   "compression": 8,
+   "hash": "5925de9f4d7b83c65d1fd7b25ced5f0bf8c27e73",
+   "pkgpath": "bin/libc++_shared.so",
+   "size": 976832,
+   "src": "/Users/topdude15/MagicLeap/mlsdk/v0.20.0/lumin/stl/libc++/lib/libc++_shared.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "b8b93f40345d6b00fcbc784a1e4bf99a11562d98",
+   "xfrm_path": "/Users/topdude15/Downloads/Compete-MultiplayerTesting/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapaheadstudios.competegame-7c080396ef9d83cf/libc++_shared.so-0699b9a7b70090cc",
+   "xfrm_size": 977590
+  }
+ ],
+ "pkgflags": {
+  "signed": {
+   "cert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert"
+  },
+  "taildata": {
+   "devcert": "/Users/topdude15/Desktop/Keys/privatekey/trevorsmacbookair.cert",
+   "sbox": "USER",
+   "version": 3
+  }
+ }
+}
