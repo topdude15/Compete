@@ -55,7 +55,7 @@ public class BowlingManager : MonoBehaviour {
 
 	List<Vector3> Deltas = new List<Vector3> ();
 
-	private float timeHold = 3.0f, totalObjs = 0, objLimit = 50, timeHomePress = 0.5f, timeOfFirstHomePress, realtimeObjectCount = 0, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed;
+	private float timeHold = 3.0f, totalObjs = 0, objLimit = 50, timeHomePress = 0.01f, timeOfFirstHomePress, realtimeObjectCount = 0, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed;
 
 	private Controller checkController;
 
@@ -496,6 +496,7 @@ public class BowlingManager : MonoBehaviour {
 		}
 		pinLimitText.text = "Pin Limit:\n " + totalObjs + " of 50";
 	}
+
 
 	private void ClearAllObjects () {
 		foreach (Transform child in pinHolder.transform) {

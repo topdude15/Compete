@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{80A19049-7326-CB87-2B87-A6870FF70A50}</ProjectGuid>
+    <ProjectGuid>{6A53A8D9-4CE6-798A-69CC-375AD4F22730}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ControllerTutorial.cs" />
      <Compile Include="Assets\MagicLeap\Core\Scripts\ControllerConnectionHandler.cs" />
      <Compile Include="Assets\MagicLeap\Core\Scripts\HandTracking.cs" />
      <Compile Include="Assets\MagicLeap\Core\Scripts\HeadposeCanvas.cs" />
@@ -189,6 +188,7 @@
      <Compile Include="Assets\Scripts\Bowling\MenuCollide.cs" />
      <Compile Include="Assets\Scripts\Bowling\PinCollision.cs" />
      <Compile Include="Assets\Scripts\Controller.cs" />
+     <Compile Include="Assets\Scripts\ControllerTutorial.cs" />
      <Compile Include="Assets\Scripts\Darts\DartCollider.cs" />
      <Compile Include="Assets\Scripts\Darts\DartColorLoader.cs" />
      <Compile Include="Assets\Scripts\Darts\DartMenuCollide.cs" />
@@ -202,6 +202,9 @@
      <Compile Include="Assets\Scripts\Photon\PhotonLobby.cs" />
      <Compile Include="Assets\Scripts\Photon\PhotonRoom.cs" />
      <Compile Include="Assets\Scripts\PlaneExtract.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSync.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSyncModel.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <None Include="Assets\MagicLeap\BackgroundMusicExample\readme.txt" />
      <None Include="Assets\MagicLeap\Examples\Shaders\PointCloud.shader" />
@@ -266,43 +269,43 @@
      <None Include="Assets\Normal\Examples\Blank Scene Template\Skybox\GradientSkybox.shader" />
      <None Include="Assets\MagicLeap\Examples\Documentation\ImageTracking.txt" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.XR.MagicLeap">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEditor.XR.MagicLeap.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEditor.XR.MagicLeap.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.LegacyInputHelpers">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.SpatialTracking">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.MagicLeap">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/ScriptAssemblies/UnityEngine.XR.MagicLeap.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/ScriptAssemblies/UnityEngine.XR.MagicLeap.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.1.8f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -485,31 +488,31 @@
  <HintPath>/Applications/Unity/Hub/Editor/2019.1.8f1/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="MSA.Runtime">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="LuminMediaPlayer">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
  </Reference>
  <Reference Include="LuminUnity">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Compat">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Tasks">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
  </Reference>
  <Reference Include="Realtime">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Assets/Normal/Realtime/Core/Realtime.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Assets/Normal/Realtime/Core/Realtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>/Users/trevorrose/Desktop/Compete-MultiplayerTesting/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>/Users/trevorrose/Desktop/Compete/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>/Applications/Unity/Hub/Editor/2019.1.8f1/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

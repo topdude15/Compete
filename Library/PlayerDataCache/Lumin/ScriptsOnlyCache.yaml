@@ -43,8 +43,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
-    UnityEditor.TestRunner.dll:
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
+    - TMPro.TextMeshProUGUI
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
@@ -140,29 +139,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10282}
     - Class: 114
-      Script: {instanceID: 10490}
+      Script: {instanceID: 10492}
     - Class: 114
-      Script: {instanceID: 10518}
+      Script: {instanceID: 10520}
     - Class: 114
-      Script: {instanceID: 10568}
+      Script: {instanceID: 10570}
     - Class: 114
-      Script: {instanceID: 10794}
+      Script: {instanceID: 10644}
     - Class: 114
-      Script: {instanceID: 10856}
+      Script: {instanceID: 10798}
     - Class: 114
-      Script: {instanceID: 10866}
+      Script: {instanceID: 10844}
     - Class: 114
-      Script: {instanceID: 10994}
+      Script: {instanceID: 10860}
     - Class: 114
-      Script: {instanceID: 11010}
+      Script: {instanceID: 10870}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 11000}
     - Class: 114
       Script: {instanceID: 11016}
     - Class: 114
-      Script: {instanceID: 11138}
+      Script: {instanceID: 11018}
     - Class: 114
-      Script: {instanceID: 11258}
+      Script: {instanceID: 11022}
+    - Class: 114
+      Script: {instanceID: 11144}
+    - Class: 114
+      Script: {instanceID: 11264}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -233,6 +236,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9592}
     - Class: 114
+      Script: {instanceID: 9612}
+    - Class: 114
+      Script: {instanceID: 9624}
+    - Class: 114
       Script: {instanceID: 9632}
     - Class: 114
       Script: {instanceID: 9670}
@@ -251,27 +258,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10282}
     - Class: 114
-      Script: {instanceID: 10518}
+      Script: {instanceID: 10520}
     - Class: 114
-      Script: {instanceID: 10794}
+      Script: {instanceID: 10644}
     - Class: 114
-      Script: {instanceID: 10856}
+      Script: {instanceID: 10798}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 10844}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 10860}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11018}
     - Class: 114
-      Script: {instanceID: 11380}
+      Script: {instanceID: 11022}
     - Class: 114
-      Script: {instanceID: 14892}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 14894}
+      Script: {instanceID: 11386}
     - Class: 114
-      Script: {instanceID: 14916}
+      Script: {instanceID: 18962}
     - Class: 114
-      Script: {instanceID: 27278}
+      Script: {instanceID: 18964}
+    - Class: 114
+      Script: {instanceID: 18974}
+    - Class: 114
+      Script: {instanceID: 21576}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -344,9 +355,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10518}
+      Script: {instanceID: 10520}
     - Class: 114
-      Script: {instanceID: 10794}
+      Script: {instanceID: 10798}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -417,6 +428,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9592}
     - Class: 114
+      Script: {instanceID: 9612}
+    - Class: 114
+      Script: {instanceID: 9624}
+    - Class: 114
       Script: {instanceID: 9670}
     - Class: 114
       Script: {instanceID: 9754}
@@ -435,43 +450,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10282}
     - Class: 114
-      Script: {instanceID: 10508}
+      Script: {instanceID: 10510}
     - Class: 114
-      Script: {instanceID: 10640}
+      Script: {instanceID: 10644}
     - Class: 114
-      Script: {instanceID: 10650}
+      Script: {instanceID: 10654}
     - Class: 114
-      Script: {instanceID: 10768}
+      Script: {instanceID: 10772}
     - Class: 114
-      Script: {instanceID: 10776}
+      Script: {instanceID: 10780}
     - Class: 114
-      Script: {instanceID: 10794}
+      Script: {instanceID: 10798}
     - Class: 114
-      Script: {instanceID: 10830}
+      Script: {instanceID: 10834}
     - Class: 114
-      Script: {instanceID: 10856}
+      Script: {instanceID: 10844}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 10860}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 11018}
     - Class: 114
-      Script: {instanceID: 11100}
+      Script: {instanceID: 11022}
     - Class: 114
-      Script: {instanceID: 11152}
+      Script: {instanceID: 11106}
     - Class: 114
-      Script: {instanceID: 11190}
+      Script: {instanceID: 11158}
     - Class: 114
-      Script: {instanceID: 11258}
+      Script: {instanceID: 11196}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11264}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11294}
     - Class: 114
-      Script: {instanceID: 14892}
+      Script: {instanceID: 11322}
     - Class: 114
-      Script: {instanceID: 14894}
+      Script: {instanceID: 18962}
     - Class: 114
-      Script: {instanceID: 14916}
+      Script: {instanceID: 18964}
+    - Class: 114
+      Script: {instanceID: 18974}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1429,6 +1446,12 @@ ScriptsOnlyBuild:
     className: GolfManager
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerScript
+  - hash:
+      serializedVersion: 2
       Hash: 7947915efb9d887797950a993a657b2d
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
@@ -1691,6 +1714,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuCollide
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerSync
   - hash:
       serializedVersion: 2
       Hash: 516824a435828eadd660ef2f1658a48e
@@ -1963,7 +1992,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: bb31317c83a81e351587380304d3cbbc
+      Hash: 8524d42c768844e366b91498d2bcb73b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
@@ -1973,4 +2002,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Bowling.unity
   - Assets/Scenes/Darts.unity
-  playerPath: /Users/trevorrose/Desktop/Compete-MultiplayerTesting/Compete_Dev.mpk
+  playerPath: /Users/trevorrose/Desktop/Compete/Compete_Dev.mpk
