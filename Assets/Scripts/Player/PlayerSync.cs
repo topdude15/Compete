@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Normal.Realtime;
-using TMPro;
 
 public class PlayerSync : RealtimeComponent
 {
-    
-    private PlayerSyncModel _model;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private PlayerModel _model;
+    private Realtime _realtimeObject;
+    private RealtimeAvatarManager _avatarManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Start() {
+        _realtimeObject = GameObject.Find("Realtime + VR Player").GetComponent<Realtime>();
+        _avatarManager = GameObject.Find("Realtime + VR Player").GetComponent<RealtimeAvatarManager>();
+        //print(_avatarManager.avatars.Count);
+        foreach (KeyValuePair<int, RealtimeAvatar> avatar in _avatarManager.avatars) {
+            print (avatar.Key);
+        }
+    }
+    private PlayerModel model {
+        set {
+            _model = value;
+        }
     }
 }

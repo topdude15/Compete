@@ -202,9 +202,10 @@
      <Compile Include="Assets\Scripts\Photon\PhotonLobby.cs" />
      <Compile Include="Assets\Scripts\Photon\PhotonRoom.cs" />
      <Compile Include="Assets\Scripts\PlaneExtract.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\Player\ConfigurePlayer.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManagerModel.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerModel.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSync.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerSyncModel.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />
      <None Include="Assets\MagicLeap\BackgroundMusicExample\readme.txt" />
      <None Include="Assets\MagicLeap\Examples\Shaders\PointCloud.shader" />

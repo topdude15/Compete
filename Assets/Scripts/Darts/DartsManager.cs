@@ -19,7 +19,7 @@ public class DartsManager : MonoBehaviour {
 	private MLHandKeyPose[] _gestures;
 	public static holdState holding = holdState.none;
 	private MLInputController controller;
-	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu;
+	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton;
 	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText;
 	public Transform dartHolder, meshHolder;
 	public static GameObject menuControl;
@@ -34,9 +34,12 @@ public class DartsManager : MonoBehaviour {
 	private Controller checkController;
 	[SerializeField]private GameObject dartRealtime = null, dartboardRealtime = null;
 	public Image loadingImage;
-	public Realtime _realtimeObject;
+	public Texture2D emptyCircle, check;
 
-	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false;
+	public Realtime _realtimeObject;
+	private PlayerManagerModel _playerManager;
+
+	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false;
 	private static bool menuClosed = false, menuOpened = false;
 	public static bool lockedDartboard = false;
 	List<Vector3> Deltas = new List<Vector3> ();
@@ -61,6 +64,9 @@ public class DartsManager : MonoBehaviour {
 		_gestures[1] = MLHandKeyPose.Fist;
 		MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
 		pos = new Vector3[1];
+
+		_realtime = GameObject.Find("Realtime + VR Player");
+		_realtime.GetComponent<Realtime>().Connect("200Darts");
 	}
 
 	private void OnDestroy () {
@@ -103,8 +109,6 @@ public class DartsManager : MonoBehaviour {
 			}
 			if (setHand == false) {
 				setHand = true;
-				// Vector3[] zero = new Vector3[2] { Vector3.zero, Vector3.zero };
-				// laserLineRenderer.SetPositions (zero);
 
 				menuControl.transform.position = controller.Position;
 				menuControl.transform.rotation = mainCam.transform.rotation;
@@ -133,6 +137,18 @@ public class DartsManager : MonoBehaviour {
 			tutorialMenuOpened = false;
 		}
 		if (_realtimeObject.connected) {
+			if (getLocalPlayer == false) {
+				getLocalPlayer = true;
+				print("doo doo doo...");
+				foreach(GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject))) {
+					if (obj.name == "VR Player(Clone)") {
+						print("absolutely");
+						if (obj.GetComponent<RealtimeView>().isOwnedLocally) {
+							localPlayer = obj;
+						}
+					}
+				}
+			}
 			multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='green'>Connected</color>");
 		}
 		Vector3 camPos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
@@ -143,7 +159,6 @@ public class DartsManager : MonoBehaviour {
 	}
 	private void PlayTimer() {
 		timer += Time.deltaTime;
-		print(timer);
 		if (timer > waitTime && holding == holdState.none && tutorialMenu.activeSelf != true && menu.activeSelf != true) {
 			if (!helpAppeared) {
 				helpAppeared = true;
@@ -243,6 +258,16 @@ public class DartsManager : MonoBehaviour {
 				tutorialHelpMenu.SetActive(false);
 			} else if (rayHit.transform.gameObject.name == "NoThanks" && controller.TriggerValue >= 0.9f) {
 				tutorialHelpMenu.SetActive(false);
+			} else if (rayHit.transform.gameObject.name == "ToggleMic" && controller.TriggerValue >= 0.9f) {
+				if (micActive == true) {
+					micActive = false;
+					localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
+					toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
+				} else {
+					micActive = true;
+					localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
+					toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
+				}
 			} else if (rayHit.transform.gameObject.name == "LeaveRoom" && controller.TriggerValue >= 0.9f) {
 				joinedLobby = false;
 				_realtime.GetComponent<Realtime>().Disconnect();
