@@ -39,7 +39,7 @@ public class DartsManager : MonoBehaviour {
 	public Realtime _realtimeObject;
 	private PlayerManagerModel _playerManager;
 
-	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false;
+	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false;
 	private static bool menuClosed = false, menuOpened = false;
 	public static bool lockedDartboard = false;
 	List<Vector3> Deltas = new List<Vector3> ();
@@ -66,7 +66,7 @@ public class DartsManager : MonoBehaviour {
 		pos = new Vector3[1];
 
 		_realtime = GameObject.Find("Realtime + VR Player");
-		_realtime.GetComponent<Realtime>().Connect("200Darts");
+		// _realtime.GetComponent<Realtime>().Connect("200Darts");
 	}
 
 	private void OnDestroy () {
@@ -259,14 +259,17 @@ public class DartsManager : MonoBehaviour {
 			} else if (rayHit.transform.gameObject.name == "NoThanks" && controller.TriggerValue >= 0.9f) {
 				tutorialHelpMenu.SetActive(false);
 			} else if (rayHit.transform.gameObject.name == "ToggleMic" && controller.TriggerValue >= 0.9f) {
-				if (micActive == true) {
-					micActive = false;
-					localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
-					toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
-				} else {
-					micActive = true;
-					localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
-					toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
+				if (toggledMic == false) {
+					toggledMic = true;
+					if (micActive == true) {
+						micActive = false;
+						localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
+						toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
+					} else {
+						micActive = true;
+						localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
+						toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
+					}
 				}
 			} else if (rayHit.transform.gameObject.name == "LeaveRoom" && controller.TriggerValue >= 0.9f) {
 				joinedLobby = false;
@@ -350,6 +353,9 @@ public class DartsManager : MonoBehaviour {
 		if (holding == holdState.dart) {
 			laserLineRenderer.SetPosition(0, mainCam.transform.position);
 			laserLineRenderer.SetPosition(1, mainCam.transform.position);
+		}
+		if (toggledMic == true && controller.TriggerValue < 0.2f) {
+			toggledMic = false;
 		}
 	}
 	private void PlaceObject () {

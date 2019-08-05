@@ -44,6 +44,8 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    UnityEditor.TestRunner.dll:
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
@@ -1482,7 +1484,7 @@ ScriptsOnlyBuild:
     className: KeyPoseVisualizer
   - hash:
       serializedVersion: 2
-      Hash: f4cc48023a2bbcb8ae2827421766392b
+      Hash: 4447559190c09a08f0fc2539dbeb6589
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager

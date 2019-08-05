@@ -1,4 +1,4 @@
-<manifest xmlns:ml="magicleap" ml:developer_id="14c938f1-4b2d-43f6-bc52-aea702880c34" ml:package="com.leapahead.compete" ml:version_code="18" ml:version_name="">
+<manifest xmlns:ml="magicleap" ml:developer_id="1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665" ml:package="com.leapahead.compete" ml:version_code="19" ml:version_name="">
   <application ml:min_api_level="5" ml:sdk_version="1.0" ml:visible_name="Compete">
     
     

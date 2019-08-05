@@ -26,7 +26,7 @@ Set Up Music Service Example in the MagicLeap drop down menu in the Unity Editor
 <!--
 Unity will automatically fill in areas marked as Placeholder from the Player Settings.
 -->
-<manifest xmlns:ml="magicleap" ml:package="Placeholder" ml:version_code="18" ml:version_name="">
+<manifest xmlns:ml="magicleap" ml:package="Placeholder" ml:version_code="19" ml:version_name="">
   <application ml:min_api_level="5" ml:sdk_version="1.0" ml:visible_name="Placeholder">
     <!--Examples using AddressBookRead: Contacts-->
     <!--<uses-privilege ml:name="AddressBookRead" />-->

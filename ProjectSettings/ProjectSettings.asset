@@ -595,11 +595,11 @@ PlayerSettings:
     m_ModelFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Model
     m_PortalFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
   luminCert:
-    m_CertPath: /Users/trevorrose/Desktop/Keys/privatekey/trevorsmacbookair.cert
+    m_CertPath: /Users/trevorrose/Downloads/privatekey/trevor'smbp.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
-    m_VersionCode: 18
+    m_VersionCode: 19
     m_VersionName: 
   facebookSdkVersion: 
   facebookAppId: 
