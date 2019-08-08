@@ -85,7 +85,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Starts the MLInput, initializes the first controller, and registers the connection handlers
         /// </summary>
-        void Awake()
+        void Start()
         {
             if (_devicesAllowed == 0)
             {

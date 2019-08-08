@@ -67,12 +67,9 @@ namespace MagicLeap
         /// </summary>
         void OnDestroy()
         {
-            if (MLInput.IsStarted)
-            {
-                MLInput.OnTriggerDown -= HandleOnTriggerDown;
-                MLInput.OnControllerButtonDown -= HandleOnButtonDown;
-                MLInput.OnControllerButtonUp -= HandleOnButtonUp;
-            }
+            MLInput.OnTriggerDown -= HandleOnTriggerDown;
+            MLInput.OnControllerButtonDown -= HandleOnButtonDown;
+            MLInput.OnControllerButtonUp -= HandleOnButtonUp;
         }
         #endregion
 
@@ -132,8 +129,6 @@ namespace MagicLeap
             {
                 // Demonstrate haptics using callbacks.
                 controller.StartFeedbackPatternVibe(MLInputControllerFeedbackPatternVibe.ForceDown, MLInputControllerFeedbackIntensity.Medium);
-                // Toggle UseCFUIDTransforms
-                controller.UseCFUIDTransforms = !controller.UseCFUIDTransforms;
             }
         }
 

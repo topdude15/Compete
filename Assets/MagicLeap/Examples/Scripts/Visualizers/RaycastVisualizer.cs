@@ -109,7 +109,7 @@ namespace MagicLeap
             {
                 // Update the cursor position and normal.
                 transform.position = result.point;
-                transform.LookAt(result.normal + result.point);
+                transform.LookAt(result.normal + result.point, _raycast.RayDirection);
                 transform.localScale = Vector3.one;
 
                 // Set the color to yellow if the hit is unobserved.

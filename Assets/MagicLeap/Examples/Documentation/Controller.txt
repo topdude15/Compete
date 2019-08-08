@@ -1,7 +1,7 @@
 # Example Scene: Controller
 
 This example demonstrates and prescribes preferred methods for receiving input
-from a Control controller and sending haptic feedback to it.
+from the Control controller and sending haptic feedback to it.
 
 When the controller is connected, a controller model will appear and stats about it will
 show up on the UI. This controller model will follow your physical controller with 6dof

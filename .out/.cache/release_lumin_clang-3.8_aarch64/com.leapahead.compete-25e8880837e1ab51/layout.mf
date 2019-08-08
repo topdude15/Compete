@@ -32,14 +32,6 @@
   "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Tasks.dll"
  },
  {
-  "dest": "bin/UnityEngine.TestRunner.dll",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityEngine.TestRunner.dll"
- },
- {
-  "dest": "bin/UnityEngine.UI.dll",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityEngine.UI.dll"
- },
- {
   "dest": "bin/UnityMagicLeap.so",
   "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so"
  },
@@ -65,6 +57,6 @@
  },
  {
   "dest": "bin/libc++_shared.so",
-  "src": "/Users/trevorrose/MagicLeap/mlsdk/v0.21.0/lumin/stl/libc++/lib/libc++_shared.so"
+  "src": "/Users/trevorrose/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so"
  }
 ]

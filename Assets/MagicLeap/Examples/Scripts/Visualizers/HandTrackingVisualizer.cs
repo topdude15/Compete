@@ -117,42 +117,49 @@ namespace MagicLeap
                 for (int i = 0; i < Hand.Pinky.KeyPoints.Count; ++i)
                 {
                     _pinkyFinger[i].position = Hand.Pinky.KeyPoints[i].Position;
+                    _pinkyFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Ring
                 for (int i = 0; i < Hand.Ring.KeyPoints.Count; ++i)
                 {
                     _ringFinger[i].position = Hand.Ring.KeyPoints[i].Position;
+                    _ringFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Middle
                 for (int i = 0; i < Hand.Middle.KeyPoints.Count; ++i)
                 {
                     _middleFinger[i].position = Hand.Middle.KeyPoints[i].Position;
+                    _middleFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Index
                 for (int i = 0; i < Hand.Index.KeyPoints.Count; ++i)
                 {
                     _indexFinger[i].position = Hand.Index.KeyPoints[i].Position;
+                    _indexFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Thumb
                 for (int i = 0; i < Hand.Thumb.KeyPoints.Count; ++i)
                 {
                     _thumb[i].position = Hand.Thumb.KeyPoints[i].Position;
+                    _thumb[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Wrist
                 for (int i = 0; i < Hand.Wrist.KeyPoints.Count; ++i)
                 {
                     _wrist[i].position = Hand.Wrist.KeyPoints[i].Position;
+                    _wrist[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Hand Center
                 if (_center != null)
                 {
                     _center.position = Hand.Center;
+                    _center.gameObject.SetActive(Hand.IsVisible);
                 }
             }
         }
@@ -217,6 +224,7 @@ namespace MagicLeap
             GameObject newObject;
 
             newObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            newObject.SetActive(false);
             newObject.transform.SetParent(transform);
             newObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             newObject.name = keyPoint.ToString();

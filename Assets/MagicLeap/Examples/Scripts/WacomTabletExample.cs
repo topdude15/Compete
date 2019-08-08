@@ -149,7 +149,7 @@ namespace MagicLeap
         #endregion
 
         #region Unity Methods
-        private void Awake()
+        private void Start()
         {
             // Disable and exit early, if there was an issue.
             if (!Initialization())

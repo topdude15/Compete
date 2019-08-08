@@ -34,7 +34,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary/>
         L = (1 << MLHandKeyPose.L),
         /// <summary/>
-        OpenHandBack = (1 << MLHandKeyPose.OpenHandBack),
+        OpenHand = (1 << MLHandKeyPose.OpenHand),
         /// <summary/>
         Ok = (1 << MLHandKeyPose.Ok),
         /// <summary/>

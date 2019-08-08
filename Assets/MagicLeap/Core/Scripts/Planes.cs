@@ -111,7 +111,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Initializes variables and makes sure they started correctly
         /// </summary>
-        void OnEnable()
+        void Start()
         {
             MLResult result = MLWorldPlanes.Start();
             if (!result.IsOk)
@@ -125,7 +125,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Stops and destroys plane polling
         /// </summary>
-        void OnDisable()
+        void OnDestroy()
         {
             if (MLWorldPlanes.IsStarted)
             {

@@ -12,13 +12,14 @@ The origin is represented by a box with an animated axis inside. This is where y
 headpose. This could be where your device booted or where you started a new session after losing headpose.
 
 In Debug Mode, PCFs are shown and indicated by a small red-green-blue coordinate axes with a status text
-below it. Only PCFs which have content bound to them are visually represented. On your first run, there
-is nothing to restore and show. Pressing the bumper would add new spheres and bind it to the closest PCF.
-A status of "Good" means it loaded properly and its transform is reliable. A status of "Lost" means that
-it used to be "Good" but its transform is no longer reliable. This can occur when you lose headpose. A
-status of "Regained" means that it used to be "Lost" and has now found been restored to its original world
-location and orientation. A status of "Updated" means the PCF's transform has been changed (relative
-to the origin but still respects the position and orientation in the real world) and is still reliable.
+below it. These visualizers are initialized when PCFs are successfully queried from the underlying system.
+On your first run, there is nothing to restore and show. Pressing the bumper would add new spheres and
+bind it to the closest PCF. A status of "Good" means it loaded properly and its transform is reliable.
+A status of "Lost" means that it used to be "Good" but its transform is no longer reliable. This can occur
+when you lose headpose. A status of "Regained" means that it used to be "Lost" and has now found been
+restored to its original world location and orientation. A status of "Updated" means the PCF's transform
+has been changed (relative to the origin but still respects the position and orientation in the real world)
+and is still reliable.
 
 Notes:
 (1) Although this example lets you create as many objects as you like, the cost of saving an association

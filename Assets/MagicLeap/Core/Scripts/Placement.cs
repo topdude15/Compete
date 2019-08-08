@@ -272,10 +272,9 @@ namespace UnityEngine.XR.MagicLeap
         {
             if (_fitStatus == FitType.Fits || _fitStatus == FitType.WrongOrientation)
             {
-                  // Find the axis.
-                Vector3 XAxis = GetCrossAxis(Surface, _normal);
+                // Find the axes.
+                Vector3 XAxis = GetRightAxis(Surface, _normal);
                 Vector3 ZAxis = Vector3.Cross(Vector3.up, XAxis);
-                Vector3 YAxis = Vector3.Cross(ZAxis, XAxis);
 
                 // Set the rotation.
                 if(Surface == SurfaceType.Vertical)
@@ -286,12 +285,13 @@ namespace UnityEngine.XR.MagicLeap
                     }
                     else
                     {
+                        Vector3 YAxis = Vector3.Cross(XAxis, ZAxis);
                         Rotation = Quaternion.LookRotation(_normal, YAxis);
                     }
                 }
                 else
                 {
-                    Rotation = Quaternion.LookRotation(ZAxis, Vector3.up);
+                    Rotation = Quaternion.LookRotation(ZAxis, _normal);
                 }
 
 
@@ -446,7 +446,7 @@ namespace UnityEngine.XR.MagicLeap
             return hit;
         }
 
-        private Vector3 GetCrossAxis(SurfaceType surfaceType, Vector3 normal)
+        private Vector3 GetRightAxis(SurfaceType surfaceType, Vector3 normal)
         {
             if (surfaceType == SurfaceType.Horizontal)
             {

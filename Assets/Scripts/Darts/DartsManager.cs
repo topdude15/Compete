@@ -44,6 +44,8 @@ public class DartsManager : MonoBehaviour {
 	public static bool lockedDartboard = false;
 	List<Vector3> Deltas = new List<Vector3> ();
 
+	public AudioSource menuAudio;
+
 	// Use this for initialization
 	void Start () {
 		CheckNewUser();
@@ -206,6 +208,7 @@ public class DartsManager : MonoBehaviour {
 			if (rayHit.transform.gameObject.name == "Home" && controller.TriggerValue >= 0.9f) {
 				SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 SceneManager.UnloadSceneAsync("Darts");
+				menuAudio.Play();
             } else if (rayHit.transform.gameObject.name == "JoinLobby" && controller.TriggerValue >= 0.9f) {
 				if (_realtimeObject.connected) {
 					multiplayerStatusMenu.SetActive(true);
@@ -214,14 +217,17 @@ public class DartsManager : MonoBehaviour {
 				}
 				menuOpened = true;
 				menu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "AcceptTerms" && controller.TriggerValue >= 0.9f && multiplayerMenuOpen == false) {
 				multiplayerMenu.SetActive(true);
 				multiplayerMenuOpen = true;
 				multiplayerConfirmMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "CancelTerms" && controller.TriggerValue >= 0.9f) {
 				multiplayerConfirmMenu.SetActive(false);
 				menuOpened = true;
 				menu.SetActive(true);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ChangeDart" && controller.TriggerValue >= 0.9f) {
 				dart = Instantiate(dartPrefab, new Vector3(100, 100, 100), controller.Orientation, dartHolder);
 				dart.transform.parent = dartHolder;
@@ -232,11 +238,13 @@ public class DartsManager : MonoBehaviour {
 				menu.SetActive(false);
 				dartMenuOpened = true;
 				holdingDartMenu = true;
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "Modifiers" && controller.TriggerValue >= 0.9f) {
 				modifierMenu.SetActive(true);
 				menu.SetActive(false);
 				menuClosed = true;
 				settingsOpened = true;
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "Tutorial" && controller.TriggerValue >= 0.9f) {
 				menuClosed = true;
 				menuOpened = false;
@@ -250,14 +258,17 @@ public class DartsManager : MonoBehaviour {
 				laserLineRenderer.material = transparent;
 				PlayerPrefs.SetInt ("hasPlayedDarts", 0);
 				CheckNewUser ();
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "YesPlease" && controller.TriggerValue >= 0.9f) {
 				PlayerPrefs.SetInt ("hasPlayedDarts", 0);
 				CheckNewUser();
 				tutorialMenuOpened = true;
 				tutorialActive = true;
 				tutorialHelpMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "NoThanks" && controller.TriggerValue >= 0.9f) {
 				tutorialHelpMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ToggleMic" && controller.TriggerValue >= 0.9f) {
 				if (toggledMic == false) {
 					toggledMic = true;
@@ -287,6 +298,7 @@ public class DartsManager : MonoBehaviour {
 					modifierMenu.SetActive(false);
 					menuClosed = true;
 				}
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ShowMesh" && controller.TriggerValue >= 0.9f) {
 				if (!settingsOpened) {
 					if (occlusionActive) {
@@ -307,6 +319,7 @@ public class DartsManager : MonoBehaviour {
 					modifierMenu.SetActive(false);
 					menuClosed = true;
 				}
+				menuAudio.Play();
 			}
 			if (!holdingDartMenu) {
 				DartColorLoader.GetDartColor(rayHit.transform.gameObject.name, controller, dartMenu, dartMenuOpened, holdingDartMenu, dart, dartMats);
@@ -318,6 +331,7 @@ public class DartsManager : MonoBehaviour {
 					pickedNumber = true;
 					roomCode += rayHit.transform.gameObject.name;
 					multiplayerCodeText.text = roomCode;
+					menuAudio.Play();
 
 				}  else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false) {
 					deletedCharacter = true;
@@ -325,6 +339,7 @@ public class DartsManager : MonoBehaviour {
 						roomCode = roomCode.Substring(0, roomCode.Length - 1);
 						multiplayerCodeText.text = roomCode;
 					}
+					menuAudio.Play();
 				} else if (controller.TriggerValue <= 0.2f) {
 					pickedNumber = false;
 					deletedCharacter = false;
@@ -338,13 +353,16 @@ public class DartsManager : MonoBehaviour {
 					multiplayerMenuOpen = false;
 					multiplayerStatusMenu.SetActive(true);
 					multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+					menuAudio.Play();
 				} else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f) {
 					multiplayerMenu.SetActive(false);
 					multiplayerMenuOpen = false;
 					menu.SetActive(true);
 					menuOpened = true;
 					roomCode = "";
+					menuAudio.Play();
 				}
+
 			}
 		} else {
 			endPosition = controller.Position + (control.transform.forward * 3.0f);

@@ -103,7 +103,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Initializes component.
         /// </summary>
-        virtual protected void OnEnable()
+        virtual protected void Start()
         {
             _isReady = true;
             MLResult result = MLWorldRays.Start();
@@ -118,7 +118,7 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Cleans up component.
         /// </summary>
-        virtual protected void OnDisable()
+        virtual protected void OnDestroy()
         {
             if (MLWorldRays.IsStarted)
             {

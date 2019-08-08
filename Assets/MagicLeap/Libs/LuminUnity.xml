@@ -25,6 +25,12 @@
             Singleton object instance.
             </summary>
         </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLAPISingleton`1._perceptionHandle">
+            <summary/>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLAPISingleton`1._perceptionHasStarted">
+            <summary/>
+        </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLAPISingleton`1.DllNotFoundError">
             <summary>
             Error message displayed to user when API dll was not found
@@ -92,12 +98,11 @@
             </summary>
             <param name="isSafeToAccessManagedObjects">Boolean that tells if it is safe to clear managed memory</param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLAPISingleton`1.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLAPISingleton`1.Update(System.Single)">
             <summary>
             Update function registered with MagicLeapDevice to do API specific per frame work.
             </summary>
             <param name="timeDelta">The time in seconds it took to complete the last frame.</param>
-            <param name="perceptionSnapshot">The current perception snapshot</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLAPISingleton`1.OnApplicationPause(System.Boolean)">
             <summary>
@@ -168,12 +173,11 @@
             </summary>
             <param name="isSafeToAccessManagedObjects"></param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLAudio.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLAudio.Update(System.Single)">
             <summary>
             Called every device frame
             </summary>
             <param name="timeDelta"></param>
-            <param name="perceptionSnapshot"></param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLAudio.GetMasterVolume(System.Single@)">
              <summary>
@@ -420,7 +424,7 @@
             Cleans up unmanaged memory.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLCamera.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLCamera.Update(System.Single)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLCamera.Connect">
@@ -1243,7 +1247,7 @@
             Cleans up unmanaged memory.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLContacts.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLContacts.Update(System.Single)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLContacts.AddContact(UnityEngine.XR.MagicLeap.MLContactsContact,System.UInt64@)">
@@ -1418,7 +1422,7 @@
              MLResult.Code will be MLResultCode.PrivilegeDenied if necessary privilege is missing.
              </returns>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLContactsListPage.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLContactsListPage.Update(System.Single)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLContactsListPage.NextPage">
@@ -1522,45 +1526,14 @@
             Initial value is set to 0 before the first update.
             </summary>
         </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEye.m_CenterCoordinateFrame">
-            <summary>
-            MagicLeap coordinate frame information for this eye's center.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEye._transform">
-            <summary>
-            Generic magicleap transform used to query data from native library.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEye.#ctor(UnityEngine.XR.MagicLeap.MLEye.EyeType,MagicLeapInternal.EyeApiNativeBindings.MLEyeTrackingStaticData@)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLEye.#ctor(UnityEngine.XR.MagicLeap.MLEye.EyeType)">
             <summary>
             Constructor to initialize this class based on the desired eye type.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEye.Update(System.IntPtr,System.Single,System.Boolean)">
-            <summary>
-            Update call used to get the latest data for this eye from a perception snapshot and information sent from MLEyes current State.
             </summary>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLEyes">
             <summary>
             MLEyes class contains all Eye tracking data for both left and right eyes.
-            </summary>
-        </member>
-        <member name="E:UnityEngine.XR.MagicLeap.MLEyes.OnFixationDepthComfortChanged">
-            <summary>
-            Event is triggered when the fixation comfort state has changed.
-            (bool comfortable)
-            </summary>
-        </member>
-        <member name="E:UnityEngine.XR.MagicLeap.MLEyes.OnFixationDepthViolationOccurred">
-            <summary>
-            Event is triggered when a depth violation occurs.
-            </summary>
-        </member>
-        <member name="E:UnityEngine.XR.MagicLeap.MLEyes.OnFixationDepthViolationCleared">
-            <summary>
-            Event is triggered once a depth violation has been cleared.
             </summary>
         </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLEyes.LeftEye">
@@ -1587,74 +1560,11 @@
             </summary>
             <returns> Returns the status of eye calibration. </returns>
         </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLEyes.IsFixationDepthUncomfortable">
-            <summary>
-            Is the users fixation point too close for sustained use. This value is true if the user is
-            focused on a point that is within the near clip distance of the eyeball centers.
-            </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLEyes.RemainingTimeAtUncomfortableDepth">
-            <summary>
-            Number of seconds remaining that the user may be fixated at an uncomfortable depth. If this
-            persists for too long, the system may take action to move the fixation point further away.
-            </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLEyes.MaximumTimeAtUncomfortableDepth">
-            <summary>
-            Maximum number of seconds that the user may be fixated at an uncomfortable depth.
-            </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLEyes.HasFixationDepthViolationOccurred">
-            <summary>
-            True if the user has fixated on a point closer than the near clip distance for longer than 10 seconds within
-            the last minute.
-            </summary>
-        </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLEyes.FixationPoint">
             <summary>
             Fixation point.
             </summary>
             <returns> Returns fixtion point of users eyes. </returns>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._rightEye">
-            <summary>
-            Right eye class used to get right eye specific data.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._leftEye">
-            <summary>
-            Left eye class used to get right eye specific data.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._nativeTracker">
-            <summary>
-            MagicLeap native eye tracker.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._staticData">
-            <summary>
-            MagicLeap eye tracker static data.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._state">
-            <summary>
-            MagicLeap eye tracker state data.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._transform">
-            <summary>
-            Generic magicleap transform used to query data from native library.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLEyes._fixationPoint">
-            <summary>
-            Fixation point.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.CreateInstance">
-            <summary>
-            static instance of the MLEyes class
-            </summary>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLEyes.Start">
              <summary>
@@ -1666,25 +1576,10 @@
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.#ctor">
-            <summary>
-            MLEyes constructor.
-            </summary>
-        </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLEyes.StartAPI">
             <summary>
             Starts the eye object requests, Must be called to start receiving eye tracker data from
             the underlying system
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.InitNativeTracker">
-            <summary>
-            Create native eye tracker.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.InitEyes">
-            <summary>
-            Initialize eye data by pulling native tracker data and the individual eye classes.
             </summary>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLEyes.CleanupAPI(System.Boolean)">
@@ -1692,25 +1587,94 @@
             Cleans up unmanaged memory
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.DestroyNativeTracker">
-            <summary>
-            Destroy the native tracker.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.Update(System.Single)">
             <summary>
             Update all eye data.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.UpdateState">
+        <member name="T:UnityEngine.XR.MagicLeap.MLHandMeshBlock">
             <summary>
-            Update eye tracker state.
+            Structure to represent a mesh block
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLEyes.UpdateFixationPoint(System.IntPtr)">
+        <member name="P:UnityEngine.XR.MagicLeap.MLHandMeshBlock.Vertex">
             <summary>
-            Update fixation point data.
+            Array of vertex positions relative to the origin.
+            This can be directly plugged into Mesh.vertices.
             </summary>
+        </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLHandMeshBlock.Index">
+            <summary>
+            Array of Indices. Guaranteed to be a multiple of 3. Every 3 indices creates a triangles.
+            This can be directly plugged into Mesh.triangles.
+            </summary>
+        </member>
+        <member name="T:UnityEngine.XR.MagicLeap.MLHandMesh">
+            <summary>
+            Structure to represent a hand mesh.
+            </summary>
+        </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLHandMesh.MeshBlock">
+            <summary>
+            Array of mesh blocks.
+            </summary>
+        </member>
+        <member name="T:UnityEngine.XR.MagicLeap.MLHandMeshing">
+            <summary>
+            The MLHandMeshing API is used to request for the mesh information of the hands.
+            </summary>
+        </member>
+        <member name="T:UnityEngine.XR.MagicLeap.MLHandMeshing.HandMeshRequestCallback">
+            <summary>
+            Hand Mesh Request Callback delegate.
+            </summary>
+            <param name="result">Result of request.</param>
+            <param name="meshData">Mesh Data of the request if result is ok. Otherwise, meshData.MeshBlock is null.</param>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.CreateInstance">
+            <summary>
+            Create static instance of MLHandMeshing class.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.Start">
+             <summary>
+             Starts the MLHandMeshing API.
+             </summary>
+             <returns>
+             MLResult.Code will be MLResultCode.Ok if successful.
+            
+             MLResult.Code will be MLResultCode.InvalidParam if failed due to internal invalid input parameter.
+            
+             MLResult.Code will be MLResultCode.PrivilegeDenied if necessary privilege is missing.
+            
+             MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to internal error.
+             </returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.StartAPI">
+            <summary/>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.CleanupAPI(System.Boolean)">
+            <summary>
+            Cleans up unmanaged memory. Frees up resources of pending queries.
+            </summary>
+            <param name="isSafeToAccessManagedObjects">Allow complete cleanup of the API.</param>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.RequestHandMesh(UnityEngine.XR.MagicLeap.MLHandMeshing.HandMeshRequestCallback)">
+             <summary>
+             Requests for the hand mesh and executes the callback when the request is done.
+             </summary>
+             <param name="callback">Callback to execute when the request is done.</param>
+             <returns>
+             MLResult.Code will be MLResultCode.Ok if successful.
+            
+             MLResult.Code will be MLResultCode.InvalidParam if failed due to internal invalid input parameter.
+             </returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshing.Update(System.Single)">
+            <summary>
+            Process pending and completed queries.
+            </summary>
+            <param name="timeElapsed">Time elapsed since last frame's update.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLIdentityAttribute">
             <summary>
@@ -1743,45 +1707,6 @@
             <summary>
             The Attribute is granted.
             </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLIdentityAttribute.IsDirty">
-            <summary>
-            Gets or sets a value indicating whether this attribute is dirty.
-            </summary>
-            <value><c>true</c> if is dirty; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLIdentityAttribute.GetValueAsFloat">
-            <summary>
-            Gets the value as float.
-            </summary>
-            <returns>The value as float.</returns>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLIdentityAttribute.GetValueAsInt">
-            <summary>
-            Gets the value as int.
-            </summary>
-            <returns>The value as int.</returns>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLIdentityAttribute.Update(System.Int32)">
-            <summary>
-            update with the new value
-            </summary>
-            <returns>The update.</returns>
-            <param name="newValue">New value.</param>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLIdentityAttribute.Update(System.String)">
-            <summary>
-            Update the specified newValue.
-            </summary>
-            <returns>The update.</returns>
-            <param name="newValue">New value.</param>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLIdentityAttribute.Update(System.Single)">
-            <summary>
-            Update the specified newValue.
-            </summary>
-            <returns>The update.</returns>
-            <param name="newValue">New value.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.InternalMLIdentityProfile">
             <summary>
@@ -1975,18 +1900,11 @@
             Cleans up unmanaged memory.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLImageTarget.Update(System.IntPtr)">
-            <summary>
-            Updates the image target tracking data.
-            Callback (if any) is called with the updated result.
-            </summary>
-            <param name="snapshot">The current ML snapshot.</param>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLImageTarget.UpdateTrackingData(System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLImageTarget.UpdateTrackingData">
             <summary>
             Updates this image target's tracking data, status, and transforms.
+            Callback (if any) is called with the updated result.
             </summary>
-            <returns> true if the result was successfully retrieved, false otherwise. </returns>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLImageTarget.GetTargetLongerDimension">
             <summary>
@@ -2080,7 +1998,7 @@
             image tracker.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLImageTracker.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLImageTracker.Update(System.Single)">
             <summary>
             Handle the update callback.
             Update the tracking results for all the image targets.
@@ -2278,11 +2196,6 @@
             The internal handle attached to this instance of MLInput
             </summary>
         </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInput._controllerStateUnmanaged">
-            <summary>
-            The current input controller state.
-            </summary>
-        </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLInput._controllers">
             <summary>
             The two controller objects currently being tracked.
@@ -2298,6 +2211,16 @@
         <member name="F:UnityEngine.XR.MagicLeap.MLInput._config">
             <summary>
             The input configuration to send to MLInputCreate
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInput._controllerConfig">
+            <summary>
+            The configuration for the controllers.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInput._cachedDevices">
+            <summary>
+            Stored a cached list of the device controllers.
             </summary>
         </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLInput._queuedActions">
@@ -2560,7 +2483,13 @@
         <member name="T:UnityEngine.XR.MagicLeap.MLInput.OnControllerTouchpadGestureNativeCallback">
             <summary/>
         </member>
-        <member name="T:UnityEngine.XR.MagicLeap.MLInput.OnControllerTouchpadGestureNativeCallbackPrivate">
+        <member name="M:UnityEngine.XR.MagicLeap.MLInput.OnControllerTouchpadGestureStartNative(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture)">
+            <summary/>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLInput.OnControllerTouchpadGestureContinueNative(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture)">
+            <summary/>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLInput.OnControllerTouchpadGestureEndNative(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture)">
             <summary/>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLInput.OnControllerButtonNativeCallback">
@@ -2602,27 +2531,15 @@
         <member name="M:UnityEngine.XR.MagicLeap.MLInput.StartAPI">
             <summary/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInput.CreateCFUIDController(UnityEngine.XR.MagicLeap.MLInputConfiguration)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLInput.SetControllerConfiguration">
             <summary>
-            Attempts to start the controller in CFUID mode.
+            Sets the controller configuration.
             </summary>
-            <returns>Returns the handle for the CFUID controller.</returns>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInput.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLInput.Update(System.Single)">
             <summary/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInput.PollState">
-            <summary>
-            Poll the controller state, without a valid snapshot.
-            Used for initialization.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInput.PollState(System.IntPtr)">
-            <summary>
-            Poll the controller state and update the transform.
-            </summary>
-            <param name="snapshot">The current snapshot for the frame.</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:UnityEngine.XR.MagicLeap.MLInput.PollState" -->
         <member name="M:UnityEngine.XR.MagicLeap.MLInput.ProcessTriggerReadings">
             <summary/>
         </member>
@@ -2662,6 +2579,41 @@
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLInputController">
             <summary/>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnTouchpadGestureStart">
+            <summary>
+            This callback will be invoked whenever a detected touchpad gesture begins.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnTouchpadGestureContinue">
+            <summary>
+            This callback will be invoked as a detected touchpad gesture continues.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnTouchpadGestureEnd">
+            <summary>
+            This callback will be invoked whenever a detected touchpad gesture ends.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnButtonDown">
+            <summary>
+            This callback will be invoked whenever a button press is detected.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnButtonUp">
+            <summary>
+            This callback will be invoked whenever a button release is detected.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnConnect">
+            <summary>
+            This callback will be invoked when a controller is connected.
+            </summary>
+        </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLInputController.OnDisconnect">
+            <summary>
+            This callback will be invoked when a controller is disconnected.
+            </summary>
         </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLInputController.Hand">
             <summary>
@@ -2758,11 +2710,21 @@
         <member name="M:UnityEngine.XR.MagicLeap.MLInputController.#ctor(System.UInt64,System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInput.Hand)">
             <summary/>
         </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLInputController.#ctor(System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInput.Hand)">
+            <summary/>
+        </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLInputController.Update(System.IntPtr)">
             <summary>
             Updates the control state using the MLController API.
             </summary>
             <param name="snapshot">The snapshot used to obtain the control transform.</param>
+            <returns>Returns the result from either MLControllerGetState or MLSnapshotGetTransform.</returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLInputController.Update(UnityEngine.XR.InputDevice)">
+            <summary>
+            Updates the control state using the MLController API.
+            </summary>
+            <param name="device">The current device for the frame.</param>
             <returns>Returns the result from either MLControllerGetState or MLSnapshotGetTransform.</returns>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLInputController.StartFeedbackPatternLED(UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackColorLED,System.Single)">
@@ -2771,8 +2733,6 @@
              </summary>
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
-            
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid null internal parameter.
             
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
@@ -2784,8 +2744,6 @@
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
             
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid null internal parameter.
-            
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
         </member>
@@ -2795,8 +2753,6 @@
              </summary>
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
-            
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid null internal parameter.
             
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
@@ -2808,8 +2764,6 @@
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
             
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid null internal parameter.
-            
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
         </member>
@@ -2819,8 +2773,6 @@
              </summary>
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
-            
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid null internal parameter.
             
              MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to other internal error.
              </returns>
@@ -2877,7 +2829,7 @@
         <member name="M:UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture.#ctor">
             <summary/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture.#ctor(MagicLeapInternal.InputNativeBindings.MLInputControllerTouchpadGesture)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture.#ctor(UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture.Update(MagicLeapInternal.InputNativeBindings.MLInputControllerTouchpadGesture)">
@@ -2885,6 +2837,12 @@
             Update with the specified touchpadGesture.
             </summary>
             <param name="touchpadGesture">Touchpad gesture.</param>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLInputControllerTouchpadGesture.Update(UnityEngine.XR.MagicLeap.MagicLeapTouchpadGestureEvent)">
+            <summary>
+            Update with the specified Unity XR Input MagicLeapTouchpadGestureEvent.
+            </summary>
+            <param name="touchpadGesture">The Unity XR Input MagicLeapTouchpadGestureEvent.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLLightingTracker">
             <summary>
@@ -2954,8 +2912,35 @@
         <member name="M:UnityEngine.XR.MagicLeap.MLLightingTracker.CalculateGlobalAmbientScalar">
             <summary/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLLightingTracker.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLLightingTracker.Update(System.Single)">
             <summary/>
+        </member>
+        <member name="T:UnityEngine.XR.MagicLeap.MLLocalization">
+            <summary>
+            MLLocalization provides the Language and Country set at the system level.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLLocalization.GetSystemLanguage(System.String@)">
+             <summary>
+             Reads the language code of the system locale.
+             </summary>
+             <param name="language">Language code defined in ISO 639. Valid only if MLResultCode.Ok is returned, empty string otherwise.</param>
+             <returns>
+             MLResult.Code will be MLResultCode.Ok if the language code was retrieved successfully.
+            
+             MLResult.Code will be MLResultCode.UnspecifiedFailure if there was an unspecified error.
+             </returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLLocalization.GetSystemCountry(System.String@)">
+             <summary>
+             Reads the country code of the system locale.
+             </summary>
+             <param name="country">Country code defined in ISO 3166, or an empty string. Valid only if MLResultCode.Ok is returned, empty string otherwise.</param>
+             <returns>
+             MLResult.Code will be MLResultCode.Ok if the country code was retrieved successfully.
+            
+             MLResult.Code will be MLResultCode.UnspecifiedFailure if there was an unspecified error.
+             </returns>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLLocationData">
             <summary>
@@ -3030,12 +3015,11 @@
             </summary>
             <param name="isSafeToAccessManagedObjects"></param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLLocation.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLLocation.Update(System.Single)">
             <summary>
             Called every device frame
             </summary>
             <param name="timeDelta"></param>
-            <param name="perceptionSnapshot"></param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLLocation.Start">
              <summary>
@@ -3209,7 +3193,7 @@
             Cleans up unmanaged memory.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLMusicService.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLMusicService.Update(System.Single)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLMusicService.SetAuthString(System.String)">
@@ -3740,6 +3724,12 @@
             Type: AutoGranted
             </summary>
         </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLPrivilegeId.HandMesh">
+            <summary>
+            Access hand mesh features.
+            Type: AutoGranted
+            </summary>
+        </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLPrivilegeId.CoarseLocation">
             <summary>
             Get coarse location of the device.
@@ -3847,12 +3837,11 @@
             </summary>
             <param name="isSafeToAccessManagedObjects">Boolean that tells if it is safe to clear managed memory</param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLPrivileges.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLPrivileges.Update(System.Single)">
             <summary>
             Polls for the result of pending privileges requests.
             </summary>
             <param name="timeDelta">The time in seconds it took to complete the last frame.</param>
-            <param name="perceptionSnapshot">The current perception snapshot</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLPrivileges.CheckPrivilege(UnityEngine.XR.MagicLeap.MLPrivilegeId)">
              <summary>
@@ -4042,7 +4031,7 @@
             the underlying system
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLScreens.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLScreens.Update(System.Single)">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLScreens.CleanupAPI(System.Boolean)">
@@ -4095,39 +4084,6 @@
              Removes entry from media watch history.
              </summary>
              <param name="entryId">Id of existing media watch entry.</param>
-             <returns>
-             MLResult.Code will be MLResultCode.Ok if successful.
-            
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid input parameter.
-            
-             MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to internal error.
-            
-             MLResult.Code will be MLResultCode.ScreensServiceNotAvailable if failed due to the unavailability of the screens service.
-             </returns>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLScreens.Update(UnityEngine.XR.MagicLeap.MLScreensWatchHistoryEntry@)">
-             <summary>
-             Updates media watch entry with default thumbnail.
-             </summary>
-             <param name="entry">Id of existing media watch entry.</param>
-             <returns>
-             MLResult.Code will be MLResultCode.Ok if successful.
-            
-             MLResult.Code will be MLResultCode.InvalidParam if failed due to invalid input parameter.
-            
-             MLResult.Code will be MLResultCode.UnspecifiedFailure if failed due to internal error.
-            
-             MLResult.Code will be MLResultCode.ScreensServiceNotAvailable if failed due to the unavailability of the screens service.
-             </returns>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLScreens.Update(UnityEngine.XR.MagicLeap.MLScreensWatchHistoryEntry,UnityEngine.Texture2D)">
-             <summary>
-             Updates media watch entry.
-             </summary>
-             <param name="entry">Id of existing media watch entry.</param>
-             <param name="thumbnailImage">
-             Thumbnail image for entry. Format needs to be TextureFormat.RGB24.
-             </param>
              <returns>
              MLResult.Code will be MLResultCode.Ok if successful.
             
@@ -4879,12 +4835,11 @@
             Cleans up unmanaged memory.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLWorldPlanes.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLWorldPlanes.Update(System.Single)">
             <summary>
             Polls for the result of pending planes requests.
             </summary>
             <param name="timeElapsed">Time elapsed since last frame's update.</param>
-            <param name="perceptionSnapshot">Native pointer to this frame's perception snapshot.</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLWorldPlanes.ProcessPendingQueries">
             <summary>
@@ -5055,7 +5010,7 @@
             Clear pending request queue, free up memory
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLWorldRays.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLWorldRays.Update(System.Single)">
             <summary>
             Polls for the result of pending raycast requests.
             </summary>
@@ -5094,6 +5049,16 @@
             MLFinger contains joint information about the finger instance.
             </summary>
         </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLFinger.MCP">
+            <summary>
+            The Metacarpal phalangeal joint of the finger.
+            </summary>
+        </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLFinger.PIP">
+            <summary>
+            The Proximal-interphalangeal joint of the finger.
+            </summary>
+        </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLFinger.Tip">
             <summary>
             The Tip of the finger.
@@ -5104,32 +5069,33 @@
             The Distal-interphalangeal joint of the finger.
             </summary>
         </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLFinger.PIP">
-            <summary>
-            The Proximal-interphalangeal joint of the finger.
-            </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLFinger.MCP">
-            <summary>
-            The Metacarpal phalangeal joint of the finger.
-            </summary>
-        </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLFinger.KeyPoints">
             <summary>
             All valid keypoints combined into a list.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLFinger.#ctor(MagicLeapInternal.HandTrackingApiNativeBindings.MLFingerState)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLFinger.#ctor(System.UInt32)">
             <summary>
             Initializes a new instance of the MLFinger class.
             </summary>
-            <param name="state"></param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLFinger.Update(System.IntPtr)">
             <summary>
             Updates the state of the finger.
             </summary>
             <param name="perceptionSnapshot"></param>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLFinger.Update(System.Collections.Generic.List{UnityEngine.XR.Bone})">
+            <summary>
+            Updates the state of the finger.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLFinger.GetBonePosition(UnityEngine.XR.Bone)">
+            <summary>
+            Returns the position of the bone, from the Unity XR Input.
+            </summary>
+            <param name="bones">The XR.Bone to be examined.</param>
+            <returns></returns>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLHand">
             <summary>
@@ -5145,19 +5111,11 @@
         <member name="P:UnityEngine.XR.MagicLeap.MLHand.KeyPoseConfidence">
             <summary>
             The confidence value of the requested KeyPose, between [0, 1].
-            This property is marked as unsafe due to the use of unsafe code, in this case, pointers.
-            This is used for accessing the KeyposeConfidence array, which is unsafe in order to prevent
-            marshalling code from allocating the array on the heap and in order to instead allocate it
-            on the stack.
             </summary>
         </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLHand.KeyPoseConfidenceFiltered">
             <summary>
             The filtered confidence value of the requested KeyPose, between [0, 1].
-            This property is marked as unsafe due to the use of unsafe code, in this case, pointers.
-            This is used for accessing the KeyPoseConfidenceFiltered array, which is unsafe in order to
-            prevent marshalling code from allocating the array on the heap and in order to instead
-            allocate it on the stack.
             </summary>
         </member>
         <member name="E:UnityEngine.XR.MagicLeap.MLHand.OnKeyPoseBegin">
@@ -5229,22 +5187,21 @@
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLHand.GetKeyPoseUp(UnityEngine.XR.MagicLeap.MLHandKeyPose)">
             <summary>
-            Returns true if the KeyPose stops being recognized on Update.
+            This method has been deprecated, will always return false.
             </summary>
             <param name="keyPose"/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLHand.GetKeyPoseDown(UnityEngine.XR.MagicLeap.MLHandKeyPose)">
             <summary>
-            Returns true if the KeyPose starts being recognized on Update.
+            This method has been deprecated, will always return false.
             </summary>
             <param name="keyPose"/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLHand.#ctor(UnityEngine.XR.MagicLeap.MLHandType,MagicLeapInternal.HandTrackingApiNativeBindings.MLHandTrackingStaticHandState)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLHand.#ctor(UnityEngine.XR.MagicLeap.MLHandType)">
             <summary>
             Initializes a new instance of the MLHand" class.
             </summary>
             <param name="handType">Hand type.</param>
-            <param name="handState">The static hand state.</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLHand.Update(MagicLeapInternal.HandTrackingApiNativeBindings.MLHandTrackingHandState,System.IntPtr)">
             <summary>
@@ -5253,7 +5210,13 @@
             </summary>
             <param name="newState">New state.</param>
             <param name="perceptionSnapshot">Perception snapshot.</param>
-            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHand.Update(UnityEngine.XR.InputDevice)">
+            <summary>
+            Updates MLHand state variables. Note: It's not advisable
+            to call this outside the context of the MLHands and MLKeyPoseManager
+            </summary>
+            <param name="device">Input device containing latest input data.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLHands">
             <summary>
@@ -5308,18 +5271,11 @@
             Start tracking hands with all KeyPoses disabled.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLHands.CleanupAPI(System.Boolean)">
-            <summary>
-            Cleans up unmanaged memory
-            </summary>
-            <param name="isSafeToAccessManagedObjects">Allow complete cleanup of the API.</param>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLHands.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLHands.Update(System.Single)">
             <summary>
             Updates the KeyPose state based on the provided snapshot.
             </summary>
             <param name="timeDelta">The amount of time (in seconds) that has passed since the last call to Update().</param>
-            <param name="perceptionSnapshot">A snapshot of the observed world state at the current update time.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLKeyPoint">
             <summary>
@@ -5413,9 +5369,8 @@
             </summary>
             <returns>true if the settings have actually been applied to the active configuration and false otherwise.</returns>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLKeyPoseManager.#ctor(System.UInt64,UnityEngine.XR.MagicLeap.MLHand,UnityEngine.XR.MagicLeap.MLHand)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLKeyPoseManager.#ctor(UnityEngine.XR.MagicLeap.MLHand,UnityEngine.XR.MagicLeap.MLHand)">
             <summary/>
-            <param name="nativeTrackerHandle">Native hand tracker handle.</param>
             <param name="leftHand">Left hand to which MLKeyPoseManager will subscribe for events.</param>
             <param name="rightHand">Right hand to which KeyPoseManager will subscribe for events.</param>
         </member>
@@ -5424,9 +5379,9 @@
             MLThumb contains joint information about the thumb instance.
             </summary>
         </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLThumb.Tip">
+        <member name="P:UnityEngine.XR.MagicLeap.MLThumb.MCP">
             <summary>
-            The Tip of the thumb.
+            The Metacarpophalangeal joint of the thumb.
             </summary>
         </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLThumb.IP">
@@ -5434,9 +5389,9 @@
             The Interphalangeal joint of the thumb.
             </summary>
         </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLThumb.MCP">
+        <member name="P:UnityEngine.XR.MagicLeap.MLThumb.Tip">
             <summary>
-            The Metacarpophalangeal joint of the thumb.
+            The Tip of the thumb.
             </summary>
         </member>
         <member name="P:UnityEngine.XR.MagicLeap.MLThumb.CMC">
@@ -5449,17 +5404,15 @@
             All valid keypoints combined into a list.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLThumb.#ctor(MagicLeapInternal.HandTrackingApiNativeBindings.MLThumbState)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLThumb.#ctor">
             <summary>
             Initializes a new instance of the MLThumb class.
             </summary>
-            <param name="state"></param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLThumb.Update(System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLThumb.Update(System.Collections.Generic.List{UnityEngine.XR.Bone})">
             <summary>
             Updates the state of the thumb.
             </summary>
-            <param name="perceptionSnapshot"></param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLWrist">
             <summary>
@@ -5486,17 +5439,15 @@
             All valid keypoints combined into a list.
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLWrist.#ctor(MagicLeapInternal.HandTrackingApiNativeBindings.MLWristState)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLWrist.#ctor">
             <summary>
             Initializes a new instance of the MLWrist class.
             </summary>
-            <param name="state"></param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLWrist.Update(System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLWrist.Update(UnityEngine.XR.InputDevice)">
             <summary>
             Updates the state of the MLWrist.
             </summary>
-            <param name="perceptionSnapshot"></param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.ButtonDeltaState">
             <summary>
@@ -5874,14 +5825,13 @@
             Cleans up unmanaged memory
             </summary>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentCoordinateFrames.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentCoordinateFrames.Update(System.Single)">
             <summary/>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentCoordinateFrames.UpdatePCFTransforms(System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentCoordinateFrames.UpdatePCFTransforms">
             <summary>
             Update Transforms of PCFs that we're tracking
             </summary>
-            <param name="perceptionSnapshot">MLSnapshot</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLPersistentCoordinateFrames.QueueForUpdates(UnityEngine.XR.MagicLeap.MLPCF)">
             <summary>
@@ -6074,12 +6024,11 @@
             </summary>
             <param name="isSafeToAccessManagedObjects">If set to <c>true</c> is safe to access managed objects.</param>
         </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentStore.Update(System.Single,System.IntPtr)">
+        <member name="M:UnityEngine.XR.MagicLeap.MLPersistentStore.Update(System.Single)">
             <summary>
-            Update with specified timeDelta and perceptionSnapshot.
+            Update with specified timeDelta.
             </summary>
             <param name="timeDelta">Time delta.</param>
-            <param name="perceptionSnapshot">Perception snapshot.</param>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLPersistentStore.Save(UnityEngine.XR.MagicLeap.MLContentBinding)">
             <summary>
@@ -6104,6 +6053,65 @@
             <summary>
             Deletes all bindings stored.
             </summary>
+        </member>
+        <member name="T:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior">
+            <summary>
+            Utility class to generate the hand mesh and trigger callbacks based on availability of hand mesh.
+            </summary>
+        </member>
+        <member name="E:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.OnHandMeshFound">
+            <summary>
+            Triggered when mesh data is found
+            </summary>
+        </member>
+        <member name="E:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.OnHandMeshUpdated">
+            <summary>
+            Triggered when mesh data is updated
+            </summary>
+        </member>
+        <member name="E:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.OnHandMeshLost">
+            <summary>
+            Triggered when mesh data is lost
+            </summary>
+        </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.MeshMaterial">
+            <summary>
+            Setter for the Mesh Material.
+            </summary>
+        </member>
+        <member name="P:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.HandMeshFound">
+            <summary>
+            Getter for availability of hand mesh data.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.Start">
+            <summary>
+            Starts MLHandMeshing, validates inspector variables and public properties, starts requesting for hand mesh data.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.OnDestroy">
+            <summary>
+            Clean Up.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.OnEnable">
+            <summary>
+            Resumes the requesting if needed.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.HandleCallbacks(UnityEngine.XR.MagicLeap.MLHandMesh)">
+            <summary>
+            Invoke callbacks.
+            </summary>
+            <param name="meshData">Mesh Data</param>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MLHandMeshingBehavior.HandMeshRequestCallback(UnityEngine.XR.MagicLeap.MLResult,UnityEngine.XR.MagicLeap.MLHandMesh)">
+            <summary>
+            Handler when Mesh Request is complete.
+            Builds the mesh if available. Invokes the callbacks.
+            </summary>
+            <param name="result">Status of the request.</param>
+            <param name="meshData">Mesh Data, only valid when result is Ok.</param>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLImageTrackerBehavior">
             <summary>
@@ -6228,34 +6236,6 @@
             Use controller to represent Pointer.
             </summary>
         </member>
-        <member name="T:UnityEngine.XR.MagicLeap.MLInputModule.GazeInput">
-            <summary>
-            The Gaze Input that should be tracked.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.GazeInput.None">
-            <summary/>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.GazeInput.Headpose">
-            <summary/>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.GazeInput.EyeTracking">
-            <summary/>
-        </member>
-        <member name="T:UnityEngine.XR.MagicLeap.MLInputModule.ControlInput">
-            <summary>
-            The additional input that should be tracked.
-            </summary>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.ControlInput.MobileApp">
-            <summary/>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.ControlInput.ControllerLeft">
-            <summary/>
-        </member>
-        <member name="F:UnityEngine.XR.MagicLeap.MLInputModule.ControlInput.ControllerRight">
-            <summary/>
-        </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLInputModule.LineSegment">
             <summary>
             Contains the world space point information about a line segment.
@@ -6283,17 +6263,7 @@
             The line segment between the pointer origin and the hit point, if it exists.
             </summary>
         </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLInputModule.GazeLineSegment">
-            <summary>
-            The line segment between the gaze origin and the hit point, or max distance.
-            </summary>
-        </member>
-        <member name="P:UnityEngine.XR.MagicLeap.MLInputModule.ControlsLineSegment">
-            <summary>
-            The line segment between the control origin and the hit point, or max distance.
-            </summary>
-        </member>
-        <member name="M:UnityEngine.XR.MagicLeap.MLInputModule.Awake">
+        <member name="M:UnityEngine.XR.MagicLeap.MLInputModule.Start">
             <summary/>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MLInputModule.OnDestroy">
@@ -6784,8 +6754,11 @@
         <member name="F:UnityEngine.XR.MagicLeap.MLHandKeyPose.L">
             <summary>An L shape</summary>
         </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MLHandKeyPose.OpenHand">
+            <summary>An open hand.</summary>
+        </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLHandKeyPose.OpenHandBack">
-            <summary>An open hand with the back of the hand facing the user.</summary>
+            <summary>Deprecated. Please use OpenHand.</summary>
         </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLHandKeyPose.Ok">
             <summary>A pinch with all fingers, except the index finger and the thumb, extended out.</summary>
@@ -6797,7 +6770,7 @@
             <summary>No pose was recognized.</summary>
         </member>
         <member name="F:UnityEngine.XR.MagicLeap.MLHandKeyPose.NoHand">
-            <summary>No hand was detected.  Should be the last pose.</summary>
+            <summary>No hand was detected. Should be the last pose.</summary>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLKeyPointFilterLevel">
             <summary>Configured level for keypoints filtering of keypoints and hand centers.</summary>
@@ -8182,6 +8155,9 @@
             MagicLeap device class responsible for updating all trackers when they register and are enabled.
             </summary>
         </member>
+        <member name="F:UnityEngine.XR.MagicLeap.MagicLeapDevice._perceptionHandle">
+            <summary/>
+        </member>
         <member name="F:UnityEngine.XR.MagicLeap.MagicLeapDevice.MAGIC_LEAP_DEVICE_NAME">
             <summary/>
         </member>
@@ -8249,12 +8225,22 @@
             Register a MagicLeap API Update callback to be called on Update of this MonoBehaviour.
             </summary>
         </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.Register(System.Action{System.Single})">
+            <summary>
+            Register a MagicLeap API Update callback to be called on Update of this MonoBehaviour.
+            </summary>
+        </member>
         <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.RegisterOnApplicationPause(System.Action{System.Boolean})">
             <summary>
             Register a MagicLeap API application pause callback to be called OnApplicationPause of this MonoBehaviour.
             </summary>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.Unregister(System.Action{System.Single,System.IntPtr})">
+            <summary>
+            Unregister a previously registered MagicLeap API Update callback.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.Unregister(System.Action{System.Single})">
             <summary>
             Unregister a previously registered MagicLeap API Update callback.
             </summary>
@@ -8294,6 +8280,16 @@
             <returns>
             True if the scale was set false if the main camera or main camera parent was not found.
             </returns>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.RegisterGestureSubsystem">
+            <summary>
+            Attempts to register the Unity GestureSubsystem.
+            </summary>
+        </member>
+        <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.UnregisterGestureSubsystem">
+            <summary>
+            Attempts to unregister the GestureSubsystem.
+            </summary>
         </member>
         <member name="M:UnityEngine.XR.MagicLeap.MagicLeapDevice.RegisterEndOfFrameUpdate(System.Action)">
             <summary>
@@ -8338,6 +8334,15 @@
             <summary>
             MLContacts library name
             </summary>
+        </member>
+        <member name="M:MagicLeapInternal.ControllerNativeBindings.MLInputStartControllerFeedbackPatternVibe(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternVibe,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackIntensity)">
+            <summary/>
+        </member>
+        <member name="M:MagicLeapInternal.ControllerNativeBindings.MLInputStartControllerFeedbackPatternLED(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackColorLED,System.UInt32)">
+            <summary/>
+        </member>
+        <member name="M:MagicLeapInternal.ControllerNativeBindings.MLInputStartControllerFeedbackPatternEffectLED(System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackEffectLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackEffectSpeedLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackColorLED,System.UInt32)">
+            <summary/>
         </member>
         <member name="T:MagicLeapInternal.MLCVCameraID">
             <summary>
@@ -8420,6 +8425,11 @@
         <member name="T:MagicLeapInternal.EyeApiNativeBindings">
             <summary>
             See ml_eye_tracking.h for additional comments
+            </summary>
+        </member>
+        <member name="T:MagicLeapInternal.HandMeshingApiNativeBindings">
+            <summary>
+            See ml_hand_meshing.h for additional comments
             </summary>
         </member>
         <member name="T:MagicLeapInternal.HeadApiNativeBindings">
@@ -8617,65 +8627,6 @@
         <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerState.HardwareIndex">
             <summary/>
         </member>
-        <member name="T:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal">
-            <summary>
-            Links to MLInputControllerState in ml_input.h.
-            </summary>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.Orientation">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.Position">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.TouchPosAndForce1">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.TouchPosAndForce2">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.TriggerNormalized">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.ButtonStateNone">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.ButtonStateMove">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.ButtonStateApp">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.ButtonStateBumper">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.ButtonStateHomeTap">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.IsTouchActive1">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.IsTouchActive2">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.IsConnected">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.TouchpadGesture">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.TouchpadGestureState">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.Type">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.Dof">
-            <summary/>
-        </member>
-        <member name="F:MagicLeapInternal.InputNativeBindings.MLInputControllerStateInternal.HardwareIndex">
-            <summary/>
-        </member>
         <member name="T:MagicLeapInternal.InputNativeBindings.MLInputConfiguration">
             <summary/>
         </member>
@@ -8871,13 +8822,13 @@
         <member name="M:MagicLeapInternal.InputNativeBindings.MLInputGetControllerState(System.UInt64,System.IntPtr)">
             <summary/>
         </member>
+        <member name="M:MagicLeapInternal.InputNativeBindings.MLInputStartControllerFeedbackPatternVibe(System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternVibe,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackIntensity)">
+            <summary/>
+        </member>
         <member name="M:MagicLeapInternal.InputNativeBindings.MLInputStartControllerFeedbackPatternLED(System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackColorLED,System.UInt32)">
             <summary/>
         </member>
         <member name="M:MagicLeapInternal.InputNativeBindings.MLInputStartControllerFeedbackPatternEffectLED(System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackEffectLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackEffectSpeedLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternLED,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackColorLED,System.UInt32)">
-            <summary/>
-        </member>
-        <member name="M:MagicLeapInternal.InputNativeBindings.MLInputStartControllerFeedbackPatternVibe(System.UInt64,System.Byte,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackPatternVibe,UnityEngine.XR.MagicLeap.MLInputControllerFeedbackIntensity)">
             <summary/>
         </member>
         <member name="M:MagicLeapInternal.InputNativeBindings.MLInputGetConnectedDevices(System.UInt64,MagicLeapInternal.InputNativeBindings.MLInputConnectedDevicesList@)">
@@ -8907,6 +8858,22 @@
             <summary>
             Number of cameras.
             </summary>
+        </member>
+        <member name="T:MagicLeapInternal.LocaleApiNativeBindings">
+            <summary>
+            See ml_locale.h for additional comments.
+            </summary>
+        </member>
+        <member name="F:MagicLeapInternal.LocaleApiNativeBindings.MLLocaleDll">
+            <summary>
+            ML Locale DLL name.
+            </summary>
+        </member>
+        <member name="M:MagicLeapInternal.LocaleApiNativeBindings.MLLocaleGetSystemLanguage(System.IntPtr@)">
+            <summary/>
+        </member>
+        <member name="M:MagicLeapInternal.LocaleApiNativeBindings.MLLocaleGetSystemCountry(System.IntPtr@)">
+            <summary/>
         </member>
         <member name="T:MagicLeapInternal.LocationApiNativeBindings">
             <summary>
@@ -9221,9 +9188,6 @@
             <summary/>
         </member>
         <member name="M:MagicLeapInternal.MusicServiceNativeBindings.MLMusicServiceGetShuffleState(UnityEngine.XR.MagicLeap.MLMusicServiceShuffleState@)">
-            <summary/>
-        </member>
-        <member name="M:MagicLeapInternal.MusicServiceNativeBindings.MLMusicServiceGetMetadata(MagicLeapInternal.MusicServiceNativeBindings.MLMusicServiceMetadata@)">
             <summary/>
         </member>
         <member name="M:MagicLeapInternal.MusicServiceNativeBindings.MLMusicServiceGetMetadataEx(UnityEngine.XR.MagicLeap.MLMusicServiceTrackType,MagicLeapInternal.MusicServiceNativeBindings.MLMusicServiceMetadata@)">

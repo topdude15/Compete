@@ -37,7 +37,7 @@ public class BowlingManager : MonoBehaviour {
 
 	// Declare GameObjects.  Public GameObjects are set in Unity Editor.  
 	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu;
-	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText;
+	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText;
 	public static GameObject menuControl;
 	private GameObject bowlingBall, _realtime, pinObj;
 
@@ -55,7 +55,7 @@ public class BowlingManager : MonoBehaviour {
 
 	List<Vector3> Deltas = new List<Vector3> ();
 
-	private float timeHold = 3.0f, totalObjs = 0, objLimit = 50, timeHomePress = 0.01f, timeOfFirstHomePress, realtimeObjectCount = 0, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed;
+	private float timeHold = 3.0f, totalObjs = 0, objLimit = 50, timeHomePress = 0.01f, timeOfFirstHomePress, realtimeObjectCount = 0, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers;
 
 	private Controller checkController;
 
@@ -77,6 +77,10 @@ public class BowlingManager : MonoBehaviour {
 	public Realtime _realtimeObject;
 	private GameObject pin;
 	private GameObject[] realtimeObjects;
+
+	// AUDIO VARIABLES
+
+	public AudioSource menuAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -190,6 +194,7 @@ public class BowlingManager : MonoBehaviour {
 			tutorialMenuOpened = false;
 		}
 		if (_realtimeObject.connected) {
+			connectedPlayers = 0;
 			if (getLocalPlayer == false) {
 				getLocalPlayer = true;
 				foreach(GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject))) {
@@ -198,6 +203,12 @@ public class BowlingManager : MonoBehaviour {
 							localPlayer = obj;
 						}
 					}
+				}
+			}
+			foreach(GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject))) {
+				if (obj.name == "VR Player(Clone)") {
+					connectedPlayers += 1;
+					connectedPlayersText.text = ("Connected Players: " + connectedPlayers);
 				}
 			}
 			multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='green'>Connected</color>");
@@ -271,6 +282,7 @@ public class BowlingManager : MonoBehaviour {
 			if (rayHit.transform.gameObject.name == "Home" && controller.TriggerValue >= 0.9f) {
 				SceneManager.LoadScene ("Main", LoadSceneMode.Single);
                 SceneManager.UnloadSceneAsync("Bowling");
+				menuAudio.Play();
             } else if (rayHit.transform.gameObject.name == "JoinLobby" && controller.TriggerValue >= 0.9f) {
 				if (_realtimeObject.connected) {
 					multiplayerStatusMenu.SetActive(true);
@@ -279,14 +291,17 @@ public class BowlingManager : MonoBehaviour {
 				}
 				menuOpened = true;
 				menu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "AcceptTerms" && controller.TriggerValue >= 0.9f && multiplayerMenuOpen == false) {
 				multiplayerMenu.SetActive(true);
 				multiplayerMenuOpen = true;
 				multiplayerConfirmMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "CancelTerms" && controller.TriggerValue >= 0.9f) {
 				multiplayerConfirmMenu.SetActive(false);
 				menuOpened = true;
 				menu.SetActive(true);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ChangeBall" && controller.TriggerValue >= 0.9f) {
 				ballMenu.transform.position = mainCam.transform.position + (mainCam.transform.forward * 1.5f);
 				ballMenu.transform.LookAt(mainCam.transform.position);
@@ -295,12 +310,13 @@ public class BowlingManager : MonoBehaviour {
 				menu.SetActive (false);
 				ballMenuOpened = true;
 				holdingBallMenu = true;
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "Modifiers" && controller.TriggerValue >= 0.9f) {
 				modifierMenu.SetActive (true);
 				menu.SetActive (false);
 				menuClosed = true;
                 settingsOpened = true;
-				
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "Tutorial" && controller.TriggerValue >= 0.9f) {
 				menuClosed = true;
 				menuOpened = false;
@@ -314,17 +330,21 @@ public class BowlingManager : MonoBehaviour {
 				laserLineRenderer.material = transparent;
 				PlayerPrefs.SetInt ("hasPlayedBowling", 0);
 				CheckNewUser ();
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "YesPlease" && controller.TriggerValue >= 0.9f) {
 				PlayerPrefs.SetInt ("hasPlayedBowling", 0);
 				CheckNewUser();
 				tutorialMenuOpened = true;
 				tutorialActive = true;
 				tutorialHelpMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "NoThanks" && controller.TriggerValue >= 0.9f) {
 				tutorialHelpMenu.SetActive(false);
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "NewGame" && controller.TriggerValue >= 0.9f) {
 				trackObj.SetActive(true);
 				holding = holdState.track;
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ToggleMic" && controller.TriggerValue >= 0.9f) {
 				if (toggledMic == false) {
 					toggledMic = true;
@@ -338,12 +358,14 @@ public class BowlingManager : MonoBehaviour {
 						toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
 					}
 				}
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "LeaveRoom" && controller.TriggerValue >= 0.9f) {
 				joinedLobby = false;
 				_realtime.GetComponent<Realtime>().Disconnect();
 				multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
 				multiplayerStatusMenu.SetActive(false);
 				menuOpened = false;
+				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "NoGravity" && controller.TriggerValue >= 0.9f) {
                 if (!settingsOpened)
                 {
@@ -359,6 +381,7 @@ public class BowlingManager : MonoBehaviour {
                     menuClosed = true;
 					menuOpened = false;
                 }
+				menuAudio.Play();
             } else if (rayHit.transform.gameObject.name == "ShowMesh" && controller.TriggerValue >= 0.9f) {
 				if (!settingsOpened) {
 					if (occlusionActive) {
@@ -380,6 +403,7 @@ public class BowlingManager : MonoBehaviour {
 					menuClosed = true;
 					menuOpened = false;
 				}
+				menuAudio.Play();
 			} 
 			if (!holdingBallMenu) {
 				BowlingColorLoader.GetBallColor (rayHit, controller, ballMenu, ballMenuOpened, holdingBallMenu, bowlingBall, ballMats);
@@ -391,6 +415,7 @@ public class BowlingManager : MonoBehaviour {
 					pickedNumber = true;
 					roomCode += rayHit.transform.gameObject.name;
 					multiplayerCodeText.text = roomCode;
+					menuAudio.Play();
 
 				}  else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false) {
 					deletedCharacter = true;
@@ -398,6 +423,7 @@ public class BowlingManager : MonoBehaviour {
 						roomCode = roomCode.Substring(0, roomCode.Length - 1);
 						multiplayerCodeText.text = roomCode;
 					}
+					menuAudio.Play();
 				} else if (controller.TriggerValue <= 0.2f) {
 					pickedNumber = false;
 					deletedCharacter = false;
@@ -412,12 +438,14 @@ public class BowlingManager : MonoBehaviour {
 					multiplayerStatusMenu.SetActive(true);
 					multiplayerMenuOpen = false;
 					multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+					menuAudio.Play();
 				} else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f) {
 					multiplayerMenu.SetActive(false);
 					multiplayerMenuOpen = false;
 					menu.SetActive(true);
 					menuOpened = true;
 					roomCode = "";
+					menuAudio.Play();
 				}
 			}
 

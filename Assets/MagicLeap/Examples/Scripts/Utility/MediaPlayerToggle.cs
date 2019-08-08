@@ -21,32 +21,7 @@ namespace MagicLeap
     public class MediaPlayerToggle : MediaPlayerButton
     {
         #region Public Events
-        public event System.Action<bool> OnToggle;
-        #endregion
-
-        #region Private Variables
-        [SerializeField, Tooltip("Initial state of the Toggle")]
-        private bool _state = true;
-        #endregion
-
-        #region Public Properties
-        public bool State
-        {
-            get { return _state; }
-            set
-            {
-                if (value == _state)
-                {
-                    return;
-                }
-
-                _state = value;
-                if (OnToggle != null)
-                {
-                    OnToggle.Invoke(_state);
-                }
-            }
-        }
+        public event System.Action OnToggle;
         #endregion
 
         #region Unity Methods
@@ -68,7 +43,7 @@ namespace MagicLeap
         #region Event Handlers
         private void HandleTriggerDown(float triggerValue)
         {
-            State = !State;
+            OnToggle?.Invoke();
         }
         #endregion
     }

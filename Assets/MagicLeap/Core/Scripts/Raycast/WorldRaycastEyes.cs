@@ -77,9 +77,9 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Initializes component and start MLEyes.
         /// </summary>
-        override protected void OnEnable()
+        override protected void Start()
         {
-            base.OnEnable();
+            base.Start();
 
             MLResult result = MLEyes.Start();
             if (!result.IsOk)
@@ -93,11 +93,11 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary>
         /// Cleans up the component.
         /// </summary>
-        override protected void OnDisable()
+        override protected void OnDestroy()
         {
             MLEyes.Stop();
 
-            base.OnDisable();
+            base.OnDestroy();
         }
         #endregion
     }

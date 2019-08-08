@@ -46,9 +46,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5331381050355060133}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 0.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.01
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -194,6 +195,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &5219318511468507273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +314,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

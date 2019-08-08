@@ -91,6 +91,11 @@ namespace MagicLeap
 
         void OnDestroy()
         {
+            if (MLLocation.IsStarted)
+            {
+                MLLocation.Stop();
+            }
+
             if (_privilegeRequester != null)
             {
                 // Unregister event listeners.
@@ -167,9 +172,14 @@ namespace MagicLeap
                 if (result.Code == MLResultCode.LocationNetworkConnection)
                 {
                     _statusText.text = "<color=red>Received network error, please check the network connection and relaunch the application.</color>";
-                    enabled = false;
-                    return;
                 }
+                else
+                {
+                    _statusText.text = "<color=red>Failed to retrieve location with result: " + result.Code + "</color>";
+                }
+
+                enabled = false;
+                return;
             }
         }
 

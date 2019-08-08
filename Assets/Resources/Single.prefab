@@ -71,6 +71,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -252,6 +254,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &4292889313836380795
 GameObject:
   m_ObjectHideFlags: 0

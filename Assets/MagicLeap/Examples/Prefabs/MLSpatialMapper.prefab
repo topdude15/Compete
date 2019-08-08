@@ -58,6 +58,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MeshPrefab: {fileID: 1434253475793312}
   m_ComputeNormals: 1
-  m_LevelOfDetail: 1
+  m_Density: 1
   m_MeshParent: {fileID: 0}
   m_MeshType: 0
   m_FillHoleLength: 1

@@ -22,8 +22,11 @@ namespace UnityEngine.XR.MagicLeap
     public class HeadposeCanvas : MonoBehaviour
     {
         #region Public Variables
-        [Tooltip("The distance from the camera that this object should be placed.")]
-        public float CanvasDistance = 1.5f;
+        [Tooltip("The forwards distance from the camera that this object should be placed.")]
+        public float CanvasDistanceForwards = 1.5f;
+
+        [Tooltip("The upwards distance from the camera that this object should be placed.")]
+        public float CanvasDistanceUpwards = 0.0f;
 
         [Tooltip("The speed at which this object changes its position.")]
         public float PositionLerpSpeed = 5f;
@@ -72,7 +75,7 @@ namespace UnityEngine.XR.MagicLeap
         {
             // Move the object CanvasDistance units in front of the camera.
             float posSpeed = Time.deltaTime * PositionLerpSpeed;
-            Vector3 posTo = _camera.transform.position + (_camera.transform.forward * CanvasDistance);
+            Vector3 posTo = _camera.transform.position + (_camera.transform.forward * CanvasDistanceForwards) + (_camera.transform.up * CanvasDistanceUpwards);
             transform.position = Vector3.SlerpUnclamped(transform.position, posTo, posSpeed);
 
             // Rotate the object to face the camera.

@@ -344,23 +344,21 @@ namespace MagicLeap
         /// <summary>
         /// Handle the Play/Pause button being triggered
         /// </summary>
-        /// <param name="shouldPlay">Should the service play or pause</param>
-        private void PlayPause(bool shouldPlay)
+        private void PlayPause()
         {
-            if (!shouldPlay && MLMusicService.PlaybackState == MLMusicServicePlaybackState.Playing)
+            switch(MLMusicService.PlaybackState)
             {
-                MLMusicService.PausePlayback();
-            }
-            else if (shouldPlay)
-            {
-                if (MLMusicService.PlaybackState == MLMusicServicePlaybackState.Paused)
-                {
+                case MLMusicServicePlaybackState.Playing:
+                    MLMusicService.PausePlayback();
+                    break;
+                case MLMusicServicePlaybackState.Paused:
                     MLMusicService.ResumePlayback();
-                }
-                else if (MLMusicService.PlaybackState == MLMusicServicePlaybackState.Stopped)
-                {
+                    break;
+                case MLMusicServicePlaybackState.Stopped:
                     MLMusicService.StartPlayback();
-                }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -416,25 +414,27 @@ namespace MagicLeap
         /// <summary>
         /// Handle the shuffon state button being triggered
         /// </summary>
-        /// <param name="ShuffleOn">If shuffle shoudl turn on or off</param>
-        private void ToggleShuffle(bool shuffleOn)
+        private void ToggleShuffle()
         {
-            if (shuffleOn)
+            switch (MLMusicService.ShuffleState)
             {
-                MLMusicService.ShuffleState = MLMusicServiceShuffleState.On;
-                _shuffleButton.Material = _shuffleOnMaterial;
-            }
-            else
-            {
-                MLMusicService.ShuffleState = MLMusicServiceShuffleState.Off;
-                _shuffleButton.Material = _shuffleOffMaterial;
+                case MLMusicServiceShuffleState.Off:
+                    MLMusicService.ShuffleState = MLMusicServiceShuffleState.On;
+                    _shuffleButton.Material = _shuffleOnMaterial;
+                    break;
+                case MLMusicServiceShuffleState.On:
+                    MLMusicService.ShuffleState = MLMusicServiceShuffleState.Off;
+                    _shuffleButton.Material = _shuffleOffMaterial;
+                    break;
+                default:
+                    break;
             }
         }
         #endregion // Private Methods
 
         #region Event Handlers
         /// <summary>
-        /// Event handler for the playback state being changed
+        /// Set the visual state of the play button when the internal playback state changes.
         /// </summary>
         /// <param name="state">The new state</param>
         /// <param name="userData">Extra user provided data, if passed into MLMusicService.Start</param>
@@ -443,13 +443,11 @@ namespace MagicLeap
             if (state == MLMusicServicePlaybackState.Playing)
             {
                 _playButton.Material = _pauseMaterial;
-                _playButton.State = true;
             }
             else if (state == MLMusicServicePlaybackState.Paused ||
                 state == MLMusicServicePlaybackState.Stopped)
             {
                 _playButton.Material = _playMaterial;
-                _playButton.State = false;
             }
             Debug.LogFormat("Playback State Changed {0}", state);
         }

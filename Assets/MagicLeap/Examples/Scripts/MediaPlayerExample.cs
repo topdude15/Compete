@@ -315,7 +315,6 @@ namespace MagicLeap
             // If we are not looping then treat similar to pause.
             if (!_mediaPlayer.IsLooping)
             {
-                _pausePlayButton.State = false;
                 _pausePlayButton.Material = _playMaterial;
             }
             // Else force a time slider update.
@@ -330,7 +329,7 @@ namespace MagicLeap
         /// </summary>
         private void HandleStop()
         {
-            _pausePlayButton.State = false;
+            _pausePlayButton.Material = _playMaterial;
             _timelineSlider.enabled = false;
             _elapsedTime.text = "--:--:--";
         }
@@ -440,17 +439,16 @@ namespace MagicLeap
         /// Handler when Play/Pause Toggle is triggered.
         /// See HandlePlay() and HandlePause() for more info
         /// </summary>
-        /// <param name="shouldPlay">True when resuming, false when should pause</param>
-        private void PlayPause(bool shouldPlay)
+        private void PlayPause()
         {
             if (_mediaPlayer != null)
             {
-                if (!shouldPlay && _mediaPlayer.IsPlaying)
+                if (_mediaPlayer.IsPlaying)
                 {
                     _UIUpdateTimer = float.MaxValue;
                     _mediaPlayer.Pause();
                 }
-                else if (shouldPlay && !_mediaPlayer.IsPlaying)
+                else
                 {
                     _UIUpdateTimer = float.MaxValue;
                     _mediaPlayer.Play();

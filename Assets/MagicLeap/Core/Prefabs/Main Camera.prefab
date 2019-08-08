@@ -96,6 +96,7 @@ MonoBehaviour:
   m_StabilizationMode: 0
   m_StabilizationDistance: 0
   m_ProtectedSurface: 0
+  m_SurfaceScale: 1
 --- !u!114 &8599575387109836598
 MonoBehaviour:
   m_ObjectHideFlags: 0

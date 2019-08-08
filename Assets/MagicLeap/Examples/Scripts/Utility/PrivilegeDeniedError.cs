@@ -1,4 +1,4 @@
-﻿// %BANNER_BEGIN%
+// %BANNER_BEGIN%
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
@@ -19,6 +19,7 @@ namespace UnityEngine.XR.MagicLeap
     /// <summary>
     /// Helper script to manage a privilege denied error pop up
     /// </summary>
+    [RequireComponent(typeof(Canvas))]
     public class PrivilegeDeniedError : MonoBehaviour
     {
         #region Public Variables
@@ -35,10 +36,10 @@ namespace UnityEngine.XR.MagicLeap
         void Awake()
         {
             StartCoroutine(DestroyAfterTime(TimeToDisplay));
-
             GetComponent<Canvas>().worldCamera = Camera.main;
             HeadposeCanvas headposeCanvas = gameObject.AddComponent<HeadposeCanvas>();
-            headposeCanvas.CanvasDistance = 1.0f;
+            headposeCanvas.CanvasDistanceForwards = 1.0f;
+            headposeCanvas.CanvasDistanceUpwards = 0.0f;
             headposeCanvas.PositionLerpSpeed = 1.0f;
             headposeCanvas.RotationLerpSpeed = 1.0f;
         }
