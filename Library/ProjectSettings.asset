@@ -600,11 +600,11 @@ PlayerSettings:
     m_ModelFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Model
     m_PortalFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
   luminCert:
-    m_CertPath: /Users/trevorrose/Downloads/privatekey/trevor'smbp.cert
+    m_CertPath: /Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
-    m_VersionCode: 22
+    m_VersionCode: 24
     m_VersionName: 
   facebookSdkVersion: 
   facebookAppId: 

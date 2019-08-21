@@ -1181,7 +1181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &292238296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2304,7 +2304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586545409}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.032570943, y: 0.612, z: -0.127}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 0.015, y: 0.015000015, z: 0.015000015}
   m_Children: []
   m_Father: {fileID: 2017005039}
@@ -2934,7 +2934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &743596547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7699,7 +7699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017005038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.018652141, y: -0.3811574, z: 1.0774798}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 586545410}
@@ -8463,6 +8463,7 @@ GameObject:
   - component: {fileID: 2099319616}
   - component: {fileID: 2099319615}
   - component: {fileID: 2099319614}
+  - component: {fileID: 2099319618}
   m_Layer: 0
   m_Name: Dartboard
   m_TagString: Untagged
@@ -8497,8 +8498,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 61.18, y: 66.9, z: 32.9}
-  m_Center: {x: 0.00005054474, y: 0.00005054474, z: -0.43465}
+  m_Size: {x: 53.3, y: 52.7, z: 4.5}
+  m_Center: {x: 0.00005054474, y: 0.6, z: -0.43465}
 --- !u!54 &2099319615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8563,6 +8564,20 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099319612}
+  m_Mesh: {fileID: 4300000, guid: 51291d8ec3843c341941815898e71e97, type: 3}
+--- !u!64 &2099319618
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099319612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 51291d8ec3843c341941815898e71e97, type: 3}
 --- !u!1 &2114850259
 GameObject:

@@ -390,7 +390,9 @@ public class DartsManager : MonoBehaviour {
 			} else if (controller.TriggerValue <= 0.2f && holdingDart) {
 				holdingDart = false;
 				var rigidbody = dart.transform.GetChild (0).gameObject.GetComponent<Rigidbody> ();
-				rigidbody.useGravity = true;
+				if (!noGravity) {
+					rigidbody.useGravity = true;
+				}
 				rigidbody.velocity = Vector3.zero;
 				rigidbody.velocity = forcePerSecond;
 			}
@@ -567,10 +569,12 @@ public class DartsManager : MonoBehaviour {
 		dartLimitText.text = "Dart Limit:\n " + totalObjs + " of 20";
 	}
 	private void CheckNewUser() {
+		// TODO: CHANGE INT BACK TO 1, CURRENT IMPLEMENTATION WILL ALWAYS SHOW TUTORIAL
 		if (PlayerPrefs.GetInt("hasPlayedDarts") == 1) {
 			print("Played");
 			tutorialActive = false;
 			tutorialMenu.SetActive(false);
+			laserLineRenderer.material = activeMat;
 		} else {
 			menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
 			menuCanvas.transform.LookAt(mainCam.transform.position);

@@ -694,6 +694,7 @@ public class BowlingManager : MonoBehaviour {
 		GetCount();
 	}
 	private void CheckNewUser () {
+		// TODO: CHANGE INT BACK TO 1, CURRENT IMPLEMENTATION WILL ALWAYS SHOW TUTORIAL
 		if (PlayerPrefs.GetInt ("hasPlayedBowling") == 1) {
 			print ("Played");
 			holding = holdState.none;
