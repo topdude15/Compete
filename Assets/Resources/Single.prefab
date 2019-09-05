@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5389064850725611996}
   - component: {fileID: 1241741757815615701}
   - component: {fileID: 5261673619714563716}
+  - component: {fileID: -7892201946126147262}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -256,6 +257,18 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
+--- !u!114 &-7892201946126147262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987861421855202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4292889313836380795
 GameObject:
   m_ObjectHideFlags: 0

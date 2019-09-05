@@ -2,29 +2,29 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "31e505f1b033b6352d8c223f75ba55074acf79a1",
+   "hash": "f35dd64fc63542d71cff4355ced3b74303067837",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3601376,
+   "size": 3601688,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "61c5dcae132dc05ddb587e6a0e8b02d810ad9eb8",
+   "hash": "dc1eb80c3021419e2cbd28f9fd3a086f585ba920",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 57422536,
+   "size": 57424440,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "66e6f8baf312e05ea2cb20705562be7dfa068d88",
+   "xfrm_hash": "e0034f0ab4830596b38d501c6f2476a799ef31c9",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libil2cpp.so-1d29f3ad7f17fa08",
-   "xfrm_size": 57423301
+   "xfrm_size": 57425198
   },
   {
    "compression": 8,
@@ -34,16 +34,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "e2b9f49f1a891959d8506d28151e2819550f5145",
+   "xfrm_hash": "b89ea26b11d2e2fc2c3e85d2c303c694489ba435",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/AudioPluginMSASpatializer.so-190c120cd5145fff",
-   "xfrm_size": 283213
+   "xfrm_size": 283206
   },
   {
    "compression": 8,
@@ -95,16 +95,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "defa54bd25cc9ec23279ef4f463d1127f28e8414",
+   "xfrm_hash": "cea950e9d4a96a60289e0c4b9d17c7a71acfef46",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/UnityMagicLeap.so-190c120cd5145fff",
-   "xfrm_size": 3074021
+   "xfrm_size": 3074014
   },
   {
    "compression": 8,
@@ -114,16 +114,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/libRealtimeClient.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "ba370d83b7a1aefd24d98b45a58a01d614ea6b09",
+   "xfrm_hash": "951828fd770631c5df8fabc542665dfc15ed0a64",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libRealtimeClient.so-190c120cd5145fff",
-   "xfrm_size": 7298493
+   "xfrm_size": 7298486
   },
   {
    "compression": 8,
@@ -133,16 +133,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "f562c2e33556ee20867643714d88db9282cf326d",
+   "xfrm_hash": "f496cbfbd4ba181f789afe6b744ca5a45e2fb622",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libml_camera_plugin.so-190c120cd5145fff",
-   "xfrm_size": 14949
+   "xfrm_size": 14942
   },
   {
    "compression": 8,
@@ -152,16 +152,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "c833cf69746012585cb800134be94dae8fdd53d7",
+   "xfrm_hash": "08b8762d6bcde0c7b9beaf876e55623be5b1be80",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libml_mediaplayer_plugin.so-190c120cd5145fff",
-   "xfrm_size": 68389
+   "xfrm_size": 68382
   },
   {
    "compression": 8,
@@ -207,21 +207,21 @@
   },
   {
    "compression": 8,
-   "hash": "91ae87dac1b084e6782d87abd8a3264e0774be4e",
+   "hash": "e6c28093c10f69f3c57957356fe33088c27e7a33",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 91392,
+   "size": 91504,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "d4acbf8c128f17b054ac8e2d0c8b948db31d2e90",
+   "hash": "817ddc99254d6a4529bb8c22c7c8b72723aaaee6",
    "pkgpath": "Data/globalgamemanagers.assets",
-   "size": 93664,
+   "size": 93776,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
   },
   {
    "compression": 8,
-   "hash": "633024f41b450246b545f562856c15e50491b32f",
+   "hash": "6945b0dce8907445affb3752744164c79e638f30",
    "pkgpath": "Data/level0",
    "size": 16752,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level0"
@@ -235,14 +235,14 @@
   },
   {
    "compression": 8,
-   "hash": "ad07eaf8144ccb1ff35870e86d343b61f9a37eac",
+   "hash": "488d19f19ac3e0442da739a01b51524f36279416",
    "pkgpath": "Data/level1",
    "size": 15708,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level1"
   },
   {
    "compression": 8,
-   "hash": "a300fb369eb59b56d9b3035ab7db889825a5b1eb",
+   "hash": "f30277c677a2633faf610a3bc0db9b308b6a5d6d",
    "pkgpath": "Data/level2",
    "size": 71712,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level2"
@@ -256,9 +256,9 @@
   },
   {
    "compression": 8,
-   "hash": "feda5c03b502bd739dae1062b306183ccbc38fa5",
+   "hash": "5948adf56198f87c2819a5f97575e60a0ed62afd",
    "pkgpath": "Data/level3",
-   "size": 63840,
+   "size": 63936,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {
@@ -270,9 +270,9 @@
   },
   {
    "compression": 8,
-   "hash": "a446d38078ffef7fcf0cd6ca5a708f38cea6b35e",
+   "hash": "0b4ff9de769660a2545ae72188d6ff7dde14eb22",
    "pkgpath": "Data/resources.assets",
-   "size": 2146424,
+   "size": 2146536,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
   },
   {
@@ -291,7 +291,7 @@
   },
   {
    "compression": 8,
-   "hash": "01950605e3e4c62c7b4d4483af09fed35153afb5",
+   "hash": "9cce260d0d67db6e69f2b9292e544e5a456c8c7e",
    "pkgpath": "Data/sharedassets0.assets",
    "size": 2171498,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/sharedassets0.assets"
@@ -305,7 +305,7 @@
   },
   {
    "compression": 8,
-   "hash": "dc7b9d2503c22a5f0b1396d526d4f59972358ef7",
+   "hash": "6abb4158d8b787cd5aa37f6b6cac5dcf631883b4",
    "pkgpath": "Data/sharedassets1.assets",
    "size": 336608,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets"
@@ -319,9 +319,9 @@
   },
   {
    "compression": 8,
-   "hash": "15ace3af5c2bb1f315b1539607f90076e2c6a66a",
+   "hash": "87f9cb64cd3cb8fccec7d4bc3b7c6ba601082cd1",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 1509704,
+   "size": 1509728,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
@@ -340,7 +340,7 @@
   },
   {
    "compression": 8,
-   "hash": "9e4c3857bfad44c87adc6bb078e9325b7f5fa474",
+   "hash": "193b986a77e246d235176cf015f539fc391d314d",
    "pkgpath": "Data/sharedassets3.assets",
    "size": 7776,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
@@ -402,16 +402,16 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Player.elf",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "6dd80a8bfb41721e1162f1eeddf7b5f2025a38ee",
+   "xfrm_hash": "be3a631aa6a9ff06b9d5373097b1d7f9957e27fd",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/Player.elf-29ea17b6bb32e4e3",
-   "xfrm_size": 20707509
+   "xfrm_size": 20707502
   },
   {
    "compression": 8,
@@ -421,13 +421,13 @@
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/manifest.xml",
    "xfrm_flags": {
     "manifest": {
-     "cert_hash": "e7290432c984ae8fd548aedfab68f6a09d653c53",
-     "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665.992184d3-ab89-4cb2-aa8c-8ef3d4e5e11d"
+     "cert_hash": "bb2f1e3382e57595eb8e14a61343f5079d6ffe39",
+     "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665"
     }
    },
-   "xfrm_hash": "240dc1ba9936b11589f2353cb2c5ffbec4a7f32d",
+   "xfrm_hash": "539ec789da0b142884f698ae43b2aa2e6211e476",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/manifest.xml-29ea17b6bb32e4e3",
-   "xfrm_size": 815
+   "xfrm_size": 778
   },
   {
    "compression": 8,
@@ -437,24 +437,24 @@
    "src": "/Users/trevorrose/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+     "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "875b92e2bdfa21427bff5fa7fba8561a8b58588f",
+   "xfrm_hash": "11732b04bf46d3bcc87397a20f3ff4e5d09196d9",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libc++_shared.so-2419c4a24c396e4a",
-   "xfrm_size": 977597
+   "xfrm_size": 977590
   }
  ],
  "pkgflags": {
   "signed": {
-   "cert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert"
+   "cert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert"
   },
   "taildata": {
-   "devcert": "/Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert",
+   "devcert": "/Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert",
    "sbox": "USER",
    "version": 3
   }

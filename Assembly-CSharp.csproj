@@ -190,6 +190,7 @@
      <Compile Include="Assets\Scripts\Bowling\BowlingPlaceObject.cs" />
      <Compile Include="Assets\Scripts\Bowling\MenuCollide.cs" />
      <Compile Include="Assets\Scripts\Bowling\PinCollision.cs" />
+     <Compile Include="Assets\Scripts\Bowling\PinFallen.cs" />
      <Compile Include="Assets\Scripts\Controller.cs" />
      <Compile Include="Assets\Scripts\ControllerTutorial.cs" />
      <Compile Include="Assets\Scripts\Darts\DartCollider.cs" />
