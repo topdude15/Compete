@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5212849228880061611}
   - component: {fileID: 5973815306460860874}
   m_Layer: 0
-  m_Name: 10PinrRealtimeNoGravity
+  m_Name: 10PinRealtimeNoGravity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 8276425598994435439}
   - component: {fileID: 4846620938845712295}
   - component: {fileID: 5413324877726607758}
+  - component: {fileID: 3681356776070766820}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -192,6 +193,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -346,6 +348,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -361,6 +364,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &5413324877726607758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +376,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3681356776070766820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629644797134501742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5630074956628728158
@@ -389,6 +406,7 @@ GameObject:
   - component: {fileID: 1799527560343371521}
   - component: {fileID: 5176669429932512282}
   - component: {fileID: 1600575872831635858}
+  - component: {fileID: 4903170353172760402}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -443,6 +461,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -609,6 +628,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -624,6 +644,20 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
+--- !u!114 &4903170353172760402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630074956628728158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630075406203045668
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +674,7 @@ GameObject:
   - component: {fileID: 2200820648227112101}
   - component: {fileID: 2193164781909447097}
   - component: {fileID: 9131184441984391598}
+  - component: {fileID: 7594126021756867989}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -694,6 +729,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -860,6 +896,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -875,6 +912,20 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
+--- !u!114 &7594126021756867989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630075406203045668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630117219773663798
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +943,7 @@ GameObject:
   - component: {fileID: 656013740966308271}
   - component: {fileID: 8614096726322223673}
   - component: {fileID: 3738757473505453025}
+  - component: {fileID: 8392414967317694313}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -946,6 +998,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1112,6 +1165,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1127,6 +1181,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!82 &3738757473505453025
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1223,6 +1279,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8392414967317694313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630117219773663798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630155329687816066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1307,7 @@ GameObject:
   - component: {fileID: 3032646045763665209}
   - component: {fileID: 2167875058058275070}
   - component: {fileID: 3391591577906693060}
+  - component: {fileID: 7320495643679250359}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1293,6 +1362,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1459,6 +1529,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1474,6 +1545,20 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
+--- !u!114 &7320495643679250359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630155329687816066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630166670447360366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1575,7 @@ GameObject:
   - component: {fileID: 7464943229007249060}
   - component: {fileID: 9122128061625445916}
   - component: {fileID: 7823383421318139561}
+  - component: {fileID: 465854837044635153}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1544,6 +1630,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1698,6 +1785,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1713,6 +1801,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &7823383421318139561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,6 +1813,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &465854837044635153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630166670447360366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5630463426635301672
@@ -1741,6 +1843,7 @@ GameObject:
   - component: {fileID: 6214224064561385562}
   - component: {fileID: 665370249295130516}
   - component: {fileID: 4761862402266247588}
+  - component: {fileID: 798664153659061306}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1795,6 +1898,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1949,6 +2053,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1964,6 +2069,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &4761862402266247588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,6 +2081,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &798664153659061306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630463426635301672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5630577596525971446
@@ -1992,6 +2111,7 @@ GameObject:
   - component: {fileID: 8502548799517409524}
   - component: {fileID: 6019883270589789392}
   - component: {fileID: 6963670686125820581}
+  - component: {fileID: 8699784694155176189}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2046,6 +2166,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2200,6 +2321,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2215,6 +2337,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &6963670686125820581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,6 +2349,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8699784694155176189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630577596525971446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5630946929620789510
@@ -2244,6 +2380,7 @@ GameObject:
   - component: {fileID: 4421509122460119889}
   - component: {fileID: 7231437691198796118}
   - component: {fileID: 549666028713277523}
+  - component: {fileID: 4109283792710494421}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2298,6 +2435,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2452,6 +2590,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2467,6 +2606,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!82 &7231437691198796118
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2575,6 +2716,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4109283792710494421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630946929620789510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5630955051589174074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2744,7 @@ GameObject:
   - component: {fileID: 1193542605838753878}
   - component: {fileID: 1666229022759737394}
   - component: {fileID: 9137201210576298532}
+  - component: {fileID: 2827753362324442480}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2645,6 +2799,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2799,6 +2954,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2814,6 +2970,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &9137201210576298532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2824,5 +2982,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2827753362324442480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630955051589174074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

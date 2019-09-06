@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8391645465238765896}
   - component: {fileID: 2288002007299177069}
   - component: {fileID: 4442605181499068542}
+  - component: {fileID: 5210658729038055417}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038669688037568}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.396, y: 0.06, z: -0.419}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -70,6 +71,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -224,6 +226,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -239,6 +242,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &4442605181499068542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +254,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5210658729038055417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038669688037568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1050986688820932
@@ -274,8 +291,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050986688820932}
-  m_LocalRotation: {x: 0.7359198, y: 0, z: 0, w: 0.67706877}
-  m_LocalPosition: {x: -0.3494244, y: 0.067789346, z: -0.60534596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4365106842540764}
@@ -290,7 +307,7 @@ Transform:
   - {fileID: 4498940968956128}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 94.77, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120800255754846
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +324,7 @@ GameObject:
   - component: {fileID: 2122055154080263180}
   - component: {fileID: 266890743855251539}
   - component: {fileID: 1100733205912460297}
+  - component: {fileID: 584302286915306028}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -321,7 +339,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120800255754846}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.072, y: 0.06, z: -0.248}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -361,6 +379,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -515,6 +534,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -530,6 +550,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &1100733205912460297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +562,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &584302286915306028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120800255754846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1245646808115448
@@ -558,6 +592,7 @@ GameObject:
   - component: {fileID: 7088071453369880070}
   - component: {fileID: 8708435209709265089}
   - component: {fileID: 5016633633096472288}
+  - component: {fileID: 1431725104581552412}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -572,7 +607,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245646808115448}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.08046961, y: 0.05957538, z: 0.082051784}
   m_LocalScale: {x: 0.3, y: 0.30000013, z: 0.30000013}
   m_Children: []
@@ -612,6 +647,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -778,6 +814,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -793,6 +830,20 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
+--- !u!114 &1431725104581552412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245646808115448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1284080471417292
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +860,7 @@ GameObject:
   - component: {fileID: 6023021511482712200}
   - component: {fileID: 9037591751351201388}
   - component: {fileID: 3615785410811673561}
+  - component: {fileID: 7533479041619592448}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -823,7 +875,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284080471417292}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.037, y: 0.06, z: -0.419}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -863,6 +915,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1017,6 +1070,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1032,6 +1086,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &3615785410811673561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1098,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7533479041619592448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284080471417292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1389330872588090
@@ -1060,6 +1128,7 @@ GameObject:
   - component: {fileID: 3523480462235617950}
   - component: {fileID: 882539489325978217}
   - component: {fileID: 6622577079400569697}
+  - component: {fileID: 9131126123257501212}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1074,7 +1143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389330872588090}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.137, y: 0.06, z: -0.248}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -1114,6 +1183,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1268,6 +1338,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1283,6 +1354,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &6622577079400569697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1366,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9131126123257501212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389330872588090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1488937452108812
@@ -1311,6 +1396,7 @@ GameObject:
   - component: {fileID: 386707075638776124}
   - component: {fileID: 7493528649413470360}
   - component: {fileID: 8691249250636289833}
+  - component: {fileID: 4846903789434784499}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1325,7 +1411,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488937452108812}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.241, y: 0.06, z: -0.419}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -1365,6 +1451,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1519,6 +1606,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1534,6 +1622,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &8691249250636289833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1544,6 +1634,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4846903789434784499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488937452108812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1521585128063662
@@ -1562,6 +1664,7 @@ GameObject:
   - component: {fileID: 8611656213510137877}
   - component: {fileID: 973959796879015545}
   - component: {fileID: 458606878966122916}
+  - component: {fileID: 3070864611580332452}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1576,7 +1679,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521585128063662}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.031, y: 0.06, z: -0.07100001}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -1616,6 +1719,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1770,6 +1874,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -1785,6 +1890,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &458606878966122916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1795,6 +1902,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3070864611580332452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521585128063662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1682396051935510
@@ -1813,6 +1932,7 @@ GameObject:
   - component: {fileID: 376785043829384619}
   - component: {fileID: 6709660544528836860}
   - component: {fileID: 4650971142094288271}
+  - component: {fileID: 760724369804361789}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1827,7 +1947,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682396051935510}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.177, y: 0.06, z: -0.419}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -1867,6 +1987,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2021,6 +2142,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2036,6 +2158,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &4650971142094288271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2046,6 +2170,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &760724369804361789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682396051935510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1784145678339538
@@ -2064,6 +2200,7 @@ GameObject:
   - component: {fileID: 3454447953769741165}
   - component: {fileID: 7350046944415166940}
   - component: {fileID: 615136290964539937}
+  - component: {fileID: 3102305158869409141}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2078,7 +2215,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784145678339538}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.283, y: 0.06, z: -0.251}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -2118,6 +2255,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2272,6 +2410,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2287,6 +2426,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &615136290964539937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,6 +2438,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3102305158869409141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784145678339538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1852427642512440
@@ -2315,6 +2468,7 @@ GameObject:
   - component: {fileID: 1830637145319929100}
   - component: {fileID: 343875721918595017}
   - component: {fileID: 7497492845582236216}
+  - component: {fileID: 5133380458361888819}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2329,7 +2483,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852427642512440}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.176, y: 0.06, z: -0.071}
   m_LocalScale: {x: 0.29999998, y: 0.3000001, z: 0.3000001}
   m_Children: []
@@ -2369,6 +2523,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2523,6 +2678,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
+  m_omnidirectional: 0
   m_InnerAngle: 50
   m_OuterAngle: 340
   m_OuterGain: 1
@@ -2538,6 +2694,8 @@ MonoBehaviour:
   m_RoomGainLF: 1
   m_RoomGainMF: 1
   m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!114 &7497492845582236216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2548,5 +2706,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5133380458361888819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852427642512440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

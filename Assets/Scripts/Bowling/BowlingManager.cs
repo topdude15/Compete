@@ -37,7 +37,7 @@ public class BowlingManager : MonoBehaviour {
 
 	// Declare GameObjects.  Public GameObjects are set in Unity Editor.  
 	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu;
-	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText;
+	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText;
 	public static GameObject menuControl;
 	private GameObject bowlingBall, _realtime, pinObj;
 
@@ -61,6 +61,7 @@ public class BowlingManager : MonoBehaviour {
 
 	public static float growSpeed = 5f;
 
+    public int pinsFallen = 0;
 
 	//public static string ballColor;
 
@@ -130,6 +131,7 @@ public class BowlingManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        pinsFallenText.text = pinsFallen.ToString();
 		tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
 
 		menuMoveSpeed = Time.deltaTime * 2f;

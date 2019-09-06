@@ -523,7 +523,8 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    28: 
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
@@ -597,10 +598,10 @@ PlayerSettings:
   cloudServicesEnabled: {}
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Model
-    m_PortalFolderPath: /Users/trevorrose/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
+    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Model
+    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
   luminCert:
-    m_CertPath: /Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert
+    m_CertPath: C:/Users/topdu/Desktop/privatekey/theportalpc.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:

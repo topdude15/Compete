@@ -2,140 +2,192 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "d283215bbfaf2fe3e992b4e7672b8b9c786963ff",
-   "pkgpath": "Data/095890d8c9bde1a45b549a17e6e6f961",
-   "size": 5036,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/095890d8c9bde1a45b549a17e6e6f961"
+   "hash": "5925de9f4d7b83c65d1fd7b25ced5f0bf8c27e73",
+   "pkgpath": "bin/libc++_shared.so",
+   "size": 976832,
+   "src": "C:/Users/The Portal/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "25defcae72ce421b4ffc3807eb08b859d9012991",
+   "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libc++_shared.so-6d27b8fab6b0b8f5",
+   "xfrm_size": 977590
   },
   {
    "compression": 8,
-   "hash": "531502e357df234ee0929c2fe56810661b67c47e",
+   "hash": "1c60b9043e17fb1ed726290f0d22bde528e912fb",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3965000,
+   "size": 3601788,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "d9d5dc836b710795eeda00c66faf0ae1aa710ec0",
+   "hash": "ecfdd8bcd74bc27fb72aa997214637913f0fae2b",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 44466376,
+   "size": 57424304,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "f1be3a141878d97f54ab1f5166c45c756a84c60b",
+   "xfrm_hash": "af6da23c10978d8070b878d258ea242cc62368e7",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 44467141
+   "xfrm_size": 57425062
   },
   {
    "compression": 8,
-   "hash": "dc64ed4bee950e5ce1ab12268f627a3db179e4af",
+   "hash": "fa2b8ff146caf64688e7aa835af0034ca81b5505",
    "pkgpath": "bin/AudioPluginMSASpatializer.so",
-   "size": 220456,
+   "size": 282448,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "7df288c55dcb6f840a62529813e9eac1b31de629",
+   "xfrm_hash": "473ed534126aa6510646f4650c213c2244eafa66",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\AudioPluginMSASpatializer.so-e9fc14733439f9bd",
-   "xfrm_size": 221221
+   "xfrm_size": 283206
   },
   {
    "compression": 8,
-   "hash": "aed32544e1ea67c511396569fcb89b586b15d839",
-   "pkgpath": "bin/UnityEngine.SpatialTracking.dll",
-   "size": 9216,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityEngine.SpatialTracking.dll"
+   "hash": "8646af5b1c3fc61bff3b4eeab636d652b6516c84",
+   "pkgpath": "bin/LuminMediaPlayer.dll",
+   "size": 68096,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/LuminMediaPlayer.dll"
   },
   {
    "compression": 8,
-   "hash": "715f293d231a26472ba1672c3e59f76cb0e5e364",
-   "pkgpath": "bin/UnityEngine.TestRunner.dll",
-   "size": 65536,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityEngine.TestRunner.dll"
+   "hash": "a21d697ed2e5c46d680a85619e6aef05bfd45f7d",
+   "pkgpath": "bin/LuminUnity.dll",
+   "size": 329216,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/LuminUnity.dll"
   },
   {
    "compression": 8,
-   "hash": "d93ff7b64d92abd6dbb8419c3348ab5f56ad5ec5",
+   "hash": "b8ce049d2e85f27cc7346d7551d1853b20e78461",
+   "pkgpath": "bin/MSA.Runtime.dll",
+   "size": 22016,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/MSA.Runtime.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "017c811cf3919f0f9ecc80a3c7b6bfdc4ae7f3d3",
+   "pkgpath": "bin/Realtime.dll",
+   "size": 58880,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Realtime.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "0c49a81c4586bd52e980ea8f460d755746da9898",
+   "pkgpath": "bin/Unity.Compat.dll",
+   "size": 4608,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Compat.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "cc8f0e9d29bf5c70629818a8e2230974f9930bf3",
+   "pkgpath": "bin/Unity.Tasks.dll",
+   "size": 4608,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Tasks.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "40960dc3443e75f552ec2b1cb5f8ded203bf8ae9",
    "pkgpath": "bin/UnityMagicLeap.so",
-   "size": 728232,
+   "size": 3073256,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "f1202231de3ec6dcc3ca9f6de20485e97dd6bc99",
+   "xfrm_hash": "0a89a59f71c1f92683bb9f78527a003604c31e1e",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\UnityMagicLeap.so-e9fc14733439f9bd",
-   "xfrm_size": 728997
+   "xfrm_size": 3074014
   },
   {
    "compression": 8,
-   "hash": "a765bb75be250a6992c1a46fc23a55501e369b85",
+   "hash": "9e0c89a0c6410fccfbfc6211ad7a07f9559d7847",
+   "pkgpath": "bin/libRealtimeClient.so",
+   "size": 7297728,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libRealtimeClient.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
+    },
+    "taildata": {
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "63752175a4c22618d5b52a9abf2b7cf71c7d7bd4",
+   "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libRealtimeClient.so-e9fc14733439f9bd",
+   "xfrm_size": 7298486
+  },
+  {
+   "compression": 8,
+   "hash": "fbfa4a6aa20b14e0f60550676e5d34bebb99d46d",
    "pkgpath": "bin/libml_camera_plugin.so",
    "size": 14184,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "d1150b89a6e6b7212b6e464a2b3bcdfa3b9f2a7b",
+   "xfrm_hash": "9f2775398ac3988c7dfe97875204b7b4d5c4dc68",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libml_camera_plugin.so-e9fc14733439f9bd",
-   "xfrm_size": 14949
+   "xfrm_size": 14942
   },
   {
    "compression": 8,
-   "hash": "633780c922a0dbfe032638afff9a25e3fc49219f",
+   "hash": "88ac1047e0ac5686d703471c3115f719ca66a4e8",
    "pkgpath": "bin/libml_mediaplayer_plugin.so",
-   "size": 38792,
+   "size": 67624,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "9b2e54913dd0eaa42d47cc75bbefa859422dfd7b",
+   "xfrm_hash": "2078d1996b0c3b73d766b478f7842dc7a8033183",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libml_mediaplayer_plugin.so-e9fc14733439f9bd",
-   "xfrm_size": 39557
+   "xfrm_size": 68382
   },
   {
    "compression": 8,
-   "hash": "5629c7ff5fb59ddc72778d4b9d3dbadcde480998",
+   "hash": "984e4d2049ed5491b970ba15d1e8c8cadac0896e",
    "pkgpath": "bin/nunit.framework.dll",
-   "size": 328192,
+   "size": 339968,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/nunit.framework.dll"
-  },
-  {
-   "compression": 8,
-   "hash": "991bb8f7486d040646093200316c75e9bd8b8172",
-   "pkgpath": "Data/Resources/System.dll-resources.dat",
-   "size": 54703,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Resources/System.dll-resources.dat"
   },
   {
    "compression": 8,
@@ -146,156 +198,184 @@
   },
   {
    "compression": 8,
-   "hash": "dc1423ee40a78f4701880b37e1f07bc4f3500e9d",
+   "hash": "fa10859a933989c5961257c02d9f4fcf042044f1",
    "pkgpath": "Data/Resources/unity default resources",
-   "size": 3308004,
+   "size": 3689324,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Resources/unity default resources"
   },
   {
    "compression": 8,
-   "hash": "3f702d40c1354f8144e5d5e69d1c8193218e5aeb",
+   "hash": "68704cfcffd0af5109817d2bca6c4c570dd51307",
    "pkgpath": "Data/Resources/unity_builtin_extra",
-   "size": 407276,
+   "size": 835380,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Resources/unity_builtin_extra"
   },
   {
    "compression": 8,
-   "hash": "9bbb5e3aae616602db933abd34140e11132fccea",
-   "pkgpath": "Data/UnitySubsystems/Runtime/UnitySubsystemsManifest.json",
-   "size": 438,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/UnitySubsystems/Runtime/UnitySubsystemsManifest.json"
+   "hash": "778891100a8030ad6096db64784c6e5d67c28378",
+   "pkgpath": "Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json",
+   "size": 417,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/UnitySubsystems/UnityMagicLeap/UnitySubsystemsManifest.json"
   },
   {
    "compression": 8,
-   "hash": "e94169e04982098c15b71dea64d4bb6da942f232",
+   "hash": "f226dfc0f1097b18c77eb2198b6257be5b02a613",
    "pkgpath": "Data/boot.config",
-   "size": 76,
+   "size": 123,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/boot.config"
   },
   {
    "compression": 8,
-   "hash": "859d903dd3e3c6ba7ac893fb00dad927c2a15fdc",
+   "hash": "2b33adca132e658f43dda33f58c8a9855ae3bb3c",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 37488,
+   "size": 94608,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "a019bd18eabe2aa653238c8b563082d473035a69",
+   "hash": "c5f65b4653c44546448bdeb457241a35537fbec8",
    "pkgpath": "Data/globalgamemanagers.assets",
-   "size": 38268,
+   "size": 93792,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
   },
   {
    "compression": 8,
-   "hash": "7f1cbca7d1cf50d99d7ae4fd4e111fdc0b1c28ff",
+   "hash": "5649707387ab585766bfcbb8ea04a88e2d27fd2b",
    "pkgpath": "Data/level0",
-   "size": 7328,
+   "size": 16752,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level0"
   },
   {
    "compression": 8,
-   "hash": "05abb4e5303a45016e96292ce336f372cf0182a7",
+   "hash": "d77f8f429538b0447fbd80575d586bd3b7f59a66",
    "pkgpath": "Data/level0.resS",
    "size": 131232,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level0.resS"
   },
   {
    "compression": 8,
-   "hash": "2410b77c5c02d9ca30091903ca22e5f957bdc8d1",
+   "hash": "544346bb4ce17a95453beac34f43f8b984e89bea",
    "pkgpath": "Data/level1",
-   "size": 15324,
+   "size": 15708,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level1"
   },
   {
    "compression": 8,
-   "hash": "58e33e6456546ee327a437be974d5f3e7804fa41",
+   "hash": "9ca924b3abbc0a7aac83db77caaf9e9a191cfd10",
    "pkgpath": "Data/level2",
-   "size": 25248,
+   "size": 72296,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {
    "compression": 8,
-   "hash": "05abb4e5303a45016e96292ce336f372cf0182a7",
+   "hash": "d77f8f429538b0447fbd80575d586bd3b7f59a66",
    "pkgpath": "Data/level2.resS",
    "size": 131232,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2.resS"
   },
   {
    "compression": 8,
-   "hash": "c329e4128f6a0f22d015b20291f1a74d774018e0",
+   "hash": "2b679e4d98ad71efea58aa20df7b253c23e3edd2",
    "pkgpath": "Data/level3",
-   "size": 18412,
+   "size": 63936,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {
    "compression": 8,
-   "hash": "05abb4e5303a45016e96292ce336f372cf0182a7",
+   "hash": "6aef077c4103942cbf915355fb7c7326291ea73a",
    "pkgpath": "Data/level3.resS",
    "size": 131232,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3.resS"
   },
   {
    "compression": 8,
-   "hash": "7a38f662593f585068fdf4047a7c7f2be5db3d80",
+   "hash": "fe238729122a8842d0f2c24e4bab5e6c19903be2",
+   "pkgpath": "Data/resources.assets",
+   "size": 2149488,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "eb3944224fc29b050052f2c08414a8c9265ededc",
+   "pkgpath": "Data/resources.assets.resS",
+   "size": 3156736,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "3c51d5a76d70f53a02ffd4212303e1b09f56d3dd",
+   "pkgpath": "Data/resources.resource",
+   "size": 5895680,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.resource"
+  },
+  {
+   "compression": 8,
+   "hash": "4637b6c9613583531394c3aef074ccc8c7e58a64",
    "pkgpath": "Data/sharedassets0.assets",
-   "size": 661802,
+   "size": 2263858,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets0.assets"
   },
   {
    "compression": 8,
-   "hash": "88f1e303c01f0e4c6d5ce3e65402de7828eb9b95",
+   "hash": "86de6d45a5b8e3a830281561c30d35c6bbf4dbe6",
+   "pkgpath": "Data/sharedassets0.assets.resS",
+   "size": 1922448,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets0.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "7b24211f97309f33c32513d251e8809a68bdde59",
    "pkgpath": "Data/sharedassets1.assets",
-   "size": 977320,
+   "size": 336680,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets"
   },
   {
    "compression": 8,
-   "hash": "d3f69f146302fd44a425e387b92cf1b51c130e51",
+   "hash": "e8e0a1ff8b7d35ad5624384329f7aef2741e4831",
    "pkgpath": "Data/sharedassets1.assets.resS",
-   "size": 3844944,
+   "size": 1048656,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets.resS"
   },
   {
    "compression": 8,
-   "hash": "f2b49c70dc2b0a124727cdf2655c24cca22b8450",
+   "hash": "b135975a7a3b3ca3e57e1a1a62fff548073fe9cd",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 449804,
+   "size": 1510328,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
    "compression": 8,
-   "hash": "62e2c7b7b95f6976f202343473af4b76fc0f4ac5",
+   "hash": "63037cdbe0a9ef22a2f0364e5437ae177b1442b7",
    "pkgpath": "Data/sharedassets2.assets.resS",
-   "size": 1747760,
+   "size": 17192584,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets.resS"
   },
   {
    "compression": 8,
-   "hash": "27df86756c0c816fa7dac84e7c09dd0fd44b8017",
+   "hash": "fca2eb27e10795d3d534d2ab0409cd68528d7327",
+   "pkgpath": "Data/sharedassets2.resource",
+   "size": 26240,
+   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.resource"
+  },
+  {
+   "compression": 8,
+   "hash": "084eec137171136036bdfa6320b37f216d042095",
    "pkgpath": "Data/sharedassets3.assets",
-   "size": 165624,
+   "size": 7848,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
   },
   {
    "compression": 8,
-   "hash": "d94c00d6ae4425a4eaef2ce1ed8804415ce09a5a",
+   "hash": "7b879a97352dcfe09ea05be0345a4cbbed4e822e",
    "pkgpath": "Data/sharedassets3.assets.resS",
    "size": 349552,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets.resS"
   },
   {
    "compression": 8,
-   "hash": "e002edc1b2bfcdd9b37b849e260a122343f4c23b",
-   "pkgpath": "Data/sharedassets3.resource",
-   "size": 8192,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.resource"
-  },
-  {
-   "compression": 8,
-   "hash": "fcbc1aba20953bb9a0eb3156ca6123cae8fb47a5",
+   "hash": "35133c2888d88ec5d12fa89eafaefa0db2ae6709",
    "pkgpath": "Icon/Model/model.fbx",
-   "size": 328656,
+   "size": 193561,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Icon/Model/model.fbx"
   },
   {
@@ -307,9 +387,9 @@
   },
   {
    "compression": 8,
-   "hash": "b980b821c9ce9261d6fa2172d0a3eefdae8034d3",
+   "hash": "070f63e104647ee2aba964c41e2fe2920ed9f9bc",
    "pkgpath": "Icon/Model/model.png",
-   "size": 3924,
+   "size": 31364,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Icon/Model/model.png"
   },
   {
@@ -328,72 +408,53 @@
   },
   {
    "compression": 8,
-   "hash": "d6659d01db1eb5017a517eb7b36f36294a099dc8",
+   "hash": "8fa3b5889efa9207fd128d2a1977390a03e30fb0",
    "pkgpath": "Icon/Portal/portal.png",
-   "size": 58227,
+   "size": 34964,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Icon/Portal/portal.png"
   },
   {
    "compression": 8,
-   "hash": "8f59c553fa65e4c62b244f94275fdf50ef6a40e8",
+   "hash": "f3975b7f1ce5c21650f818639d4645f9c8d20f43",
    "pkgpath": "bin/Player.elf",
-   "size": 22318968,
+   "size": 20706744,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Player.elf",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "sbox": "USER",
      "version": 3
     }
    },
-   "xfrm_hash": "4ba36888891c4dc10aaea52570b9e4bd22888409",
+   "xfrm_hash": "9f04bde5f8d34f47f5a9ade51ff207f64b7024a8",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\Player.elf-064277d9b5950a96",
-   "xfrm_size": 22319733
+   "xfrm_size": 20707502
   },
   {
    "compression": 8,
-   "hash": "5925de9f4d7b83c65d1fd7b25ced5f0bf8c27e73",
-   "pkgpath": "bin/libc++_shared.so",
-   "size": 976832,
-   "src": "C:/Users/topdu/MagicLeap/mlsdk/v0.19.0/lumin/stl/libc++/lib/libc++_shared.so",
-   "xfrm_flags": {
-    "signed": {
-     "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
-    },
-    "taildata": {
-     "sbox": "USER",
-     "version": 3
-    }
-   },
-   "xfrm_hash": "53632a9b68e38d6d6896d630e7596d14270fe6b3",
-   "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libc++_shared.so-a0b6e4531f590efe",
-   "xfrm_size": 977597
-  },
-  {
-   "compression": 8,
-   "hash": "85e360ccade05c96dd9fab59cab4ca87cafb6d87",
+   "hash": "696de40fc5578763f267339bb2b0b88c28981449",
    "pkgpath": "manifest.xml",
-   "size": 694,
+   "size": 778,
    "src": "C:\\Users\\topdu\\Desktop\\Compete\\Temp\\StagingArea\\manifest.xml",
    "xfrm_flags": {
     "manifest": {
-     "cert_hash": "91f2d909ee485238f9871f0ea16b1e5477a9f70f",
-     "developer_id": "38b77cd9-c4ec-4390-8572-6dbe497dcf92.cd8f2512-c077-49a9-b7ed-6b890fc3ec8c"
+     "cert_hash": "f16937d9e2c1e78903c616aeddd2f90627de7f3b",
+     "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665"
     }
    },
-   "xfrm_hash": "874d66a91794e147b72bf1d02e153c07fcb2a2b6",
+   "xfrm_hash": "a4354847c3a7a28e3fcb1fb671b46ae26bd0ad9f",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\manifest.xml-064277d9b5950a96",
-   "xfrm_size": 743
+   "xfrm_size": 790
   }
  ],
  "pkgflags": {
   "signed": {
-   "cert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert"
+   "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
   },
   "taildata": {
-   "devcert": "C:\\Users\\topdu\\Downloads\\PrivateMLWorld\\PrivateMLWorld\\ml-sports-cd8f2512.cert",
+   "devcert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert",
    "sbox": "USER",
    "version": 3
   }
