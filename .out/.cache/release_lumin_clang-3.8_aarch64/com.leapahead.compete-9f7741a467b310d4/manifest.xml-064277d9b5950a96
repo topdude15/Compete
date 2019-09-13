@@ -9,5 +9,6 @@
     <uses-privilege ml:name="GesturesSubscribe" />
     <uses-privilege ml:name="Internet" />
     <uses-privilege ml:name="WorldReconstruction" />
+    <uses-privilege ml:name="AudioCaptureMic" />
   </application>
 </manifest>

@@ -350,17 +350,17 @@ public class BowlingManager : MonoBehaviour {
 			} else if (rayHit.transform.gameObject.name == "ToggleMic" && controller.TriggerValue >= 0.9f) {
 				if (toggledMic == false) {
 					toggledMic = true;
-					if (micActive == true) {
+                    menuAudio.Play();
+                    if (micActive == true) {
 						micActive = false;
 						localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
 						toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
-					} else {
+                    } else {
 						micActive = true;
 						localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
 						toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
-					}
+                    }
 				}
-				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "LeaveRoom" && controller.TriggerValue >= 0.9f) {
 				joinedLobby = false;
 				_realtime.GetComponent<Realtime>().Disconnect();
@@ -406,7 +406,10 @@ public class BowlingManager : MonoBehaviour {
 					menuOpened = false;
 				}
 				menuAudio.Play();
-			} 
+			} else if (controller.TriggerValue < 0.2f)
+            {
+                toggledMic = false;
+            }
 			if (!holdingBallMenu) {
 				BowlingColorLoader.GetBallColor (rayHit, controller, ballMenu, ballMenuOpened, holdingBallMenu, bowlingBall, ballMats);
 			} else if (holdingBallMenu && controller.TriggerValue <= 0.2f) {
@@ -456,14 +459,11 @@ public class BowlingManager : MonoBehaviour {
 			endPosition = controller.Position + (control.transform.forward * 7.0f);
 			laserLineRenderer.SetPosition (1, endPosition);
 		}
-		if (holding == holdState.ball) {
-			laserLineRenderer.SetPosition(0, mainCam.transform.position);
-			laserLineRenderer.SetPosition(1, mainCam.transform.position);
-		}
-
-		if (toggledMic == true && controller.TriggerValue < 0.2f) {
-			toggledMic = false;
-		}
+        if (holding == holdState.ball)
+        {
+            laserLineRenderer.SetPosition(0, mainCam.transform.position);
+            laserLineRenderer.SetPosition(1, mainCam.transform.position);
+        }
 
 	}
 
@@ -646,7 +646,7 @@ public class BowlingManager : MonoBehaviour {
 						realtimeObjects[realtimeObjects.Length + 1] = pin;
 						GetCount();
 					} else {
-						Instantiate (tenPinPrefab, endPosition, tenPinOrientation.transform.rotation, pinHolder);
+						Instantiate (tenPinPrefab, endPosition, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
 					}
 				} else if (holding == holdState.ball) {
 					if (_realtimeObject.connected && realtimeBowlingBall == false) {

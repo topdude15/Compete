@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MeshingMenu : MonoBehaviour {
 
 	// private MLInputController controller;
-	public GameObject _cam, menu, welcomeMenu, meshingMenu;
+	public GameObject _cam, menu, welcomeMenu, meshingMenu, meshObj;
 	private MLInputController controller;
 	private float timer;
 	private CanvasGroup welcomeCanvas;
@@ -16,6 +16,7 @@ public class MeshingMenu : MonoBehaviour {
 	public MeshRenderer mesh;
 	// Use this for initialization
 	void Start () {
+        
 		print("yee");
 		MLInput.Start();
 		
@@ -63,7 +64,7 @@ public class MeshingMenu : MonoBehaviour {
 		if (getTime && welcomeCanvas.alpha <= 0) {
 			if (setMenu == false) {
 				setMenu = true;
-				mesh.material = meshMats[1];
+                meshObj.SetActive(true);
 				meshingMenu.SetActive(true);
 				welcomeMenu.SetActive(false);
 				menu.transform.position = _cam.transform.position + _cam.transform.forward * 2.5f;

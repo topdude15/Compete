@@ -67,7 +67,7 @@ MonoBehaviour:
   - name: LocalAreaNetwork
     enabled: 0
   - name: AudioCaptureMic
-    enabled: 0
+    enabled: 1
   - name: AudioRecognizer
     enabled: 0
   - name: CameraCapture
