@@ -57,7 +57,7 @@ MonoBehaviour:
   - name: SecureBrowserWindow
     enabled: 0
   - name: WifiStatusRead
-    enabled: 0
+    enabled: 1
   - name: WorldReconstruction
     enabled: 1
   - name: AddressBookRead

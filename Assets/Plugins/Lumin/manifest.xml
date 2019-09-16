@@ -11,5 +11,6 @@
     <uses-privilege ml:name="Internet" />
     <uses-privilege ml:name="WorldReconstruction" />
     <uses-privilege ml:name="AudioCaptureMic" />
+    <uses-privilege ml:name="WifiStatusRead" />
   </application>
 </manifest>
