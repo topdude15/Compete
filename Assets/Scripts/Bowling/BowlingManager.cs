@@ -233,7 +233,7 @@ public class BowlingManager : MonoBehaviour {
 	}
 	private void PlayTimer() {
 		timer += Time.deltaTime;
-		if (timer > waitTime && holding == holdState.none && tutorialMenu.activeSelf != true && menu.activeSelf != true && totalObjs == 0) {
+		if (timer > waitTime && holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menuOpened == false && totalObjs == 0) {
 			if (!helpAppeared) {
 				helpAppeared = true;
 				tutorialHelpMenu.SetActive(true);
@@ -242,7 +242,7 @@ public class BowlingManager : MonoBehaviour {
 				helpMenu.transform.rotation = mainCam.transform.rotation;
 			}
 
-		} else if (timer > waitTime && holding != holdState.none) {
+		} else if (timer > waitTime) {
 			helpAppeared = true;
 		}
 	}
@@ -416,7 +416,7 @@ public class BowlingManager : MonoBehaviour {
 				holdingBallMenu = false;
 			}
 			if (multiplayerMenuOpen == true) {
-				if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1"|| rayHit.transform.gameObject.name == "2"|| rayHit.transform.gameObject.name == "3"|| rayHit.transform.gameObject.name == "4"|| rayHit.transform.gameObject.name == "5"|| rayHit.transform.gameObject.name == "6"|| rayHit.transform.gameObject.name == "7"|| rayHit.transform.gameObject.name == "8"|| rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false) {
+				if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1"|| rayHit.transform.gameObject.name == "2"|| rayHit.transform.gameObject.name == "3"|| rayHit.transform.gameObject.name == "4"|| rayHit.transform.gameObject.name == "5"|| rayHit.transform.gameObject.name == "6"|| rayHit.transform.gameObject.name == "7"|| rayHit.transform.gameObject.name == "8"|| rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18) {
 					pickedNumber = true;
 					roomCode += rayHit.transform.gameObject.name;
 					multiplayerCodeText.text = roomCode;
@@ -433,17 +433,21 @@ public class BowlingManager : MonoBehaviour {
 					pickedNumber = false;
 					deletedCharacter = false;
 				} else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false) {
-					joinedLobby = true;
-					_realtime = GameObject.Find("Realtime + VR Player");
-					// Connect to Realtime room
-					ClearAllObjects();
-					_realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
-					multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
-					multiplayerMenu.SetActive(false);
-					multiplayerStatusMenu.SetActive(true);
-					multiplayerMenuOpen = false;
-					multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-					menuAudio.Play();
+					if (roomCode.Length < 1) {
+						multiplayerCodeText.text = "Please enter a code";
+					} else {
+						joinedLobby = true;
+						_realtime = GameObject.Find("Realtime + VR Player");
+						// Connect to Realtime room
+						ClearAllObjects();
+						_realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+						multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+						multiplayerMenu.SetActive(false);
+						multiplayerStatusMenu.SetActive(true);
+						multiplayerMenuOpen = false;
+						multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+						menuAudio.Play();
+					}
 				} else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f) {
 					multiplayerMenu.SetActive(false);
 					multiplayerMenuOpen = false;
@@ -574,7 +578,6 @@ public class BowlingManager : MonoBehaviour {
 	}
 
 	void OnButtonDown (byte controller_id, MLInputControllerButton button) {
-
 		if (button == MLInputControllerButton.HomeTap) {
 			helpAppeared = true;
 		}

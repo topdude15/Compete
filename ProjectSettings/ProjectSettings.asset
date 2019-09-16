@@ -153,6 +153,8 @@ PlayerSettings:
       sharedDepthBuffer: 1
       dashSupport: 1
       lowOverheadMode: 0
+      protectedContext: 0
+      v2Signing: 0
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   protectGraphicsMemory: 0
@@ -603,7 +605,7 @@ PlayerSettings:
     m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Model
     m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
   luminCert:
-    m_CertPath: C:/Users/topdu/Desktop/privatekey/theportalpc.cert
+    m_CertPath: /Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:

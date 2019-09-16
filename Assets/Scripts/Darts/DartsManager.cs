@@ -20,7 +20,7 @@ public class DartsManager : MonoBehaviour {
 	public static holdState holding = holdState.none;
 	private MLInputController controller;
 	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton;
-	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText;
+	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText;
 	public Transform dartHolder, meshHolder;
 	public static GameObject menuControl;
 	private GameObject dart, _realtime;
@@ -30,7 +30,7 @@ public class DartsManager : MonoBehaviour {
 	public MeshRenderer mesh;
 	private string roomCode = "";
 	private Vector3 endPosition, forcePerSecond;
-	private float timeHold = 3.0f, totalObjs = 0, objLimit = 20, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed;
+	private float timeHold = 3.0f, totalObjs = 0, objLimit = 20, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers;
 	private Controller checkController;
 	[SerializeField]private GameObject dartRealtime = null, dartboardRealtime = null;
 	public Image loadingImage;
@@ -139,6 +139,7 @@ public class DartsManager : MonoBehaviour {
 			tutorialMenuOpened = false;
 		}
 		if (_realtimeObject.connected) {
+			connectedPlayers = 0;
 			if (getLocalPlayer == false) {
 				getLocalPlayer = true;
 				print("doo doo doo...");
@@ -149,6 +150,12 @@ public class DartsManager : MonoBehaviour {
 							localPlayer = obj;
 						}
 					}
+				}
+			}
+			foreach(GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject))) {
+				if (obj.name == "VR Player(Clone)") {
+					connectedPlayers += 1;
+					connectedPlayersText.text = ("Connected Players: " + connectedPlayers);
 				}
 			}
 			multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='green'>Connected</color>");
@@ -170,7 +177,7 @@ public class DartsManager : MonoBehaviour {
 				helpMenu.transform.rotation = mainCam.transform.rotation;
 			}
 
-		} else if (timer > waitTime && holding != holdState.none) {
+		} else if (timer > waitTime) {
 			helpAppeared = true;
 		}
 	}
@@ -327,7 +334,7 @@ public class DartsManager : MonoBehaviour {
 				holdingDartMenu = false;
 			}
 			if (multiplayerMenuOpen == true) {
-				if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1"|| rayHit.transform.gameObject.name == "2"|| rayHit.transform.gameObject.name == "3"|| rayHit.transform.gameObject.name == "4"|| rayHit.transform.gameObject.name == "5"|| rayHit.transform.gameObject.name == "6"|| rayHit.transform.gameObject.name == "7"|| rayHit.transform.gameObject.name == "8"|| rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false) {
+				if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1"|| rayHit.transform.gameObject.name == "2"|| rayHit.transform.gameObject.name == "3"|| rayHit.transform.gameObject.name == "4"|| rayHit.transform.gameObject.name == "5"|| rayHit.transform.gameObject.name == "6"|| rayHit.transform.gameObject.name == "7"|| rayHit.transform.gameObject.name == "8"|| rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18) {
 					pickedNumber = true;
 					roomCode += rayHit.transform.gameObject.name;
 					multiplayerCodeText.text = roomCode;
@@ -344,16 +351,20 @@ public class DartsManager : MonoBehaviour {
 					pickedNumber = false;
 					deletedCharacter = false;
 				} else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false) {
-					joinedLobby = true;
-					_realtime = GameObject.Find("Realtime + VR Player");
-					// Connect to Realtime room
-					_realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
-					multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
-					multiplayerMenu.SetActive(false);
-					multiplayerMenuOpen = false;
-					multiplayerStatusMenu.SetActive(true);
-					multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-					menuAudio.Play();
+					if (roomCode.Length < 1) {
+						multiplayerCodeText.text = "Please enter a code";
+					} else {
+						joinedLobby = true; 
+						_realtime = GameObject.Find("Realtime + VR Player");
+						// Connect to Realtime room
+						_realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
+						multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+						multiplayerMenu.SetActive(false);
+						multiplayerMenuOpen = false;
+						multiplayerStatusMenu.SetActive(true);
+						multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+						menuAudio.Play();
+					}
 				} else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f) {
 					multiplayerMenu.SetActive(false);
 					multiplayerMenuOpen = false;
