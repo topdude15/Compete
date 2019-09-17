@@ -600,8 +600,8 @@ PlayerSettings:
   cloudServicesEnabled: {}
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Model
-    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/Icon/BowlingIcon/Icon/Portal
+    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Model
+    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Portal
   luminCert:
     m_CertPath: C:/Users/topdu/Desktop/privatekey/theportalpc.cert
     m_SignPackage: 1

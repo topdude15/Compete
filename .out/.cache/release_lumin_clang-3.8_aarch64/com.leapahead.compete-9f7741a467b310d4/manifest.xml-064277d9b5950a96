@@ -1,4 +1,4 @@
-<manifest xmlns:ml="magicleap" ml:developer_id="1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665" ml:package="com.leapahead.compete" ml:version_code="24" ml:version_name="">
+<manifest xmlns:ml="magicleap" ml:developer_id="1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665" ml:package="com.leapahead.compete" ml:version_code="25" ml:version_name="">
   <application ml:min_api_level="6" ml:sdk_version="1.0" ml:visible_name="Compete">
     <component ml:binary_name="bin/Player.elf" ml:name=".fullscreen" ml:type="Fullscreen" ml:visible_name="Compete">
       <icon ml:model_folder="Icon/Model" ml:portal_folder="Icon/Portal" />

@@ -39,7 +39,7 @@ public class DartsManager : MonoBehaviour {
 	public Realtime _realtimeObject;
 	private PlayerManagerModel _playerManager;
 
-	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false;
+	private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected;
 	private static bool menuClosed = false, menuOpened = false;
 	public static bool lockedDartboard = false;
 	List<Vector3> Deltas = new List<Vector3> ();
@@ -48,6 +48,7 @@ public class DartsManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		CheckNewUser();
 		MLInput.Start ();
 		controller = MLInput.GetController (MLInput.Hand.Left);
@@ -68,8 +69,14 @@ public class DartsManager : MonoBehaviour {
 		pos = new Vector3[1];
 
 		_realtime = GameObject.Find("Realtime + VR Player");
-		// _realtime.GetComponent<Realtime>().Connect("200Darts");
-	}
+        // _realtime.GetComponent<Realtime>().Connect("200Darts");
+
+        MLNetworking.IsInternetConnected(ref networkConnected);
+        if (networkConnected == false)
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        }
+    }
 
 	private void OnDestroy () {
 		MLInput.Stop ();
@@ -80,14 +87,23 @@ public class DartsManager : MonoBehaviour {
 		MLInput.Stop();
 		MLHands.Stop();
 	}
+    private void OnEnable()
+    {
+        MLInput.Start();
+        MLHands.Start();
+        MLNetworking.IsInternetConnected(ref networkConnected);
+        if (networkConnected == false)
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        }
+        else
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+        }
+    }
 
-	private void OnApplicationPause(bool pause) {
-		MLInput.Stop();
-		MLHands.Stop();
-	}
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 		menuMoveSpeed = Time.deltaTime * 2f;
 

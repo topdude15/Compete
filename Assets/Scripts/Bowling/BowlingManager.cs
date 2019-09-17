@@ -115,25 +115,36 @@ public class BowlingManager : MonoBehaviour {
 		MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
 		pos = new Vector3[1];
 
+        MLNetworking.IsInternetConnected(ref networkConnected);
+        if (networkConnected == false)
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        }
     }
 	private void OnDestroy () {
-		MLInput.Stop ();
-		MLHands.Stop();
+		//MLInput.Stop ();
+		//MLHands.Stop();
     }
 	private void OnDisable() {
 		MLInput.Stop();
 		MLHands.Stop();
 	}
-	private void OnApplicationPause(bool pause) {
-		MLInput.Stop();
-		MLHands.Stop();
-	}
-
-	// Update is called once per frame
-	void Update () {
-
+    private void OnEnable()
+    {
+        MLInput.Start();
+        MLHands.Start();
         MLNetworking.IsInternetConnected(ref networkConnected);
-        print(networkConnected);
+        if (networkConnected == false)
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        } else
+        {
+            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         pinsFallenText.text = pinsFallen.ToString();
 		tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
