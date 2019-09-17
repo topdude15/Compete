@@ -1,0 +1,41 @@
+{
+  "global": {
+    "name": "global",
+    "color": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "blendmode": "Opaque"
+  },
+  "materials": [
+    {
+      "shaderName": "UnlitTextured",
+      "name": "mat_sphere_front",
+      "blendmode": "Transparent",
+      "renderLayer": "renderlayer1",
+      "albedo": "Icon/Model/grid.png"
+    },
+    {
+      "shaderName": "UnlitTextured",
+      "name": "mat_sphere_back",
+      "blendmode": "Transparent",
+      "renderLayer": "renderlayer1",
+      "albedo": "Icon/Model/grid.png"
+    },
+    {
+      "shaderName": "UnlitTextured",
+      "name": "mat_disc",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "blendmode": "Transparent",
+      "renderLayer": "renderlayer1",
+      "albedo": "Icon/Model/texture.png"
+    }
+  ]
+}
