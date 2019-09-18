@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake() {
         /* TODO: REIMPLEMENT PRIVILEDGE REQUESTER WHEN READDING MULTIPLAYER FUNCTIONALITY
+		ALSO MAKE SURE TO REATTACH "PrivilegeRequester" ML SCRIPT TO CAMERA
         _privilegeRequester = GetComponent<PrivilegeRequester>();
         if (_privilegeRequester == null)
             {

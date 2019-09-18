@@ -248,17 +248,19 @@ public class BowlingManager : MonoBehaviour {
 	}
 	private void PlayTimer() {
 		timer += Time.deltaTime;
-		if (timer > waitTime && holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menuOpened == false && totalObjs == 0) {
-			if (!helpAppeared) {
+		if (timer > waitTime) {
+			if (holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menuOpened == false && totalObjs == 0) {
+				if (!helpAppeared) {
+					helpAppeared = true;
+					tutorialHelpMenu.SetActive(true);
+
+					helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
+					helpMenu.transform.rotation = mainCam.transform.rotation;
+				}
+			} else {
+				waitTime = 999999999999999999f;
 				helpAppeared = true;
-				tutorialHelpMenu.SetActive(true);
-
-				helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
-				helpMenu.transform.rotation = mainCam.transform.rotation;
 			}
-
-		} else if (timer > waitTime) {
-			helpAppeared = true;
 		}
 	}
 

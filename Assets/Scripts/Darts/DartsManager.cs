@@ -184,17 +184,19 @@ public class DartsManager : MonoBehaviour {
 	}
 	private void PlayTimer() {
 		timer += Time.deltaTime;
-		if (timer > waitTime && holding == holdState.none && tutorialMenu.activeSelf != true && menu.activeSelf != true) {
-			if (!helpAppeared) {
+		if (timer > waitTime ) {
+			if (holding == holdState.none && tutorialMenu.activeSelf != true && menu.activeSelf != true) {
+				if (!helpAppeared) {
+					helpAppeared = true;
+					tutorialHelpMenu.SetActive(true);
+
+					helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
+					helpMenu.transform.rotation = mainCam.transform.rotation;
+				}
+			} else {
+				waitTime = 999999999999999999f;
 				helpAppeared = true;
-				tutorialHelpMenu.SetActive(true);
-
-				helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
-				helpMenu.transform.rotation = mainCam.transform.rotation;
 			}
-
-		} else if (timer > waitTime) {
-			helpAppeared = true;
 		}
 	}
 	private void CheckGestures() {
