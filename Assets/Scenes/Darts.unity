@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.178124, g: 0.2168029, b: 0.26933986, a: 1}
+  m_IndirectSpecularColor: {r: 0.17812416, g: 0.21680346, b: 0.2693405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1825,7 +1825,8 @@ MonoBehaviour:
   multiplayerCodeText: {fileID: 1020363482}
   multiplayerStatusText: {fileID: 319511437}
   multiplayerMenuCodeText: {fileID: 1107331363}
-  connectedPlayersText: {fileID: 0}
+  connectedPlayersText: {fileID: 292238297}
+  noGravityText: {fileID: 611810008}
   dartHolder: {fileID: 459239721}
   meshHolder: {fileID: 1924753013}
   transparent: {fileID: 2100000, guid: a5ce96259bfd75945ac50ac2e57bf619, type: 2}

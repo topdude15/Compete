@@ -36,8 +36,8 @@ public class BowlingManager : MonoBehaviour {
 	public MLPersistentBehavior persistentBehavior;
 
 	// Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu;
-	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText;
+	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit;
+	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText;
 	public static GameObject menuControl;
 	private GameObject bowlingBall, _realtime, pinObj;
 
@@ -71,7 +71,7 @@ public class BowlingManager : MonoBehaviour {
 
 	public Texture2D emptyCircle, check;
 
-	private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected;
+	private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false;
 	private static bool menuClosed = false;
 
 	[SerializeField]private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab, tenPinRealtimePrefab, tenPinRealtimeNoGravityPrefab, bowlingBallRealtimePrefab;
@@ -186,6 +186,10 @@ public class BowlingManager : MonoBehaviour {
 				menuControl.transform.position = controller.Position;
 				menuControl.transform.rotation = mainCam.transform.rotation;
 			}
+            if (pinLimitAppeared)
+            {
+                reachedPinLimit.SetActive(false);
+            }
 		}
 
 		if (controller.Touch1Active == false) {
@@ -250,6 +254,7 @@ public class BowlingManager : MonoBehaviour {
 		timer += Time.deltaTime;
 		if (timer > waitTime) {
 			if (holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menuOpened == false && totalObjs == 0) {
+                print("Opening helper...");
 				if (!helpAppeared) {
 					helpAppeared = true;
 					tutorialHelpMenu.SetActive(true);
@@ -258,15 +263,20 @@ public class BowlingManager : MonoBehaviour {
 					helpMenu.transform.rotation = mainCam.transform.rotation;
 				}
 			} else {
+                print("yeah no");
 				waitTime = 999999999999999999f;
 				helpAppeared = true;
 			}
-		}
+		} else
+        {
+            print(timer);
+        }
 	}
 
 	private void CheckGestures() {
 		if (GetGesture(MLHands.Left, MLHandKeyPose.OpenHandBack)) {
 			pose = HandPoses.OpenHandBack;
+            helpAppeared = true;
 		} else {
 			pose = HandPoses.NoPose;
 		}
@@ -391,10 +401,12 @@ public class BowlingManager : MonoBehaviour {
                     if (noGravity)
                     {
                         noGravity = false;
+                        noGravityText.text = ("Disable Gravity");
                     }
                     else
                     {
                         noGravity = true;
+                        noGravityText.text = ("Enable Gravity");
                     }
                     modifierMenu.SetActive(false);
                     menuClosed = true;
@@ -485,11 +497,6 @@ public class BowlingManager : MonoBehaviour {
             laserLineRenderer.SetPosition(0, mainCam.transform.position);
             laserLineRenderer.SetPosition(1, mainCam.transform.position);
         }
-
-	}
-
-	private void StartGame() {
-
 	}
 
 	private void PlaceObject () {
@@ -574,7 +581,6 @@ public class BowlingManager : MonoBehaviour {
 		pinLimitText.text = "Pin Limit:\n " + totalObjs + " of 50";
 	}
 
-
 	private void ClearAllObjects () {
 		foreach (Transform child in pinHolder.transform) {
 			GameObject.Destroy (child.gameObject);
@@ -589,8 +595,6 @@ public class BowlingManager : MonoBehaviour {
 		}
 
 		totalObjs = 0;
-		//holding = holdState.none;
-		//holding = holdState.none;
 		GetCount();
 	}
 
@@ -598,6 +602,12 @@ public class BowlingManager : MonoBehaviour {
 		if (button == MLInputControllerButton.HomeTap) {
 			helpAppeared = true;
 		}
+
+        if (pinLimitAppeared)
+        {
+            reachedPinLimit.SetActive(false);
+        }
+
         menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         menuCanvas.transform.LookAt(mainCam.transform.position);
 
@@ -643,9 +653,14 @@ public class BowlingManager : MonoBehaviour {
 		if (holding == holdState.track) {
 			holding = holdState.none;
 		}
-		// Set a limit as to how many objects can be spawned so framerate will not suffer
-
 		if (holding == holdState.tenPin && totalObjs > 40) {
+            if (!pinLimitAppeared)
+            {
+                pinLimitAppeared = true;
+                helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10.0f;
+                helpMenu.transform.rotation = mainCam.transform.rotation;
+                reachedPinLimit.SetActive(true);
+            }
 			// If you are trying to spawn 10 pins while the limit is less than 10 from being filled, don't spawn anything
 		} else if (totalObjs < objLimit) {
 			// Check to see if the user has enabled the noGravity modifier

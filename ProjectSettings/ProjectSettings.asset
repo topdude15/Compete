@@ -121,7 +121,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 4060074911357550245, guid: 0408f392ecacf47b083c3d2023339bee, type: 2}
+  - {fileID: 11400000, guid: b9c240d2d15a04069ab40b302dfae3d3, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -600,10 +602,10 @@ PlayerSettings:
   cloudServicesEnabled: {}
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: /Users/trevorrose/Desktop/Compete/ConceptsIcon/Model
-    m_PortalFolderPath: /Users/trevorrose/Desktop/Compete/ConceptsIcon/Portal
+    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Model
+    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Portal
   luminCert:
-    m_CertPath: /Users/trevorrose/Desktop/Keys/Compete_PrivateMLWorld/compete-992184d3.cert
+    m_CertPath: C:/Users/topdu/Desktop/privatekey/theportalpc.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:

@@ -1270,7 +1270,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 9b0b539bf9a3000e3a95b89be0c994bb
+      Hash: 0633b6e2957f3ca30972161a0e59e4af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager
@@ -1864,7 +1864,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: 22ab640ff7c114c32b84ffcb29778b2c
+      Hash: a9ee1fe00cea01fbec9d588eb0cf987e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
@@ -1874,4 +1874,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Bowling.unity
   - Assets/Scenes/Darts.unity
-  playerPath: /Users/trevorrose/Desktop/Compete/Compete_Private.mpk
+  playerPath: C:/Users/topdu/Desktop/Compete/Compete_Dev.mpk

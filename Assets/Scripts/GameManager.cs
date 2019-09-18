@@ -141,18 +141,4 @@ public class GameManager : MonoBehaviour {
 			laserLineRenderer.SetPosition(1, endPosition);
 		}
 	}
-    //private void CenterCam()
-    //{
-    //    while (!tutorialMenuOpened)
-    //    {
-    //        float speed = Time.deltaTime * 5f;
-
-    //        Vector3 pos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
-    //        menu.transform.position = Vector3.SlerpUnclamped(menu.transform.position, pos, speed);
-
-    //        Quaternion rot = Quaternion.LookRotation(menu.transform.position - mainCam.transform.position);
-    //        menu.transform.rotation = Quaternion.Slerp(menu.transform.rotation, rot, speed);
-    //    }
-    //}
-
 }

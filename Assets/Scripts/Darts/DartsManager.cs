@@ -20,7 +20,7 @@ public class DartsManager : MonoBehaviour {
 	public static holdState holding = holdState.none;
 	private MLInputController controller;
 	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton;
-	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText;
+	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText;
 	public Transform dartHolder, meshHolder;
 	public static GameObject menuControl;
 	private GameObject dart, _realtime;
@@ -317,11 +317,14 @@ public class DartsManager : MonoBehaviour {
 				if (!settingsOpened) {
 					if (noGravity) {
 						noGravity = false;
+                        noGravityText.text = ("Disable Gravity");
 					} else {
 						noGravity = true;
+                        noGravityText.text = ("Enable Gravity");
 					}
 					modifierMenu.SetActive(false);
 					menuClosed = true;
+                    menuOpened = false;
 				}
 				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "ShowMesh" && controller.TriggerValue >= 0.9f) {
@@ -407,8 +410,8 @@ public class DartsManager : MonoBehaviour {
 	}
 	private void PlaceObject () {
 		if (holding == holdState.dart) {
-			movingDartboard = true;
-			//laserLineRenderer.material = transparent;
+			// movingDartboard = true;
+			// laserLineRenderer.material = transparent;
 			if (controller.TriggerValue >= 0.9f) {
 				if (holdingDart) {
 					HoldingDart();
@@ -530,8 +533,7 @@ public class DartsManager : MonoBehaviour {
 				}
 			}
 		} else {
-			GameObject.Destroy(dart);
-			print("Too many objects, destroyed last dart");
+            dart = null;
 		}
 		// Recount the total number of darts currently in the game to ensure that there are never too many on screen (by objLimit)
 		GetCount();
