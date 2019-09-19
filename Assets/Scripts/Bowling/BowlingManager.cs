@@ -36,7 +36,7 @@ public class BowlingManager : MonoBehaviour {
 	public MLPersistentBehavior persistentBehavior;
 
 	// Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit;
+	public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector;
 	public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText;
 	public static GameObject menuControl;
 	private GameObject bowlingBall, _realtime, pinObj;
@@ -71,7 +71,7 @@ public class BowlingManager : MonoBehaviour {
 
 	public Texture2D emptyCircle, check;
 
-	private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false;
+	private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn;
 	private static bool menuClosed = false;
 
 	[SerializeField]private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab, tenPinRealtimePrefab, tenPinRealtimeNoGravityPrefab, bowlingBallRealtimePrefab;
@@ -255,7 +255,6 @@ public class BowlingManager : MonoBehaviour {
 		timer += Time.deltaTime;
 		if (timer > waitTime) {
 			if (holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menuOpened == false && totalObjs == 0) {
-                print("Opening helper...");
 				if (!helpAppeared) {
 					helpAppeared = true;
 					tutorialHelpMenu.SetActive(true);
@@ -264,13 +263,12 @@ public class BowlingManager : MonoBehaviour {
 					helpMenu.transform.rotation = mainCam.transform.rotation;
 				}
 			} else {
-                print("yeah no");
 				waitTime = 999999999999999999f;
 				helpAppeared = true;
 			}
 		} else
         {
-            print(timer);
+         //
         }
 	}
 
@@ -396,7 +394,61 @@ public class BowlingManager : MonoBehaviour {
 				multiplayerStatusMenu.SetActive(false);
 				menuOpened = false;
 				menuAudio.Play();
-			} else if (rayHit.transform.gameObject.name == "NoGravity" && controller.TriggerValue >= 0.9f) {
+            }
+            else if (rayHit.transform.gameObject.name == "SinglePinSelector")
+            {
+                GameObject selector = GameObject.Find("SinglePinSelector");
+                if (selector.transform.localScale.x < 4)
+                {
+                    Vector3 localObjScale = selector.transform.localScale;
+                    localObjScale.x += Time.deltaTime * 5.0f;
+                    localObjScale.y += Time.deltaTime * 5.0f;
+                    localObjScale.z += Time.deltaTime * 5.0f;
+                    selector.transform.localScale = localObjScale;
+                }
+                if (controller.TriggerValue >= 0.9f)
+                {
+                    objMenu.SetActive(false);
+                    holding = holdState.single;
+                    dontSpawn = true;
+                }
+            }
+            else if (rayHit.transform.gameObject.name == "TenPinSelector")
+            {
+                GameObject selector = GameObject.Find("TenPinSelector");
+                if (selector.transform.localScale.x < 4)
+                {
+                    Vector3 localObjScale = selector.transform.localScale;
+                    localObjScale.x += Time.deltaTime * 5.0f;
+                    localObjScale.y += Time.deltaTime * 5.0f;
+                    localObjScale.z += Time.deltaTime * 5.0f;
+                    selector.transform.localScale = localObjScale;
+                }
+                if (controller.TriggerValue >= 0.9f)
+                {
+                    objMenu.SetActive(false);
+                    holding = holdState.tenPin;
+                    dontSpawn = true;
+                }
+            } else if (rayHit.transform.gameObject.name == "BowlingBallSelector")
+            {
+                GameObject selector = GameObject.Find("BowlingBallSelector");
+                if (selector.transform.localScale.x < 4)
+                {
+                    Vector3 localObjScale = selector.transform.localScale;
+                    localObjScale.x += Time.deltaTime * 5.0f;
+                    localObjScale.y += Time.deltaTime * 5.0f;
+                    localObjScale.z += Time.deltaTime * 5.0f;
+                    selector.transform.localScale = localObjScale;
+                }
+                if (controller.TriggerValue >= 0.9f)
+                {
+                    objMenu.SetActive(false);
+                    holding = holdState.ball;
+                    dontSpawn = true;
+                }
+            }
+            else if (rayHit.transform.gameObject.name == "NoGravity" && controller.TriggerValue >= 0.9f) {
                 if (!settingsOpened)
                 {
                     if (noGravity)
@@ -439,53 +491,116 @@ public class BowlingManager : MonoBehaviour {
 			} else if (controller.TriggerValue < 0.2f)
             {
                 toggledMic = false;
+                if (singleSelector.transform.localScale.x > 3.33f)
+                {
+                    Vector3 localObjScale = singleSelector.transform.localScale;
+                    localObjScale.x -= Time.deltaTime * 5.0f;
+                    localObjScale.y -= Time.deltaTime * 5.0f;
+                    localObjScale.z -= Time.deltaTime * 5.0f;
+                    singleSelector.transform.localScale = localObjScale;
+                }
+                if (tenPinSelector.transform.localScale.x > 3.33f)
+                {
+                    Vector3 localObjScale = tenPinSelector.transform.localScale;
+                    localObjScale.x -= Time.deltaTime * 5.0f;
+                    localObjScale.y -= Time.deltaTime * 5.0f;
+                    localObjScale.z -= Time.deltaTime * 5.0f;
+                    tenPinSelector.transform.localScale = localObjScale;
+                }
+                if (bowlingBallSelector.transform.localScale.x > 3.33f)
+                {
+                    Vector3 localObjScale = bowlingBallSelector.transform.localScale;
+                    localObjScale.x -= Time.deltaTime * 5.0f;
+                    localObjScale.y -= Time.deltaTime * 5.0f;
+                    localObjScale.z -= Time.deltaTime * 5.0f;
+                    bowlingBallSelector.transform.localScale = localObjScale;
+                }
             }
-			if (!holdingBallMenu) {
+            if (singleSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "SinglePinSelector")
+            {
+                Vector3 localObjScale = singleSelector.transform.localScale;
+                localObjScale.x -= Time.deltaTime * 5.0f;
+                localObjScale.y -= Time.deltaTime * 5.0f;
+                localObjScale.z -= Time.deltaTime * 5.0f;
+                singleSelector.transform.localScale = localObjScale;
+            }
+            else if (tenPinSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "TenPinSelector")
+            {
+                Vector3 localObjScale = tenPinSelector.transform.localScale;
+                localObjScale.x -= Time.deltaTime * 5.0f;
+                localObjScale.y -= Time.deltaTime * 5.0f;
+                localObjScale.z -= Time.deltaTime * 5.0f;
+                tenPinSelector.transform.localScale = localObjScale;
+            }
+            else if (bowlingBallSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "BowlingBallSelector")
+            {
+                Vector3 localObjScale = bowlingBallSelector.transform.localScale;
+                localObjScale.x -= Time.deltaTime * 5.0f;
+                localObjScale.y -= Time.deltaTime * 5.0f;
+                localObjScale.z -= Time.deltaTime * 5.0f;
+                bowlingBallSelector.transform.localScale = localObjScale;
+            }
+
+            if (!holdingBallMenu) {
 				BowlingColorLoader.GetBallColor (rayHit, controller, ballMenu, ballMenuOpened, holdingBallMenu, bowlingBall, ballMats);
 			} else if (holdingBallMenu && controller.TriggerValue <= 0.2f) {
 				holdingBallMenu = false;
 			}
 			if (multiplayerMenuOpen == true) {
-				if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1"|| rayHit.transform.gameObject.name == "2"|| rayHit.transform.gameObject.name == "3"|| rayHit.transform.gameObject.name == "4"|| rayHit.transform.gameObject.name == "5"|| rayHit.transform.gameObject.name == "6"|| rayHit.transform.gameObject.name == "7"|| rayHit.transform.gameObject.name == "8"|| rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18) {
-					pickedNumber = true;
-					roomCode += rayHit.transform.gameObject.name;
-					multiplayerCodeText.text = roomCode;
-					menuAudio.Play();
+                if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1" || rayHit.transform.gameObject.name == "2" || rayHit.transform.gameObject.name == "3" || rayHit.transform.gameObject.name == "4" || rayHit.transform.gameObject.name == "5" || rayHit.transform.gameObject.name == "6" || rayHit.transform.gameObject.name == "7" || rayHit.transform.gameObject.name == "8" || rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18)
+                {
+                    pickedNumber = true;
+                    roomCode += rayHit.transform.gameObject.name;
+                    multiplayerCodeText.text = roomCode;
+                    menuAudio.Play();
 
-				}  else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false) {
-					deletedCharacter = true;
-					if (roomCode.Length > 0) {
-						roomCode = roomCode.Substring(0, roomCode.Length - 1);
-						multiplayerCodeText.text = roomCode;
-					}
-					menuAudio.Play();
-				} else if (controller.TriggerValue <= 0.2f) {
-					pickedNumber = false;
-					deletedCharacter = false;
-				} else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false) {
-					if (roomCode.Length < 1) {
-						multiplayerCodeText.text = "Please enter a code";
-					} else {
-						joinedLobby = true;
-						_realtime = GameObject.Find("Realtime + VR Player");
-						// Connect to Realtime room
-						ClearAllObjects();
-						_realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
-						multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
-						multiplayerMenu.SetActive(false);
-						multiplayerStatusMenu.SetActive(true);
-						multiplayerMenuOpen = false;
-						multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-						menuAudio.Play();
-					}
-				} else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f) {
-					multiplayerMenu.SetActive(false);
-					multiplayerMenuOpen = false;
-					menu.SetActive(true);
-					menuOpened = true;
-					roomCode = "";
-					menuAudio.Play();
-				}
+                }
+                else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false)
+                {
+                    deletedCharacter = true;
+                    if (roomCode.Length > 0)
+                    {
+                        roomCode = roomCode.Substring(0, roomCode.Length - 1);
+                        multiplayerCodeText.text = roomCode;
+                    }
+                    menuAudio.Play();
+                }
+                else if (controller.TriggerValue <= 0.2f)
+                {
+                    pickedNumber = false;
+                    deletedCharacter = false;
+                }
+                else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false)
+                {
+                    if (roomCode.Length < 1)
+                    {
+                        multiplayerCodeText.text = "Please enter a code";
+                    }
+                    else
+                    {
+                        joinedLobby = true;
+                        _realtime = GameObject.Find("Realtime + VR Player");
+                        // Connect to Realtime room
+                        ClearAllObjects();
+                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+                        multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+                        multiplayerMenu.SetActive(false);
+                        multiplayerStatusMenu.SetActive(true);
+                        multiplayerMenuOpen = false;
+                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                        menuAudio.Play();
+                    }
+                }
+                else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f)
+                {
+                    multiplayerMenu.SetActive(false);
+                    multiplayerMenuOpen = false;
+                    menu.SetActive(true);
+                    menuOpened = true;
+                    roomCode = "";
+                    menuAudio.Play();
+                }
+               
 			}
 
 		} else {
@@ -526,12 +641,20 @@ public class BowlingManager : MonoBehaviour {
 			laserLineRenderer.material = activeMat;
 		}
 		if (controller.TriggerValue >= 0.9f) {
-			if (placed == false) {
-				placed = true;
-				SpawnObject ();
-				GetCount();
-			}
+            if (!dontSpawn)
+            {
+                if (placed == false)
+                {
+                    placed = true;
+                    SpawnObject();
+                    GetCount();
+                }
+            }
 		} else if (controller.TriggerValue <= 0.2f) {
+            if (dontSpawn)
+            {
+                dontSpawn = false;
+            }
 			if (holdingBall == true) {
 				Deltas.Clear ();
 				holdingBall = false;
@@ -610,8 +733,15 @@ public class BowlingManager : MonoBehaviour {
         }
 
 		if (button == MLInputControllerButton.Bumper) {
-			
-		}
+            if (objMenu.activeSelf) {
+                objMenu.SetActive(false);
+            }
+            else {
+                objMenu.transform.position = controlCube.transform.position + controlCube.transform.forward * 0.6f;
+                objMenu.transform.rotation = new Quaternion(controlCube.transform.rotation.x, controlCube.transform.rotation.y, 0, controlCube.transform.rotation.w);
+                objMenu.SetActive(true);
+            }
+        }
 
         menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         menuCanvas.transform.LookAt(mainCam.transform.position);
