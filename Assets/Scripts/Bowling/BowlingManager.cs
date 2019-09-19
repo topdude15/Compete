@@ -199,6 +199,8 @@ public class BowlingManager : MonoBehaviour {
 		}
 
 		if ((checkController.bumperTimer.getTime() >= 0) && (checkController.bumperTimer.getTime() < timeHold)) {
+			// TODO: REIMPLEMENT THIS CODE TO RE-ENABLE HOLDING BUMPER TO DELETE ALL OBJECTS
+
 			deleteLoader.SetActive(true);
 			float currentTime = checkController.bumperTimer.getTime();
 			float percentComplete = currentTime / timeHold;
@@ -208,7 +210,6 @@ public class BowlingManager : MonoBehaviour {
 			deleteLoader.SetActive(false);
 			ClearAllObjects ();
 		} else if (checkController.bumperTimer.getTime() <= 0) {
-			//print("deletus feetus");
 			deleteLoader.SetActive(false);
 		}
 		if (controller.TriggerValue <= 0.2f && tutorialMenuOpened == true) {
@@ -607,6 +608,10 @@ public class BowlingManager : MonoBehaviour {
         {
             reachedPinLimit.SetActive(false);
         }
+
+		if (button == MLInputControllerButton.Bumper) {
+			
+		}
 
         menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         menuCanvas.transform.LookAt(mainCam.transform.position);
