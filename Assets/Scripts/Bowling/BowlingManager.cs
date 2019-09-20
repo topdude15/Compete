@@ -491,30 +491,6 @@ public class BowlingManager : MonoBehaviour {
 			} else if (controller.TriggerValue < 0.2f)
             {
                 toggledMic = false;
-                if (singleSelector.transform.localScale.x > 3.33f)
-                {
-                    Vector3 localObjScale = singleSelector.transform.localScale;
-                    localObjScale.x -= Time.deltaTime * 5.0f;
-                    localObjScale.y -= Time.deltaTime * 5.0f;
-                    localObjScale.z -= Time.deltaTime * 5.0f;
-                    singleSelector.transform.localScale = localObjScale;
-                }
-                if (tenPinSelector.transform.localScale.x > 3.33f)
-                {
-                    Vector3 localObjScale = tenPinSelector.transform.localScale;
-                    localObjScale.x -= Time.deltaTime * 5.0f;
-                    localObjScale.y -= Time.deltaTime * 5.0f;
-                    localObjScale.z -= Time.deltaTime * 5.0f;
-                    tenPinSelector.transform.localScale = localObjScale;
-                }
-                if (bowlingBallSelector.transform.localScale.x > 3.33f)
-                {
-                    Vector3 localObjScale = bowlingBallSelector.transform.localScale;
-                    localObjScale.x -= Time.deltaTime * 5.0f;
-                    localObjScale.y -= Time.deltaTime * 5.0f;
-                    localObjScale.z -= Time.deltaTime * 5.0f;
-                    bowlingBallSelector.transform.localScale = localObjScale;
-                }
             }
             if (singleSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "SinglePinSelector")
             {
@@ -733,6 +709,9 @@ public class BowlingManager : MonoBehaviour {
         }
 
 		if (button == MLInputControllerButton.Bumper) {
+			if (menu.activeSelf) {
+				menu.SetActive(false);
+			}
             if (objMenu.activeSelf) {
                 objMenu.SetActive(false);
             }
@@ -753,6 +732,9 @@ public class BowlingManager : MonoBehaviour {
 			tutorialBumperPressed = true;
 		} else if (button == MLInputControllerButton.HomeTap && menuOpened == false) {
 			// When the user presses the Home button and the menu is not opened, then open the menu
+			if (objMenu.activeSelf) {
+				objMenu.SetActive(false);
+			}
 			laserLineRenderer.material = activeMat;
 			menu.SetActive (true);
 			modifierMenu.SetActive (false);

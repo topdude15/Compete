@@ -10,9 +10,12 @@ public class DartCollider : MonoBehaviour {
 	void Start () {
 		dartRB = this.GetComponent<Rigidbody>();
 		dartAudio = this.GetComponent<AudioSource>();
+		print(dartRB.isKinematic);
 	}
 	
 	private void OnCollisionEnter(Collision other) {
+		print(this.transform.position);	
+		print(other.gameObject.name);
 		dartRB.velocity = Vector3.zero;
 		dartRB.isKinematic = true;
 		dartAudio.Play();

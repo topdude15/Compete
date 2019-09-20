@@ -14,6 +14,7 @@ public class DartMenuCollide : MonoBehaviour {
 		
 	}
 	private void OnTriggerEnter(Collider col) {
+		print("This is it, bois" + col.gameObject.name);
 		print("OOooof");
 		if (col.gameObject.name == "Dart") {
 			print("HoldState: Dart");
@@ -21,9 +22,6 @@ public class DartMenuCollide : MonoBehaviour {
 			DartsManager.CloseMenu();
 		} else if (col.gameObject.name == "Dartboard") {
 			print("Holdstate: Dartboard");
-			// GameObject dartboardHolder = GameObject.Find("DartboardHolder");
-			// BoxCollider dartboardRB = dartboardHolder.GetComponentInChildren<BoxCollider>();
-			// dartboardRB.enabled = false;
 			DartsManager.holding = DartsManager.holdState.dartboard;
 			DartsManager.CloseMenu();
 			DartsManager.lockedDartboard = false;

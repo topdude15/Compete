@@ -7,7 +7,6 @@ ScriptsOnlyBuild:
     - Controller
     - ControllerTutorial
     - DartCollider
-    - DartMenuCollide
     - DartsManager
     - GameManager
     - MagicLeap.ControllerTransform
@@ -179,9 +178,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12582}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 12942}
+      Script: {instanceID: 12940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -268,8 +267,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11086}
-    - Class: 114
       Script: {instanceID: 11282}
     - Class: 114
       Script: {instanceID: 11306}
@@ -286,9 +283,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12458}
     - Class: 114
-      Script: {instanceID: 12852}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 13052}
+      Script: {instanceID: 13050}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -361,7 +358,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12354}
     - Class: 114
-      Script: {instanceID: 12942}
+      Script: {instanceID: 12940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -490,11 +487,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12712}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 12852}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 12914}
+      Script: {instanceID: 12912}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1687,12 +1684,6 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: DartMenuCollider
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
     className: PinCollision
   - hash:
       serializedVersion: 2
@@ -1864,7 +1855,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: a9ee1fe00cea01fbec9d588eb0cf987e
+      Hash: 60d9f589aa9624f326405f92860daf0b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
