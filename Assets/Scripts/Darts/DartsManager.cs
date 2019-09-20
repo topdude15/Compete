@@ -13,13 +13,13 @@ public class DartsManager : MonoBehaviour {
 		dartboard
 	}
 
-	public enum HandPoses {OpenHandBack, Fist, NoPose};
+	public enum HandPoses {OpenHand, Fist, NoPose};
 	public HandPoses pose = HandPoses.NoPose;
 	public Vector3[] pos;
 	private MLHandKeyPose[] _gestures;
 	public static holdState holding = holdState.none;
 	private MLInputController controller;
-	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector;
+	public GameObject mainCam, control, dartPrefab, dartboardHolder, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu;
 	public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText;
 	public Transform dartHolder, meshHolder;
 	public static GameObject menuControl;
@@ -30,7 +30,7 @@ public class DartsManager : MonoBehaviour {
 	public MeshRenderer mesh;
 	private string roomCode = "";
 	private Vector3 endPosition, forcePerSecond;
-	private float timeHold = 3.0f, totalObjs = 0, objLimit = 20, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers;
+	private float timeHold = 3.0f, totalObjs = 0, objLimit = 20, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
 	private Controller checkController;
 	[SerializeField]private GameObject dartRealtime = null, dartboardRealtime = null;
 	public Image loadingImage;
@@ -63,7 +63,7 @@ public class DartsManager : MonoBehaviour {
 
 		MLHands.Start();
 		_gestures = new MLHandKeyPose[2];
-		_gestures[0] = MLHandKeyPose.OpenHandBack;
+		_gestures[0] = MLHandKeyPose.OpenHand;
 		_gestures[1] = MLHandKeyPose.Fist;
 		MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
 		pos = new Vector3[1];
@@ -139,21 +139,21 @@ public class DartsManager : MonoBehaviour {
 		if (controller.Touch1Active == false) {
 			menuClosed = false;
 			setHand = false;
-			menuControl.SetActive (false);
+			// menuControl.SetActive (false);
 		}
-		if ((checkController.bumperTimer.getTime() >= 0) && (checkController.bumperTimer.getTime() < timeHold)) {
-			deleteLoader.SetActive(true);
-			float currentTime = checkController.bumperTimer.getTime();
-			float percentComplete = currentTime / timeHold;
-			loadingImage.fillAmount = percentComplete;
-		} else if (checkController.bumperTimer.getTime () >= timeHold) {
-			//print("yeeted");
-			deleteLoader.SetActive(false);
-			ClearAllObjects ();
-		} else if (checkController.bumperTimer.getTime() <= 0) {
-			//print("deletus feetus");
-			deleteLoader.SetActive(false);
-		}
+		// if ((checkController.bumperTimer.getTime() >= 0) && (checkController.bumperTimer.getTime() < timeHold)) {
+		// 	deleteLoader.SetActive(true);
+		// 	float currentTime = checkController.bumperTimer.getTime();
+		// 	float percentComplete = currentTime / timeHold;
+		// 	loadingImage.fillAmount = percentComplete;
+		// } else if (checkController.bumperTimer.getTime () >= timeHold) {
+		// 	//print("yeeted");
+		// 	deleteLoader.SetActive(false);
+		// 	ClearAllObjects ();
+		// } else if (checkController.bumperTimer.getTime() <= 0) {
+		// 	//print("deletus feetus");
+		// 	deleteLoader.SetActive(false);
+		// }
 		if (controller.TriggerValue <= 0.2f && tutorialMenuOpened == true) {
 			tutorialMenuOpened = false;
 		}
@@ -161,10 +161,8 @@ public class DartsManager : MonoBehaviour {
 			connectedPlayers = 0;
 			if (getLocalPlayer == false) {
 				getLocalPlayer = true;
-				print("doo doo doo...");
 				foreach(GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject))) {
 					if (obj.name == "VR Player(Clone)") {
-						print("absolutely");
 						if (obj.GetComponent<RealtimeView>().isOwnedLocally) {
 							localPlayer = obj;
 						}
@@ -203,21 +201,55 @@ public class DartsManager : MonoBehaviour {
 		}
 	}
 	private void CheckGestures() {
-		if (GetGesture(MLHands.Left, MLHandKeyPose.OpenHandBack)) {
-			pose = HandPoses.OpenHandBack;
-			print("Openhandback");
-			ShowPoints();
+		if (GetGesture(MLHands.Left, MLHandKeyPose.OpenHand)) {
+			pose = HandPoses.OpenHand;
+		} else if (GetGesture(MLHands.Left, MLHandKeyPose.Fist)) {
+			pose = HandPoses.Fist;
 		} else {
 			pose = HandPoses.NoPose;
 		}
+
+		if (pose != HandPoses.NoPose) ShowPoints();
+		if (pose != HandPoses.Fist) {
+			deleteTimer = 0.0f;
+			handMenu.SetActive(true);
+		}
+		if (pose == HandPoses.NoPose) {
+			deleteLoader.SetActive(false);
+		}
+
 	}
 	private void ShowPoints() {
-		if (!handCenter.activeSelf) {
-			handCenter.SetActive(true);
+		print("poses detected");
+
+		if (pose == HandPoses.Fist) {
+			if (!handCenter.activeSelf) {
+				handCenter.SetActive(true);
+			}
+			handMenu.SetActive(false);
+			deleteTimer += Time.deltaTime;
+			print(deleteTimer);
+
+			deleteLoader.SetActive(true);
+			float percentComplete = deleteTimer / timeHold;
+			loadingImage.fillAmount = percentComplete;
+
+			if (deleteTimer > 3.0f) {
+				ClearAllObjects();
+				deleteLoader.SetActive(false);
+			}
+		} else if (pose == HandPoses.OpenHand) {
+			deleteLoader.SetActive(false);
+			if (!helpMenu.activeSelf) {
+				helpMenu.SetActive(true);
+			}
+			if (!handCenter.activeSelf) {
+				handCenter.SetActive(true);
+			}
+			pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+			handCenter.transform.position = pos[0];
+			handCenter.transform.LookAt(mainCam.transform.position);
 		}
-		pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-		handCenter.transform.localPosition = pos[0];
-		handCenter.transform.LookAt(mainCam.transform.position);
 	}
 	private void SetLine () {
 		RaycastHit rayHit;
@@ -697,7 +729,7 @@ public class DartsManager : MonoBehaviour {
 	private bool GetGesture(MLHand hand, MLHandKeyPose type) {
         if (hand != null) {				
             if (hand.KeyPose == type) {
-                if (hand.KeyPoseConfidence > 0.9f) {                       
+                if (hand.KeyPoseConfidence > 0.7f) {                       
                     return true;
                 }
             }

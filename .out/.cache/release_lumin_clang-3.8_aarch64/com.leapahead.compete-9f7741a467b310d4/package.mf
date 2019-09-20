@@ -21,16 +21,16 @@
   },
   {
    "compression": 8,
-   "hash": "f8c8a1f872c06b8edb1624fc7972be63a9c54e9f",
+   "hash": "4d86c6a25c46d9d35a0661bee333a5b182476e9b",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3815980,
+   "size": 3816012,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "db2b316c9c6946e56dbe166a897c420c56444184",
+   "hash": "5b1d3b1dfad4230ff7fc822bcd7d75ea14347542",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63835304,
+   "size": 63835144,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -41,9 +41,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "1ac2ecb503788c32afe7e5b3ca602c27b5177bb4",
+   "xfrm_hash": "0c49581095fa0d8e491e7b521558817ba45e9f1d",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 63836062
+   "xfrm_size": 63835902
   },
   {
    "compression": 8,
@@ -226,14 +226,14 @@
   },
   {
    "compression": 8,
-   "hash": "946c473aef20c54ab5057d2130829eea2af3a138",
+   "hash": "a42d2f97151aabe6c1d7ce07ea3411cf97f98de3",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 94528,
+   "size": 94544,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "53bc91e8409777cbfa524e4c966467b3cf6b9627",
+   "hash": "8c98a2b2cbf6651ac53e25734cfbc76fd318bca1",
    "pkgpath": "Data/globalgamemanagers.assets",
    "size": 93656,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
@@ -261,9 +261,9 @@
   },
   {
    "compression": 8,
-   "hash": "77ef04f971cee614ac774b144d7770220f2d502b",
+   "hash": "cff0e67341a7c9d9f86872f33f66725fc2bc7eeb",
    "pkgpath": "Data/level2",
-   "size": 72864,
+   "size": 72880,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {
@@ -275,9 +275,9 @@
   },
   {
    "compression": 8,
-   "hash": "648d02e66ccb487b8a0fe92f4af24bbdb46e87df",
+   "hash": "7cfb5392557b1c4f28bc098de345ae009944d1fd",
    "pkgpath": "Data/level3",
-   "size": 57120,
+   "size": 57128,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {

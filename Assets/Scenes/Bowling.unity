@@ -773,6 +773,7 @@ Transform:
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 1493503011}
+  - {fileID: 2143132849}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1584,15 +1585,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281864163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.878}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.0015}
+  m_LocalPosition: {x: 0, y: 0, z: 0.311}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 2096580182}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.071, y: -0.014}
+  m_AnchoredPosition: {x: -0.4, y: 1.47}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281864165
@@ -2871,7 +2872,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1811500193}
-  - {fileID: 2143132849}
   - {fileID: 1901158546}
   m_Father: {fileID: 364175354}
   m_RootOrder: 0
@@ -4472,6 +4472,7 @@ MonoBehaviour:
   singleSelector: {fileID: 984155584}
   bowlingBallSelector: {fileID: 1600576519}
   tenPinSelector: {fileID: 825462771}
+  handMenu: {fileID: 1493503010}
   pinLimitText: {fileID: 133005059}
   multiplayerCodeText: {fileID: 756538551}
   multiplayerStatusText: {fileID: 373662812}
@@ -7754,7 +7755,7 @@ GameObject:
   - component: {fileID: 1493503013}
   - component: {fileID: 1493503012}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HandMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9879,7 +9880,7 @@ RectTransform:
   m_Children:
   - {fileID: 693277529}
   m_Father: {fileID: 495896986}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11628,16 +11629,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143132845}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2096580182}
-  m_Father: {fileID: 495896986}
+  m_Father: {fileID: 125005874}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.288, y: 0.5}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.59220123, y: -0.931427}
+  m_SizeDelta: {x: 802, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
