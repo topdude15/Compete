@@ -72,7 +72,6 @@ public class BowlingManager : MonoBehaviour {
 	public Texture2D emptyCircle, check;
 
 	private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn;
-	private static bool menuClosed = false;
 
 	[SerializeField]private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab, tenPinRealtimePrefab, tenPinRealtimeNoGravityPrefab, bowlingBallRealtimePrefab;
 	public Realtime _realtimeObject;
@@ -121,10 +120,6 @@ public class BowlingManager : MonoBehaviour {
             multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
         }
     }
-	private void OnDestroy () {
-		//MLInput.Stop ();
-		//MLHands.Stop();
-    }
 	private void OnDisable() {
 		MLInput.Stop();
 		MLHands.Stop();
@@ -161,57 +156,22 @@ public class BowlingManager : MonoBehaviour {
 
 		// If the user is not reading the tutorial menu, activate the line from the Control and prepare for the user to place objects
 
+		SetLine ();
 		if (tutorialActive == false) {
-			SetLine ();
 			PlaceObject ();
 		} else {
-			// TODO: While the tutorial menu is active, either disable the line completely or move it too far from the user to be visible
-			
 			// If the user presses anything while the tutorial is active, hide the tutorial and active the pointer
 			if ((controller.Touch1Active || controller.TriggerValue >= 0.2f || tutorialBumperPressed == true || tutorialHomePressed == true) && tutorialMenuOpened == false) {
+				tutorialMenu.SetActive(false);
 				laserLineRenderer.material = activeMat;
 				CheckNewUser ();
 			}
 		}
-		// If the user is touching the touchpad at all, show the object menu
 		if (controller.Touch1Active) {
-			if (menuClosed == false) {
-				// If the menu is not yet open, open it
-				menuControl.SetActive (true);
+			if (pinLimitAppeared) {
+				reachedPinLimit.SetActive(false);
 			}
-			if (setHand == false) {
-				setHand = true;
-				Vector3[] zero = new Vector3[2] { Vector3.zero, Vector3.zero };
-				laserLineRenderer.SetPositions (zero);
-				menuControl.transform.position = controller.Position;
-				menuControl.transform.rotation = mainCam.transform.rotation;
-			}
-            if (pinLimitAppeared)
-            {
-                reachedPinLimit.SetActive(false);
-            }
 		}
-
-		if (controller.Touch1Active == false) {
-			menuClosed = false;
-			setHand = false;
-			menuControl.SetActive (false);
-		}
-
-		// if ((checkController.bumperTimer.getTime() >= 0) && (checkController.bumperTimer.getTime() < timeHold)) {
-		// 	// TODO: REIMPLEMENT THIS CODE TO RE-ENABLE HOLDING BUMPER TO DELETE ALL OBJECTS
-
-		// 	deleteLoader.SetActive(true);
-		// 	float currentTime = checkController.bumperTimer.getTime();
-		// 	float percentComplete = currentTime / timeHold;
-		// 	loadingImage.fillAmount = percentComplete;
-		// } else if (checkController.bumperTimer.getTime () >= timeHold) {
-		// 	//print("yeeted");
-		// 	deleteLoader.SetActive(false);
-		// 	ClearAllObjects ();
-		// } else if (checkController.bumperTimer.getTime() <= 0) {
-		// 	deleteLoader.SetActive(false);
-		// }
 		if (controller.TriggerValue <= 0.2f && tutorialMenuOpened == true) {
 			tutorialMenuOpened = false;
 		}
@@ -366,7 +326,7 @@ public class BowlingManager : MonoBehaviour {
 				ballMenu.transform.position = mainCam.transform.position + (mainCam.transform.forward * 1.5f);
 				ballMenu.transform.LookAt(mainCam.transform.position);
 				ballMenu.SetActive (true);
-				menuClosed = true;
+
 				menu.SetActive (false);
 				ballMenuOpened = true;
 				holdingBallMenu = true;
@@ -374,11 +334,9 @@ public class BowlingManager : MonoBehaviour {
 			} else if (rayHit.transform.gameObject.name == "Modifiers" && controller.TriggerValue >= 0.9f) {
 				modifierMenu.SetActive (true);
 				menu.SetActive (false);
-				menuClosed = true;
                 settingsOpened = true;
 				menuAudio.Play();
 			} else if (rayHit.transform.gameObject.name == "Tutorial" && controller.TriggerValue >= 0.9f) {
-				menuClosed = true;
 				menuOpened = false;
 				menu.SetActive (false);
 				holding = holdState.none;
@@ -387,7 +345,6 @@ public class BowlingManager : MonoBehaviour {
 				tutorialMenu.SetActive (true);
 				tutorialBumperPressed = false;
 				tutorialHomePressed = false;
-				laserLineRenderer.material = transparent;
 				PlayerPrefs.SetInt ("hasPlayedBowling", 0);
 				CheckNewUser ();
 				menuAudio.Play();
@@ -494,7 +451,6 @@ public class BowlingManager : MonoBehaviour {
                         noGravityText.text = ("Enable Gravity");
                     }
                     modifierMenu.SetActive(false);
-                    menuClosed = true;
 					menuOpened = false;
                 }
 				menuAudio.Play();
@@ -516,7 +472,6 @@ public class BowlingManager : MonoBehaviour {
 						occlusionActive = true;
 					}
 					modifierMenu.SetActive(false);
-					menuClosed = true;
 					menuOpened = false;
 				}
 				menuAudio.Play();
@@ -700,7 +655,6 @@ public class BowlingManager : MonoBehaviour {
 	}
 
 	public static void CloseMenu () {
-		menuClosed = true;
 		menuControl.SetActive (false);
 	}
 
@@ -732,6 +686,10 @@ public class BowlingManager : MonoBehaviour {
 
 	void OnButtonDown (byte controller_id, MLInputControllerButton button) {
 		if (button == MLInputControllerButton.HomeTap) {
+			if (tutorialActive) {
+				tutorialHomePressed = true;
+				tutorialMenu.SetActive(false);
+			}
 			helpAppeared = true;
 		}
 
@@ -741,6 +699,10 @@ public class BowlingManager : MonoBehaviour {
         }
 
 		if (button == MLInputControllerButton.Bumper) {
+			if (tutorialActive) {
+				tutorialBumperPressed = true;
+				tutorialMenu.SetActive(false);
+			}
 			if (menu.activeSelf) {
 				menu.SetActive(false);
 			}
@@ -758,11 +720,7 @@ public class BowlingManager : MonoBehaviour {
         menuCanvas.transform.LookAt(mainCam.transform.position);
 
         holding = holdState.none;
-		if (button == MLInputControllerButton.HomeTap && tutorialActive == true) {
-			tutorialHomePressed = true;
-		} else if (button == MLInputControllerButton.Bumper && tutorialActive == true) {
-			tutorialBumperPressed = true;
-		} else if (button == MLInputControllerButton.HomeTap && menuOpened == false) {
+		if (button == MLInputControllerButton.HomeTap && menuOpened == false) {
 			// When the user presses the Home button and the menu is not opened, then open the menu
 			if (objMenu.activeSelf) {
 				objMenu.SetActive(false);
@@ -882,7 +840,6 @@ public class BowlingManager : MonoBehaviour {
 	private void CheckNewUser () {
 		// TODO: CHANGE INT BACK TO 1, CURRENT IMPLEMENTATION WILL ALWAYS SHOW TUTORIAL
 		if (PlayerPrefs.GetInt ("hasPlayedBowling") == 1) {
-			print ("Played");
 			holding = holdState.none;
 			tutorialActive = false;
 			laserLineRenderer.material = activeMat;
@@ -890,8 +847,6 @@ public class BowlingManager : MonoBehaviour {
 		} else {
 			menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
        		menuCanvas.transform.LookAt(mainCam.transform.position);
-			Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-			laserLineRenderer.SetPositions (initLaserPositions);
 			holding = holdState.none;
 			print ("Not Played");
 			tutorialMenu.SetActive (true);

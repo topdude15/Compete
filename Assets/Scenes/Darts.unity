@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17812416, g: 0.21680346, b: 0.2693405, a: 1}
+  m_IndirectSpecularColor: {r: 0.178124, g: 0.2168029, b: 0.26933986, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,89 +243,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &63307134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 63307135}
-  - component: {fileID: 63307137}
-  - component: {fileID: 63307136}
-  m_Layer: 0
-  m_Name: Touchpad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &63307135
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63307134}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.73899984}
-  m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1175907454}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.337, y: 0.08}
-  m_SizeDelta: {x: 299.3, y: 121.5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &63307136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63307134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: dd641686811944448900a6e8069055c5, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: '<b>Touchpad</b>
-
-    Put your thumb on the
-
-    touchpad and move it
-
-    into an object to select it'
---- !u!222 &63307137
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63307134}
-  m_CullTransparentMesh: 0
 --- !u!1 &71972762
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,11 +748,11 @@ RectTransform:
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
   m_Children: []
   m_Father: {fileID: 1175907454}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.32800007, y: -0.074}
+  m_AnchoredPosition: {x: -0.32800007, y: 0.035}
   m_SizeDelta: {x: 261.3, y: 83.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226023824
@@ -869,7 +786,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<b>Home Button</b>
+  m_Text: '<b><size="24">Home Button</size></b>
 
     Press the Home button to bring up the menu'
 --- !u!222 &226023825
@@ -1366,7 +1283,7 @@ RectTransform:
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
   m_Children: []
   m_Father: {fileID: 1175907454}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4832,12 +4749,12 @@ RectTransform:
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
   m_Children: []
   m_Father: {fileID: 1175907454}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.32800007, y: -0.24400002}
-  m_SizeDelta: {x: 261.3, y: 107.3}
+  m_AnchoredPosition: {x: -0.32800007, y: -0.161}
+  m_SizeDelta: {x: 261.3, y: 139.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164672524
 MonoBehaviour:
@@ -4870,9 +4787,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<b>Hand Gestures</b>
+  m_Text: '<b><size="24">Hand Gestures</size></b>
 
-    Hold your left hand straight out in front of you to see your dart limit'
+    <b>Open Hand</b>  - Brings up useful information
+
+    <b>Fist</b> - Hold Fist for 3 seconds to clear all objects'
 --- !u!222 &1164672525
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4910,7 +4829,6 @@ RectTransform:
   m_Children:
   - {fileID: 1877833096}
   - {fileID: 812891965}
-  - {fileID: 63307135}
   - {fileID: 1486208361}
   - {fileID: 1805251155}
   - {fileID: 226023823}
@@ -6134,12 +6052,12 @@ RectTransform:
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
   m_Children: []
   m_Father: {fileID: 1175907454}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.337, y: -0.17700005}
-  m_SizeDelta: {x: 326.73, y: 153.6}
+  m_AnchoredPosition: {x: 0.337, y: -0.147}
+  m_SizeDelta: {x: 326.73, y: 206.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486208362
 MonoBehaviour:
@@ -6172,7 +6090,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<b>Trigger</b>
+  m_Text: '<b><size="24">Trigger</size></b>
+
+    <b>Object Menu</b> - Point and pull the Trigger to select
 
     <b>Dartboard</b> - Pull the Trigger to place dartboard
 
@@ -6821,7 +6741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1691687960
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7048,12 +6968,12 @@ RectTransform:
   m_LocalScale: {x: 0.0015, y: 0.0015, z: 1}
   m_Children: []
   m_Father: {fileID: 1175907454}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.331, y: 0.046000004}
-  m_SizeDelta: {x: 276.9, y: 88}
+  m_AnchoredPosition: {x: 0.331, y: 0.088}
+  m_SizeDelta: {x: 288.2, y: 56.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805251156
 MonoBehaviour:
@@ -7086,9 +7006,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<b>Bumper</b>
+  m_Text: '<b><size="24">Bumper</size></b>
 
-    Press and hold to delete all of the darts you''ve thrown'
+    Press to open the object menu'
 --- !u!222 &1805251157
 CanvasRenderer:
   m_ObjectHideFlags: 0
