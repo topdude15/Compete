@@ -196,9 +196,9 @@ public class DartsManager : MonoBehaviour {
 		}
 	}
 	private void CheckGestures () {
-		if (GetGesture (MLHands.Left, MLHandKeyPose.OpenHand)) {
+		if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand)) {
 			pose = HandPoses.OpenHand;
-		} else if (GetGesture (MLHands.Left, MLHandKeyPose.Fist)) {
+		} else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist)) {
 			pose = HandPoses.Fist;
 		} else {
 			pose = HandPoses.NoPose;
@@ -218,6 +218,11 @@ public class DartsManager : MonoBehaviour {
 		print ("poses detected");
 
 		if (pose == HandPoses.Fist) {
+			if (!deleteLoader.activeSelf) {
+				pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+				handCenter.transform.position = pos[0];
+				handCenter.transform.LookAt (mainCam.transform.position);
+			}
 			if (!handCenter.activeSelf) {
 				handCenter.SetActive (true);
 			}
@@ -384,6 +389,7 @@ public class DartsManager : MonoBehaviour {
 					objMenu.SetActive (false);
 					holding = holdState.dartboard;
 					objSelected = true;
+					dart = null;
 				}
 			} else if (rayHit.transform.gameObject.name == "ShowMesh" && controller.TriggerValue >= 0.9f) {
 				if (!settingsOpened) {
@@ -711,15 +717,5 @@ public class DartsManager : MonoBehaviour {
 			Quaternion rot = Quaternion.LookRotation (menu.transform.position - mainCam.transform.position);
 			menu.transform.rotation = Quaternion.Slerp (menu.transform.rotation, rot, speed);
 		}
-	}
-	private bool GetGesture (MLHand hand, MLHandKeyPose type) {
-		if (hand != null) {
-			if (hand.KeyPose == type) {
-				if (hand.KeyPoseConfidence > 0.7f) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 }

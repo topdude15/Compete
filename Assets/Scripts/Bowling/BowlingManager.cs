@@ -248,6 +248,11 @@ public class BowlingManager : MonoBehaviour {
 	private void ShowPoints () {
 
 		if (pose == HandPoses.Fist) {
+			if (!deleteLoader.activeSelf) {
+				pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+				handCenter.transform.position = pos[0];
+				handCenter.transform.LookAt (mainCam.transform.position);
+			}
 			if (!handCenter.activeSelf) {
 				handCenter.SetActive (true);
 			}
