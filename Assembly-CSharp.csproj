@@ -198,6 +198,7 @@
      <Compile Include="Assets\Scripts\Darts\DartMenuCollide.cs" />
      <Compile Include="Assets\Scripts\Darts\DartsManager.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GetUserGesture.cs" />
      <Compile Include="Assets\Scripts\Golf\GolfManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Meshing\MeshingMenu.cs" />
