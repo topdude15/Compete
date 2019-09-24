@@ -315,6 +315,12 @@ public class BowlingManager : MonoBehaviour {
 						menu.SetActive (false);
 						menuAudio.Play ();
 						break;
+					case "AcceptTerms":
+						multiplayerMenu.SetActive (true);
+						multiplayerMenuOpen = true;
+						multiplayerConfirmMenu.SetActive (false);
+						menuAudio.Play ();
+						break;
 					case "CancelTerms":
 						multiplayerConfirmMenu.SetActive (false);
 						menuOpened = true;
@@ -701,6 +707,10 @@ public class BowlingManager : MonoBehaviour {
 		}
 
 		if (button == MLInputControllerButton.Bumper) {
+			multiplayerStatusMenu.SetActive(false);
+			multiplayerConfirmMenu.SetActive(false);
+			multiplayerMenu.SetActive(false);
+			modifierMenu.SetActive(false);
 			if (tutorialActive) {
 				tutorialBumperPressed = true;
 				tutorialMenu.SetActive (false);

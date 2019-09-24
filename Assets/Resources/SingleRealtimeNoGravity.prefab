@@ -42,11 +42,12 @@ GameObject:
   - component: {fileID: 3405891335182438065}
   - component: {fileID: 3415596076456302983}
   - component: {fileID: 3454730023113353169}
-  - component: {fileID: 3447251915814242981}
   - component: {fileID: 6411822309919686193}
   - component: {fileID: 7047964317208843902}
   - component: {fileID: 4450393117303643118}
   - component: {fileID: 6911498177891596437}
+  - component: {fileID: 4542049996329160347}
+  - component: {fileID: 2004710060742533452}
   m_Layer: 0
   m_Name: SingleRealtimeNoGravity
   m_TagString: Untagged
@@ -131,20 +132,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3447251915814242981
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401908912323475151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: d05dc9b3532f44649a9bce5445a4011f, type: 3}
 --- !u!82 &6411822309919686193
 AudioSource:
   m_ObjectHideFlags: 0
@@ -299,3 +286,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f956688e958949009b6a1307ca83fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &4542049996329160347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3401908912323475151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.01}
+  m_Center: {x: -0.0030378327, y: 8.543612e-15, z: 0.01}
+--- !u!136 &2004710060742533452
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3401908912323475151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18553066
+  m_Height: 1.2024068
+  m_Direction: 2
+  m_Center: {x: 0, y: -1.7604911e-15, z: 0.6012033}
