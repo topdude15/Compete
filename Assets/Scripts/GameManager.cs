@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 
 	void Awake() {
-        /* TODO: REIMPLEMENT PRIVILEDGE REQUESTER WHEN READDING MULTIPLAYER FUNCTIONALITY
-		ALSO MAKE SURE TO REATTACH "PrivilegeRequester" ML SCRIPT TO CAMERA
         _privilegeRequester = GetComponent<PrivilegeRequester>();
         if (_privilegeRequester == null)
             {
@@ -25,7 +23,6 @@ public class GameManager : MonoBehaviour {
             MLRuntimeRequestPrivilegeId.AudioCaptureMic
         };
         _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
-        */
     } 
 	void Start () {
 		// Start Magic Leap controller input

@@ -58,6 +58,7 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.Management.XRManagerSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
@@ -348,6 +349,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10322}
     - Class: 114
       Script: {instanceID: 10450}
+    - Class: 114
+      Script: {instanceID: 10826}
     - Class: 114
       Script: {instanceID: 10894}
     - Class: 114

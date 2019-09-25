@@ -607,7 +607,7 @@ PlayerSettings:
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
-    m_VersionCode: 27
+    m_VersionCode: 28
     m_VersionName: Compete_Game
   facebookSdkVersion: 
   facebookAppId: 

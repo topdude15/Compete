@@ -21,16 +21,16 @@
   },
   {
    "compression": 8,
-   "hash": "e7cccb63f357e476eddba9cf3917d3e2c4950a25",
+   "hash": "c403ce8b61ca8583528acb7604fca407c03f3d71",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3816148,
+   "size": 3816196,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "ac18e37453142f800a9761281c4d6b6b983ae969",
+   "hash": "9994ba8f8891435376e3961bbe181ee4520c770e",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63831928,
+   "size": 63832048,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -41,9 +41,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "89b314977dcbded3a4057f7eaa770d001f8ae097",
+   "xfrm_hash": "10a2a3dc4bfbc8092ee93c61a8d86529f29f95cd",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 63832686
+   "xfrm_size": 63832806
   },
   {
    "compression": 8,
@@ -226,9 +226,9 @@
   },
   {
    "compression": 8,
-   "hash": "dd5da86b087bcf486efec1b5dc15f48e423bc142",
+   "hash": "5e92a834249e2bfa40940c176da1b6f7c4118bd9",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 95808,
+   "size": 95232,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
@@ -254,14 +254,14 @@
   },
   {
    "compression": 8,
-   "hash": "a4a7632eda1464f43f5e2b659e059daf91a371ea",
+   "hash": "3877cbac048f90a3497cd64f72442349d04b793e",
    "pkgpath": "Data/level1",
-   "size": 14628,
+   "size": 14684,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level1"
   },
   {
    "compression": 8,
-   "hash": "5cf89e29dda0e631b0928536cd88ff0cac4bfec7",
+   "hash": "506a573bbcd4fb4451d47d3ec93c70005d57deae",
    "pkgpath": "Data/level2",
    "size": 65136,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
@@ -289,9 +289,9 @@
   },
   {
    "compression": 8,
-   "hash": "0b53bc18aa2c8daf7c383e4fe9f0974b04d2fcd0",
+   "hash": "576055c8d47873b1959a313425cf2f5ecfc07d3b",
    "pkgpath": "Data/resources.assets",
-   "size": 2349352,
+   "size": 2348408,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
   },
   {
@@ -324,9 +324,9 @@
   },
   {
    "compression": 8,
-   "hash": "0adf709e00e1c56b3d35e93b0aaf833d79723fab",
+   "hash": "0b8a3c359d175ae34f3e5dbc9bc1e0639f22afee",
    "pkgpath": "Data/sharedassets1.assets",
-   "size": 336664,
+   "size": 336680,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets"
   },
   {
@@ -338,9 +338,9 @@
   },
   {
    "compression": 8,
-   "hash": "2075af123434d1783da3484717f77e209fefced4",
+   "hash": "aec38ea2e9c7b569743491e06febfd3fbfaf6b86",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 2188344,
+   "size": 2188296,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
@@ -359,7 +359,7 @@
   },
   {
    "compression": 8,
-   "hash": "479a509b8cdcd92ab75643c267a739a77e34d86b",
+   "hash": "9eeca437dcff4a1cbb9236b3767a586da142ddb0",
    "pkgpath": "Data/sharedassets3.assets",
    "size": 9696,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
@@ -455,9 +455,9 @@
   },
   {
    "compression": 8,
-   "hash": "190187c2c1121033d747380ec02a5643fe2d25fd",
+   "hash": "5c0384462b3ef733958c8ea2a6f8626bb5f65ac3",
    "pkgpath": "manifest.xml",
-   "size": 910,
+   "size": 889,
    "src": "C:\\Users\\topdu\\Desktop\\Compete\\Temp\\StagingArea\\manifest.xml",
    "xfrm_flags": {
     "manifest": {
@@ -465,9 +465,9 @@
      "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665"
     }
    },
-   "xfrm_hash": "6577af2601a2f17a0efa814caa94296a6f32cd4d",
+   "xfrm_hash": "4031123f744a6e185c9c3d2823b3236021c53f1e",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\manifest.xml-064277d9b5950a96",
-   "xfrm_size": 777
+   "xfrm_size": 901
   }
  ],
  "pkgflags": {
