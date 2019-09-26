@@ -74,7 +74,7 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check;
 
-    private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn;
+    private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn, buttonLock = false;
 
     [SerializeField] private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab, tenPinRealtimePrefab, tenPinRealtimeNoGravityPrefab, bowlingBallRealtimePrefab;
     public Realtime _realtimeObject;
@@ -88,15 +88,19 @@ public class BowlingManager : MonoBehaviour
     void Start()
     {
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
         // If the user is new, open the tutorial menu
         CheckNewUser();
         // Start input from Control and Headpose
         MLInput.Start();
+        print("Checking input..." + MLInput.IsStarted);
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(MLInput.Hand.Left);
         // When the Control's button(s) are pressed, run OnButtonDown
         MLInput.OnControllerButtonDown += OnButtonDown;
+        MLInput.OnControllerButtonUp += OnButtonUp;
 
         // Initialize both line points at Vector3.Zero
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
@@ -117,9 +121,9 @@ public class BowlingManager : MonoBehaviour
         MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
         pos = new Vector3[1];
 
-		
+
         menuMoveSpeed = Time.deltaTime * 2f;
-		tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
+        tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
 
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
@@ -128,6 +132,12 @@ public class BowlingManager : MonoBehaviour
         }
     }
     private void OnDisable()
+    {
+        MLInput.Stop();
+        MLHands.Stop();
+        MLInput.OnControllerButtonDown += OnButtonDown;
+    }
+    private void OnDestroy()
     {
         MLInput.Stop();
         MLHands.Stop();
@@ -151,10 +161,11 @@ public class BowlingManager : MonoBehaviour
     void Update()
     {
         CheckGestures();
-		if (timer < waitTime) {
-			PlayTimer();
-		}
-		SetLine();
+        if (timer < waitTime)
+        {
+            PlayTimer();
+        }
+        SetLine();
 
         // Always keep the control GameObject at the Control's position
         control.transform.position = controller.Position;
@@ -357,8 +368,11 @@ public class BowlingManager : MonoBehaviour
                 switch (objGameHit)
                 {
                     case "Home":
+                        MLInput.Stop();
+                        MLHands.Stop();
+                        MLInput.OnControllerButtonDown -= OnButtonDown;
+                        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                         SceneManager.LoadScene("Main", LoadSceneMode.Single);
-                        SceneManager.UnloadSceneAsync("Bowling");
                         menuAudio.Play();
                         break;
                     case "JoinLobby":
@@ -471,8 +485,8 @@ public class BowlingManager : MonoBehaviour
                                 noGravity = true;
                                 noGravityText.text = ("Enable Gravity");
                             }
-                            modifierMenu.SetActive(false);
-                            menuOpened = false;
+                            // modifierMenu.SetActive(false);
+                            // menuOpened = false;
                         }
                         menuAudio.Play();
                         break;
@@ -507,7 +521,8 @@ public class BowlingManager : MonoBehaviour
                     default:
                         break;
                 }
-            } else if (controller.TriggerValue < 0.2f)
+            }
+            else if (controller.TriggerValue < 0.2f)
             {
                 toggledMic = false;
             }
@@ -830,95 +845,87 @@ public class BowlingManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
-        if (button == MLInputControllerButton.HomeTap)
+        if (!buttonLock)
         {
-            if (tutorialActive)
+            buttonLock = true;
+
+            if (button == MLInputControllerButton.Bumper)
             {
-                tutorialHomePressed = true;
-                tutorialMenu.SetActive(false);
+                multiplayerStatusMenu.SetActive(false);
+                multiplayerConfirmMenu.SetActive(false);
+                multiplayerMenu.SetActive(false);
+                modifierMenu.SetActive(false);
+                if (tutorialActive)
+                {
+                    tutorialBumperPressed = true;
+                    tutorialMenu.SetActive(false);
+                }
+                if (menu.activeSelf)
+                {
+                    menu.SetActive(false);
+                }
+                if (objMenu.activeSelf)
+                {
+                    objMenu.SetActive(false);
+                }
+                else
+                {
+                    objMenu.transform.position = controlCube.transform.position + controlCube.transform.forward * 0.6f;
+                    objMenu.transform.rotation = new Quaternion(controlCube.transform.rotation.x, controlCube.transform.rotation.y, 0, controlCube.transform.rotation.w);
+                    objMenu.SetActive(true);
+                }
             }
-            helpAppeared = true;
+            else if (button == MLInputControllerButton.HomeTap)
+            {
+                print("gay");
+                if (tutorialActive)
+                {
+                    tutorialHomePressed = true;
+                    tutorialMenu.SetActive(false);
+                }
+                helpAppeared = true;
+
+                if (menuOpened)
+                {
+                    menu.SetActive(false);
+                    menuOpened = false;
+                    modifierMenu.SetActive(false);
+                    multiplayerConfirmMenu.SetActive(false);
+                    multiplayerMenuOpen = false;
+                    multiplayerStatusMenu.SetActive(false);
+                    multiplayerMenu.SetActive(false);
+                }
+                else
+                {
+                    if (objMenu.activeSelf)
+                    {
+                        objMenu.SetActive(false);
+                    }
+                    laserLineRenderer.material = activeMat;
+                    menu.SetActive(true);
+                    modifierMenu.SetActive(false);
+                    settingsOpened = false;
+                    multiplayerMenu.SetActive(false);
+                    multiplayerMenuOpen = false;
+                    menuOpened = true;
+                }
+            }
+
+            if (pinLimitAppeared)
+            {
+                reachedPinLimit.SetActive(false);
+            }
+
+            menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
+            menuCanvas.transform.LookAt(mainCam.transform.position);
+
+            holding = holdState.none;
         }
 
-        if (pinLimitAppeared)
-        {
-            reachedPinLimit.SetActive(false);
-        }
-
-        if (button == MLInputControllerButton.Bumper)
-        {
-            multiplayerStatusMenu.SetActive(false);
-            multiplayerConfirmMenu.SetActive(false);
-            multiplayerMenu.SetActive(false);
-            modifierMenu.SetActive(false);
-            if (tutorialActive)
-            {
-                tutorialBumperPressed = true;
-                tutorialMenu.SetActive(false);
-            }
-            if (menu.activeSelf)
-            {
-                menu.SetActive(false);
-            }
-            if (objMenu.activeSelf)
-            {
-                objMenu.SetActive(false);
-            }
-            else
-            {
-                objMenu.transform.position = controlCube.transform.position + controlCube.transform.forward * 0.6f;
-                objMenu.transform.rotation = new Quaternion(controlCube.transform.rotation.x, controlCube.transform.rotation.y, 0, controlCube.transform.rotation.w);
-                objMenu.SetActive(true);
-            }
-        }
-
-        menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
-        menuCanvas.transform.LookAt(mainCam.transform.position);
-
-        holding = holdState.none;
-        if (button == MLInputControllerButton.HomeTap && menuOpened == false)
-        {
-            // When the user presses the Home button and the menu is not opened, then open the menu
-            if (objMenu.activeSelf)
-            {
-                objMenu.SetActive(false);
-            }
-            laserLineRenderer.material = activeMat;
-            menu.SetActive(true);
-            modifierMenu.SetActive(false);
-            settingsOpened = false;
-            multiplayerMenu.SetActive(false);
-            multiplayerMenuOpen = false;
-            menuOpened = true;
-        }
-        else if (button == MLInputControllerButton.HomeTap && menuOpened == true)
-        {
-            // If the user presses the Home button and the menu is opened, then close the menu
-            menu.SetActive(false);
-            menuOpened = false;
-            modifierMenu.SetActive(false);
-            multiplayerConfirmMenu.SetActive(false);
-            multiplayerMenuOpen = false;
-            multiplayerStatusMenu.SetActive(false);
-            multiplayerMenu.SetActive(false);
-        }
-
-        if (button == MLInputControllerButton.HomeTap && firstHomePressed)
-        {
-            if (Time.time - timeOfFirstHomePress < timeHomePress)
-            {
-                MLInput.Stop();
-                MLHands.Stop();
-                Application.Quit();
-                timeOfFirstHomePress = 0f;
-            }
-            firstHomePressed = false;
-        }
-        else if (button == MLInputControllerButton.HomeTap && !firstHomePressed)
-        {
-            firstHomePressed = true;
-            timeOfFirstHomePress = Time.time;
-        }
+    }
+    private void OnButtonUp(byte controller_id, MLInputControllerButton button)
+    {
+        buttonLock = false;
     }
     private void SpawnObject()
     {

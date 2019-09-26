@@ -13,16 +13,26 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 
 	void Awake() {
-        _privilegeRequester = GetComponent<PrivilegeRequester>();
-        if (_privilegeRequester == null)
-            {
-                // Handle if the Privilege Requester is missing from the scene
-            }
-        // Could have also been set via the editor. 
-        _privilegeRequester.Privileges = new[] { 
-            MLRuntimeRequestPrivilegeId.AudioCaptureMic
-        };
-        _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
+
+
+
+
+
+
+
+
+
+		
+        // _privilegeRequester = GetComponent<PrivilegeRequester>();
+        // if (_privilegeRequester == null)
+        //     {
+        //         // Handle if the Privilege Requester is missing from the scene
+        //     }
+        // // Could have also been set via the editor. 
+        // _privilegeRequester.Privileges = new[] { 
+        //     MLRuntimeRequestPrivilegeId.AudioCaptureMic
+        // };
+        // _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
     } 
 	void Start () {
 		// Start Magic Leap controller input
@@ -51,7 +61,6 @@ public class GameManager : MonoBehaviour {
 	private void OnApplicationPause(bool pause) {
 		print("Quitting");
 		MLInput.Stop();
-		SceneManager.UnloadSceneAsync("Main");
 	}
 	
 	// Update is called once per frame
@@ -90,11 +99,13 @@ public class GameManager : MonoBehaviour {
 			laserLineRenderer.SetPosition(1, endPosition);
 
 			if (rayHit.collider.name == "BowlingPin" && controller.TriggerValue >= 0.9f) {
-				// If the bowling pin is being pointed at and the trigger is held, load the bowling scene
+				// If the bowling pin is being pointed at and the trigger is held, load the bowling scene.
+				MLInput.Stop();
 				SceneManager.LoadScene("Bowling", LoadSceneMode.Single);
                 //SceneManager.UnloadSceneAsync("Main");
 			} else if (rayHit.collider.name == "Dartboard" && controller.TriggerValue >= 0.9f) {
 				// If the dartboard is being pointed at and the trigger is held, load the darts scene
+				MLInput.Stop();
 				if (!pressedContinue) {
 					SceneManager.LoadScene("Darts", LoadSceneMode.Single);
 				}
