@@ -88,7 +88,7 @@ public class BowlingManager : MonoBehaviour
     void Start()
     {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         // If the user is new, open the tutorial menu
         CheckNewUser();
@@ -875,9 +875,10 @@ public class BowlingManager : MonoBehaviour
                     objMenu.SetActive(true);
                 }
             }
-            else if (button == MLInputControllerButton.HomeTap)
+            else
             {
                 print("gay");
+
                 if (tutorialActive)
                 {
                     tutorialHomePressed = true;

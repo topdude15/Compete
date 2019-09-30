@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour {
 		MLInput.Stop();
 	}
 	private void OnApplicationPause(bool pause) {
-		print("Quitting");
 		MLInput.Stop();
 	}
 	
@@ -101,6 +100,7 @@ public class GameManager : MonoBehaviour {
 			if (rayHit.collider.name == "BowlingPin" && controller.TriggerValue >= 0.9f) {
 				// If the bowling pin is being pointed at and the trigger is held, load the bowling scene.
 				MLInput.Stop();
+				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				SceneManager.LoadScene("Bowling", LoadSceneMode.Single);
                 //SceneManager.UnloadSceneAsync("Main");
 			} else if (rayHit.collider.name == "Dartboard" && controller.TriggerValue >= 0.9f) {
