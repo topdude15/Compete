@@ -22,16 +22,16 @@
   },
   {
    "compression": 8,
-   "hash": "2b7d6bd20c7d787300cd827b7cf416e5ff9661df",
+   "hash": "c278c98b1105fbe01ebafd79d9f0d8635540ee25",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3816936,
+   "size": 3816912,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "d45fed1559df209917d4ab9f2fd2d34426367cd6",
+   "hash": "4b21bef3324f00bc81317f901afa903f149686a2",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63840440,
+   "size": 63840368,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -43,9 +43,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "d8667e73d318bed7194883a59e09e96bc5896552",
+   "xfrm_hash": "311ac822b0678bcdfd04cf88c45e81a3623f541c",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 63841198
+   "xfrm_size": 63841126
   },
   {
    "compression": 8,
@@ -233,14 +233,14 @@
   },
   {
    "compression": 8,
-   "hash": "88d7e043ca85d3968bda624deae73ebba8e034ef",
+   "hash": "70ad96a1311ed8254d545574e1228a64f473b10c",
    "pkgpath": "Data/globalgamemanagers",
    "size": 94288,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "4cfd755c7e2cfa075f633c77073484f864725935",
+   "hash": "2d672e2c944325687809294a35c841d4ce0983da",
    "pkgpath": "Data/globalgamemanagers.assets",
    "size": 93776,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
@@ -268,9 +268,9 @@
   },
   {
    "compression": 8,
-   "hash": "8b4639b6ecb7943fb3024df8e2931a54a15c12b8",
+   "hash": "05dbeafe313cca0241a0e6d6dfdd6db85be3fcc2",
    "pkgpath": "Data/level2",
-   "size": 64984,
+   "size": 65136,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {

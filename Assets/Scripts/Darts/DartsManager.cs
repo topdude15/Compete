@@ -315,7 +315,6 @@ public class DartsManager : MonoBehaviour
                 MLInput.Stop();
                 MLHands.Stop();
                 MLInput.OnControllerButtonDown -= OnDartsButtonDown;
-                SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 menuAudio.Play();
             }
