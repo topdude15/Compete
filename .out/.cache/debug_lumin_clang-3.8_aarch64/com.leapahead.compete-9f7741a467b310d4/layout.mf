@@ -1,9 +1,5 @@
 [
  {
-  "dest": "bin/libc++_shared.so",
-  "src": "C:/Users/The Portal/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so"
- },
- {
   "dest": "bin/libil2cpp.so",
   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so"
  },
@@ -58,5 +54,9 @@
  {
   "dest": "bin/Player.elf",
   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Player.elf"
+ },
+ {
+  "dest": "bin/libc++_shared.so",
+  "src": "C:/Users/topdu/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so"
  }
 ]

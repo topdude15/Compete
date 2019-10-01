@@ -51,7 +51,6 @@ public class DartsManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         // SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         print("Buttonz");
@@ -112,7 +111,7 @@ public class DartsManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
 
         CheckGestures();
