@@ -2,16 +2,16 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "2e67cddf6c6e77666d2dfa3d551e691394050173",
+   "hash": "c4017a36b357f1432cfc2cdaca1d1424022a4b4d",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3815704,
+   "size": 3815684,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "0538561d0d7bfd3ea091da9ae9fed7e1bd2f60ff",
+   "hash": "32d9232009c404ffe6a0011b5383ac520fa5a459",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63831296,
+   "size": 63830760,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -22,9 +22,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "8da01ca03a1c41330882ebf13e00f250001e612f",
+   "xfrm_hash": "a5355c3ce43db3308f039ce770f877eef55e22b3",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 63832054
+   "xfrm_size": 63831518
   },
   {
    "compression": 8,
@@ -207,7 +207,7 @@
   },
   {
    "compression": 8,
-   "hash": "305335333d64b04083ed877a372fc3720c06e58f",
+   "hash": "4081248b31342be1189f2016f409da1473ece6bf",
    "pkgpath": "Data/globalgamemanagers",
    "size": 93464,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
@@ -235,7 +235,7 @@
   },
   {
    "compression": 8,
-   "hash": "684b7dfa769fda854ac94eab38fc94daaf138be2",
+   "hash": "41c611c487c8de79dd90b1d7cfc6e41470500257",
    "pkgpath": "Data/level1",
    "size": 14628,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level1"
@@ -256,7 +256,7 @@
   },
   {
    "compression": 8,
-   "hash": "5b4889c1c9b848330364247996aa9409c279e23f",
+   "hash": "742b5212392c7dc2a46e10e44a7315c528a82743",
    "pkgpath": "Data/level3",
    "size": 57352,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3"

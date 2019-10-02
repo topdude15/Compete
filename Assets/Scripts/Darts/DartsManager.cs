@@ -41,7 +41,7 @@ public class DartsManager : MonoBehaviour
     public Realtime _realtimeObject;
     private PlayerManagerModel _playerManager;
 
-    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, buttonLock = false;
+    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, dartMenuOpened = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, settingsOpened = false, occlusionActive = true, tutorialMenuOpened = false, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, buttonLock = false, toggleGravityClicked = false;
     private static bool menuClosed = false, menuOpened = false;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
@@ -55,11 +55,11 @@ public class DartsManager : MonoBehaviour
 
         print("Buttonz");
         CheckNewUser();
-        MLInput.Start();
+        // MLInput.Start();
         print("Checking input..." + MLInput.IsStarted);
 
         print("Getting controller..");
-        controller = MLInput.GetController(MLInput.Hand.Left);
+        controller = MLInput.GetController(0);
         MLInput.OnControllerButtonDown += OnDartsButtonDown;
         MLInput.OnControllerButtonUp += OnDartsButtonUp;
 
@@ -296,7 +296,9 @@ public class DartsManager : MonoBehaviour
     {
         RaycastHit rayHit;
         Vector3 heading = control.transform.forward;
-
+        if (toggleGravityClicked && controller.TriggerValue <= 0.2f) {
+            toggleGravityClicked = false;
+        }
         // Set the origin of the line to the controller's position, because the first position does not dynamically change
         laserLineRenderer.SetPosition(0, controller.Position);
         if (Physics.Raycast(controller.Position, heading, out rayHit, 10.0f))
@@ -313,6 +315,10 @@ public class DartsManager : MonoBehaviour
             {
                 MLInput.Stop();
                 MLHands.Stop();
+                menu.SetActive(false);
+                menuOpened = false;
+                Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
+                laserLineRenderer.SetPositions(initLaserPositions);
                 MLInput.OnControllerButtonDown -= OnDartsButtonDown;
                 SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 menuAudio.Play();
@@ -425,23 +431,25 @@ public class DartsManager : MonoBehaviour
             }
             else if (rayHit.transform.gameObject.name == "NoGravity" && controller.TriggerValue >= 0.9f)
             {
-                if (!settingsOpened)
+                if (!toggleGravityClicked)
                 {
-                    if (noGravity)
+                    toggleGravityClicked = true;
+                    if (!settingsOpened)
                     {
-                        noGravity = false;
-                        noGravityText.text = ("Disable Gravity");
+                        if (noGravity)
+                        {
+                            noGravity = false;
+                            noGravityText.text = ("Disable Gravity");
+                        }
+                        else
+                        {
+                            noGravity = true;
+                            noGravityText.text = ("Enable Gravity");
+                        }
                     }
-                    else
-                    {
-                        noGravity = true;
-                        noGravityText.text = ("Enable Gravity");
-                    }
-                    // modifierMenu.SetActive (false);
-                    // menuClosed = true;
-                    // menuOpened = false;
+                    menuAudio.Play();
                 }
-                menuAudio.Play();
+
             }
             else if (rayHit.transform.gameObject.name == "DartSelector")
             {
@@ -801,19 +809,23 @@ public class DartsManager : MonoBehaviour
                     objMenu.SetActive(true);
                 }
             }
-            else if (button == MLInputControllerButton.HomeTap)
+            else
             {
-				print("gay");
                 holding = holdState.none;
                 dartboardOutline.SetActive(false);
+                print(menuOpened);
+
                 if (tutorialActive)
                 {
                     tutorialHomePressed = true;
+                    tutorialMenu.SetActive(false);
                 }
+                helpAppeared = true;
+
                 if (menuOpened)
                 {
-                    menuOpened = false;
                     menu.SetActive(false);
+                    menuOpened = false;
                     modifierMenu.SetActive(false);
                     multiplayerConfirmMenu.SetActive(false);
                     multiplayerMenuOpen = false;
@@ -822,11 +834,14 @@ public class DartsManager : MonoBehaviour
                 }
                 else
                 {
+                    objMenu.SetActive(false);
                     laserLineRenderer.material = activeMat;
-                    menuOpened = true;
                     menu.SetActive(true);
-                    //CenterCam();
                     modifierMenu.SetActive(false);
+                    settingsOpened = false;
+                    multiplayerMenu.SetActive(false);
+                    multiplayerMenuOpen = false;
+                    menuOpened = true;
                 }
             }
 

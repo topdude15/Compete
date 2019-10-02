@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour {
 	}
 	IEnumerator SetMenu()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.001f);
 		menu.transform.position = _cam.transform.position + _cam.transform.forward * 1.0f;
 		menu.transform.LookAt(_cam.transform.position);
     }

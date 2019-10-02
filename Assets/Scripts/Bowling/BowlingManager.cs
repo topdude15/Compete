@@ -74,7 +74,7 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check;
 
-    private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn, buttonLock = false;
+    private bool setHand = false, placed = false, holdingBall = false, menuOpened = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, tutorialMenuOpened = false, settingsOpened = false, occlusionActive = true, firstHomePressed = false, joinedLobby = false, realtimeBowlingBall = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, acceptedTerms = false, helpAppeared = false, pinLimitHelp = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, pinLimitAppeared = false, dontSpawn, buttonLock = false, toggleGravityClicked = false;
 
     [SerializeField] private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab, tenPinRealtimePrefab, tenPinRealtimeNoGravityPrefab, bowlingBallRealtimePrefab;
     public Realtime _realtimeObject;
@@ -93,11 +93,11 @@ public class BowlingManager : MonoBehaviour
         // If the user is new, open the tutorial menu
         CheckNewUser();
         // Start input from Control and Headpose
-        MLInput.Start();
+        // MLInput.Start();
         print("Checking input..." + MLInput.IsStarted);
 
         // Get input from the Control, accessible via controller
-        controller = MLInput.GetController(MLInput.Hand.Left);
+        controller = MLInput.GetController(0);
         // When the Control's button(s) are pressed, run OnButtonDown
         MLInput.OnControllerButtonDown += OnButtonDown;
         MLInput.OnControllerButtonUp += OnButtonUp;
@@ -370,8 +370,11 @@ public class BowlingManager : MonoBehaviour
                     case "Home":
                         MLInput.Stop();
                         MLHands.Stop();
+                        menu.SetActive(false);
+                        menuOpened = false;
+                        Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
+                        laserLineRenderer.SetPositions(initLaserPositions);
                         MLInput.OnControllerButtonDown -= OnButtonDown;
-                        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                         SceneManager.LoadScene("Main", LoadSceneMode.Single);
                         menuAudio.Play();
                         break;
@@ -473,22 +476,26 @@ public class BowlingManager : MonoBehaviour
                         menuAudio.Play();
                         break;
                     case "NoGravity":
-                        if (!settingsOpened)
+                        if (!toggleGravityClicked)
                         {
-                            if (noGravity)
+                            toggleGravityClicked = true;
+                            if (!settingsOpened)
                             {
-                                noGravity = false;
-                                noGravityText.text = ("Disable Gravity");
+                                if (noGravity)
+                                {
+                                    noGravity = false;
+                                    noGravityText.text = ("Disable Gravity");
+                                }
+                                else
+                                {
+                                    noGravity = true;
+                                    noGravityText.text = ("Enable Gravity");
+                                }
+                                // modifierMenu.SetActive(false);
+                                // menuOpened = false;
                             }
-                            else
-                            {
-                                noGravity = true;
-                                noGravityText.text = ("Enable Gravity");
-                            }
-                            // modifierMenu.SetActive(false);
-                            // menuOpened = false;
+                            menuAudio.Play();
                         }
-                        menuAudio.Play();
                         break;
                     case "ShowMesh":
                         if (!settingsOpened)
@@ -525,6 +532,7 @@ public class BowlingManager : MonoBehaviour
             else if (controller.TriggerValue < 0.2f)
             {
                 toggledMic = false;
+                toggleGravityClicked = false;
             }
 
             string objHit = rayHit.transform.gameObject.name;

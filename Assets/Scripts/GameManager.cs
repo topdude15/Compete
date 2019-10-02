@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		// Start Magic Leap controller input
 		MLInput.Start();
-		controller = MLInput.GetController(MLInput.Hand.Left);
-
+		// controller = MLInput.GetController(MLInput.Hand.Left);
+		controller = MLInput.GetController(0);
 		// Get the "Controller" GameObject to track bumper hold timer and other controller values
 		control = GameObject.Find("Controller");
 
@@ -47,16 +47,16 @@ public class GameManager : MonoBehaviour {
 		laserLineRenderer.SetPositions(initLaserPositions);
 
     }
-	private void OnDestroy() {
-		// Stop Magic Leap controller input
-		MLInput.Stop();
-		if (_privilegeRequester != null) {         
-            _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
-        }
-    }
+	// private void OnDestroy() {
+	// 	// Stop Magic Leap controller input
+	// 	MLInput.Stop();
+	// 	if (_privilegeRequester != null) {         
+    //         _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
+    //     }
+    // }
 	
 	private void OnDisable() {
-		MLInput.Stop();
+		//MLInput.Stop();
 	}
 	private void OnApplicationPause(bool pause) {
 		MLInput.Stop();
@@ -99,15 +99,17 @@ public class GameManager : MonoBehaviour {
 
 			if (rayHit.collider.name == "BowlingPin" && controller.TriggerValue >= 0.9f) {
 				// If the bowling pin is being pointed at and the trigger is held, load the bowling scene.
-				MLInput.Stop();
+				// MLInput.Stop();
 				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				SceneManager.LoadScene("Bowling", LoadSceneMode.Single);
+				SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 //SceneManager.UnloadSceneAsync("Main");
 			} else if (rayHit.collider.name == "Dartboard" && controller.TriggerValue >= 0.9f) {
 				// If the dartboard is being pointed at and the trigger is held, load the darts scene
-				MLInput.Stop();
+			    // MLInput.Stop();
 				if (!pressedContinue) {
 					SceneManager.LoadScene("Darts", LoadSceneMode.Single);
+					SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				}
                // SceneManager.UnloadSceneAsync("Main");
             }  else if (rayHit.collider.name == "Golf" && controller.TriggerValue >= 0.9f) {
@@ -124,9 +126,9 @@ public class GameManager : MonoBehaviour {
 				quitMenu.SetActive(true);
 				mainMenu.SetActive(false);
 			} else if (rayHit.collider.name == "JoinLobby" && controller.TriggerValue >= 0.9f) {
-				//PhotonLobby.OnBattleButtonClicked();
+
 			} else if (rayHit.collider.name == "ExitLobby" && controller.TriggerValue >= 0.9f) {
-				//PhotonLobby.OnCancelButtonClicked();
+
 			} else if ((rayHit.collider.name == "ConfirmExit" || rayHit.collider.name == "LeaveGame") && controller.TriggerValue >= 0.9f) {
 				if (pressedExit == false) {
 					print("Stopping Input services and quitting application");
