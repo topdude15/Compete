@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1954484212856819547}
   - component: {fileID: 3760174497636984898}
   - component: {fileID: 9069937478263644915}
-  - component: {fileID: 1393617684775770382}
   - component: {fileID: 217106093285135919}
   - component: {fileID: 6154276410486948306}
   - component: {fileID: 8562758129897638393}
@@ -231,18 +230,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &1393617684775770382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006404760407973629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &217106093285135919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +283,6 @@ GameObject:
   - component: {fileID: 1953445429352780213}
   - component: {fileID: 196401487869011491}
   - component: {fileID: 2241607279314021606}
-  - component: {fileID: 8345744952307853591}
   - component: {fileID: 7959109351362816939}
   - component: {fileID: 4015053291676248885}
   - component: {fileID: 8448432421327916627}
@@ -513,18 +499,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &8345744952307853591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006613195665258263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7959109351362816939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +550,6 @@ GameObject:
   - component: {fileID: 1993403442539415299}
   - component: {fileID: 1984478082941969403}
   - component: {fileID: 1953562284575724643}
-  - component: {fileID: 8756013326960778537}
   - component: {fileID: 7135086623621788654}
   - component: {fileID: 6791658455944496591}
   - component: {fileID: 1965855265487964178}
@@ -665,18 +638,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8756013326960778537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006938835050888151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &7135086623621788654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -860,7 +821,6 @@ GameObject:
   - component: {fileID: 1954225695797162335}
   - component: {fileID: 3115244215914912177}
   - component: {fileID: 1720674302440767814}
-  - component: {fileID: 4626997886242457678}
   - component: {fileID: 987627398315543125}
   - component: {fileID: 11299879645220456}
   - component: {fileID: 304669109178125135}
@@ -1077,18 +1037,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &4626997886242457678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007082897152230421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &987627398315543125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,7 +1090,6 @@ GameObject:
   - component: {fileID: 1953759141492197885}
   - component: {fileID: 5208530562051027879}
   - component: {fileID: 7400963419231124803}
-  - component: {fileID: 3022937313842800886}
   - component: {fileID: 5114728891468669895}
   - component: {fileID: 3384217887654984953}
   - component: {fileID: 4510196169789435538}
@@ -1359,18 +1306,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &3022937313842800886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007188203231720163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5114728891468669895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1424,7 +1359,6 @@ GameObject:
   - component: {fileID: 1953813490609306517}
   - component: {fileID: 7808335099630009146}
   - component: {fileID: 1610682908867800406}
-  - component: {fileID: 2126600979380181643}
   - component: {fileID: 7718145947649467633}
   - component: {fileID: 6181415880405595567}
   - component: {fileID: 4014374363662659581}
@@ -1641,18 +1575,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &2126600979380181643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007232193841746305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7718145947649467633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1628,6 @@ GameObject:
   - component: {fileID: 1954296449376091509}
   - component: {fileID: 2198782313544008211}
   - component: {fileID: 8944188780272106423}
-  - component: {fileID: 7152839845464359942}
   - component: {fileID: 7988492191190206545}
   - component: {fileID: 7887392344584095814}
   - component: {fileID: 4499787265285712319}
@@ -1923,18 +1844,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &7152839845464359942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007254109342363427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7988492191190206545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1988,7 +1897,6 @@ GameObject:
   - component: {fileID: 1954129730564953405}
   - component: {fileID: 2226155716161762948}
   - component: {fileID: 5099192308453080019}
-  - component: {fileID: 6581422928665568928}
   - component: {fileID: 7281238434928607505}
   - component: {fileID: 7174329647888414105}
   - component: {fileID: 3487799921835851900}
@@ -2205,18 +2113,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &6581422928665568928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007342049206698553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7281238434928607505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,7 +2166,6 @@ GameObject:
   - component: {fileID: 1953577462508907437}
   - component: {fileID: 481169650354896675}
   - component: {fileID: 1759314690106889084}
-  - component: {fileID: 1484199757344935718}
   - component: {fileID: 8729733585250598472}
   - component: {fileID: 8329563659036026901}
   - component: {fileID: 5651906858995721888}
@@ -2487,18 +2382,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &1484199757344935718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007905631830036849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8729733585250598472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,7 +2557,6 @@ GameObject:
   - component: {fileID: 1954230875952007059}
   - component: {fileID: 8046637047390442087}
   - component: {fileID: 296926826080840002}
-  - component: {fileID: 2772305370912670545}
   - component: {fileID: 2276555813216338999}
   - component: {fileID: 8583087701741274876}
   - component: {fileID: 8655712224037159021}
@@ -2891,18 +2773,6 @@ MonoBehaviour:
   m_RoomGainHF: 1
   m_SourceRadiationGizmoScale: 0.25
   m_SourceRadiationGizmoAlpha: 1
---- !u!114 &2772305370912670545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007981452962886639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2276555813216338999
 MonoBehaviour:
   m_ObjectHideFlags: 0

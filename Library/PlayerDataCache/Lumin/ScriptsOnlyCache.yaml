@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BallCollider
     - BallHitDetector
     - BallVelocity
     - BowlingManager
@@ -15,7 +16,6 @@ ScriptsOnlyBuild:
     - MagicLeap.PlaceFromCamera
     - MagicLeap.VideoError
     - MainMenu
-    - MenuCollide
     - MeshingMenu
     - Normal.Realtime.Examples.CubePlayer
     - Normal.Realtime.Examples.VoiceMouthMove
@@ -181,6 +181,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12806}
     - Class: 114
       Script: {instanceID: 12950}
+    - Class: 114
+      Script: {instanceID: 118612}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -494,6 +496,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12860}
     - Class: 114
       Script: {instanceID: 12922}
+    - Class: 114
+      Script: {instanceID: 118612}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1497,12 +1501,6 @@ ScriptsOnlyBuild:
     className: RealtimeAvatar
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MenuCollide
-  - hash:
-      serializedVersion: 2
       Hash: 5f1752ed2092162f016c19510c28a8b9
     assemblyName: Unity.Analytics.DataPrivacy.dll
     namespaceName: UnityEngine.Analytics
@@ -1867,6 +1865,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BallCollider
   platform: 39
   scenePathNames:
   - Assets/Scenes/Meshing.unity

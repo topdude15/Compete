@@ -181,12 +181,12 @@
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewComponentsModel.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewConfiguration.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewModel.cs" />
+     <Compile Include="Assets\Scripts\Bowling\BallCollider.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallHitDetector.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallVelocity.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingColorLoader.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingManager.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingPlaceObject.cs" />
-     <Compile Include="Assets\Scripts\Bowling\MenuCollide.cs" />
      <Compile Include="Assets\Scripts\Bowling\PinCollision.cs" />
      <Compile Include="Assets\Scripts\Bowling\PinFallen.cs" />
      <Compile Include="Assets\Scripts\Controller.cs" />
