@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276794, g: 0.21589175, b: 0.29782546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1400,7 +1400,6 @@ GameObject:
   - component: {fileID: 284157132}
   - component: {fileID: 284157131}
   - component: {fileID: 284157134}
-  - component: {fileID: 284157135}
   - component: {fileID: 284157136}
   m_Layer: 0
   m_Name: 0 RedBall
@@ -1485,18 +1484,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.9915011
   m_Center: {x: 0.00000047683716, y: 0, z: 0.00000062584877}
---- !u!114 &284157135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284157130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717e7d8d7ae9c6646a35d3d504293c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &284157136
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2479,7 +2466,6 @@ GameObject:
   - component: {fileID: 502196853}
   - component: {fileID: 502196852}
   - component: {fileID: 502196851}
-  - component: {fileID: 502196854}
   - component: {fileID: 502196855}
   m_Layer: 0
   m_Name: 1 OrangeBall
@@ -2564,18 +2550,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502196849}
   m_Mesh: {fileID: 4300000, guid: 419453454183c174b9831295d2be36c2, type: 3}
---- !u!114 &502196854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502196849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717e7d8d7ae9c6646a35d3d504293c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &502196855
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2852,7 +2826,6 @@ GameObject:
   - component: {fileID: 604329125}
   - component: {fileID: 604329124}
   - component: {fileID: 604329123}
-  - component: {fileID: 604329126}
   - component: {fileID: 604329127}
   m_Layer: 0
   m_Name: 3 GreenBall
@@ -2937,18 +2910,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604329121}
   m_Mesh: {fileID: 4300000, guid: 419453454183c174b9831295d2be36c2, type: 3}
---- !u!114 &604329126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604329121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717e7d8d7ae9c6646a35d3d504293c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &604329127
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6763,7 +6724,6 @@ GameObject:
   - component: {fileID: 1584375744}
   - component: {fileID: 1584375743}
   - component: {fileID: 1584375742}
-  - component: {fileID: 1584375745}
   - component: {fileID: 1584375746}
   m_Layer: 0
   m_Name: 4 BlueBall
@@ -6848,18 +6808,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584375740}
   m_Mesh: {fileID: 4300000, guid: 419453454183c174b9831295d2be36c2, type: 3}
---- !u!114 &1584375745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584375740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717e7d8d7ae9c6646a35d3d504293c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1584375746
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8251,7 +8199,6 @@ GameObject:
   - component: {fileID: 1863604860}
   - component: {fileID: 1863604859}
   - component: {fileID: 1863604858}
-  - component: {fileID: 1863604861}
   - component: {fileID: 1863604862}
   m_Layer: 0
   m_Name: 2 YellowBall
@@ -8336,18 +8283,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863604856}
   m_Mesh: {fileID: 4300000, guid: 419453454183c174b9831295d2be36c2, type: 3}
---- !u!114 &1863604861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863604856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717e7d8d7ae9c6646a35d3d504293c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1863604862
 Rigidbody:
   m_ObjectHideFlags: 0

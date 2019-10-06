@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5706380856871432286}
   - component: {fileID: 7799585735979914124}
   - component: {fileID: 1428384446687973439}
+  - component: {fileID: 6610639385240129159}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -247,6 +248,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6610639385240129159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038669688037568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1050986688820932
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +339,7 @@ GameObject:
   - component: {fileID: 4952288628087623587}
   - component: {fileID: 1829747425294760879}
   - component: {fileID: 3997650079770258232}
+  - component: {fileID: 6876036623131449455}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -534,6 +570,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6876036623131449455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120800255754846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1245646808115448
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +621,7 @@ GameObject:
   - component: {fileID: 3742463644842296467}
   - component: {fileID: 8677736107647853965}
   - component: {fileID: 770782448913983848}
+  - component: {fileID: 1659010093726947861}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -781,6 +852,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1659010093726947861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245646808115448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1284080471417292
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +903,7 @@ GameObject:
   - component: {fileID: 6081016003322651840}
   - component: {fileID: 5769344140721205072}
   - component: {fileID: 4329698957517604758}
+  - component: {fileID: 6196510168162931940}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1028,6 +1134,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6196510168162931940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284080471417292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1389330872588090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1185,7 @@ GameObject:
   - component: {fileID: 8821694765240288774}
   - component: {fileID: 5126248753554547309}
   - component: {fileID: 5058988629905884550}
+  - component: {fileID: 8269522332458808322}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1275,6 +1416,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8269522332458808322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389330872588090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1488937452108812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1467,7 @@ GameObject:
   - component: {fileID: 6819889094343039158}
   - component: {fileID: 3256081018772751671}
   - component: {fileID: 6179364654917592171}
+  - component: {fileID: 5882806967629269041}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1522,6 +1698,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5882806967629269041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488937452108812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1521585128063662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,6 +1749,7 @@ GameObject:
   - component: {fileID: 8436748130362947142}
   - component: {fileID: 4533352670441667681}
   - component: {fileID: 8376425961920673806}
+  - component: {fileID: 1585931590122249671}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -1769,6 +1980,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1585931590122249671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521585128063662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1682396051935510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +2031,7 @@ GameObject:
   - component: {fileID: 5806023349553450987}
   - component: {fileID: 4884729569831285431}
   - component: {fileID: 8414782281153175309}
+  - component: {fileID: 7794673297326484083}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2016,6 +2262,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7794673297326484083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682396051935510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1784145678339538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2313,7 @@ GameObject:
   - component: {fileID: 3163428526017288406}
   - component: {fileID: 198299599618670773}
   - component: {fileID: 6640275719166474912}
+  - component: {fileID: 3981371488778920109}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2263,6 +2544,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3981371488778920109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784145678339538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
 --- !u!1 &1852427642512440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2595,7 @@ GameObject:
   - component: {fileID: 7070483674441548295}
   - component: {fileID: 2729628633458560997}
   - component: {fileID: 1787917277084087871}
+  - component: {fileID: 7649028161561714620}
   m_Layer: 0
   m_Name: Single
   m_TagString: Untagged
@@ -2510,3 +2826,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a856a49ee84bd45e3ae80928a5019606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7649028161561714620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852427642512440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_override3DProperties: 0
+  m_minDistance: 1
+  m_maxDistance: 10
+  m_rollofFactor: 1
+  m_omnidirectional: 0
+  m_InnerAngle: 50
+  m_OuterAngle: 340
+  m_OuterGain: 1
+  m_OuterGainLF: 0.65
+  m_OuterGainMF: 0.4
+  m_OuterGainHF: 0.080000006
+  m_Gain: 1
+  m_DirectGain: 1
+  m_DirectGainLF: 1
+  m_DirectGainMF: 1
+  m_DirectGainHF: 1
+  m_RoomGain: 1
+  m_RoomGainLF: 1
+  m_RoomGainMF: 1
+  m_RoomGainHF: 1
+  m_SourceRadiationGizmoScale: 0.25
+  m_SourceRadiationGizmoAlpha: 1
