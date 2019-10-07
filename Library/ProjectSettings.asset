@@ -164,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Lumin: com.leapahead.compete
+    Lumin: com.leapahead.competeconcept
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -604,14 +604,14 @@ PlayerSettings:
   cloudServicesEnabled: {}
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: /Users/trevorrose/Desktop/Compete/ConceptsIcon/Model
-    m_PortalFolderPath: /Users/trevorrose/Desktop/Compete/ConceptsIcon/Portal
+    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Model
+    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Portal
   luminCert:
-    m_CertPath: /Users/trevorrose/Desktop/Keys/NewPrivateKey/trevor'smbp.cert
+    m_CertPath: C:/Users/topdu/Downloads/Compete_Concepts/compete-e24ee0eb.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:
-    m_VersionCode: 28
+    m_VersionCode: 30
     m_VersionName: Compete_Game
   facebookSdkVersion: 
   facebookAppId: 
