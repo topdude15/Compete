@@ -331,13 +331,10 @@ public class BowlingManager : MonoBehaviour
     // }
     private void CheckGestures()
     {
-        print("Checking");
         if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
         {
-            print("Open");
             pose = HandPoses.OpenHand;
             helpAppeared = true;
-            ShowPoints();
         }
         else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
         {
@@ -362,26 +359,14 @@ public class BowlingManager : MonoBehaviour
 
     private void ShowPoints()
     {
-        print("Please show points...");
 
         if (pose == HandPoses.Fist)
         {
             if (!deleteLoader.activeSelf)
             {
-                // if (PlayerPrefs.GetString("gestureHand") == "left")
-                // {
-                    print("Show middle of left hand");
-                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-                    handCenter.transform.position = pos[0];
-                    handCenter.transform.LookAt(mainCam.transform.position);
-//                }
-                // else
-                // {
-                //     print("Show middle of right hand");
-                //     pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
-                //     handCenter.transform.position = pos[0];
-                //     handCenter.transform.LookAt(mainCam.transform.position);
-                // }
+                pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                handCenter.transform.position = pos[0];
+                handCenter.transform.LookAt(mainCam.transform.position);
             }
             if (!handCenter.activeSelf)
             {
@@ -600,7 +585,7 @@ public class BowlingManager : MonoBehaviour
                 }
                 else if (holding == holdState.tenPin)
                 {
-                    if (objLimit < objLimit - 10)
+                    if (totalObjs <= objLimit - 10)
                     {
                         if (_realtimeObject.connected)
                         {
