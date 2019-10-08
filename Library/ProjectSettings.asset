@@ -164,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Lumin: com.leapahead.competeconcept
+    Lumin: com.leapahead.compete
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -607,7 +607,7 @@ PlayerSettings:
     m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Model
     m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Portal
   luminCert:
-    m_CertPath: C:/Users/topdu/Downloads/Compete_Concepts/compete-e24ee0eb.cert
+    m_CertPath: C:/Users/topdu/Desktop/privatekey/theportalpc.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:

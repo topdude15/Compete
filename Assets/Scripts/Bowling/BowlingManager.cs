@@ -39,7 +39,7 @@ public class BowlingManager : MonoBehaviour
     public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu;
+    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton;
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText;
     public static GameObject menuControl;
     private GameObject bowlingBall, _realtime, pinObj, pin;
@@ -70,7 +70,7 @@ public class BowlingManager : MonoBehaviour
 
     public Image loadingImage;
 
-    public Texture2D emptyCircle, check;
+    public Texture2D emptyCircle, check, handLeft, handRight;
 
     private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn;
 
@@ -90,7 +90,7 @@ public class BowlingManager : MonoBehaviour
         // If the user is new, open the tutorial menu
         CheckNewUser();
         // Start input from Control and Headpose
-        // MLInput.Start ();
+        MLInput.Start();
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
@@ -125,6 +125,10 @@ public class BowlingManager : MonoBehaviour
         {
             multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
         }
+        if (PlayerPrefs.GetString("gestureHand") == null)
+        {
+            PlayerPrefs.SetString("gestureHand", "left");
+        }
     }
     private void OnDisable()
     {
@@ -156,6 +160,7 @@ public class BowlingManager : MonoBehaviour
     void LateUpdate()
     {
         CheckGestures();
+
         if (timer < waitTime)
         {
             PlayTimer();
@@ -263,12 +268,76 @@ public class BowlingManager : MonoBehaviour
         }
     }
 
+    // private void CheckGestures()
+    // {
+    //     print("The user's selected hand: " + PlayerPrefs.GetString("gestureHand"));
+    //     if (PlayerPrefs.GetString("gestureHand") == "left")
+    //     {
+    //         print("Left hand...");
+    //         if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+    //         {
+    //             print("Pls help");
+    //             pose = HandPoses.OpenHand;
+    //             helpAppeared = true;
+    //         }
+    //         else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
+    //         {
+    //             pose = HandPoses.Fist;
+    //         }
+    //         else
+    //         {
+    //             pose = HandPoses.NoPose;
+    //         }
+    //         if (pose != HandPoses.NoPose) ShowPoints();
+    //         if (pose != HandPoses.Fist)
+    //         {
+    //             deleteTimer = 0.0f;
+    //             handMenu.SetActive(true);
+    //         }
+    //         if (pose == HandPoses.NoPose)
+    //         {
+    //             deleteLoader.SetActive(false);
+    //         }
+    //     }
+    //     else if (PlayerPrefs.GetString("gestureHand") == "right")
+    //     {
+    //         print("Right hand...");
+    //         if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
+    //         {
+    //             pose = HandPoses.OpenHand;
+    //             helpAppeared = true;
+    //         }
+    //         else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
+    //         {
+    //             pose = HandPoses.Fist;
+    //         }
+    //         else
+    //         {
+    //             pose = HandPoses.NoPose;
+    //         }
+
+    //         if (pose != HandPoses.NoPose) ShowPoints();
+    //         if (pose != HandPoses.Fist)
+    //         {
+    //             deleteTimer = 0.0f;
+    //             handMenu.SetActive(true);
+    //         }
+    //         if (pose == HandPoses.NoPose)
+    //         {
+    //             deleteLoader.SetActive(false);
+    //         }
+    //     }
+
+    // }
     private void CheckGestures()
     {
+        print("Checking");
         if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
         {
+            print("Open");
             pose = HandPoses.OpenHand;
             helpAppeared = true;
+            ShowPoints();
         }
         else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
         {
@@ -293,14 +362,26 @@ public class BowlingManager : MonoBehaviour
 
     private void ShowPoints()
     {
+        print("Please show points...");
 
         if (pose == HandPoses.Fist)
         {
             if (!deleteLoader.activeSelf)
             {
-                pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-                handCenter.transform.position = pos[0];
-                handCenter.transform.LookAt(mainCam.transform.position);
+                // if (PlayerPrefs.GetString("gestureHand") == "left")
+                // {
+                    print("Show middle of left hand");
+                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                    handCenter.transform.position = pos[0];
+                    handCenter.transform.LookAt(mainCam.transform.position);
+//                }
+                // else
+                // {
+                //     print("Show middle of right hand");
+                //     pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
+                //     handCenter.transform.position = pos[0];
+                //     handCenter.transform.LookAt(mainCam.transform.position);
+                // }
             }
             if (!handCenter.activeSelf)
             {
@@ -892,6 +973,16 @@ public class BowlingManager : MonoBehaviour
                 }
                 modifierMenu.SetActive(false);
                 menuAudio.Play();
+                break;
+            case "SwapHand":
+                if (PlayerPrefs.GetString("gestureHand") == "left")
+                {
+                    PlayerPrefs.SetString("gestureHand", "right");
+                }
+                else
+                {
+                    PlayerPrefs.SetString("gestureHand", "left");
+                }
                 break;
             case "SinglePinSelector":
                 objMenu.SetActive(false);
