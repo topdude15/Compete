@@ -40,7 +40,7 @@ public class BowlingManager : MonoBehaviour
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
     public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton;
-    public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText;
+    public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
     public static GameObject menuControl;
     private GameObject bowlingBall, _realtime, pinObj, pin;
 
@@ -128,6 +128,10 @@ public class BowlingManager : MonoBehaviour
         if (PlayerPrefs.GetString("gestureHand") == null)
         {
             PlayerPrefs.SetString("gestureHand", "left");
+        }
+        else if (PlayerPrefs.GetString("gestureHand") == "right")
+        {
+            gestureHandText.text = ("Gestures:\n Right Hand");
         }
     }
     private void OnDisable()
@@ -267,141 +271,160 @@ public class BowlingManager : MonoBehaviour
             //
         }
     }
-
-    // private void CheckGestures()
-    // {
-    //     print("The user's selected hand: " + PlayerPrefs.GetString("gestureHand"));
-    //     if (PlayerPrefs.GetString("gestureHand") == "left")
-    //     {
-    //         print("Left hand...");
-    //         if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
-    //         {
-    //             print("Pls help");
-    //             pose = HandPoses.OpenHand;
-    //             helpAppeared = true;
-    //         }
-    //         else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
-    //         {
-    //             pose = HandPoses.Fist;
-    //         }
-    //         else
-    //         {
-    //             pose = HandPoses.NoPose;
-    //         }
-    //         if (pose != HandPoses.NoPose) ShowPoints();
-    //         if (pose != HandPoses.Fist)
-    //         {
-    //             deleteTimer = 0.0f;
-    //             handMenu.SetActive(true);
-    //         }
-    //         if (pose == HandPoses.NoPose)
-    //         {
-    //             deleteLoader.SetActive(false);
-    //         }
-    //     }
-    //     else if (PlayerPrefs.GetString("gestureHand") == "right")
-    //     {
-    //         print("Right hand...");
-    //         if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
-    //         {
-    //             pose = HandPoses.OpenHand;
-    //             helpAppeared = true;
-    //         }
-    //         else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
-    //         {
-    //             pose = HandPoses.Fist;
-    //         }
-    //         else
-    //         {
-    //             pose = HandPoses.NoPose;
-    //         }
-
-    //         if (pose != HandPoses.NoPose) ShowPoints();
-    //         if (pose != HandPoses.Fist)
-    //         {
-    //             deleteTimer = 0.0f;
-    //             handMenu.SetActive(true);
-    //         }
-    //         if (pose == HandPoses.NoPose)
-    //         {
-    //             deleteLoader.SetActive(false);
-    //         }
-    //     }
-
-    // }
     private void CheckGestures()
     {
-        if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+        if (PlayerPrefs.GetString("gestureHand") == "left")
         {
-            pose = HandPoses.OpenHand;
-            helpAppeared = true;
-        }
-        else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
-        {
-            pose = HandPoses.Fist;
+            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+            {
+                pose = HandPoses.OpenHand;
+                helpAppeared = true;
+            }
+            else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
+            {
+                pose = HandPoses.Fist;
+            }
+            else
+            {
+                pose = HandPoses.NoPose;
+            }
+
+            if (pose != HandPoses.NoPose) ShowPoints();
+            if (pose != HandPoses.Fist)
+            {
+                deleteTimer = 0.0f;
+                handMenu.SetActive(true);
+            }
+            if (pose == HandPoses.NoPose)
+            {
+                deleteLoader.SetActive(false);
+            }
         }
         else
         {
-            pose = HandPoses.NoPose;
+            if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
+            {
+                pose = HandPoses.OpenHand;
+                helpAppeared = true;
+            }
+            else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
+            {
+                pose = HandPoses.Fist;
+            }
+            else
+            {
+                pose = HandPoses.NoPose;
+            }
+
+            if (pose != HandPoses.NoPose) ShowPoints();
+            if (pose != HandPoses.Fist)
+            {
+                deleteTimer = 0.0f;
+                handMenu.SetActive(true);
+            }
+            if (pose == HandPoses.NoPose)
+            {
+                deleteLoader.SetActive(false);
+            }
         }
 
-        if (pose != HandPoses.NoPose) ShowPoints();
-        if (pose != HandPoses.Fist)
-        {
-            deleteTimer = 0.0f;
-            handMenu.SetActive(true);
-        }
-        if (pose == HandPoses.NoPose)
-        {
-            deleteLoader.SetActive(false);
-        }
     }
 
     private void ShowPoints()
     {
-
-        if (pose == HandPoses.Fist)
+        if (PlayerPrefs.GetString("gestureHand") == "left")
         {
-            if (!deleteLoader.activeSelf)
+
+            if (pose == HandPoses.Fist)
             {
+                if (!deleteLoader.activeSelf)
+                {
+                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                    handCenter.transform.position = pos[0];
+                    handCenter.transform.LookAt(mainCam.transform.position);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                handMenu.SetActive(false);
+                deleteTimer += Time.deltaTime;
+
+                deleteLoader.SetActive(true);
+
+                // Calculate the amount of time that you need to hold your fist to delete all objects
+                float percentComplete = deleteTimer / 3.0f;
+                loadingImage.fillAmount = percentComplete;
+
+                if (deleteTimer > 3.0f)
+                {
+                    ClearAllObjects();
+                    deleteLoader.SetActive(false);
+                }
+            }
+            else if (pose == HandPoses.OpenHand)
+            {
+                deleteLoader.SetActive(false);
+                if (!helpMenu.activeSelf)
+                {
+                    helpMenu.SetActive(true);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
                 pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
                 handCenter.transform.position = pos[0];
                 handCenter.transform.LookAt(mainCam.transform.position);
             }
-            if (!handCenter.activeSelf)
-            {
-                handCenter.SetActive(true);
-            }
-            handMenu.SetActive(false);
-            deleteTimer += Time.deltaTime;
-
-            deleteLoader.SetActive(true);
-
-            // Calculate the amount of time that you need to hold your fist to delete all objects
-            float percentComplete = deleteTimer / 3.0f;
-            loadingImage.fillAmount = percentComplete;
-
-            if (deleteTimer > 3.0f)
-            {
-                ClearAllObjects();
-                deleteLoader.SetActive(false);
-            }
         }
-        else if (pose == HandPoses.OpenHand)
+        else
         {
-            deleteLoader.SetActive(false);
-            if (!helpMenu.activeSelf)
+
+            if (pose == HandPoses.Fist)
             {
-                helpMenu.SetActive(true);
+                if (!deleteLoader.activeSelf)
+                {
+                    pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
+                    handCenter.transform.position = pos[0];
+                    handCenter.transform.LookAt(mainCam.transform.position);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                handMenu.SetActive(false);
+                deleteTimer += Time.deltaTime;
+
+                deleteLoader.SetActive(true);
+
+                // Calculate the amount of time that you need to hold your fist to delete all objects
+                float percentComplete = deleteTimer / 3.0f;
+                loadingImage.fillAmount = percentComplete;
+
+                if (deleteTimer > 3.0f)
+                {
+                    ClearAllObjects();
+                    deleteLoader.SetActive(false);
+                }
             }
-            if (!handCenter.activeSelf)
+            else if (pose == HandPoses.OpenHand)
             {
-                handCenter.SetActive(true);
+                deleteLoader.SetActive(false);
+                if (!helpMenu.activeSelf)
+                {
+                    helpMenu.SetActive(true);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
+                handCenter.transform.position = pos[0];
+                handCenter.transform.LookAt(mainCam.transform.position);
             }
-            pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-            handCenter.transform.position = pos[0];
-            handCenter.transform.LookAt(mainCam.transform.position);
         }
+
     }
     private void SetLine()
     {
@@ -963,10 +986,15 @@ public class BowlingManager : MonoBehaviour
                 if (PlayerPrefs.GetString("gestureHand") == "left")
                 {
                     PlayerPrefs.SetString("gestureHand", "right");
+                    swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+                    gestureHandText.text = ("Gestures:\n Right Hand");
+
                 }
                 else
                 {
                     PlayerPrefs.SetString("gestureHand", "left");
+                    swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
+                    gestureHandText.text = ("Gestures:\n Left Hand");
                 }
                 break;
             case "SinglePinSelector":

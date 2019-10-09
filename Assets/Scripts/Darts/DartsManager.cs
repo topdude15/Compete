@@ -21,8 +21,8 @@ public class DartsManager : MonoBehaviour
     private MLHandKeyPose[] _gestures;
     public static holdState holding = holdState.none;
     private MLInputController controller;
-    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu;
-    public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText;
+    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu, swapHandButton;
+    public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText, gestureHandText;
     public Transform dartHolder, meshHolder;
     public static GameObject menuControl;
     private GameObject dart, _realtime;
@@ -36,7 +36,7 @@ public class DartsManager : MonoBehaviour
     private Controller checkController;
     [SerializeField] private GameObject dartRealtime = null, dartboardRealtime = null;
     public Image loadingImage;
-    public Texture2D emptyCircle, check;
+    public Texture2D emptyCircle, check, handLeft, handRight;
 
     public Realtime _realtimeObject;
     private PlayerManagerModel _playerManager;
@@ -88,6 +88,14 @@ public class DartsManager : MonoBehaviour
         if (networkConnected == false)
         {
             multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        }
+        if (PlayerPrefs.GetString("gestureHand") == null)
+        {
+            PlayerPrefs.SetString("gestureHand", "left");
+        }
+        else if (PlayerPrefs.GetString("gestureHand") == "right")
+        {
+            gestureHandText.text = ("Gestures:\n Right Hand");
         }
     }
     private void OnDisable()
@@ -160,11 +168,14 @@ public class DartsManager : MonoBehaviour
                 menuControl.transform.rotation = mainCam.transform.rotation;
             }
         }
-        if (dartLimitMenu.activeSelf) {
-            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand)) {
+        if (dartLimitMenu.activeSelf)
+        {
+            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+            {
                 dartLimitMenu.SetActive(false);
             }
-            if (controller.IsBumperDown) {
+            if (controller.IsBumperDown)
+            {
                 dartLimitMenu.SetActive(false);
             }
         }
@@ -231,74 +242,158 @@ public class DartsManager : MonoBehaviour
     }
     private void CheckGestures()
     {
-        if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+        if (PlayerPrefs.GetString("gestureHand") == "left")
         {
-            pose = HandPoses.OpenHand;
-        }
-        else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
-        {
-            pose = HandPoses.Fist;
+            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
+            {
+                pose = HandPoses.OpenHand;
+                helpAppeared = true;
+            }
+            else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
+            {
+                pose = HandPoses.Fist;
+            }
+            else
+            {
+                pose = HandPoses.NoPose;
+            }
+
+            if (pose != HandPoses.NoPose) ShowPoints();
+            if (pose != HandPoses.Fist)
+            {
+                deleteTimer = 0.0f;
+                handMenu.SetActive(true);
+            }
+            if (pose == HandPoses.NoPose)
+            {
+                deleteLoader.SetActive(false);
+            }
         }
         else
         {
-            pose = HandPoses.NoPose;
-        }
+            if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
+            {
+                pose = HandPoses.OpenHand;
+                helpAppeared = true;
+            }
+            else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
+            {
+                pose = HandPoses.Fist;
+            }
+            else
+            {
+                pose = HandPoses.NoPose;
+            }
 
-        if (pose != HandPoses.NoPose) ShowPoints();
-        if (pose != HandPoses.Fist)
-        {
-            deleteTimer = 0.0f;
-            handMenu.SetActive(true);
-        }
-        if (pose == HandPoses.NoPose)
-        {
-            deleteLoader.SetActive(false);
+            if (pose != HandPoses.NoPose) ShowPoints();
+            if (pose != HandPoses.Fist)
+            {
+                deleteTimer = 0.0f;
+                handMenu.SetActive(true);
+            }
+            if (pose == HandPoses.NoPose)
+            {
+                deleteLoader.SetActive(false);
+            }
         }
 
     }
+
     private void ShowPoints()
     {
-        if (pose == HandPoses.Fist)
+        if (PlayerPrefs.GetString("gestureHand") == "left")
         {
-            if (!deleteLoader.activeSelf)
+
+            if (pose == HandPoses.Fist)
             {
+                if (!deleteLoader.activeSelf)
+                {
+                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                    handCenter.transform.position = pos[0];
+                    handCenter.transform.LookAt(mainCam.transform.position);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                handMenu.SetActive(false);
+                deleteTimer += Time.deltaTime;
+
+                deleteLoader.SetActive(true);
+
+                // Calculate the amount of time that you need to hold your fist to delete all objects
+                float percentComplete = deleteTimer / 3.0f;
+                loadingImage.fillAmount = percentComplete;
+
+                if (deleteTimer > 3.0f)
+                {
+                    ClearAllObjects();
+                    deleteLoader.SetActive(false);
+                }
+            }
+            else if (pose == HandPoses.OpenHand)
+            {
+                deleteLoader.SetActive(false);
+                if (!helpMenu.activeSelf)
+                {
+                    helpMenu.SetActive(true);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
                 pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
                 handCenter.transform.position = pos[0];
                 handCenter.transform.LookAt(mainCam.transform.position);
             }
-            if (!handCenter.activeSelf)
-            {
-                handCenter.SetActive(true);
-            }
-            handMenu.SetActive(false);
-            deleteTimer += Time.deltaTime;
-            print(deleteTimer);
-
-            deleteLoader.SetActive(true);
-            float percentComplete = deleteTimer / timeHold;
-            loadingImage.fillAmount = percentComplete;
-
-            if (deleteTimer > 3.0f)
-            {
-                ClearAllObjects();
-                deleteLoader.SetActive(false);
-            }
         }
-        else if (pose == HandPoses.OpenHand)
+        else
         {
-            deleteLoader.SetActive(false);
-            if (!helpMenu.activeSelf)
+
+            if (pose == HandPoses.Fist)
             {
-                helpMenu.SetActive(true);
+                if (!deleteLoader.activeSelf)
+                {
+                    pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
+                    handCenter.transform.position = pos[0];
+                    handCenter.transform.LookAt(mainCam.transform.position);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                handMenu.SetActive(false);
+                deleteTimer += Time.deltaTime;
+
+                deleteLoader.SetActive(true);
+
+                // Calculate the amount of time that you need to hold your fist to delete all objects
+                float percentComplete = deleteTimer / 3.0f;
+                loadingImage.fillAmount = percentComplete;
+
+                if (deleteTimer > 3.0f)
+                {
+                    ClearAllObjects();
+                    deleteLoader.SetActive(false);
+                }
             }
-            if (!handCenter.activeSelf)
+            else if (pose == HandPoses.OpenHand)
             {
-                handCenter.SetActive(true);
+                deleteLoader.SetActive(false);
+                if (!helpMenu.activeSelf)
+                {
+                    helpMenu.SetActive(true);
+                }
+                if (!handCenter.activeSelf)
+                {
+                    handCenter.SetActive(true);
+                }
+                pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
+                handCenter.transform.position = pos[0];
+                handCenter.transform.LookAt(mainCam.transform.position);
             }
-            pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-            handCenter.transform.position = pos[0];
-            handCenter.transform.LookAt(mainCam.transform.position);
         }
+
     }
     private void SetLine()
     {
@@ -508,7 +603,7 @@ public class DartsManager : MonoBehaviour
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
-        var forcePerSecondAvg = toAverage * 250;
+        var forcePerSecondAvg = toAverage * 300;
         forcePerSecond = forcePerSecondAvg;
         dart.transform.position = controller.Position;
         dart.transform.rotation = controller.Orientation;
@@ -578,7 +673,9 @@ public class DartsManager : MonoBehaviour
                     }
                 }
             }
-        } else if (!dartLimitAppeared) {
+        }
+        else if (!dartLimitAppeared)
+        {
             dartLimitAppeared = true;
             helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 8.0f;
             helpMenu.transform.rotation = mainCam.transform.rotation;
@@ -600,10 +697,16 @@ public class DartsManager : MonoBehaviour
             print("yee");
             holding = holdState.none;
             dartboardOutline.SetActive(false);
+            
+            multiplayerStatusMenu.SetActive(false);
+            multiplayerConfirmMenu.SetActive(false);
+            multiplayerMenu.SetActive(false);
+            modifierMenu.SetActive(false);
 
             if (tutorialActive)
             {
                 tutorialBumperPressed = true;
+                tutorialMenu.SetActive(false);
             }
 
             menu.SetActive(false);
@@ -815,6 +918,21 @@ public class DartsManager : MonoBehaviour
                     noGravityText.text = ("Enable Gravity");
                 }
                 menuAudio.Play();
+                break;
+            case "SwapHand":
+                if (PlayerPrefs.GetString("gestureHand") == "left")
+                {
+                    PlayerPrefs.SetString("gestureHand", "right");
+                    swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+                    gestureHandText.text = ("Gestures:\n Right Hand");
+
+                }
+                else
+                {
+                    PlayerPrefs.SetString("gestureHand", "left");
+                    swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
+                    gestureHandText.text = ("Gestures:\n Left Hand");
+                }
                 break;
             case "DartSelector":
                 objMenu.SetActive(false);

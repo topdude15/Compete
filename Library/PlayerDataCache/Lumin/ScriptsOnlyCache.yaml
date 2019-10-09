@@ -1274,7 +1274,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 2ca3b7f525ec8f56d0b8214b095d52b9
+      Hash: 5402b2fc8682da1733d81aa2294ff248
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager
@@ -1850,7 +1850,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: 3b367a05d835bc779f4a01f8dc6edc34
+      Hash: d0149da24007e632dbf33d743b5cef2c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
