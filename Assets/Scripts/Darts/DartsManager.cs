@@ -41,7 +41,7 @@ public class DartsManager : MonoBehaviour
     public Realtime _realtimeObject;
     private PlayerManagerModel _playerManager;
 
-    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, occlusionActive = true, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared;
+    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, occlusionActive = true, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
 
@@ -96,6 +96,8 @@ public class DartsManager : MonoBehaviour
         else if (PlayerPrefs.GetString("gestureHand") == "right")
         {
             gestureHandText.text = ("Gestures:\n Right Hand");
+            swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+            leftHand = false;
         }
     }
     private void OnDisable()
@@ -242,7 +244,7 @@ public class DartsManager : MonoBehaviour
     }
     private void CheckGestures()
     {
-        if (PlayerPrefs.GetString("gestureHand") == "left")
+        if (leftHand)
         {
             if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
             {
@@ -301,7 +303,7 @@ public class DartsManager : MonoBehaviour
 
     private void ShowPoints()
     {
-        if (PlayerPrefs.GetString("gestureHand") == "left")
+        if (leftHand)
         {
 
             if (pose == HandPoses.Fist)
@@ -925,13 +927,14 @@ public class DartsManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "right");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
                     gestureHandText.text = ("Gestures:\n Right Hand");
-
+                    leftHand = false;
                 }
                 else
                 {
                     PlayerPrefs.SetString("gestureHand", "left");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                     gestureHandText.text = ("Gestures:\n Left Hand");
+                    leftHand = true;
                 }
                 break;
             case "DartSelector":

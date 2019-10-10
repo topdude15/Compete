@@ -8,7 +8,7 @@ public class GetUserGesture : MonoBehaviour
     public static bool GetGesture (MLHand hand, MLHandKeyPose type) {
 		if (hand != null) {
 			if (hand.KeyPose == type) {
-				if (hand.KeyPoseConfidence > 0.8f) {
+				if (hand.KeyPoseConfidence > 0.6f) {
 					return true;
 				}
 			}

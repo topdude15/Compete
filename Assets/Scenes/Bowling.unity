@@ -4897,7 +4897,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <b>Press any button to continue</b>
+  m_Text: <b>Press the Bumper to begin!</b>
 --- !u!222 &1002185209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7383,8 +7383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.32800007, y: -0.125}
-  m_SizeDelta: {x: 261.3, y: 137.1}
+  m_AnchoredPosition: {x: -0.32800007, y: -0.185}
+  m_SizeDelta: {x: 261.3, y: 220.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1712203552
 MonoBehaviour:
@@ -7421,7 +7421,10 @@ MonoBehaviour:
 
     <b>Open Hand</b> - Brings up useful information
 
-    <b>Fist</b> - Hold Fist for 3 seconds to clear all objects'
+    <b>Fist</b> - Hold Fist for 3 seconds to clear all objects
+
+
+    <b>Switch gesture hand in Settings menu</b>'
 --- !u!222 &1712203553
 CanvasRenderer:
   m_ObjectHideFlags: 0

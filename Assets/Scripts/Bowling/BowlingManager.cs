@@ -72,7 +72,7 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check, handLeft, handRight;
 
-    private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn;
+    private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true;
 
     [SerializeField] private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab = null, tenPinRealtimePrefab = null, tenPinRealtimeNoGravityPrefab = null, bowlingBallRealtimePrefab = null;
     public Realtime _realtimeObject;
@@ -132,6 +132,8 @@ public class BowlingManager : MonoBehaviour
         else if (PlayerPrefs.GetString("gestureHand") == "right")
         {
             gestureHandText.text = ("Gestures:\n Right Hand");
+            swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+            leftHand = false;
         }
     }
     private void OnDisable()
@@ -273,7 +275,7 @@ public class BowlingManager : MonoBehaviour
     }
     private void CheckGestures()
     {
-        if (PlayerPrefs.GetString("gestureHand") == "left")
+        if (leftHand)
         {
             if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
             {
@@ -332,7 +334,7 @@ public class BowlingManager : MonoBehaviour
 
     private void ShowPoints()
     {
-        if (PlayerPrefs.GetString("gestureHand") == "left")
+        if (leftHand)
         {
 
             if (pose == HandPoses.Fist)
@@ -988,6 +990,7 @@ public class BowlingManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "right");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
                     gestureHandText.text = ("Gestures:\n Right Hand");
+                    leftHand = false;
 
                 }
                 else
@@ -995,6 +998,7 @@ public class BowlingManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "left");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                     gestureHandText.text = ("Gestures:\n Left Hand");
+                    leftHand = true;
                 }
                 break;
             case "SinglePinSelector":
