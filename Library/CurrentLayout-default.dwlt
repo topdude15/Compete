@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
-  controlID: 86
+  controlID: 31
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1035
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 87
+  controlID: 32
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 222}
   m_MaxSize: {x: 8006, y: 4022}
   vertical: 0
-  controlID: 64
+  controlID: 33
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -368,19 +368,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/trevorrose/Desktop/Compete
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 310}
-    m_SelectedIDs: 9e450000
-    m_LastClickedID: 17822
+    scrollPos: {x: 0, y: 294}
+    m_SelectedIDs: aa380000
+    m_LastClickedID: 14506
     m_ExpandedIDs: 00000000ba330000084600006c460000e6460000ee46000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: f0d6ffff52dbffff16ddffff2cdeffff9ae6ffffd4e6ffff50e9ffff5ae9ffff84e9ffff72eaffffa8ebffffdeebffff5aeeffff64eeffff8eeeffff7cefffff82f0ffffb8f0ffff34f3ffff3ef3ffff68f3ffff56f4ffff7cf5ffffb4f5ffff30f8ffff3af8ffff64f8ffff52f9ffff28fbffff7e990000069a0000349a000064ad000080b0000020b100008eb10000b4b100005ab5000070b50000a4b5000044bf0000b2bf0000d8bf0000
+      m_ExpandedIDs: cab7ffff04b8ffff7cbaffff86baffffb0baffff9ebbffff40c0ffff76c0fffff2c2fffffcc2ffff26c3ffff14c4ffff18c6ffff4ec6ffffcac8ffffd4c8fffffec8ffffecc9ffff10cdffff46cdffffbecfffffc8cffffff2cfffffe0d0ffff70d4ffffa6d4ffff22d7ffff2cd7ffff56d7ffff44d8ffff44d9ffff7ad9fffff6dbffff00dcffff2adcffff18ddffff26deffff5cdeffffd8e0ffffe2e0ffff0ce1fffffae1fffffee2ffff34e3ffffb0e5ffffbae5ffffe4e5ffffd2e6ffffdce7ffff12e8ffff8eeaffff98eaffffc2eaffffb0ebffffb4ecffffeaecffff66efffff70efffff9aefffff88f0ffff94f1ffffcef1ffffb6f2ffffc0f2ffffe8f2ffffcaf3ffffa0f5ffffd8f5ffff54f8ffff5ef8ffff88f8ffff76f9ffff28fbffff380b0100fe0d0100c20f0100f82d0100be30010082320100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -594,9 +594,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.7879982, y: 0, z: 0}
+    m_Target: {x: 100, y: 100.1125, z: 100}
     speed: 2
-    m_Value: {x: 0.7879963, y: -0.0000011748898, z: -0.00000020252855}
+    m_Value: {x: -0.037363842, y: 0.06887099, z: -0.054599524}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -625,13 +625,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.00048341427, y: 0.9978928, z: -0.064453505, w: 0.0074843178}
+    m_Target: {x: 0.004110032, y: 0.9948095, z: -0.09128, w: 0.044796623}
     speed: 2
-    m_Value: {x: 0.00048341416, y: 0.99789256, z: -0.06445349, w: 0.007484316}
+    m_Value: {x: -0.6374152, y: 0.1743063, z: 0.7351733, w: 0.15112755}
   m_Size:
-    m_Target: 0.53831017
+    m_Target: 0.21013811
     speed: 2
-    m_Value: 0.23831016
+    m_Value: 2.0295062
   m_Ortho:
     m_Target: 0
     speed: 2

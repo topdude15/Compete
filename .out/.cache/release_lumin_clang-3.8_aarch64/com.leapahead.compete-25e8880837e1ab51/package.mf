@@ -2,16 +2,16 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "2c47274e29bb6d001f5a2fcd98229299973252d8",
+   "hash": "f3fcd0cf43cda01de6e2dac361c6e0e527d08023",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3814784,
+   "size": 3815048,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "9484da96854e5db5335b1fb1278d1bd39fdb82f7",
+   "hash": "969fe1ca7ea3c4d0ed045efe1df7eec889d970d2",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63827360,
+   "size": 63832664,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -22,9 +22,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "af467189cbf22542ffed92cd6b2fbfe3f135a888",
+   "xfrm_hash": "46ec62799e4a64040ceff98168b7fb85751ca7ee",
    "xfrm_path": "/Users/trevorrose/Desktop/Compete/.out/.cache/release_lumin_clang-3.8_aarch64/com.leapahead.compete-25e8880837e1ab51/libil2cpp.so-1d29f3ad7f17fa08",
-   "xfrm_size": 63828118
+   "xfrm_size": 63833422
   },
   {
    "compression": 8,
@@ -207,7 +207,7 @@
   },
   {
    "compression": 8,
-   "hash": "8790a596593120b60402b39cbf14ab09e9ee41bb",
+   "hash": "28359aea02f89da3e724ffbdad756d7058c93ea8",
    "pkgpath": "Data/globalgamemanagers",
    "size": 92696,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
@@ -242,16 +242,16 @@
   },
   {
    "compression": 8,
-   "hash": "5056cf113f1f8449ebb7e445bb5159f25fab591e",
+   "hash": "03af5663a4b01f717a8a0af9aea9a1e0da959030",
    "pkgpath": "Data/level2",
-   "size": 65288,
+   "size": 65336,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {
    "compression": 8,
-   "hash": "478f49a85f390a4e424f08835a9c09c0b52cc7e9",
+   "hash": "a327d36f7d9b983440c50b8e55ca694d6ee6f5a7",
    "pkgpath": "Data/level3",
-   "size": 59128,
+   "size": 59168,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {
@@ -263,7 +263,7 @@
   },
   {
    "compression": 8,
-   "hash": "81c65e3a098186991287ffa3c8ae96229e0d1b22",
+   "hash": "c638fba4d4168112face97de7ac299d9c844ffc3",
    "pkgpath": "Data/resources.assets",
    "size": 2611680,
    "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/resources.assets"

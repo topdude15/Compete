@@ -15,10 +15,13 @@ public class PinFallen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.rotation.x > -20 && transform.rotation.x < -160) && pinFallen == false) {
-            pinFallen = true;
-            bManager.pinsFallen += 1;
-            print(bManager.pinsFallen);
+        if (!pinFallen)
+        {
+            if (Vector3.Angle(transform.up, Vector3.up) > 135 || Vector3.Angle(transform.up, Vector3.up) < 45 || Vector3.Angle(transform.forward, Vector3.forward) > 135 || Vector3.Angle(transform.forward, Vector3.forward) < 45) {
+                pinFallen = true;
+                bManager.pinsFallen += 1;
+                bManager.UpdateFallen();
+            }
         }
     }
 }

@@ -748,6 +748,7 @@ public class BowlingManager : MonoBehaviour
             totalObjs += objectstotal.childCount;
         }
         pinLimitText.text = "Pin Limit:\n " + totalObjs + " of 100";
+        pinsFallenText.text = ("Pins Fallen:\n" + pinsFallen + " of " + totalObjs);
     }
 
     private void ClearAllObjects()
@@ -767,6 +768,8 @@ public class BowlingManager : MonoBehaviour
                 GameObject.Destroy(child.gameObject);
             }
         }
+        pinsFallen = 0;
+        UpdateFallen();
 
         totalObjs = 0;
         GetCount();
@@ -1031,5 +1034,8 @@ public class BowlingManager : MonoBehaviour
             rigidbody.AddForce(forcePerSecond);
             forcePerSecond = Vector3.zero;
         }
+    }
+    public void UpdateFallen() {
+        pinsFallenText.text = ("Pins Fallen:\n" + pinsFallen + " of " + totalObjs);
     }
 }
