@@ -135,6 +135,8 @@ public class BowlingManager : MonoBehaviour
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             leftHand = false;
         }
+        // _realtime = GameObject.Find("Realtime + VR Player");
+        // _realtime.GetComponent<Realtime>().Connect("200Bowling");
     }
     private void OnDisable()
     {
@@ -1035,7 +1037,8 @@ public class BowlingManager : MonoBehaviour
             forcePerSecond = Vector3.zero;
         }
     }
-    public void UpdateFallen() {
+    public void UpdateFallen()
+    {
         pinsFallenText.text = ("Pins Fallen:\n" + pinsFallen + " of " + totalObjs);
     }
 }

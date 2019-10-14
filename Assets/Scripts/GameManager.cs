@@ -12,27 +12,17 @@ public class GameManager : MonoBehaviour {
 	private PrivilegeRequester _privilegeRequester;
 	// Use this for initialization
 
-	void Awake() {
-
-
-
-
-
-
-
-
-
-		
-        // _privilegeRequester = GetComponent<PrivilegeRequester>();
-        // if (_privilegeRequester == null)
-        //     {
-        //         // Handle if the Privilege Requester is missing from the scene
-        //     }
-        // // Could have also been set via the editor. 
-        // _privilegeRequester.Privileges = new[] { 
-        //     MLRuntimeRequestPrivilegeId.AudioCaptureMic
-        // };
-        // _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
+	void Awake() {		
+        _privilegeRequester = GetComponent<PrivilegeRequester>();
+        if (_privilegeRequester == null)
+            {
+                // Handle if the Privilege Requester is missing from the scene
+            }
+        // Could have also been set via the editor. 
+        _privilegeRequester.Privileges = new[] { 
+            MLRuntimeRequestPrivilegeId.AudioCaptureMic
+        };
+        _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
     } 
 	void Start () {
 		// Start Magic Leap controller input
@@ -47,13 +37,13 @@ public class GameManager : MonoBehaviour {
 		laserLineRenderer.SetPositions(initLaserPositions);
 
     }
-	// private void OnDestroy() {
-	// 	// Stop Magic Leap controller input
-	// 	MLInput.Stop();
-	// 	if (_privilegeRequester != null) {         
-    //         _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
-    //     }
-    // }
+	private void OnDestroy() {
+		// Stop Magic Leap controller input
+		MLInput.Stop();
+		if (_privilegeRequester != null) {         
+            _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
+        }
+    }
 	
 	private void OnDisable() {
 		//MLInput.Stop();

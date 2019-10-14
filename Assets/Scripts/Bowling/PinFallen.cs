@@ -17,7 +17,7 @@ public class PinFallen : MonoBehaviour
     {
         if (!pinFallen)
         {
-            if (Vector3.Angle(transform.up, Vector3.up) > 135 || Vector3.Angle(transform.up, Vector3.up) < 45 || Vector3.Angle(transform.forward, Vector3.forward) > 135 || Vector3.Angle(transform.forward, Vector3.forward) < 45) {
+            if (Mathf.Abs(Vector3.Angle(transform.up, Vector3.up)) >= 100 || Mathf.Abs(Vector3.Angle(transform.up, Vector3.up)) <= 80 || Mathf.Abs(Vector3.Angle(transform.forward, Vector3.forward)) >= 100 || Mathf.Abs(Vector3.Angle(transform.forward, Vector3.forward)) <= 80) {
                 pinFallen = true;
                 bManager.pinsFallen += 1;
                 bManager.UpdateFallen();

@@ -1595,7 +1595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &309276524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1756,7 +1756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &347885643
 Transform:
   m_ObjectHideFlags: 0
@@ -3787,12 +3787,11 @@ MonoBehaviour:
   check: {fileID: 2800000, guid: 2a46b6277a1a740489bce1ca6c0c598e, type: 3}
   handLeft: {fileID: 2800000, guid: 7c8e4cc8d686bcd4c9f9f7720365b9be, type: 3}
   handRight: {fileID: 2800000, guid: 8dfde51ab6e12bc47a71c90b36fe6416, type: 3}
-  bowlingPinRealtimePrefab: {fileID: 9152801026537424392, guid: 041f277b39f8c4ad19f95f20517d9aa2,
+  bowlingPinRealtimePrefab: {fileID: 191767625026366946, guid: 041f277b39f8c4ad19f95f20517d9aa2,
     type: 3}
   bowlingPinRealtimeNoGravityPrefab: {fileID: 3401908912323475151, guid: 3e66e0c19606a455ea5fcfdbbffa958e,
     type: 3}
-  tenPinRealtimePrefab: {fileID: 2007975456240281067, guid: b266619e195b04949bc785fb817c8ed0,
-    type: 3}
+  tenPinRealtimePrefab: {fileID: 0}
   tenPinRealtimeNoGravityPrefab: {fileID: 5629551684178994460, guid: 689224bdc24114c8696b05d10ea5cedf,
     type: 3}
   bowlingBallRealtimePrefab: {fileID: 5331381050355060133, guid: 629f822d099dd47f59638169407eea6b,
