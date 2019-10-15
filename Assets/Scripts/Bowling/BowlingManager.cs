@@ -135,8 +135,8 @@ public class BowlingManager : MonoBehaviour
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             leftHand = false;
         }
-        // _realtime = GameObject.Find("Realtime + VR Player");
-        // _realtime.GetComponent<Realtime>().Connect("200Bowling");
+        _realtime = GameObject.Find("Realtime + VR Player");
+        _realtime.GetComponent<Realtime>().Connect("200Bowling");
     }
     private void OnDisable()
     {
@@ -617,6 +617,7 @@ public class BowlingManager : MonoBehaviour
                         if (_realtimeObject.connected)
                         {
                             pin = Realtime.Instantiate(tenPinRealtimePrefab.name, endPosition, tenPinOrientation.transform.rotation, true, false, true, null);
+                            print("PIN: " + pin);
                             pin.transform.parent = pinHolder;
                             GetCount();
                         }
@@ -714,6 +715,11 @@ public class BowlingManager : MonoBehaviour
             // Spawn the ball away from the player and set the correct color
             bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), tenPinOrientation.transform.rotation);
             BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
+        }
+        if (_realtimeObject.connected)
+        {
+            bowlingBall.GetComponent<RealtimeView>().RequestOwnership();
+            bowlingBall.GetComponent<RealtimeTransform>().RequestOwnership();
         }
         // Stop the ball moving on its own while holding
         var rigidbody = bowlingBall.GetComponent<Rigidbody>();

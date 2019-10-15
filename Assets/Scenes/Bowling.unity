@@ -3791,10 +3791,11 @@ MonoBehaviour:
     type: 3}
   bowlingPinRealtimeNoGravityPrefab: {fileID: 3401908912323475151, guid: 3e66e0c19606a455ea5fcfdbbffa958e,
     type: 3}
-  tenPinRealtimePrefab: {fileID: 0}
+  tenPinRealtimePrefab: {fileID: 3450753391586632658, guid: b266619e195b04949bc785fb817c8ed0,
+    type: 3}
   tenPinRealtimeNoGravityPrefab: {fileID: 5629551684178994460, guid: 689224bdc24114c8696b05d10ea5cedf,
     type: 3}
-  bowlingBallRealtimePrefab: {fileID: 5331381050355060133, guid: 629f822d099dd47f59638169407eea6b,
+  bowlingBallRealtimePrefab: {fileID: 8338323883691090031, guid: 629f822d099dd47f59638169407eea6b,
     type: 3}
   _realtimeObject: {fileID: 454382596}
   menuAudio: {fileID: 798249546}
