@@ -181,6 +181,7 @@
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewComponentsModel.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewConfiguration.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewModel.cs" />
+     <Compile Include="Assets\PlayerLocationSet.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallCollider.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallVelocity.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingColorLoader.cs" />
@@ -209,6 +210,7 @@
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\UIGradientUtils.cs" />
      <Compile Include="Assets\Scripts\UITextGradient.cs" />
+     <Compile Include="Assets\SetPinParent.cs" />
      <None Include="Assets\MagicLeap\BackgroundMusicExample\readme.txt" />
      <None Include="Assets\MagicLeap\Examples\Shaders\PointCloud.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

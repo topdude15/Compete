@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.MagicLeap;
+using UnityEngine.XR;
 
 public class BowlingManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class BowlingManager : MonoBehaviour
         single,
         tenPin,
         ball,
-        track
+        track,
+        locationPoint
     }
     public enum menuState
     {
@@ -39,7 +41,7 @@ public class BowlingManager : MonoBehaviour
     public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton;
+    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj;
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
     public static GameObject menuControl;
     private GameObject bowlingBall, _realtime, pinObj, pin;
@@ -72,7 +74,7 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check, handLeft, handRight;
 
-    private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true;
+    private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false;
 
     [SerializeField] private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab = null, tenPinRealtimePrefab = null, tenPinRealtimeNoGravityPrefab = null, bowlingBallRealtimePrefab = null;
     public Realtime _realtimeObject;
@@ -135,8 +137,13 @@ public class BowlingManager : MonoBehaviour
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             leftHand = false;
         }
+#if UNITY_EDITOR
         _realtime = GameObject.Find("Realtime + VR Player");
         _realtime.GetComponent<Realtime>().Connect("200Bowling");
+#endif
+        locationPointObj.SetActive(true);
+        holding = holdState.locationPoint;
+
     }
     private void OnDisable()
     {
@@ -443,6 +450,17 @@ public class BowlingManager : MonoBehaviour
             endPosition = controller.Position + (control.transform.forward * rayHit.distance);
             laserLineRenderer.SetPosition(1, endPosition);
 
+            if (holding == holdState.locationPoint)
+            {
+                if (setLocationPos)
+                {
+                    locationPointObj.transform.LookAt(endPosition);
+                }
+                else
+                {
+                    locationPointObj.transform.position = endPosition;
+                }
+            }
             string objHit = rayHit.transform.gameObject.name;
             switch (objHit)
             {
@@ -602,7 +620,7 @@ public class BowlingManager : MonoBehaviour
                     if (_realtimeObject.connected)
                     {
                         pin = Realtime.Instantiate(bowlingPinRealtimePrefab.name, endPosition, orientationCube.transform.rotation, true, false, true, null);
-                        pin.transform.parent = pinHolder;
+                        // pin.transform.parent = pinHolder;
                         GetCount();
                     }
                     else
@@ -856,6 +874,22 @@ public class BowlingManager : MonoBehaviour
         if (holding == holdState.ball)
         {
             holdingBall = true;
+        }
+        else if (holding == holdState.locationPoint)
+        {
+            if (setLocationPos)
+            {
+                holding = holdState.none;
+                pinHolder.transform.rotation = locationPointObj.transform.rotation;
+                locationPointObj.SetActive(false);
+            }
+            else
+            {
+                InputTracking.Recenter();
+                setLocationPos = true;
+                pinHolder.transform.position = locationPointObj.transform.position;
+            }
+            //holding = holdState.none;
         }
 
         SpawnObject();

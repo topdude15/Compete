@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:ml="magicleap" ml:package="com.leapahead.competeconcept" ml:version_code="30" ml:version_name="Compete_Game">
+<manifest xmlns:ml="magicleap" ml:package="com.leapahead.competeconcept" ml:version_code="31" ml:version_name="Compete_Game">
   <application ml:sdk_version="1.0" ml:visible_name="Compete" ml:min_api_level="6">
     <component ml:binary_name="bin/Player.elf" ml:name=".fullscreen" ml:type="Fullscreen" ml:visible_name="Compete">
       <icon ml:model_folder="Icon/Model" ml:portal_folder="Icon/Portal" />

@@ -27,10 +27,11 @@ ScriptsOnlyBuild:
     - PinCollision
     - PinFallen
     - PlaneExtract
+    - PlayerLocationSet
     - PlayerSync
+    - SetPinParent
     - UITextGradient
     - UnityEngine.XR.MagicLeap.ControllerConnectionHandler
-    - UnityEngine.XR.MagicLeap.MLPersistentBehavior
     - UnityEngine.XR.MagicLeap.MagicLeapSceneOptimizer
     - UnityEngine.XR.MagicLeap.PrivilegeDeniedError
     - UnityEngine.XR.MagicLeap.PrivilegeRequester
@@ -167,8 +168,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12438}
-    - Class: 114
       Script: {instanceID: 12460}
     - Class: 114
       Script: {instanceID: 12462}
@@ -178,6 +177,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12802}
     - Class: 114
       Script: {instanceID: 12946}
+    - Class: 114
+      Script: {instanceID: 50436}
+    - Class: 114
+      Script: {instanceID: 56554}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -285,6 +288,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12856}
     - Class: 114
       Script: {instanceID: 13056}
+    - Class: 114
+      Script: {instanceID: 50436}
+    - Class: 114
+      Script: {instanceID: 56554}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -495,6 +502,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12856}
     - Class: 114
       Script: {instanceID: 12918}
+    - Class: 114
+      Script: {instanceID: 50436}
+    - Class: 114
+      Script: {instanceID: 56554}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1276,7 +1287,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 5402b2fc8682da1733d81aa2294ff248
+      Hash: 4b5652993977a67580c0addc938cf8e9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager
@@ -1856,6 +1867,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerLocationSet
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SetPinParent
   platform: 39
   scenePathNames:
   - Assets/Scenes/Meshing.unity
