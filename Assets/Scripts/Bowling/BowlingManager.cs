@@ -92,7 +92,7 @@ public class BowlingManager : MonoBehaviour
         // If the user is new, open the tutorial menu
         CheckNewUser();
         // Start input from Control and Headpose
-        MLInput.Start();
+       // MLInput.Start();
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
@@ -125,7 +125,7 @@ public class BowlingManager : MonoBehaviour
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
         {
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>No Internet</color>");
         }
         if (PlayerPrefs.GetString("gestureHand") == null)
         {
@@ -163,11 +163,11 @@ public class BowlingManager : MonoBehaviour
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
         {
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>No Internet</color>");
         }
         else
         {
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
         }
     }
 
@@ -235,7 +235,7 @@ public class BowlingManager : MonoBehaviour
                     connectedPlayersText.text = ("Connected Players: " + connectedPlayers);
                 }
             }
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='green'>Connected</color>");
+            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='green'>Connected</color>");
         }
         Vector3 pos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         helpMenu.transform.position = Vector3.SlerpUnclamped(helpMenu.transform.position, pos, menuMoveSpeed);
@@ -568,7 +568,7 @@ public class BowlingManager : MonoBehaviour
                                     // Connect to Realtime room
                                     ClearAllObjects();
                                     _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
-                                    multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+                                    multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
                                     multiplayerMenu.SetActive(false);
                                     multiplayerStatusMenu.SetActive(true);
                                     multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
@@ -773,8 +773,8 @@ public class BowlingManager : MonoBehaviour
             Transform objectstotal = bowlObj.GetComponentInChildren<Transform>();
             totalObjs += objectstotal.childCount;
         }
-        pinLimitText.text = "Pin Limit:\n " + totalObjs + " of 100";
-        pinsFallenText.text = ("Pins Fallen:\n" + pinsFallen + " of " + totalObjs);
+        pinLimitText.text = "<b>Pin Limit:</b>\n " + totalObjs + " of 100";
+        pinsFallenText.text = ("<b>Pins Fallen:</b>\n" + pinsFallen + " of " + totalObjs);
     }
 
     private void ClearAllObjects()
@@ -988,7 +988,7 @@ public class BowlingManager : MonoBehaviour
             case "LeaveRoom":
                 joinedLobby = false;
                 _realtime.GetComponent<Realtime>().Disconnect();
-                multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+                multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
                 multiplayerStatusMenu.SetActive(false);
                 menuAudio.Play();
                 break;
@@ -1079,6 +1079,6 @@ public class BowlingManager : MonoBehaviour
     }
     public void UpdateFallen()
     {
-        pinsFallenText.text = ("Pins Fallen:\n" + pinsFallen + " of " + totalObjs);
+        pinsFallenText.text = ("<b>Pins Fallen:</b> \n" + pinsFallen + " of " + totalObjs);
     }
 }

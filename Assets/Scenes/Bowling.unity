@@ -780,7 +780,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Pin Limit:
+  m_Text: '<b>Pin Limit:</b>
 
     0 of 100'
 --- !u!222 &133005060
@@ -2044,7 +2044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &373662811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2061,8 +2061,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.32}
-  m_SizeDelta: {x: 212.8, y: 56.9}
+  m_AnchoredPosition: {x: 0, y: 2.278}
+  m_SizeDelta: {x: 230.52, y: 56.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &373662812
 MonoBehaviour:
@@ -2095,7 +2095,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Multiplayer Status: <color=''red''>Not Connected</color>'
+  m_Text: <b>Multiplayer Status:</b> <color='red'>Not Connected</color>
 --- !u!222 &373662813
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2384,7 +2384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &482161006
 RectTransform:
   m_ObjectHideFlags: 0

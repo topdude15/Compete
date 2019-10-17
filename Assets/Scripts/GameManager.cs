@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
     }
 	private void OnDestroy() {
 		// Stop Magic Leap controller input
-		MLInput.Stop();
+		//MLInput.Stop();
 		if (_privilegeRequester != null) {         
             _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
         }
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 		//MLInput.Stop();
 	}
 	private void OnApplicationPause(bool pause) {
-		MLInput.Stop();
+		//MLInput.Stop();
 	}
 	
 	// Update is called once per frame
@@ -92,14 +92,14 @@ public class GameManager : MonoBehaviour {
 				// MLInput.Stop();
 				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				SceneManager.LoadScene("Bowling", LoadSceneMode.Single);
-				SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 //SceneManager.UnloadSceneAsync("Main");
 			} else if (rayHit.collider.name == "Dartboard" && controller.TriggerValue >= 0.9f) {
 				// If the dartboard is being pointed at and the trigger is held, load the darts scene
 			    // MLInput.Stop();
 				if (!pressedContinue) {
 					SceneManager.LoadScene("Darts", LoadSceneMode.Single);
-					SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+					//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				}
                // SceneManager.UnloadSceneAsync("Main");
             }  else if (rayHit.collider.name == "Golf" && controller.TriggerValue >= 0.9f) {

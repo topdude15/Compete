@@ -2,20 +2,20 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "956dfeb7ebf4bb1ca9511649d8b68b2625e0f4a3",
+   "hash": "037b76dfb56981f6c93a184e61bd104f317f6941",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 3815908,
+   "size": 3815428,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "65d653e215c3caf1c4e6e11008e342121e38372a",
+   "hash": "b03ede5b7b77422b9fbc4f06d74a134519bdb328",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 63840672,
+   "size": 63832416,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -23,9 +23,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "3fd5987ba133a6f9832a6e401528ea154dd43fcf",
+   "xfrm_hash": "dd99a9902309d64afb0bd1ca1012918d2e85a2e0",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 63841437
+   "xfrm_size": 63833174
   },
   {
    "compression": 8,
@@ -35,7 +35,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -43,9 +43,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "e240e5896cdc163f5f3bf53034303f042c760421",
+   "xfrm_hash": "9c1d7393328164d6b7279c6d46b3f642cca94ea1",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\AudioPluginMSASpatializer.so-e9fc14733439f9bd",
-   "xfrm_size": 283213
+   "xfrm_size": 283206
   },
   {
    "compression": 8,
@@ -97,7 +97,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -105,9 +105,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "654feced8e13b5c358d8ccc464446df53557550f",
+   "xfrm_hash": "404b8fa59e8e49717a1a131304b05bb48ae0f748",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\UnityMagicLeap.so-e9fc14733439f9bd",
-   "xfrm_size": 3074021
+   "xfrm_size": 3074014
   },
   {
    "compression": 8,
@@ -117,7 +117,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libRealtimeClient.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -125,9 +125,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "732c3b8464adecd35644a305a3aeec34d8b5e468",
+   "xfrm_hash": "c4c5d92ae8fb347c797fc6675ef7962c23d2173b",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libRealtimeClient.so-e9fc14733439f9bd",
-   "xfrm_size": 7298493
+   "xfrm_size": 7298486
   },
   {
    "compression": 8,
@@ -137,7 +137,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -145,9 +145,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "739726adcb66e5a5722c425716072f7f559a8d48",
+   "xfrm_hash": "59b50930e6dd32d82c1ee6c9eac9eefd92f634ca",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libml_camera_plugin.so-e9fc14733439f9bd",
-   "xfrm_size": 14949
+   "xfrm_size": 14942
   },
   {
    "compression": 8,
@@ -157,7 +157,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -165,9 +165,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "261d8eb7c11c10789bc4d606dbb75166c04560c3",
+   "xfrm_hash": "2b4f3dc514c9a1f82bc7b617a8ede932613f47df",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libml_mediaplayer_plugin.so-e9fc14733439f9bd",
-   "xfrm_size": 68389
+   "xfrm_size": 68382
   },
   {
    "compression": 8,
@@ -213,9 +213,9 @@
   },
   {
    "compression": 8,
-   "hash": "a73cf21e57a447e5929f8f68a766ac3dcb70116f",
+   "hash": "ae50aef877f1f2d54923e47cb444c15917eaa381",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 93352,
+   "size": 93288,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
@@ -248,16 +248,16 @@
   },
   {
    "compression": 8,
-   "hash": "b9e78339e21d4c61d0d881288c1a8debf80379f2",
+   "hash": "dfea62f12b7bd292b957eb484b077838850b5e39",
    "pkgpath": "Data/level2",
-   "size": 66144,
+   "size": 66160,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {
    "compression": 8,
-   "hash": "ebfe519aa2c4b06545872b29132458b600dd63d5",
+   "hash": "e68205bda3210c2f994c2ff6bf8211466da17ca4",
    "pkgpath": "Data/level3",
-   "size": 59168,
+   "size": 59184,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {
@@ -269,9 +269,9 @@
   },
   {
    "compression": 8,
-   "hash": "816dcffd7de63fdc715c627bda401b58148525a3",
+   "hash": "b065eddbdf5879b337e94a5e7ba4d1f90b3864ff",
    "pkgpath": "Data/resources.assets",
-   "size": 2612032,
+   "size": 2611960,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
   },
   {
@@ -318,9 +318,9 @@
   },
   {
    "compression": 8,
-   "hash": "dd475044488ece3e988eb4b73a872497f3ce3328",
+   "hash": "c504ac16bbe9ed83d745e499e9202528abace1a0",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 4991072,
+   "size": 4991056,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
@@ -339,7 +339,7 @@
   },
   {
    "compression": 8,
-   "hash": "75734fe83a5ff322aaa187dc1da816a86047ab77",
+   "hash": "658a5da887d5275665c53c50f2077b2e6efd91c0",
    "pkgpath": "Data/sharedassets3.assets",
    "size": 9512,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
@@ -422,7 +422,7 @@
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Player.elf",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -430,9 +430,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "9d7d2e64cec88e9a9281ad384efc3397e552aa13",
+   "xfrm_hash": "6f77ed2dd66fc235076c9265ec1315221a0efc7f",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\Player.elf-064277d9b5950a96",
-   "xfrm_size": 20719797
+   "xfrm_size": 20719790
   },
   {
    "compression": 8,
@@ -442,7 +442,7 @@
    "src": "C:/Users/topdu/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so",
    "xfrm_flags": {
     "signed": {
-     "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+     "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
     },
     "taildata": {
      "debuggable": true,
@@ -450,9 +450,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "771222f09373eefc5dab8df5a036b02d6b5c2a2f",
+   "xfrm_hash": "6584b96d9713b9f2ac334fe81bb661487d489298",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libc++_shared.so-fdb8470b765bbcaf",
-   "xfrm_size": 977597
+   "xfrm_size": 977590
   },
   {
    "compression": 8,
@@ -462,22 +462,22 @@
    "src": "C:\\Users\\topdu\\Desktop\\Compete\\Temp\\StagingArea\\manifest.xml",
    "xfrm_flags": {
     "manifest": {
-     "cert_hash": "e7290432c984ae8fd548aedfab68f6a09d653c53",
-     "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665.992184d3-ab89-4cb2-aa8c-8ef3d4e5e11d"
+     "cert_hash": "f16937d9e2c1e78903c616aeddd2f90627de7f3b",
+     "developer_id": "1bf1ba1a-ddcc-4dfc-bccd-ebfeaab6b665"
     }
    },
-   "xfrm_hash": "f2b4227795461276b65912683c1eee49af228c58",
+   "xfrm_hash": "f2f95482b828ae531699279321e2c138de13e074",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\manifest.xml-064277d9b5950a96",
-   "xfrm_size": 938
+   "xfrm_size": 901
   }
  ],
  "pkgflags": {
   "signed": {
-   "cert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert"
+   "cert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert"
   },
   "taildata": {
    "debuggable": true,
-   "devcert": "C:\\Users\\topdu\\Desktop\\Keys\\Compete_PrivateMLWorld\\compete-992184d3.cert",
+   "devcert": "C:\\Users\\topdu\\Desktop\\privatekey\\theportalpc.cert",
    "sbox": "USER",
    "version": 3
   }

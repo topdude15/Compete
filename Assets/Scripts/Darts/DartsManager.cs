@@ -52,13 +52,10 @@ public class DartsManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-
         print("Buttonz");
         CheckNewUser();
 
         //MLInput.Start();
-        print("Checking input..." + MLInput.IsStarted);
 
         print("Getting controller..");
         controller = MLInput.GetController(0);
@@ -556,7 +553,8 @@ public class DartsManager : MonoBehaviour
                 if (_realtimeObject.connected && realtimeDartboard == false)
                 {
                     realtimeDartboard = true;
-                    dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, endPosition, new Quaternion(0, 0, 0, 0), true, false, true, null);
+                    dartboardHolder.transform.position = new Vector3(100,100,100);
+                    dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, new Vector3(100, 100, 100), new Quaternion(0, 0, 0, 0), true, false, true, null);
                     dartboard = dartboardHolder.transform.GetChild(0).gameObject;
                     var dartboardCollider = dartboard.GetComponent<MeshCollider>();
                     dartboardCollider.enabled = false;
@@ -699,7 +697,7 @@ public class DartsManager : MonoBehaviour
             print("yee");
             holding = holdState.none;
             dartboardOutline.SetActive(false);
-            
+
             multiplayerStatusMenu.SetActive(false);
             multiplayerConfirmMenu.SetActive(false);
             multiplayerMenu.SetActive(false);
@@ -906,6 +904,7 @@ public class DartsManager : MonoBehaviour
                 joinedLobby = false;
                 _realtime.GetComponent<Realtime>().Disconnect();
                 multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+                dartboardHolder = GameObject.Find("DartboardHolder");
                 multiplayerStatusMenu.SetActive(false);
                 break;
             case "NoGravity":
