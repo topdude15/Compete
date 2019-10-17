@@ -210,6 +210,8 @@
      <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\UIGradientUtils.cs" />
      <Compile Include="Assets\Scripts\UITextGradient.cs" />
+     <Compile Include="Assets\Scripts\Utility\ColorSync.cs" />
+     <Compile Include="Assets\Scripts\Utility\ColorSyncModel.cs" />
      <Compile Include="Assets\SetPinParent.cs" />
      <None Include="Assets\MagicLeap\BackgroundMusicExample\readme.txt" />
      <None Include="Assets\MagicLeap\Examples\Shaders\PointCloud.shader" />
