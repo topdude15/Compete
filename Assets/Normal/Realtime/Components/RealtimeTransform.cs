@@ -22,6 +22,8 @@ namespace Normal.Realtime {
         private double _stopExtrapolatingAtRoomTime = -1.0; // TODO: Convert to float once we have a float value for room time since start
         
         private Rigidbody _rigidbody;
+        
+        public Transform ParentTransform;
     
         // Unity events
         private void Awake() {
@@ -63,11 +65,19 @@ namespace Normal.Realtime {
     
             // We own this RealtimeTransform. Update the model to reflect its current position.
             if (_rigidbody != null) {
-                if (_syncPosition) _model.position        = _rigidbody.position;
-                if (_syncRotation) _model.rotation        = _rigidbody.rotation;
+                if (ParentTransform != null) {
+                    if (_syncPosition) _model.position        = transform.localPosition;
+                    if (_syncRotation) _model.rotation        = transform.localRotation;
+                    if (_syncPosition) _model.velocity        = ParentTransform.InverseTransformVector(_rigidbody.velocity);
+                    if (_syncRotation) _model.angularVelocity = ParentTransform.InverseTransformVector(_rigidbody.angularVelocity);
+                } else {
+                    if (_syncPosition) _model.position        = _rigidbody.position;
+                    if (_syncRotation) _model.rotation        = _rigidbody.rotation;
+                    if (_syncPosition) _model.velocity        = _rigidbody.velocity;
+                    if (_syncRotation) _model.angularVelocity = _rigidbody.angularVelocity;
+                }
+                
                 if (_syncScale)    _model.scale           =  transform.localScale;
-                if (_syncPosition) _model.velocity        = _rigidbody.velocity;
-                if (_syncRotation) _model.angularVelocity = _rigidbody.angularVelocity;
                 //if (_shouldSyncScale) _model.scaleVelocity   =  // ...
                 _model.useGravity  = _rigidbody.useGravity;
                 _model.isKinematic = _rigidbody.isKinematic;
@@ -200,15 +210,15 @@ namespace Normal.Realtime {
             // If the model is owned by someone, we extrapolate & lerp.
             if (_model.ownerID != -1) {
                 // Snapshot
-                Vector3        position = _syncPosition ? _model.position : _rigidbody.position;
-                Quaternion     rotation = _syncRotation ? _model.rotation : _rigidbody.rotation;
+                Vector3        position = _syncPosition ? _model.position : (ParentTransform != null ? transform.localPosition : _rigidbody.position);
+                Quaternion     rotation = _syncRotation ? _model.rotation : (ParentTransform != null ? transform.localRotation : _rigidbody.rotation);
                 Vector3           scale = _syncScale    ? _model.scale    :  transform.localScale;
-                Vector3        velocity = _model.velocity;
-                Vector3 angularVelocity = _model.angularVelocity;
+                Vector3        velocity = ParentTransform != null ? ParentTransform.TransformVector(_model.velocity) : _model.velocity;
+                Vector3 angularVelocity = ParentTransform != null ? ParentTransform.TransformVector(_model.angularVelocity) : _model.angularVelocity;
                 bool  shouldExtrapolate = _model.shouldExtrapolate;
                 bool         useGravity = _model.useGravity;
                 double        timestamp = _model.timestamp;
-    
+
                 float deltaTime = (float)(realtime.room.time - timestamp);
     
                 // If the last snapshot is too old, skip extrapolation.
@@ -302,10 +312,22 @@ namespace Normal.Realtime {
                     // If this is not a fresh model, set the transform using the model
                     if (_rigidbody != null) {
                         if (_syncScale)     transform.localScale      = _model.scale;
-                        if (_syncPosition) _rigidbody.position        = _model.position;
-                        if (_syncRotation) _rigidbody.rotation        = _model.rotation;
-                        if (_syncPosition) _rigidbody.velocity        = _model.velocity;
-                        if (_syncRotation) _rigidbody.angularVelocity = _model.angularVelocity;
+                        if (_syncPosition) {
+                            if (ParentTransform != null) {
+                                transform.localPosition        = _model.position;
+                            } else {
+                                _rigidbody.position        = _model.position;
+                            }
+                        }
+                        if (_syncRotation) {
+                            if (ParentTransform != null) {
+                                transform.localRotation        = _model.rotation;
+                            } else {
+                                _rigidbody.rotation        = _model.rotation;
+                            }
+                        }
+                        if (_syncPosition) _rigidbody.velocity        = ParentTransform != null ? ParentTransform.TransformVector(_model.velocity) : _model.velocity;
+                        if (_syncRotation) _rigidbody.angularVelocity = ParentTransform != null ? ParentTransform.TransformVector(_model.angularVelocity) : _model.angularVelocity;
                         if (_rigidbody != null)  _rigidbody.useGravity      = _model.useGravity;
                         if (_rigidbody != null)  _rigidbody.isKinematic     = _model.isKinematic;
                     } else {
