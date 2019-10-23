@@ -213,6 +213,7 @@
      <Compile Include="Assets\Scripts\Utility\ColorSync.cs" />
      <Compile Include="Assets\Scripts\Utility\ColorSyncModel.cs" />
      <Compile Include="Assets\Scripts\Utility\UpdateColor.cs" />
+     <Compile Include="Assets\Scripts\Utility\UpdateCount.cs" />
      <Compile Include="Assets\SetPinParent.cs" />
      <None Include="Assets\MagicLeap\BackgroundMusicExample\readme.txt" />
      <None Include="Assets\MagicLeap\Examples\Shaders\PointCloud.shader" />

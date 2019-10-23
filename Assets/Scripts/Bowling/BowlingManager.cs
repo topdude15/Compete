@@ -60,7 +60,8 @@ public class BowlingManager : MonoBehaviour
 
     List<Vector3> Deltas = new List<Vector3>();
 
-    private float totalObjs = 0, objLimit = 100, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
+    public float totalObjs = 0;
+    private float objLimit = 100, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
 
     private Controller checkController;
 
@@ -85,14 +86,20 @@ public class BowlingManager : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
+    { 
+        // MLInput.Start();
+        // print("Starting......");
+        // _realtime = GameObject.Find("Realtime + VR Player");
+        // _realtime.GetComponent<Realtime>().Connect("200Bowling");
+        // holding = holdState.single;
+
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         // If the user is new, open the tutorial menu
         CheckNewUser();
         // Start input from Control and Headpose
-       // MLInput.Start();
+        // MLInput.Start();
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
@@ -137,12 +144,10 @@ public class BowlingManager : MonoBehaviour
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             leftHand = false;
         }
-#if UNITY_EDITOR
-        _realtime = GameObject.Find("Realtime + VR Player");
-        _realtime.GetComponent<Realtime>().Connect("200Bowling");
-#endif
-        locationPointObj.SetActive(true);
-        holding = holdState.locationPoint;
+
+
+        // locationPointObj.SetActive(true);
+        // holding = holdState.locationPoint;
 
     }
     private void OnDisable()
@@ -620,7 +625,7 @@ public class BowlingManager : MonoBehaviour
                     if (_realtimeObject.connected)
                     {
                         pin = Realtime.Instantiate(bowlingPinRealtimePrefab.name, endPosition, orientationCube.transform.rotation, true, false, true, null);
-                        // pin.transform.parent = pinHolder;
+                        pin.transform.SetParent(pinHolder, false);
                         GetCount();
                     }
                     else
@@ -765,7 +770,7 @@ public class BowlingManager : MonoBehaviour
         bowlingBall.transform.position = controller.Position;
     }
 
-    private void GetCount()
+    public void GetCount()
     {
         totalObjs = 0;
         foreach (Transform bowlObj in pinHolder)

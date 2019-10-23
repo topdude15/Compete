@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - Normal.Realtime.RealtimeViewEditor
     Assembly-CSharp.dll:
     - BallCollider
     - BallVelocity
@@ -37,6 +39,7 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.MagicLeap.PrivilegeDeniedError
     - UnityEngine.XR.MagicLeap.PrivilegeRequester
     - UpdateColor
+    - UpdateCount
     LuminMediaPlayer.dll:
     - UnityEngine.XR.MagicLeap.MLMediaPlayer
     MSA.Runtime.dll:
@@ -187,6 +190,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12812}
     - Class: 114
       Script: {instanceID: 12956}
+    - Class: 114
+      Script: {instanceID: 21410}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -516,6 +521,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12866}
     - Class: 114
       Script: {instanceID: 12928}
+    - Class: 114
+      Script: {instanceID: 21410}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1303,7 +1310,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 4b5652993977a67580c0addc938cf8e9
+      Hash: d5b17a2667e757d8502af95bc098a022
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager
@@ -1901,6 +1908,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UpdateCount
   platform: 39
   scenePathNames:
   - Assets/Scenes/Meshing.unity
