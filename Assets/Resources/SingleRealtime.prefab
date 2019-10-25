@@ -47,9 +47,7 @@ GameObject:
   - component: {fileID: 191767625026366540}
   - component: {fileID: 191767625026367283}
   - component: {fileID: 6702781936845721732}
-  - component: {fileID: 321644057441440187}
   - component: {fileID: -1506983844308730654}
-  - component: {fileID: -2132769274131860883}
   m_Layer: 0
   m_Name: SingleRealtime
   m_TagString: Untagged
@@ -289,18 +287,6 @@ MonoBehaviour:
     componentIDHasBeenUsed: 1
   _parentView: {fileID: 0}
   _childViews: []
---- !u!114 &321644057441440187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191767625026366946}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d57988187530db4699ecd7c81dbbcc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &-1506983844308730654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -317,15 +303,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2132769274131860883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191767625026366946}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08904779288a26a42ac5e7e35b7a9659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
