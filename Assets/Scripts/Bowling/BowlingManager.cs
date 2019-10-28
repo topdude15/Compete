@@ -41,13 +41,14 @@ public class BowlingManager : MonoBehaviour
     public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj;
+    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText;
+    [SerializeField]
+    private GameObject[] tutorialPage;
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
     public static GameObject menuControl;
-    private GameObject bowlingBall, _realtime, pinObj, pin;
+    private GameObject bowlingBall, _realtime, pinObj, pin, currentTutorialPage;
 
     public Material transparent, activeMat;
-
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder, planeHolder;
@@ -59,7 +60,7 @@ public class BowlingManager : MonoBehaviour
     private Vector3 endPosition, forcePerSecond;
 
     List<Vector3> Deltas = new List<Vector3>();
-
+    private int currentPage = 0;
     public float totalObjs = 0;
     private float objLimit = 100, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
 
@@ -86,7 +87,7 @@ public class BowlingManager : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    { 
+    {
         // MLInput.Start();
         // print("Starting......");
         // _realtime = GameObject.Find("Realtime + VR Player");
@@ -145,9 +146,7 @@ public class BowlingManager : MonoBehaviour
             leftHand = false;
         }
 
-
-        // locationPointObj.SetActive(true);
-        // holding = holdState.locationPoint;
+        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
 
     }
     private void OnDisable()
@@ -573,6 +572,7 @@ public class BowlingManager : MonoBehaviour
                                     // Connect to Realtime room
                                     ClearAllObjects();
                                     _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+
                                     multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
                                     multiplayerMenu.SetActive(false);
                                     multiplayerStatusMenu.SetActive(true);
@@ -721,7 +721,7 @@ public class BowlingManager : MonoBehaviour
         }
         else
         {
-            menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
+            menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
             menuCanvas.transform.LookAt(mainCam.transform.position);
             holding = holdState.none;
             tutorialMenu.SetActive(true);
@@ -811,6 +811,9 @@ public class BowlingManager : MonoBehaviour
 
         if (button == MLInputControllerButton.Bumper)
         {
+            tutorialMenu.SetActive(false);
+            currentPage = 1;
+            SetTutorialPage(false);
             multiplayerStatusMenu.SetActive(false);
             multiplayerConfirmMenu.SetActive(false);
             multiplayerMenu.SetActive(false);
@@ -838,9 +841,8 @@ public class BowlingManager : MonoBehaviour
         else
         {
             ballMenu.SetActive(false);
-            if (tutorialActive)
+            if (tutorialMenu.activeSelf)
             {
-                tutorialHomePressed = true;
                 tutorialMenu.SetActive(false);
             }
             helpAppeared = true;
@@ -848,6 +850,7 @@ public class BowlingManager : MonoBehaviour
             if (menu.activeSelf)
             {
                 menu.SetActive(false);
+                tutorialMenu.SetActive(false);
                 modifierMenu.SetActive(false);
                 multiplayerConfirmMenu.SetActive(false);
                 multiplayerStatusMenu.SetActive(false);
@@ -950,14 +953,22 @@ public class BowlingManager : MonoBehaviour
                 break;
             case "Tutorial":
                 menu.SetActive(false);
-                holding = holdState.none;
-                tutorialActive = true;
                 tutorialMenu.SetActive(true);
-                tutorialBumperPressed = false;
-                tutorialHomePressed = false;
                 PlayerPrefs.SetInt("hasPlayedBowling", 0);
                 CheckNewUser();
+
+                // holding = holdState.none;
+                // tutorialActive = true;
+                // tutorialMenu.SetActive(true);
+                // tutorialBumperPressed = false;
+                // tutorialHomePressed = false;
                 menuAudio.Play();
+                break;
+            case "TutorialLeft":
+                SetTutorialPage(false);
+                break;
+            case "TutorialRight":
+                SetTutorialPage(true);
                 break;
             case "YesPlease":
                 PlayerPrefs.SetInt("hasPlayedBowling", 0);
@@ -1085,5 +1096,39 @@ public class BowlingManager : MonoBehaviour
     public void UpdateFallen()
     {
         pinsFallenText.text = ("<b>Pins Fallen:</b> \n" + pinsFallen + " of " + totalObjs);
+    }
+    private void SetTutorialPage(bool forward)
+    {
+        currentTutorialPage.SetActive(false);
+        if (forward)
+        {
+            if (currentPage < tutorialPage.Length - 1)
+            {
+                currentPage = currentPage + 1;
+            }
+        }
+        else
+        {
+            if (currentPage > 0)
+            {
+                currentPage = currentPage - 1;
+            }
+        }
+        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/" + currentPage);
+        print(currentTutorialPage);
+        currentTutorialPage.SetActive(true);
+
+        if (currentPage == 0) {
+            tutorialLeft.SetActive(false);
+            tutorialLeftText.SetActive(false);
+        } else if (currentPage == tutorialPage.Length - 1) {
+            tutorialRight.SetActive(false);
+            tutorialRightText.SetActive(false);
+        } else {
+            tutorialLeft.SetActive(true);
+            tutorialLeftText.SetActive(true);
+            tutorialRight.SetActive(true);
+            tutorialRightText.SetActive(true);
+        }
     }
 }
