@@ -120,13 +120,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10076}
-    - Class: 114
-      Script: {instanceID: 10302}
+      Script: {instanceID: 10078}
     - Class: 114
       Script: {instanceID: 10308}
     - Class: 114
@@ -189,6 +187,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12816}
     - Class: 114
       Script: {instanceID: 12960}
+    - Class: 114
+      Script: {instanceID: 26836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -251,15 +251,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10076}
+      Script: {instanceID: 10078}
     - Class: 114
-      Script: {instanceID: 10270}
-    - Class: 114
-      Script: {instanceID: 10302}
+      Script: {instanceID: 10272}
     - Class: 114
       Script: {instanceID: 10308}
     - Class: 114
@@ -300,6 +298,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12870}
     - Class: 114
       Script: {instanceID: 13070}
+    - Class: 114
+      Script: {instanceID: 26836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -354,9 +354,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10066}
     - Class: 114
       Script: {instanceID: 10324}
     - Class: 114
@@ -437,11 +437,9 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10064}
-    - Class: 114
-      Script: {instanceID: 10302}
+      Script: {instanceID: 10066}
     - Class: 114
       Script: {instanceID: 10308}
     - Class: 114
@@ -520,6 +518,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12870}
     - Class: 114
       Script: {instanceID: 12932}
+    - Class: 114
+      Script: {instanceID: 26836}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1907,7 +1907,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: d0149da24007e632dbf33d743b5cef2c
+      Hash: 5880bf102ef14258441a0fa95678c938
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
@@ -1917,4 +1917,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/Bowling.unity
   - Assets/Scenes/Darts.unity
-  playerPath: /Users/trevorrose/Desktop/Compete/Compete_Dev.mpk
+  playerPath: C:/Users/topdu/Desktop/Compete/Compete_Dev.mpk

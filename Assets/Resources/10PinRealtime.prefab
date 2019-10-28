@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 3454595006229499342}
   - component: {fileID: 4769179070408443603}
   - component: {fileID: 517127232006849339}
+  - component: {fileID: 5939331026141499353}
   m_Layer: 0
   m_Name: 10PinRealtime
   m_TagString: Untagged
@@ -364,6 +365,19 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _extrapolation: 0
+  ParentTransform: {fileID: 0}
+--- !u!114 &5939331026141499353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450753391586632658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08904779288a26a42ac5e7e35b7a9659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3450823205418506056
 GameObject:
   m_ObjectHideFlags: 0

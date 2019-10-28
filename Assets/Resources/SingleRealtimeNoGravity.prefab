@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6911498177891596437}
   - component: {fileID: 4542049996329160347}
   - component: {fileID: 2004710060742533452}
+  - component: {fileID: 6483941984041007142}
   m_Layer: 0
   m_Name: SingleRealtimeNoGravity
   m_TagString: Untagged
@@ -313,3 +314,15 @@ CapsuleCollider:
   m_Height: 1.2024068
   m_Direction: 2
   m_Center: {x: 0, y: -1.7604911e-15, z: 0.6012033}
+--- !u!114 &6483941984041007142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3401908912323475151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08904779288a26a42ac5e7e35b7a9659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

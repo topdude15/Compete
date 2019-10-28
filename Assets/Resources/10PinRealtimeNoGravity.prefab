@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5635857696612106892}
   - component: {fileID: 5212849228880061611}
   - component: {fileID: 5973815306460860874}
+  - component: {fileID: 7463986488667233697}
   m_Layer: 0
   m_Name: 10PinRealtimeNoGravity
   m_TagString: Untagged
@@ -122,6 +123,19 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _extrapolation: 0
+  ParentTransform: {fileID: 0}
+--- !u!114 &7463986488667233697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629551684178994460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08904779288a26a42ac5e7e35b7a9659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5629644797134501742
 GameObject:
   m_ObjectHideFlags: 0

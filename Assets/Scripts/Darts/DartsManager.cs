@@ -21,11 +21,13 @@ public class DartsManager : MonoBehaviour
     private MLHandKeyPose[] _gestures;
     public static holdState holding = holdState.none;
     private MLInputController controller;
-    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu, swapHandButton;
+    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText;
     public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText, gestureHandText;
+    [SerializeField]
+    private GameObject[] tutorialPage;
     public Transform dartHolder, meshHolder;
     public static GameObject menuControl;
-    private GameObject dart, _realtime;
+    private GameObject dart, _realtime, currentTutorialPage;
     public Material transparent, activeMat;
     public Material[] dartMats, meshMats;
     public LineRenderer laserLineRenderer;
@@ -38,6 +40,7 @@ public class DartsManager : MonoBehaviour
     public Image loadingImage;
     public Texture2D emptyCircle, check, handLeft, handRight;
 
+    private int currentPage = 0;
     public Realtime _realtimeObject;
     private PlayerManagerModel _playerManager;
 
@@ -96,6 +99,8 @@ public class DartsManager : MonoBehaviour
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             leftHand = false;
         }
+
+        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
     }
     private void OnDisable()
     {
@@ -473,7 +478,12 @@ public class DartsManager : MonoBehaviour
                 }
                 else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false)
                 {
-                    if (roomCode.Length < 1)
+                    MLNetworking.IsInternetConnected(ref networkConnected);
+                    if (networkConnected == false)
+                    {
+                        multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                    }
+                    else if (roomCode.Length < 1)
                     {
                         multiplayerCodeText.text = "Please enter a code";
                     }
@@ -553,7 +563,7 @@ public class DartsManager : MonoBehaviour
                 if (_realtimeObject.connected && realtimeDartboard == false)
                 {
                     realtimeDartboard = true;
-                    dartboardHolder.transform.position = new Vector3(100,100,100);
+                    dartboardHolder.transform.position = new Vector3(100, 100, 100);
                     dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, new Vector3(100, 100, 100), new Quaternion(0, 0, 0, 0), true, false, true, null);
                     dartboard = dartboardHolder.transform.GetChild(0).gameObject;
                     var dartboardCollider = dartboard.GetComponent<MeshCollider>();
@@ -691,24 +701,19 @@ public class DartsManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
-
+        currentPage = 1;
+        SetTutorialPage(false);
         if (button == MLInputControllerButton.Bumper)
         {
             print("yee");
             holding = holdState.none;
             dartboardOutline.SetActive(false);
 
+            tutorialMenu.SetActive(false);
             multiplayerStatusMenu.SetActive(false);
             multiplayerConfirmMenu.SetActive(false);
             multiplayerMenu.SetActive(false);
             modifierMenu.SetActive(false);
-
-            if (tutorialActive)
-            {
-                tutorialBumperPressed = true;
-                tutorialMenu.SetActive(false);
-            }
-
             menu.SetActive(false);
 
             if (objMenu.activeSelf)
@@ -728,15 +733,12 @@ public class DartsManager : MonoBehaviour
         }
         else
         {
+
             dartMenu.SetActive(false);
             holding = holdState.none;
             dartboardOutline.SetActive(false);
 
-            if (tutorialActive)
-            {
-                tutorialHomePressed = true;
-                tutorialMenu.SetActive(false);
-            }
+            tutorialMenu.SetActive(false);
             helpAppeared = true;
 
             if (menu.activeSelf)
@@ -796,7 +798,7 @@ public class DartsManager : MonoBehaviour
         }
         else
         {
-            menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.0f;
+            menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
             menuCanvas.transform.LookAt(mainCam.transform.position);
             Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
             laserLineRenderer.SetPositions(initLaserPositions);
@@ -862,14 +864,16 @@ public class DartsManager : MonoBehaviour
             case "Tutorial":
                 menu.SetActive(false);
                 holding = holdState.none;
-                tutorialActive = true;
                 tutorialMenu.SetActive(true);
-                tutorialBumperPressed = false;
-                tutorialHomePressed = false;
-                laserLineRenderer.material = transparent;
                 PlayerPrefs.SetInt("hasPlayedDarts", 0);
                 CheckNewUser();
                 menuAudio.Play();
+                break;
+            case "TutorialLeft":
+                SetTutorialPage(false);
+                break;
+            case "TutorialRight":
+                SetTutorialPage(true);
                 break;
             case "YesPlease":
                 PlayerPrefs.SetInt("hasPlayedDarts", 0);
@@ -973,6 +977,45 @@ public class DartsManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    private void SetTutorialPage(bool forward)
+    {
+        currentTutorialPage.SetActive(false);
+        if (forward)
+        {
+            if (currentPage < tutorialPage.Length - 1)
+            {
+                currentPage = currentPage + 1;
+            }
+        }
+        else
+        {
+            if (currentPage > 0)
+            {
+                currentPage = currentPage - 1;
+            }
+        }
+        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/" + currentPage);
+        print(currentTutorialPage);
+        currentTutorialPage.SetActive(true);
+
+        if (currentPage == 0)
+        {
+            tutorialLeft.SetActive(false);
+            tutorialLeftText.SetActive(false);
+        }
+        else if (currentPage == tutorialPage.Length - 1)
+        {
+            tutorialRight.SetActive(false);
+            tutorialRightText.SetActive(false);
+        }
+        else
+        {
+            tutorialLeft.SetActive(true);
+            tutorialLeftText.SetActive(true);
+            tutorialRight.SetActive(true);
+            tutorialRightText.SetActive(true);
         }
     }
 }

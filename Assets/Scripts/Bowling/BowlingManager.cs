@@ -808,12 +808,12 @@ public class BowlingManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
+        currentPage = 1;
+        SetTutorialPage(false);
 
         if (button == MLInputControllerButton.Bumper)
         {
             tutorialMenu.SetActive(false);
-            currentPage = 1;
-            SetTutorialPage(false);
             multiplayerStatusMenu.SetActive(false);
             multiplayerConfirmMenu.SetActive(false);
             multiplayerMenu.SetActive(false);
@@ -1118,13 +1118,18 @@ public class BowlingManager : MonoBehaviour
         print(currentTutorialPage);
         currentTutorialPage.SetActive(true);
 
-        if (currentPage == 0) {
+        if (currentPage == 0)
+        {
             tutorialLeft.SetActive(false);
             tutorialLeftText.SetActive(false);
-        } else if (currentPage == tutorialPage.Length - 1) {
+        }
+        else if (currentPage == tutorialPage.Length - 1)
+        {
             tutorialRight.SetActive(false);
             tutorialRightText.SetActive(false);
-        } else {
+        }
+        else
+        {
             tutorialLeft.SetActive(true);
             tutorialLeftText.SetActive(true);
             tutorialRight.SetActive(true);
