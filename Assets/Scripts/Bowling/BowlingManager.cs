@@ -539,13 +539,23 @@ public class BowlingManager : MonoBehaviour
                         case "7":
                         case "8":
                         case "9":
-                            if (!pickedNumber && roomCode.Length < 18)
+                            MLNetworking.IsInternetConnected(ref networkConnected);
+                            if (networkConnected == false)
                             {
-                                pickedNumber = true;
-                                roomCode += objGameHit;
-                                multiplayerCodeText.text = roomCode;
-                                menuAudio.Play();
+                                multiplayerCodeText.text = ("<color='red'>No Internet</color>");
                             }
+                            else
+                            {
+                                multiplayerCodeText.color = Color.white;
+                                if (!pickedNumber && roomCode.Length < 18)
+                                {
+                                    pickedNumber = true;
+                                    roomCode += objGameHit;
+                                    multiplayerCodeText.text = roomCode;
+                                    menuAudio.Play();
+                                }
+                            }
+
                             break;
                         case "Delete":
                             if (!deletedCharacter)
@@ -561,23 +571,32 @@ public class BowlingManager : MonoBehaviour
                         case "Join":
                             if (!joinedLobby)
                             {
-                                if (roomCode.Length < 1)
+                                MLNetworking.IsInternetConnected(ref networkConnected);
+                                if (networkConnected == false)
                                 {
-                                    multiplayerCodeText.text = "Please enter a code";
+                                    multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
                                 }
                                 else
                                 {
-                                    joinedLobby = true;
-                                    _realtime = GameObject.Find("Realtime + VR Player");
-                                    // Connect to Realtime room
-                                    ClearAllObjects();
-                                    _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+                                    multiplayerCodeText.color = Color.white;
+                                    if (roomCode.Length < 1)
+                                    {
+                                        multiplayerCodeText.text = "Please enter a code";
+                                    }
+                                    else
+                                    {
+                                        joinedLobby = true;
+                                        _realtime = GameObject.Find("Realtime + VR Player");
+                                        // Connect to Realtime room
+                                        ClearAllObjects();
+                                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
 
-                                    multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
-                                    multiplayerMenu.SetActive(false);
-                                    multiplayerStatusMenu.SetActive(true);
-                                    multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-                                    menuAudio.Play();
+                                        multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
+                                        multiplayerMenu.SetActive(false);
+                                        multiplayerStatusMenu.SetActive(true);
+                                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                                        menuAudio.Play();
+                                    }
                                 }
                             }
                             break;

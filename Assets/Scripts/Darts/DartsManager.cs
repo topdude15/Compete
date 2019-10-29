@@ -455,11 +455,18 @@ public class DartsManager : MonoBehaviour
             {
                 if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1" || rayHit.transform.gameObject.name == "2" || rayHit.transform.gameObject.name == "3" || rayHit.transform.gameObject.name == "4" || rayHit.transform.gameObject.name == "5" || rayHit.transform.gameObject.name == "6" || rayHit.transform.gameObject.name == "7" || rayHit.transform.gameObject.name == "8" || rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18)
                 {
-                    pickedNumber = true;
-                    roomCode += rayHit.transform.gameObject.name;
-                    multiplayerCodeText.text = roomCode;
-                    menuAudio.Play();
-
+                    MLNetworking.IsInternetConnected(ref networkConnected);
+                    if (networkConnected != false)
+                    {
+                        multiplayerCodeText.color = Color.white;
+                        if (!pickedNumber && roomCode.Length < 18)
+                        {
+                            pickedNumber = true;
+                            roomCode += rayHit.transform.gameObject.name;
+                            multiplayerCodeText.text = roomCode;
+                            menuAudio.Play();
+                        }
+                    }
                 }
                 else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false)
                 {
@@ -483,23 +490,27 @@ public class DartsManager : MonoBehaviour
                     {
                         multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
                     }
-                    else if (roomCode.Length < 1)
-                    {
-                        multiplayerCodeText.text = "Please enter a code";
-                    }
                     else
                     {
-                        joinedLobby = true;
-                        _realtime = GameObject.Find("Realtime + VR Player");
-                        // Connect to Realtime room
-                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
-                        multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
-                        multiplayerMenu.SetActive(false);
-                        multiplayerMenuOpen = false;
-                        multiplayerStatusMenu.SetActive(true);
-                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-                        menuAudio.Play();
+                        if (roomCode.Length < 1)
+                        {
+                            multiplayerCodeText.text = "Please enter a code";
+                        }
+                        else
+                        {
+                            joinedLobby = true;
+                            _realtime = GameObject.Find("Realtime + VR Player");
+                            // Connect to Realtime room
+                            _realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
+                            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+                            multiplayerMenu.SetActive(false);
+                            multiplayerMenuOpen = false;
+                            multiplayerStatusMenu.SetActive(true);
+                            multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                            menuAudio.Play();
+                        }
                     }
+
                 }
                 else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f)
                 {
