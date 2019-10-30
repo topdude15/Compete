@@ -62,6 +62,12 @@
      <Compile Include="Assets\MagicLeap\Scripts\Editor\MLVersionMenuItem.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\MusicExampleBuilder.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\StereoVideoExampleSetup.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Input\Pointer\Editor\PointerReceiverInspector.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Networking\SpatialAlignment\Editor\SpatialAlignmentEditor.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Networking\Transmission\Editor\TransmissionEditor.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Presentation\PlaceOnFloor\Editor\PlaceOnFloorEditor.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Rendering\RampLighting\Editor\RampLightEditor.cs" />
+     <Compile Include="Assets\MagicLeap-Tools\Code\Utilities\Editor\EditorUtilities.cs" />
      <Compile Include="Assets\Normal\Realtime\Editor\RealtimeAvatarEditor.cs" />
      <Compile Include="Assets\Normal\Realtime\Editor\RealtimeAvatarManagerEditor.cs" />
      <Compile Include="Assets\Normal\Realtime\Editor\RealtimeEditor.cs" />
