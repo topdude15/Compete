@@ -10,32 +10,46 @@ public class ColorSync : RealtimeComponent
     // Start is called before the first frame update
     void Start()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();   
+        if (gameObject.transform.childCount > 0)
+        {
+            _meshRenderer = gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
+        }
+        else
+        {
+            _meshRenderer = GetComponent<MeshRenderer>();
+        }
     }
 
     // Update is called once per frame
-    private ColorSyncModel model {
-        set {
-            if (_model != null) {
+    private ColorSyncModel model
+    {
+        set
+        {
+            if (_model != null)
+            {
                 _model.colorDidChange -= ColorDidChange;
             }
             _model = value;
 
-            if (_model != null) {
+            if (_model != null)
+            {
                 UpdateMeshRendererColor();
 
                 _model.colorDidChange += ColorDidChange;
             }
         }
     }
-    private void ColorDidChange(ColorSyncModel model, Color value) {
+    private void ColorDidChange(ColorSyncModel model, Color value)
+    {
         UpdateMeshRendererColor();
     }
 
-    private void UpdateMeshRendererColor() {
+    private void UpdateMeshRendererColor()
+    {
         _meshRenderer.material.color = _model.color;
     }
-    public void SetColor(Color color) {
+    public void SetColor(Color color)
+    {
         _model.color = color;
     }
 }

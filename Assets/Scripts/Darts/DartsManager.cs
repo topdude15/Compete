@@ -34,7 +34,7 @@ public class DartsManager : MonoBehaviour
     public MeshRenderer mesh;
     private string roomCode = "";
     private Vector3 endPosition, forcePerSecond;
-    private float timeHold = 3.0f, totalObjs = 0, objLimit = 40, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f, bumperTest;
+    private float timeHold = 3.0f, totalObjs = 0, objLimit = 40, timeHomePress = 0.01f, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f, bumperTest, colorObjSelected = 0;
     private Controller checkController;
     [SerializeField] private GameObject dartRealtime = null, dartboardRealtime = null;
     public Image loadingImage;
@@ -44,7 +44,7 @@ public class DartsManager : MonoBehaviour
     public Realtime _realtimeObject;
     private PlayerManagerModel _playerManager;
 
-    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, occlusionActive = true, firstHomePressed = false, multiplayerMenuOpen = false, pickedNumber = true, deletedCharacter = false, joinedLobby = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true;
+    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, movingDartboard = true, occlusionActive = true, firstHomePressed = false, pickedNumber = true, deletedCharacter = false, realtimeDartboard = false, helpAppeared = false, initializedRealtimePlayer = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
 
@@ -63,9 +63,11 @@ public class DartsManager : MonoBehaviour
         print("Getting controller..");
         controller = MLInput.GetController(0);
         MLInput.OnControllerButtonDown += OnButtonDown;
+
         MLInput.OnTriggerDown += OnTriggerDown;
-        // MLInput.OnTriggerUp += OnTriggerUp;
         MLInput.TriggerDownThreshold = 0.75f;
+
+        MLInput.OnTriggerUp += OnTriggerUp;
         MLInput.TriggerUpThreshold = 0.2f;
 
         // Initialize both line points at Vector3.zero
@@ -101,6 +103,10 @@ public class DartsManager : MonoBehaviour
         }
 
         currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
+
+        MLInput.Start();
+        MLHands.Start();
+        _realtimeObject.Connect("200Darts");
     }
     private void OnDisable()
     {
@@ -243,6 +249,10 @@ public class DartsManager : MonoBehaviour
                 helpAppeared = true;
             }
         }
+        // if (holdingDart)
+        // {
+        //     HoldingDart();
+        // }
     }
     private void CheckGestures()
     {
@@ -451,80 +461,16 @@ public class DartsManager : MonoBehaviour
                 localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
                 dartboardSelector.transform.localScale = localObjScale;
             }
-            if (multiplayerMenuOpen == true)
-            {
-                if ((rayHit.transform.gameObject.name == "0" || rayHit.transform.gameObject.name == "1" || rayHit.transform.gameObject.name == "2" || rayHit.transform.gameObject.name == "3" || rayHit.transform.gameObject.name == "4" || rayHit.transform.gameObject.name == "5" || rayHit.transform.gameObject.name == "6" || rayHit.transform.gameObject.name == "7" || rayHit.transform.gameObject.name == "8" || rayHit.transform.gameObject.name == "9") && controller.TriggerValue >= 0.9f && pickedNumber == false && roomCode.Length < 18)
-                {
-                    MLNetworking.IsInternetConnected(ref networkConnected);
-                    if (networkConnected != false)
-                    {
-                        multiplayerCodeText.color = Color.white;
-                        if (!pickedNumber && roomCode.Length < 18)
-                        {
-                            pickedNumber = true;
-                            roomCode += rayHit.transform.gameObject.name;
-                            multiplayerCodeText.text = roomCode;
-                            menuAudio.Play();
-                        }
-                    }
-                }
-                else if (rayHit.transform.gameObject.name == "Delete" && controller.TriggerValue >= 0.9f && deletedCharacter == false)
-                {
-                    deletedCharacter = true;
-                    if (roomCode.Length > 0)
-                    {
-                        roomCode = roomCode.Substring(0, roomCode.Length - 1);
-                        multiplayerCodeText.text = roomCode;
-                    }
-                    menuAudio.Play();
-                }
-                else if (controller.TriggerValue <= 0.2f)
-                {
-                    pickedNumber = false;
-                    deletedCharacter = false;
-                }
-                else if (rayHit.transform.gameObject.name == "Join" && controller.TriggerValue >= 0.9f && joinedLobby == false)
-                {
-                    MLNetworking.IsInternetConnected(ref networkConnected);
-                    if (networkConnected == false)
-                    {
-                        multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
-                    }
-                    else
-                    {
-                        if (roomCode.Length < 1)
-                        {
-                            multiplayerCodeText.text = "Please enter a code";
-                        }
-                        else
-                        {
-                            joinedLobby = true;
-                            _realtime = GameObject.Find("Realtime + VR Player");
-                            // Connect to Realtime room
-                            _realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
-                            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
-                            multiplayerMenu.SetActive(false);
-                            multiplayerMenuOpen = false;
-                            multiplayerStatusMenu.SetActive(true);
-                            multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-                            menuAudio.Play();
-                        }
-                    }
-
-                }
-                else if (rayHit.transform.gameObject.name == "Cancel" && controller.TriggerValue >= 0.9f)
-                {
-                    multiplayerMenu.SetActive(false);
-                    multiplayerMenuOpen = false;
-                    menu.SetActive(true);
-                    roomCode = "";
-                    menuAudio.Play();
-                }
-
-            }
         }
         else
         {
+            if (holding == holdState.dartboard)
+            {
+                dartboardOutline.SetActive(true);
+
+                dartboardOutline.transform.position = endPosition;
+                dartboardOutline.transform.rotation = Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward);
+            }
             endPosition = controller.Position + (control.transform.forward * 3.0f);
             laserLineRenderer.SetPosition(1, endPosition);
         }
@@ -540,33 +486,7 @@ public class DartsManager : MonoBehaviour
     }
     private void PlaceObject()
     {
-        if (holding == holdState.dart)
-        {
-            if (controller.TriggerValue >= 0.9f)
-            {
-                if (holdingDart)
-                {
-                    HoldingDart();
-                }
-                else
-                {
-                    SpawnObject();
-                    holdingDart = true;
-                }
-            }
-            else if (controller.TriggerValue <= 0.2f && holdingDart)
-            {
-                holdingDart = false;
-                var rigidbody = dart.transform.GetChild(0).gameObject.GetComponent<Rigidbody>();
-                if (!noGravity)
-                {
-                    rigidbody.useGravity = true;
-                }
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.velocity = forcePerSecond;
-            }
-        }
-        else if (holding == holdState.dartboard)
+        if (holding == holdState.dartboard)
         {
             if (!objSelected)
             {
@@ -582,12 +502,6 @@ public class DartsManager : MonoBehaviour
                     dartboardHolder.GetComponent<RealtimeView>().RequestOwnership();
                     dartboardHolder.GetComponent<RealtimeTransform>().RequestOwnership();
                 }
-
-                dartboardOutline.SetActive(true);
-                //dartboardHolder.SetActive (true);
-
-                dartboardOutline.transform.position = endPosition;
-                dartboardOutline.transform.rotation = Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward);
 
                 if (controller.TriggerValue >= 0.9f && !lockedDartboard)
                 {
@@ -642,25 +556,35 @@ public class DartsManager : MonoBehaviour
                     {
                         if (_realtimeObject.connected)
                         {
+                            // Spawn dart while connected to realtime room and gravity is enabled
                             dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
                             dart.transform.parent = dartHolder;
+
                             dart.GetComponent<RealtimeView>().RequestOwnership();
                             dart.GetComponent<RealtimeTransform>().RequestOwnership();
+
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
+
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
+                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
+
                             Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
+
                         }
                         else
                         {
+                            // Spawn dart while NOT connected to multiplayer room and gravity is enabled
                             dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
                             dart.transform.parent = dartHolder;
+
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
+
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
+                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
+
                             Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
                         }
                     }
                 }
@@ -673,23 +597,37 @@ public class DartsManager : MonoBehaviour
                     {
                         if (_realtimeObject.connected)
                         {
+                            // Spawn dart while connected to realtime room and gravity is NOT enabled
                             dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
                             dart.transform.parent = dartHolder;
+
+                            dart.GetComponent<RealtimeView>().RequestOwnership();
+                            dart.GetComponent<RealtimeTransform>().RequestOwnership();
+
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
+
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
+                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
+
+                            UpdateColor _dartCol = dart.GetComponent<UpdateColor>();
+                            _dartCol._objColor = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)].color;
+
                             Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
                         }
                         else
                         {
+                            // Spawn dart while NOT connected to realtime room and gravity is NOT enabled
                             dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
                             dart.transform.parent = dartHolder;
+
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
+
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
+                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
+
                             Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
                         }
                     }
                 }
@@ -757,7 +695,6 @@ public class DartsManager : MonoBehaviour
                 menu.SetActive(false);
                 modifierMenu.SetActive(false);
                 multiplayerConfirmMenu.SetActive(false);
-                multiplayerMenuOpen = false;
                 multiplayerStatusMenu.SetActive(false);
                 multiplayerMenu.SetActive(false);
             }
@@ -768,7 +705,6 @@ public class DartsManager : MonoBehaviour
                 menu.SetActive(true);
                 modifierMenu.SetActive(false);
                 multiplayerMenu.SetActive(false);
-                multiplayerMenuOpen = false;
             }
         }
 
@@ -821,6 +757,11 @@ public class DartsManager : MonoBehaviour
 
     private void OnTriggerDown(byte controller_id, float triggerValue)
     {
+        if (!holdingDart)
+        {
+            SpawnObject();
+            holdingDart = true;
+        }
         string objGameHit = rayHit.transform.gameObject.name;
         switch (objGameHit)
         {
@@ -848,7 +789,6 @@ public class DartsManager : MonoBehaviour
                 break;
             case "AcceptTerms":
                 multiplayerMenu.SetActive(true);
-                multiplayerMenuOpen = true;
                 multiplayerConfirmMenu.SetActive(false);
                 menuAudio.Play();
                 break;
@@ -866,6 +806,62 @@ public class DartsManager : MonoBehaviour
                 menu.SetActive(false);
                 holdingDartMenu = true;
                 menuAudio.Play();
+                break;
+            case "Red":
+                if (colorObjSelected == 0)
+                {
+                    PlayerPrefs.SetInt("dartColorInt", 0);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 0);
+                }
+                break;
+            case "Yellow":
+                if (colorObjSelected == 0)
+                {
+                    PlayerPrefs.SetInt("dartColorInt", 1);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 1);
+                }
+                break;
+            case "Orange":
+                if (colorObjSelected == 0)
+                {
+                    PlayerPrefs.SetInt("dartColorInt", 2);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 2);
+                }
+                break;
+            case "Blue":
+                if (colorObjSelected == 0)
+                {
+                    PlayerPrefs.SetInt("dartColorInt", 3);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 3);
+                }
+                break;
+            case "Green":
+                if (colorObjSelected == 0)
+                {
+                    PlayerPrefs.SetInt("dartColorInt", 4);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 4);
+                }
+                break;
+            case "DartColor":
+                colorObjSelected = 0;
+                break;
+            case "MultiplayerAvatar":
+                colorObjSelected = 1;
                 break;
             case "Modifiers":
                 modifierMenu.SetActive(true);
@@ -916,7 +912,6 @@ public class DartsManager : MonoBehaviour
                 }
                 break;
             case "LeaveRoom":
-                joinedLobby = false;
                 _realtime.GetComponent<Realtime>().Disconnect();
                 multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
                 dartboardHolder = GameObject.Find("DartboardHolder");
@@ -986,8 +981,88 @@ public class DartsManager : MonoBehaviour
                 modifierMenu.SetActive(false);
                 menuAudio.Play();
                 break;
+            // Past this point holds the buttons for the multiplayer menu(s)
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+                MLNetworking.IsInternetConnected(ref networkConnected);
+                if (networkConnected == false)
+                {
+                    multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                }
+                else
+                {
+                    multiplayerCodeText.color = Color.white;
+                    if (roomCode.Length < 18)
+                    {
+                        roomCode += objGameHit;
+                        multiplayerCodeText.text = roomCode;
+                        menuAudio.Play();
+                    }
+                }
+                break;
+            case "Delete":
+                if (roomCode.Length > 0)
+                {
+                    roomCode = roomCode.Substring(0, roomCode.Length - 1);
+                    multiplayerCodeText.text = roomCode;
+                }
+                menuAudio.Play();
+                break;
+            case "Join":
+                MLNetworking.IsInternetConnected(ref networkConnected);
+                if (networkConnected == false)
+                {
+                    multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                }
+                else
+                {
+                    if (roomCode.Length < 1)
+                    {
+                        multiplayerCodeText.text = "Please enter a code";
+                    }
+                    else
+                    {
+                        _realtime = GameObject.Find("Realtime + VR Player");
+                        // Connect to Realtime room
+                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
+                        multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
+                        multiplayerMenu.SetActive(false);
+                        multiplayerStatusMenu.SetActive(true);
+                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                        menuAudio.Play();
+                    }
+                }
+                break;
+            case "Cancel":
+                multiplayerMenu.SetActive(false);
+                menu.SetActive(true);
+                roomCode = "";
+                menuAudio.Play();
+                break;
             default:
                 break;
+        }
+    }
+    private void OnTriggerUp(byte controller_id, float triggerValue)
+    {
+        if (holdingDart)
+        {
+            holdingDart = false;
+            var rigidbody = dart.transform.GetChild(0).gameObject.GetComponent<Rigidbody>();
+            if (!noGravity)
+            {
+                rigidbody.useGravity = true;
+            }
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.velocity = forcePerSecond;
         }
     }
     private void SetTutorialPage(bool forward)

@@ -16,7 +16,7 @@ public class SetPinParent : MonoBehaviour
 
         transform.SetParent(pinParent, GetComponent<RealtimeView>().isOwnedLocally);
 
-        GetComponent<RealtimeTransform>().ParentTransform = pinParent;
+        //GetComponent<RealtimeTransform>().ParentTransform = pinParent;
           
     }
 

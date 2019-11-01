@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 2678927754758163068}
   - component: {fileID: 2678927754758163120}
   - component: {fileID: 2678927754758163123}
+  - component: {fileID: 1404279500413119822}
+  - component: {fileID: 8618600419038035540}
   m_Layer: 0
   m_Name: DartRealtime
   m_TagString: Untagged
@@ -310,6 +312,9 @@ MonoBehaviour:
   - componentID: 1
     component: {fileID: 2678927754758163123}
     componentIDHasBeenUsed: 1
+  - componentID: 2
+    component: {fileID: 1404279500413119822}
+    componentIDHasBeenUsed: 1
   _parentView: {fileID: 0}
   _childViews: []
 --- !u!114 &2678927754758163123
@@ -328,3 +333,29 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _extrapolation: 0
+  ParentTransform: {fileID: 0}
+--- !u!114 &1404279500413119822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678927754758163122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f57c80ee6202314f90722f1831388ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8618600419038035540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678927754758163122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae5e05ab0fc046df9d6b08b367e8992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objColor: {r: 0, g: 0, b: 0, a: 0}

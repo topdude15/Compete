@@ -15,6 +15,7 @@ ScriptsOnlyBuild:
     - MagicLeap.PCFStatusText
     - MagicLeap.PlaceFromCamera
     - MagicLeap.VideoError
+    - MagicLeapTools.TransmissionObject
     - MainMenu
     - MeshingMenu
     - Normal.Realtime.Examples.CubePlayer
@@ -120,75 +121,75 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
-    - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10070}
     - Class: 114
       Script: {instanceID: 10076}
     - Class: 114
-      Script: {instanceID: 10306}
+      Script: {instanceID: 10090}
     - Class: 114
-      Script: {instanceID: 10322}
+      Script: {instanceID: 10330}
     - Class: 114
-      Script: {instanceID: 10348}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10382}
+      Script: {instanceID: 10372}
     - Class: 114
-      Script: {instanceID: 10392}
+      Script: {instanceID: 10406}
     - Class: 114
-      Script: {instanceID: 10394}
+      Script: {instanceID: 10416}
     - Class: 114
-      Script: {instanceID: 10568}
+      Script: {instanceID: 10418}
     - Class: 114
-      Script: {instanceID: 10702}
+      Script: {instanceID: 10596}
     - Class: 114
-      Script: {instanceID: 10826}
+      Script: {instanceID: 10736}
     - Class: 114
-      Script: {instanceID: 10894}
+      Script: {instanceID: 10872}
     - Class: 114
-      Script: {instanceID: 11034}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11078}
+      Script: {instanceID: 11092}
     - Class: 114
-      Script: {instanceID: 11276}
+      Script: {instanceID: 11138}
     - Class: 114
-      Script: {instanceID: 11290}
+      Script: {instanceID: 11344}
     - Class: 114
-      Script: {instanceID: 11314}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11626}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 11708}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 11786}
+      Script: {instanceID: 11810}
     - Class: 114
-      Script: {instanceID: 11814}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 11920}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 11994}
     - Class: 114
-      Script: {instanceID: 12198}
+      Script: {instanceID: 12130}
     - Class: 114
-      Script: {instanceID: 12302}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12370}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12468}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12608}
     - Class: 114
-      Script: {instanceID: 12474}
+      Script: {instanceID: 12610}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12614}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 12814}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 20506}
+      Script: {instanceID: 13130}
+    - Class: 114
+      Script: {instanceID: 21232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -251,55 +252,59 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
-    - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10070}
     - Class: 114
       Script: {instanceID: 10076}
     - Class: 114
-      Script: {instanceID: 10270}
+      Script: {instanceID: 10090}
     - Class: 114
-      Script: {instanceID: 10306}
+      Script: {instanceID: 10294}
     - Class: 114
-      Script: {instanceID: 10322}
+      Script: {instanceID: 10330}
     - Class: 114
-      Script: {instanceID: 10348}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10392}
+      Script: {instanceID: 10372}
     - Class: 114
-      Script: {instanceID: 10394}
+      Script: {instanceID: 10416}
     - Class: 114
-      Script: {instanceID: 10568}
+      Script: {instanceID: 10418}
     - Class: 114
-      Script: {instanceID: 10702}
+      Script: {instanceID: 10596}
     - Class: 114
-      Script: {instanceID: 10894}
+      Script: {instanceID: 10736}
     - Class: 114
-      Script: {instanceID: 11078}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11290}
+      Script: {instanceID: 11138}
     - Class: 114
-      Script: {instanceID: 11314}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11786}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 12198}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 12302}
+      Script: {instanceID: 12130}
     - Class: 114
-      Script: {instanceID: 12370}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12474}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12610}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12614}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 20506}
+      Script: {instanceID: 12856}
+    - Class: 114
+      Script: {instanceID: 13036}
+    - Class: 114
+      Script: {instanceID: 13254}
+    - Class: 114
+      Script: {instanceID: 21232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -354,27 +359,27 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10076}
     - Class: 114
-      Script: {instanceID: 10322}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10450}
+      Script: {instanceID: 10474}
     - Class: 114
-      Script: {instanceID: 10826}
+      Script: {instanceID: 10872}
     - Class: 114
-      Script: {instanceID: 10894}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11034}
+      Script: {instanceID: 11092}
     - Class: 114
-      Script: {instanceID: 11786}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 12198}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12370}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 13130}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -437,94 +442,98 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10076}
     - Class: 114
-      Script: {instanceID: 10306}
+      Script: {instanceID: 10330}
     - Class: 114
-      Script: {instanceID: 10322}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10348}
+      Script: {instanceID: 10372}
     - Class: 114
-      Script: {instanceID: 10382}
+      Script: {instanceID: 10406}
     - Class: 114
-      Script: {instanceID: 10394}
+      Script: {instanceID: 10418}
     - Class: 114
-      Script: {instanceID: 10638}
+      Script: {instanceID: 10670}
     - Class: 114
-      Script: {instanceID: 10818}
+      Script: {instanceID: 10864}
     - Class: 114
-      Script: {instanceID: 10894}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11074}
+      Script: {instanceID: 11134}
     - Class: 114
-      Script: {instanceID: 11276}
+      Script: {instanceID: 11168}
     - Class: 114
-      Script: {instanceID: 11290}
+      Script: {instanceID: 11344}
     - Class: 114
-      Script: {instanceID: 11314}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11626}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 11682}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 11736}
+      Script: {instanceID: 11784}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 11842}
     - Class: 114
-      Script: {instanceID: 11814}
+      Script: {instanceID: 11896}
     - Class: 114
-      Script: {instanceID: 11998}
+      Script: {instanceID: 11920}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 12016}
+      Script: {instanceID: 12130}
     - Class: 114
-      Script: {instanceID: 12154}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12172}
+      Script: {instanceID: 12274}
     - Class: 114
-      Script: {instanceID: 12198}
+      Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12266}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 12302}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12370}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12394}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 12474}
+      Script: {instanceID: 12610}
     - Class: 114
-      Script: {instanceID: 12544}
+      Script: {instanceID: 12614}
     - Class: 114
-      Script: {instanceID: 12546}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12692}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12776}
     - Class: 114
-      Script: {instanceID: 12704}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 12730}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 12814}
+      Script: {instanceID: 12884}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 12930}
+      Script: {instanceID: 13036}
     - Class: 114
-      Script: {instanceID: 20506}
+      Script: {instanceID: 13100}
+    - Class: 114
+      Script: {instanceID: 21232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -593,10 +602,22 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
+      Hash: fc9b3dec10a2262e2e61a864a9178218
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpatialAlignmentExample
+  - hash:
+      serializedVersion: 2
       Hash: 3d19d32937527bc486ef051b3b87085b
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
     className: PlaneVisualizer
+  - hash:
+      serializedVersion: 2
+      Hash: 2284efc42aec850211d1a7d1f33bff57
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: ControlHaptics
   - hash:
       serializedVersion: 2
       Hash: 5fe119d293575ec2bf4ece2ffebdf53d
@@ -627,6 +648,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.XR.LegacyInputHelpers.dll
     namespaceName: UnityEngine.XR.LegacyInputHelpers
     className: ArmModel
+  - hash:
+      serializedVersion: 2
+      Hash: d4d54550d12f6b59379670fbe94a9054
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: ControlSmoother
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -761,6 +788,12 @@ ScriptsOnlyBuild:
     className: GameManager
   - hash:
       serializedVersion: 2
+      Hash: 44d690abb24a66ba3c235ac2ce28d164
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: PursuitJoint
+  - hash:
+      serializedVersion: 2
       Hash: fc5a4de027bdcf90030970ab3248bf9a
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
@@ -869,6 +902,12 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
+      Hash: 16cd637b89ea634ecebc0e328e76b069
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: Transmission
+  - hash:
+      serializedVersion: 2
       Hash: 0025675a311559f481c1e281095d1264
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
@@ -915,6 +954,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: b7eed4d1fe4c5e0c6cefc0c87e8209eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ControlInputExample
   - hash:
       serializedVersion: 2
       Hash: afc5b93a7b192de2dcb3832fe35a5c7e
@@ -975,6 +1020,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Normal.Realtime
     className: RealtimeComponent
+  - hash:
+      serializedVersion: 2
+      Hash: 826312e03ea40b999da7788d0c1b6c5b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: InputReceiver
   - hash:
       serializedVersion: 2
       Hash: 31bd92eaf0472a56b67918136d592dba
@@ -1079,6 +1130,24 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: ec7383acee9354befd6e75633477d5f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: TransmissionObject
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RuntimeConsoleExample
+  - hash:
+      serializedVersion: 2
+      Hash: 6ff4b8d02e6dd4d8570733ee020ada9d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: RotationManipulator
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1181,6 +1250,12 @@ ScriptsOnlyBuild:
     className: PathAroundObject
   - hash:
       serializedVersion: 2
+      Hash: 4885eb19d798e5e107e84df931641677
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: PointerReceiver
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: Normal.Realtime
@@ -1197,6 +1272,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
     className: DeepSpaceExplorerLauncher
+  - hash:
+      serializedVersion: 2
+      Hash: 4c87a78694b2fdf05e3bf49f2dffb817
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: RampLight
+  - hash:
+      serializedVersion: 2
+      Hash: fc9b3dec10a2262e2e61a864a9178218
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TransmissionExample
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1229,6 +1316,12 @@ ScriptsOnlyBuild:
     className: DestroyAfterTime
   - hash:
       serializedVersion: 2
+      Hash: 5e5e8749b2ca452663e5a354b99a74b9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: SpatialAlignment
+  - hash:
+      serializedVersion: 2
       Hash: 4921cd1bb9594724dc962a4541a5c407
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityEngine.XR.MagicLeap
@@ -1257,6 +1350,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Normal.Realtime
     className: RealtimeSessionCapture
+  - hash:
+      serializedVersion: 2
+      Hash: dc31d491b97f39db9a564ccbba6f231c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: InputSender
+  - hash:
+      serializedVersion: 2
+      Hash: b1c6c085054feae40944ee54c7426190
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: KeepInFront
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1385,6 +1490,12 @@ ScriptsOnlyBuild:
     className: InputField
   - hash:
       serializedVersion: 2
+      Hash: b2ddf0fee89556175ff5cb4758f6fe78
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: RuntimeConsole
+  - hash:
+      serializedVersion: 2
       Hash: c9a8b80298a116835b51ba1cf9284367
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1415,7 +1526,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 148c77f99910b1903e7190270e65ba37
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UpdateColor
@@ -1431,6 +1542,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: b879d897d369cb09aa2ad0f976b1b98e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: InputFeedback
   - hash:
       serializedVersion: 2
       Hash: 18c222bef9ae745ce69ddde9b74337ca
@@ -1481,6 +1598,12 @@ ScriptsOnlyBuild:
     className: ImageCaptureExample
   - hash:
       serializedVersion: 2
+      Hash: dc732a9415eb4c9c7409cb2fc42243bb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: DesktopInputDriver
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
@@ -1497,6 +1620,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.XR.MagicLeap.dll
     namespaceName: UnityEngine.XR.MagicLeap.Rendering
     className: MagicLeapCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 342c3361a92ada0c8a4fa9a87c043a45
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: TransmissionRoot
   - hash:
       serializedVersion: 2
       Hash: 522398438b193a740ce5018640f3264d
@@ -1541,10 +1670,22 @@ ScriptsOnlyBuild:
     className: RealtimeAvatar
   - hash:
       serializedVersion: 2
+      Hash: 7ff054e3725bc9bba212cdfb37a426d8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: Pointer
+  - hash:
+      serializedVersion: 2
       Hash: 5f1752ed2092162f016c19510c28a8b9
     assemblyName: Unity.Analytics.DataPrivacy.dll
     namespaceName: UnityEngine.Analytics
     className: DataPrivacyButton
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: SurfaceDetails
   - hash:
       serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
@@ -1557,6 +1698,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
     className: PlacementVisualizer
+  - hash:
+      serializedVersion: 2
+      Hash: d9ecd8ce35bbd49c5bd4902ed5f27af2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: PlaceOnFloor
   - hash:
       serializedVersion: 2
       Hash: ae83e830e7a90c0aff918c4c2e520825
@@ -1607,7 +1754,7 @@ ScriptsOnlyBuild:
     className: MSASource
   - hash:
       serializedVersion: 2
-      Hash: 2ccce070396752887575ae0fab3ff1b0
+      Hash: b6972ebe58bdead84cd8c6443578efa6
     assemblyName: Assembly-CSharp.dll
     namespaceName: Normal.Realtime
     className: RealtimeTransform
@@ -1703,10 +1850,22 @@ ScriptsOnlyBuild:
     className: ColorSync
   - hash:
       serializedVersion: 2
+      Hash: ba13f562918d554b61a2783fc3b74335
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: ControlInput
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.XR.MagicLeap.dll
     namespaceName: UnityEngine.XR.MagicLeap
     className: MagicLeapLoader
+  - hash:
+      serializedVersion: 2
+      Hash: fe05f82d614c5a71edca270420de519d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: ScaleManipulator
   - hash:
       serializedVersion: 2
       Hash: df434544c9f7b33d1cc7e635b180d279
@@ -1749,6 +1908,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeap
     className: MediaPlayerButton
+  - hash:
+      serializedVersion: 2
+      Hash: c199fa70d570532fef3fa5e17cdf29d7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SurfaceDetailsExample
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1817,6 +1982,12 @@ ScriptsOnlyBuild:
     className: ContentDragHandler
   - hash:
       serializedVersion: 2
+      Hash: 6b4800726caaf3808d1af316eef87657
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ControlPointerExample
+  - hash:
+      serializedVersion: 2
       Hash: 8ab9295d94483c961936d82d233d3df2
     assemblyName: Unity.XR.Management.dll
     namespaceName: UnityEngine.XR.Management
@@ -1871,6 +2042,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: 960126e5bcf86ebbef482d7c1c0dfe60
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: ControlInputDriver
+  - hash:
+      serializedVersion: 2
       Hash: 7072231382eb3c4871b3dd75ad0227e1
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1889,10 +2066,22 @@ ScriptsOnlyBuild:
     className: MeshingVisualizer
   - hash:
       serializedVersion: 2
+      Hash: 64f8f2a126159fc63ec6d58b6751945b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: PointerCursor
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 734264689ac072a5ad4490905a838f32
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: MagicLeapTools
+    className: Billboard
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
