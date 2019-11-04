@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 2678927754758163123}
   - component: {fileID: 1404279500413119822}
   - component: {fileID: 8618600419038035540}
+  - component: {fileID: 8856900232073436030}
   m_Layer: 0
   m_Name: DartRealtime
   m_TagString: Untagged
@@ -333,7 +334,6 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _extrapolation: 0
-  ParentTransform: {fileID: 0}
 --- !u!114 &1404279500413119822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,3 +359,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &8856900232073436030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2678927754758163122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4df325599c129541b666e09bde34c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motionSource: {fileID: 0}
+  smoothTime: 0.04
+  sendFrameRate: 24
+  remotePrefab: {fileID: 0}
+  ownershipLocked: 0
+  resourceFileName: 
+  creator: 
+  guid: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  targetScale: {x: 0, y: 0, z: 0}

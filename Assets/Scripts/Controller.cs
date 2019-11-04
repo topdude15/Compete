@@ -22,7 +22,8 @@ public class Controller : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		transform.position = _controller.Position;
+		transform.rotation = _controller.Orientation;
 	}
 	void OnButtonDown (byte controller_id, MLInputControllerButton button) {
 		if (button == MLInputControllerButton.Bumper) {

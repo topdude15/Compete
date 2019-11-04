@@ -47,7 +47,7 @@ MonoBehaviour:
   - name: Occlusion
     enabled: 0
   - name: PcfRead
-    enabled: 0
+    enabled: 1
   - name: PowerInfo
     enabled: 0
   - name: RegisterBackgroundMusicService
@@ -65,7 +65,7 @@ MonoBehaviour:
   - name: AddressBookWrite
     enabled: 0
   - name: LocalAreaNetwork
-    enabled: 0
+    enabled: 1
   - name: AudioCaptureMic
     enabled: 1
   - name: AudioRecognizer

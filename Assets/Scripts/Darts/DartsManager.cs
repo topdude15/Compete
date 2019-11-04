@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.MagicLeap;
+using MagicLeapTools;
 
 public class DartsManager : MonoBehaviour
 {
@@ -27,7 +28,8 @@ public class DartsManager : MonoBehaviour
     private GameObject[] tutorialPage;
     public Transform dartHolder, meshHolder;
     public static GameObject menuControl;
-    private GameObject dart, _realtime, currentTutorialPage;
+    private GameObject  _realtime, currentTutorialPage;
+    private TransmissionObject dart;
     public Material transparent, activeMat;
     public Material[] dartMats, meshMats;
     public LineRenderer laserLineRenderer;
@@ -58,7 +60,7 @@ public class DartsManager : MonoBehaviour
         print("Buttonz");
         CheckNewUser();
 
-        //MLInput.Start();
+        MLInput.Start();
 
         print("Getting controller..");
         controller = MLInput.GetController(0);
@@ -103,10 +105,6 @@ public class DartsManager : MonoBehaviour
         }
 
         currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
-
-        MLInput.Start();
-        MLHands.Start();
-        _realtimeObject.Connect("200Darts");
     }
     private void OnDisable()
     {
@@ -136,6 +134,12 @@ public class DartsManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+
+        if (holdingDart)
+        {
+            print("hodling");
+            HoldingDart();
+        }
 
         CheckGestures();
         if (timer < waitTime)
@@ -168,14 +172,14 @@ public class DartsManager : MonoBehaviour
         {
             if (menu.activeSelf)
             {
-                menuControl.SetActive(true);
+                // menuControl.SetActive(true);
             }
             if (setHand == false)
             {
                 setHand = true;
 
-                menuControl.transform.position = controller.Position;
-                menuControl.transform.rotation = mainCam.transform.rotation;
+                //menuControl.transform.position = controller.Position;
+                //menuControl.transform.rotation = mainCam.transform.rotation;
             }
         }
         if (dartLimitMenu.activeSelf)
@@ -443,7 +447,7 @@ public class DartsManager : MonoBehaviour
 
             if (!holdingDartMenu)
             {
-                DartColorLoader.GetDartColor(rayHit.transform.gameObject.name, controller, dartMenu, holdingDartMenu, dart, dartMats);
+                // DartColorLoader.GetDartColor(rayHit.transform.gameObject.name, controller, dartMenu, holdingDartMenu, dart, dartMats);
             }
             else if (holdingDartMenu && controller.TriggerValue <= 0.2f)
             {
@@ -523,6 +527,7 @@ public class DartsManager : MonoBehaviour
     }
     private void HoldingDart()
     {
+        //var oldPosition = dart.transform.position;
         var oldPosition = dart.transform.position;
         var newPosition = controller.Position;
 
@@ -557,7 +562,7 @@ public class DartsManager : MonoBehaviour
                         if (_realtimeObject.connected)
                         {
                             // Spawn dart while connected to realtime room and gravity is enabled
-                            dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
+                            //dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
                             dart.transform.parent = dartHolder;
 
                             dart.GetComponent<RealtimeView>().RequestOwnership();
@@ -575,8 +580,11 @@ public class DartsManager : MonoBehaviour
                         else
                         {
                             // Spawn dart while NOT connected to multiplayer room and gravity is enabled
-                            dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
+                            //dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
+                            dart = Transmission.Spawn("Dart", controller.Position, controller.Orientation, Vector3.one);
                             dart.transform.parent = dartHolder;
+
+                            holdingDart = true;
 
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
 
@@ -598,7 +606,7 @@ public class DartsManager : MonoBehaviour
                         if (_realtimeObject.connected)
                         {
                             // Spawn dart while connected to realtime room and gravity is NOT enabled
-                            dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
+                            // dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
                             dart.transform.parent = dartHolder;
 
                             dart.GetComponent<RealtimeView>().RequestOwnership();
@@ -618,7 +626,7 @@ public class DartsManager : MonoBehaviour
                         else
                         {
                             // Spawn dart while NOT connected to realtime room and gravity is NOT enabled
-                            dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
+                           // dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
                             dart.transform.parent = dartHolder;
 
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
@@ -760,7 +768,6 @@ public class DartsManager : MonoBehaviour
         if (!holdingDart)
         {
             SpawnObject();
-            holdingDart = true;
         }
         string objGameHit = rayHit.transform.gameObject.name;
         switch (objGameHit)
@@ -798,7 +805,7 @@ public class DartsManager : MonoBehaviour
                 menuAudio.Play();
                 break;
             case "ChangeDart":
-                dart = Instantiate(dartPrefab, new Vector3(100, 100, 100), controller.Orientation, dartHolder);
+                // dart = Instantiate(dartPrefab, new Vector3(100, 100, 100), controller.Orientation, dartHolder);
                 dart.transform.parent = dartHolder;
                 dartMenu.transform.position = mainCam.transform.position + (mainCam.transform.forward * 1.5f);
                 dartMenu.transform.LookAt(mainCam.transform.position);
