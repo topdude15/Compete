@@ -22,7 +22,7 @@ public class DartsManager : MonoBehaviour
     private MLHandKeyPose[] _gestures;
     public static holdState holding = holdState.none;
     private MLInputController controller;
-    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText;
+    public GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, dartboard, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, localPlayer, toggleMicButton, objMenu, dartSelector, dartboardSelector, handMenu, dartLimitMenu, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, controlOrientationObj;
     public Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText, gestureHandText;
     [SerializeField]
     private GameObject[] tutorialPage;
@@ -137,7 +137,6 @@ public class DartsManager : MonoBehaviour
 
         if (holdingDart)
         {
-            print("hodling");
             HoldingDart();
         }
 
@@ -178,8 +177,6 @@ public class DartsManager : MonoBehaviour
             {
                 setHand = true;
 
-                //menuControl.transform.position = controller.Position;
-                //menuControl.transform.rotation = mainCam.transform.rotation;
             }
         }
         if (dartLimitMenu.activeSelf)
@@ -545,8 +542,9 @@ public class DartsManager : MonoBehaviour
         toAverage /= Deltas.Count;
         var forcePerSecondAvg = toAverage * 300;
         forcePerSecond = forcePerSecondAvg;
-        dart.transform.position = controller.Position;
-        dart.transform.rotation = controller.Orientation;
+        dart.transform.position = controlOrientationObj.transform.position;
+        //dart.transform.rotation = controller.Orientation;
+        dart.transform.rotation = controlOrientationObj.transform.rotation;
     }
 
     private void SpawnObject()
@@ -586,12 +584,12 @@ public class DartsManager : MonoBehaviour
 
                             holdingDart = true;
 
-                            Transform dartChild = dart.gameObject.transform.GetChild(0);
+                            //Transform dartChild = dart.gameObject.transform.GetChild(0);
 
-                            Renderer dartRender = dartChild.GetComponent<Renderer>();
+                            Renderer dartRender = dart.transform.GetComponent<Renderer>();
                             dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
 
-                            Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
+                            Rigidbody dartRB = dart.transform.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
                         }
                     }
@@ -1063,12 +1061,14 @@ public class DartsManager : MonoBehaviour
         if (holdingDart)
         {
             holdingDart = false;
-            var rigidbody = dart.transform.GetChild(0).gameObject.GetComponent<Rigidbody>();
+            //var rigidbody = dart.transform.GetChild(0).gameObject.GetComponent<Rigidbody>();
+            var rigidbody = dart.transform.GetComponent<Rigidbody>();
             if (!noGravity)
             {
                 rigidbody.useGravity = true;
             }
             rigidbody.velocity = Vector3.zero;
+            //rigidbody.AddForce(forcePerSecond, ForceMode.VelocityChange);
             rigidbody.velocity = forcePerSecond;
         }
     }

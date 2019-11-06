@@ -193,8 +193,13 @@ namespace MagicLeapTools
             return _all.ContainsKey(guid);
         }
 
+        public void ShareTransformStatusOverNetwork() {
+            _previousPosition = transform.localPosition;
+            _previousRotation = transform.localRotation;
+            Transmission.Send(new TransformSyncMessage(this));
+        }
         //Coroutines:
-        private IEnumerator ShareTransformStatus()
+        public IEnumerator ShareTransformStatus()
         {
             while (true)
             {
