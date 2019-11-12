@@ -41,7 +41,7 @@ public class BowlingManager : MonoBehaviour
     public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText;
+    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, point1, point2, centerPoint;
     [SerializeField]
     private GameObject[] tutorialPage;
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
@@ -57,7 +57,7 @@ public class BowlingManager : MonoBehaviour
 
     public MeshRenderer mesh;
 
-    private Vector3 endPosition, forcePerSecond;
+    private Vector3 endPosition, forcePerSecond, trackStartPosition, trackEndPosition;
 
     List<Vector3> Deltas = new List<Vector3>();
     private int currentPage = 0;
@@ -88,7 +88,8 @@ public class BowlingManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // MLInput.Start();
+
+        MLInput.Start();
         // print("Starting......");
         // _realtime = GameObject.Find("Realtime + VR Player");
         // _realtime.GetComponent<Realtime>().Connect("200Bowling");
@@ -148,6 +149,11 @@ public class BowlingManager : MonoBehaviour
 
         currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
 
+
+
+
+        holding = holdState.track;
+
     }
     private void OnDisable()
     {
@@ -179,6 +185,11 @@ public class BowlingManager : MonoBehaviour
     void LateUpdate()
     {
         CheckGestures();
+
+        if (holding == holdState.track && trackStartPosition != Vector3.zero)
+        {
+            PlaceTrack();
+        }
 
         if (timer < waitTime)
         {
@@ -896,11 +907,40 @@ public class BowlingManager : MonoBehaviour
         holding = holdState.none;
 
     }
+    private void PlaceTrack()
+    {
+        if (trackStartPosition == Vector3.zero)
+        {
+            trackStartPosition = endPosition;
+            point1.transform.position = trackStartPosition;
+        }
+        else
+        {
+            trackEndPosition = endPosition;
+            float scaleZ = Vector3.Distance(trackStartPosition, trackEndPosition);
+            print(scaleZ);
+            Vector3 centerPos = new Vector3(trackStartPosition.x + trackEndPosition.x, (trackStartPosition.y + 0.02f) + trackEndPosition.y, trackStartPosition.z + trackEndPosition.z) / 2f;
+            print(centerPos);
+            track.transform.position = centerPos;
+            point2.transform.position = trackEndPosition;
+            track.transform.localScale = new Vector3(.10668f, 1, (scaleZ / 10));
+            centerPoint.transform.position = centerPos;
+        }
+    }
     private void OnTriggerDown(byte controller_Id, float triggerValue)
     {
         if (holding == holdState.ball)
         {
             holdingBall = true;
+        }
+        else if (holding == holdState.track)
+        {
+            if (trackEndPosition == Vector3.zero)
+            {
+                PlaceTrack();
+            } else {
+                holding = holdState.none;
+            }
         }
         else if (holding == holdState.locationPoint)
         {
@@ -975,12 +1015,6 @@ public class BowlingManager : MonoBehaviour
                 tutorialMenu.SetActive(true);
                 PlayerPrefs.SetInt("hasPlayedBowling", 0);
                 CheckNewUser();
-
-                // holding = holdState.none;
-                // tutorialActive = true;
-                // tutorialMenu.SetActive(true);
-                // tutorialBumperPressed = false;
-                // tutorialHomePressed = false;
                 menuAudio.Play();
                 break;
             case "TutorialLeft":

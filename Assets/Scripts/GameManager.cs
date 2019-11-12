@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour {
 				// If the bowling pin is being pointed at and the trigger is held, load the bowling scene.
 				// MLInput.Stop();
 				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-				SceneManager.LoadScene("Bowling", LoadSceneMode.Single);
+				SceneManager.LoadScene("BowlingMultiplayer", LoadSceneMode.Single);
 				//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
                 //SceneManager.UnloadSceneAsync("Main");
 			} else if (rayHit.collider.name == "Dartboard" && controller.TriggerValue >= 0.9f) {
