@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c890bdf354698ba429472b626542bcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _privileges: c9000000ab000000
+  _privileges: 
 --- !u!4 &59612950
 Transform:
   m_ObjectHideFlags: 0
@@ -4603,7 +4603,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pose: 2
   pos: []
-  persistentBehavior: {fileID: 0}
   mainCam: {fileID: 798249541}
   orientationCube: {fileID: 1825620097}
   control: {fileID: 1847523546}
@@ -4623,7 +4622,7 @@ MonoBehaviour:
   tutorialHelpMenu: {fileID: 1811500192}
   deleteMenu: {fileID: 2143132845}
   pinLimitMenu: {fileID: 1901158545}
-  trackObj: {fileID: 37510489}
+  trackObj: {fileID: 0}
   localPlayer: {fileID: 0}
   toggleMicButton: {fileID: 1087156288}
   multiplayerStatusMenu: {fileID: 1624327075}
@@ -4634,13 +4633,15 @@ MonoBehaviour:
   tenPinSelector: {fileID: 825462771}
   handMenu: {fileID: 1493503010}
   swapHandButton: {fileID: 528292001}
-  locationPointObj: {fileID: 1735584577}
+  locationPointObj: {fileID: 0}
   tutorialLeft: {fileID: 1656312276}
   tutorialRight: {fileID: 637390375}
   tutorialLeftText: {fileID: 1095244461}
   tutorialRightText: {fileID: 874255728}
   track: {fileID: 1059268909}
   pinPlacement: {fileID: 1961751294}
+  startPoint: {fileID: 1557855516}
+  endPoint: {fileID: 105425090}
   tutorialPage:
   - {fileID: 1537516171}
   - {fileID: 1681382037}
@@ -4654,8 +4655,6 @@ MonoBehaviour:
   pinsFallenText: {fileID: 482161007}
   noGravityText: {fileID: 1228098387}
   gestureHandText: {fileID: 1467897828}
-  transparent: {fileID: 0}
-  activeMat: {fileID: 2100000, guid: 1241e8c5f5fe9da4b9bc2280d8bd6a39, type: 2}
   ballMats:
   - {fileID: 2100000, guid: bdddf507c1eaa6140a48f3665316673f, type: 2}
   - {fileID: 2100000, guid: 991e1e029033b234db3c4179a3bfdf37, type: 2}
@@ -4663,7 +4662,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f1909ebae5300ce409978782d73efaf9, type: 2}
   - {fileID: 2100000, guid: 409000ab20ea96348b331391cecbf241, type: 2}
   meshMats:
-  - {fileID: 15302, guid: 0000000000000000f000000000000000, type: 3}
+  - {fileID: 2100000, guid: 5f7a8f815117efc428db87c9080e7cd0, type: 2}
   - {fileID: 2100000, guid: b6f836e051639464db610e6dc3ef55d5, type: 2}
   singlePrefab: {fileID: 4133021336326310, guid: 98d06c4847240a74688cb689add5a9a3,
     type: 3}
@@ -4680,7 +4679,7 @@ MonoBehaviour:
   mesh: {fileID: 440483541}
   totalObjs: 0
   pinsFallen: 0
-  loadingImage: {fileID: 281864165}
+  loadingImage: {fileID: 0}
   emptyCircle: {fileID: 2800000, guid: 031841696d6a644459ca50b020f6e8dc, type: 3}
   check: {fileID: 2800000, guid: 2a46b6277a1a740489bce1ca6c0c598e, type: 3}
   handLeft: {fileID: 2800000, guid: 7c8e4cc8d686bcd4c9f9f7720365b9be, type: 3}
@@ -6708,7 +6707,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059268909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 0.10668, y: 1, z: 1.8288}
   m_Children:
   - {fileID: 1961751298}
@@ -10070,10 +10069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57aff6b9e94f0438a9f1f9990b0ecb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BBoxTransform: {fileID: 798249544}
+  BBoxTransform: {fileID: 0}
   BBoxExtents: {x: 0, y: 0, z: 0}
-  PlaneGameObject: {fileID: 67466888}
-  QueryFlags: 2
+  PlaneGameObject: {fileID: 0}
+  QueryFlags: 0
 --- !u!4 &1782744080
 Transform:
   m_ObjectHideFlags: 0
@@ -11835,7 +11834,7 @@ SphereCollider:
   m_GameObject: {fileID: 1961751294}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -11893,7 +11892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961751294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.68}
+  m_LocalPosition: {x: 0, y: 0, z: 4.216}
   m_LocalScale: {x: 0.9373828, y: 0.1, z: 0.05468067}
   m_Children: []
   m_Father: {fileID: 1059268913}

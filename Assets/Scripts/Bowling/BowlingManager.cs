@@ -39,7 +39,6 @@ public class BowlingManager : MonoBehaviour
 
     // ML-Related objects.  "controller" manages input from the Control and "persistentBehavior" is to manage objects staying in place between session (not yet implemented)
     private MLInputController controller;
-    public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
     public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
@@ -48,8 +47,6 @@ public class BowlingManager : MonoBehaviour
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
     public static GameObject menuControl;
     private GameObject bowlingBall, _realtime, pinObj, pin, currentTutorialPage;
-
-    public Material transparent, activeMat;
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder, planeHolder;
@@ -211,7 +208,6 @@ public class BowlingManager : MonoBehaviour
             if ((controller.Touch1Active || controller.TriggerValue >= 0.2f || tutorialBumperPressed == true || tutorialHomePressed == true) && !tutorialMenu.activeSelf)
             {
                 tutorialMenu.SetActive(false);
-                laserLineRenderer.material = activeMat;
                 CheckNewUser();
             }
         }
@@ -743,7 +739,6 @@ public class BowlingManager : MonoBehaviour
         {
             holding = holdState.none;
             tutorialActive = false;
-            laserLineRenderer.material = activeMat;
             tutorialMenu.SetActive(false);
         }
         else
@@ -886,7 +881,6 @@ public class BowlingManager : MonoBehaviour
             else
             {
                 objMenu.SetActive(false);
-                laserLineRenderer.material = activeMat;
                 menu.SetActive(true);
                 modifierMenu.SetActive(false);
                 multiplayerMenu.SetActive(false);
@@ -909,13 +903,13 @@ public class BowlingManager : MonoBehaviour
         if (trackStartPosition == Vector3.zero)
         {
             trackStartPosition = endPosition;
-            startPoint = trackStartPosition;
+            startPoint.transform.position = trackStartPosition;
         }
         else
         {
             trackEndPosition = endPosition;
-            endPoint = trackStartPosition;
-            endPoint.transform.LookAt(startPoint);
+            endPoint.transform.position = trackStartPosition;
+            endPoint.transform.LookAt(startPoint.transform.position);
             track.transform.rotation = endPoint.transform.rotation;
             float scaleZ = Vector3.Distance(trackStartPosition, trackEndPosition);
             Vector3 centerPos = new Vector3(trackStartPosition.x + trackEndPosition.x, (trackStartPosition.y + 0.02f) + trackEndPosition.y, trackStartPosition.z + trackEndPosition.z) / 2f;
@@ -936,7 +930,7 @@ public class BowlingManager : MonoBehaviour
                 PlaceTrack();
             } else {
 
-                Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), Vector3.one);
+                Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), Vector3.one);
 
                 holding = holdState.none;
             }
