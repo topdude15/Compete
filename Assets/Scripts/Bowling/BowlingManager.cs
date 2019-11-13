@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.MagicLeap;
 using UnityEngine.XR;
+using MagicLeapTools;
 
 public class BowlingManager : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class BowlingManager : MonoBehaviour
     public MLPersistentBehavior persistentBehavior;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, point1, point2, centerPoint;
+    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
     [SerializeField]
     private GameObject[] tutorialPage;
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
@@ -148,9 +149,6 @@ public class BowlingManager : MonoBehaviour
         }
 
         currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
-
-
-
 
         holding = holdState.track;
 
@@ -670,7 +668,6 @@ public class BowlingManager : MonoBehaviour
                         if (_realtimeObject.connected)
                         {
                             pin = Realtime.Instantiate(tenPinRealtimePrefab.name, endPosition, tenPinOrientation.transform.rotation, true, false, true, null);
-                            print("PIN: " + pin);
                             pin.transform.parent = pinHolder;
                             GetCount();
                         }
@@ -912,19 +909,18 @@ public class BowlingManager : MonoBehaviour
         if (trackStartPosition == Vector3.zero)
         {
             trackStartPosition = endPosition;
-            point1.transform.position = trackStartPosition;
+            startPoint = trackStartPosition;
         }
         else
         {
             trackEndPosition = endPosition;
+            endPoint = trackStartPosition;
+            endPoint.transform.LookAt(startPoint);
+            track.transform.rotation = endPoint.transform.rotation;
             float scaleZ = Vector3.Distance(trackStartPosition, trackEndPosition);
-            print(scaleZ);
             Vector3 centerPos = new Vector3(trackStartPosition.x + trackEndPosition.x, (trackStartPosition.y + 0.02f) + trackEndPosition.y, trackStartPosition.z + trackEndPosition.z) / 2f;
-            print(centerPos);
             track.transform.position = centerPos;
-            point2.transform.position = trackEndPosition;
             track.transform.localScale = new Vector3(.10668f, 1, (scaleZ / 10));
-            centerPoint.transform.position = centerPos;
         }
     }
     private void OnTriggerDown(byte controller_Id, float triggerValue)
@@ -939,6 +935,9 @@ public class BowlingManager : MonoBehaviour
             {
                 PlaceTrack();
             } else {
+
+                Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), Vector3.one);
+
                 holding = holdState.none;
             }
         }
