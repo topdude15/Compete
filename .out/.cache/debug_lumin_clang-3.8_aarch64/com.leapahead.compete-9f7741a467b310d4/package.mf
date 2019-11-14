@@ -213,16 +213,16 @@
   },
   {
    "compression": 8,
-   "hash": "d8c323a736ecd4c624dcfb8b2bc1bb7f59b9faf4",
+   "hash": "76bdeae699165e910fd56e569df3e24567a1af0d",
    "pkgpath": "Data/globalgamemanagers",
    "size": 99848,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "d30802e8d4423170b74dcaef88709cc3b593f045",
+   "hash": "21278e3d91a81c073f4d8618ea4d1ca34b0347d3",
    "pkgpath": "Data/globalgamemanagers.assets",
-   "size": 105160,
+   "size": 105144,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
   },
   {
@@ -269,14 +269,14 @@
   },
   {
    "compression": 8,
-   "hash": "a02ecb37cc2ff2834c2df03704da258a46cfadf5",
+   "hash": "cfd326d17f5f11caa8f9727f475e0bddd0106a4d",
    "pkgpath": "Data/level4",
-   "size": 103312,
+   "size": 103296,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level4"
   },
   {
    "compression": 8,
-   "hash": "e726ffa88e705797c0189e85b064f85a77fb9200",
+   "hash": "7f9802118851d1c9075563836ba4049d170c2dfb",
    "pkgpath": "Data/resources.assets",
    "size": 2618776,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
@@ -360,9 +360,9 @@
   },
   {
    "compression": 8,
-   "hash": "3fd0e2754d204f58d1df670419bb91b60b9e3b30",
+   "hash": "8ffaed2ee8d2cebe8db6ca4fa068c9db32895073",
    "pkgpath": "Data/sharedassets4.assets",
-   "size": 13972,
+   "size": 13996,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets4.assets"
   },
   {

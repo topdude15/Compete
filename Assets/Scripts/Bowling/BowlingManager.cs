@@ -908,9 +908,9 @@ public class BowlingManager : MonoBehaviour
         else
         {
             trackEndPosition = endPosition;
-            endPoint.transform.position = trackStartPosition;
-            endPoint.transform.LookAt(startPoint.transform.position);
-            track.transform.rotation = endPoint.transform.rotation;
+            endPoint.transform.position = trackEndPosition;
+            startPoint.transform.LookAt(endPoint.transform.position);
+            track.transform.rotation = startPoint.transform.rotation;
             float scaleZ = Vector3.Distance(trackStartPosition, trackEndPosition);
             Vector3 centerPos = new Vector3(trackStartPosition.x + trackEndPosition.x, (trackStartPosition.y + 0.02f) + trackEndPosition.y, trackStartPosition.z + trackEndPosition.z) / 2f;
             track.transform.position = centerPos;
@@ -930,7 +930,7 @@ public class BowlingManager : MonoBehaviour
                 PlaceTrack();
             } else {
 
-                Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), Vector3.one);
+                Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, pinPlacement.transform.rotation, Vector3.one);
 
                 holding = holdState.none;
             }
