@@ -11,7 +11,7 @@ using MagicLeapTools;
 public class BowlingManager : MonoBehaviour
 {
 
-    public enum holdState
+    private enum holdState
     {
         none,
         single,
@@ -20,7 +20,7 @@ public class BowlingManager : MonoBehaviour
         track,
         locationPoint
     }
-    public enum menuState
+    private enum menuState
     {
         none,
         home,
@@ -28,41 +28,38 @@ public class BowlingManager : MonoBehaviour
         changeBall
     }
 
-    public enum HandPoses { OpenHand, Fist, NoPose };
-    public HandPoses pose = HandPoses.NoPose;
-    public Vector3[] pos;
+    // Input
+    private MLInputController controller;
+    public LineRenderer laserLineRenderer;
+    RaycastHit rayHit;
 
+    private enum HandPoses { OpenHand, Fist, NoPose };
+    private HandPoses pose = HandPoses.NoPose;
+    private Vector3[] pos;
     private MLHandKeyPose[] _gestures;
 
-    public static holdState holding = holdState.single;
-    public static menuState currentMenuState;
-
-    // ML-Related objects.  "controller" manages input from the Control and "persistentBehavior" is to manage objects staying in place between session (not yet implemented)
-    private MLInputController controller;
+    private holdState holding = holdState.single;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    public GameObject mainCam, orientationCube, control, tenPinOrientation, ballPrefab, menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, controlCube, deleteLoader, menuCanvas, handCenter, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, trackObj, localPlayer, toggleMicButton, multiplayerStatusMenu, reachedPinLimit, objMenu, singleSelector, bowlingBallSelector, tenPinSelector, handMenu, swapHandButton, locationPointObj, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
-    [SerializeField]
-    private GameObject[] tutorialPage;
+    [SerializeField] private GameObject mainCam, control, ballPrefab, controlCube, deleteLoader, menuCanvas, handCenter, toggleMicButton, reachedPinLimit, singleSelector, bowlingBallSelector, tenPinSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
+    // All menus
+    [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
+    
+    [SerializeField] private GameObject[] tutorialPage;
+
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
-    public static GameObject menuControl;
     private GameObject bowlingBall, _realtime, pinObj, pin, currentTutorialPage;
     public Material[] ballMats, meshMats;
 
-    public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder, planeHolder;
-
-    public LineRenderer laserLineRenderer;
+    public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
 
     public MeshRenderer mesh;
 
     private Vector3 endPosition, forcePerSecond, trackStartPosition, trackEndPosition;
 
     List<Vector3> Deltas = new List<Vector3>();
-    private int currentPage = 0;
-    public float totalObjs = 0;
-    private float objLimit = 100, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
-
-    private Controller checkController;
+    private int currentPage = 0, totalObjs = 0, objLimit = 100;
+    private float timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
 
     public int pinsFallen = 0;
 
@@ -76,9 +73,9 @@ public class BowlingManager : MonoBehaviour
 
     private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false;
 
-    [SerializeField] private GameObject bowlingPinRealtimePrefab = null, bowlingPinRealtimeNoGravityPrefab = null, tenPinRealtimePrefab = null, tenPinRealtimeNoGravityPrefab = null, bowlingBallRealtimePrefab = null;
     public Realtime _realtimeObject;
-    RaycastHit rayHit;
+
+    private Vector3 pinOrientation = new Vector3(-90,0,90), tenPinOrientation = new Vector3(0,0,-90);
     // AUDIO VARIABLES
 
     public AudioSource menuAudio;
@@ -88,18 +85,9 @@ public class BowlingManager : MonoBehaviour
     {
 
         MLInput.Start();
-        // print("Starting......");
-        // _realtime = GameObject.Find("Realtime + VR Player");
-        // _realtime.GetComponent<Realtime>().Connect("200Bowling");
-        // holding = holdState.single;
-
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
 
         // If the user is new, open the tutorial menu
         CheckNewUser();
-        // Start input from Control and Headpose
-        // MLInput.Start();
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
@@ -114,11 +102,6 @@ public class BowlingManager : MonoBehaviour
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
         laserLineRenderer.SetPositions(initLaserPositions);
 
-        // Access the object menu
-        menuControl = GameObject.Find("ObjectMenu");
-
-        checkController = control.GetComponentInChildren<Controller>();
-
         MLHands.Start();
         _gestures = new MLHandKeyPose[2];
         _gestures[0] = MLHandKeyPose.OpenHand;
@@ -127,7 +110,7 @@ public class BowlingManager : MonoBehaviour
         pos = new Vector3[1];
 
         menuMoveSpeed = Time.deltaTime * 2f;
-        tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
+        // tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
 
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
@@ -231,7 +214,7 @@ public class BowlingManager : MonoBehaviour
                     {
                         if (obj.GetComponent<RealtimeView>().isOwnedLocally)
                         {
-                            localPlayer = obj;
+                            // localPlayer = obj;
                         }
                     }
                 }
@@ -463,11 +446,11 @@ public class BowlingManager : MonoBehaviour
             {
                 if (setLocationPos)
                 {
-                    locationPointObj.transform.LookAt(endPosition);
+                    //locationPointObj.transform.LookAt(endPosition);
                 }
                 else
                 {
-                    locationPointObj.transform.position = endPosition;
+                    //locationPointObj.transform.position = endPosition;
                 }
             }
             string objHit = rayHit.transform.gameObject.name;
@@ -648,13 +631,13 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (_realtimeObject.connected)
                     {
-                        pin = Realtime.Instantiate(bowlingPinRealtimePrefab.name, endPosition, orientationCube.transform.rotation, true, false, true, null);
+                        //pin = Realtime.Instantiate(bowlingPinRealtimePrefab.name, endPosition, Quaternion.Euler(pinOrientation), true, false, true, null);
                         pin.transform.SetParent(pinHolder, false);
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(singlePrefab, endPosition, orientationCube.transform.rotation, pinHolder);
+                        Instantiate(singlePrefab, endPosition, Quaternion.Euler(pinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
@@ -663,7 +646,7 @@ public class BowlingManager : MonoBehaviour
                     {
                         if (_realtimeObject.connected)
                         {
-                            pin = Realtime.Instantiate(tenPinRealtimePrefab.name, endPosition, tenPinOrientation.transform.rotation, true, false, true, null);
+                            // pin = Realtime.Instantiate(tenPinRealtimePrefab.name, endPosition, Quaternion.Euler(tenPinOrientation), true, false, true, null);
                             pin.transform.parent = pinHolder;
                             GetCount();
                         }
@@ -679,7 +662,7 @@ public class BowlingManager : MonoBehaviour
                     if (_realtimeObject.connected && realtimeBowlingBall == false)
                     {
                         realtimeBowlingBall = true;
-                        bowlingBall = Realtime.Instantiate(bowlingBallRealtimePrefab.name, true, false, true, null);
+                        //bowlingBall = Realtime.Instantiate(bowlingBallRealtimePrefab.name, true, false, true, null);
                         bowlingBall.GetComponent<RealtimeView>().RequestOwnership();
                         bowlingBall.GetComponent<RealtimeTransform>().RequestOwnership();
                     }
@@ -694,26 +677,26 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (_realtimeObject.connected)
                     {
-                        pin = Realtime.Instantiate(singleNoGravityPrefab.name, endPosition, orientationCube.transform.rotation, true, false, true, null);
+                        pin = Realtime.Instantiate(singleNoGravityPrefab.name, endPosition, Quaternion.Euler(pinOrientation), true, false, true, null);
                         pin.transform.parent = pinHolder;
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(singleNoGravityPrefab, endPosition, orientationCube.transform.rotation, pinHolder);
+                        Instantiate(singleNoGravityPrefab, endPosition, Quaternion.Euler(pinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
                 {
                     if (_realtimeObject.connected)
                     {
-                        pin = Realtime.Instantiate(tenPinNoGravityPrefab.name, endPosition, tenPinOrientation.transform.rotation, true, false, true, null);
+                        pin = Realtime.Instantiate(tenPinNoGravityPrefab.name, endPosition, Quaternion.Euler(tenPinOrientation), true, false, true, null);
                         pin.transform.parent = pinHolder;
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(tenPinNoGravityPrefab, endPosition, tenPinOrientation.transform.rotation, pinHolder);
+                        Instantiate(tenPinNoGravityPrefab, endPosition, Quaternion.Euler(tenPinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.ball)
@@ -758,7 +741,7 @@ public class BowlingManager : MonoBehaviour
         if (bowlingBall == null)
         {
             // Spawn the ball away from the player and set the correct color
-            bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), tenPinOrientation.transform.rotation);
+            bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
             BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
         }
         if (_realtimeObject.connected)
@@ -940,14 +923,14 @@ public class BowlingManager : MonoBehaviour
             if (setLocationPos)
             {
                 holding = holdState.none;
-                pinHolder.transform.rotation = locationPointObj.transform.rotation;
-                locationPointObj.SetActive(false);
+                //pinHolder.transform.rotation = locationPointObj.transform.rotation;
+                //locationPointObj.SetActive(false);
             }
             else
             {
                 InputTracking.Recenter();
                 setLocationPos = true;
-                pinHolder.transform.position = locationPointObj.transform.position;
+                //pinHolder.transform.position = locationPointObj.transform.position;
             }
             //holding = holdState.none;
         }
@@ -1028,7 +1011,6 @@ public class BowlingManager : MonoBehaviour
                 menuAudio.Play();
                 break;
             case "NewGame":
-                trackObj.SetActive(true);
                 holding = holdState.track;
                 menuAudio.Play();
                 break;
@@ -1037,13 +1019,13 @@ public class BowlingManager : MonoBehaviour
                 if (micActive == true)
                 {
                     micActive = false;
-                    localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
+                    // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
                     toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
                 }
                 else
                 {
                     micActive = true;
-                    localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
+                    // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
                     toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
                 }
                 break;

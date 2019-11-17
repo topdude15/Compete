@@ -3,8 +3,9 @@
 --- !u!181963792 &2655988077585873504
 Preset:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: MagicLeapCamera
   m_TargetType:
     m_NativeTypeID: 20
@@ -34,6 +35,38 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_BackGroundColor.a
     value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_projectionMatrixMode
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_GateFitMode
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_FOVAxisMode
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SensorSize.x
+    value: 36
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SensorSize.y
+    value: 24
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_LensShift.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_LensShift.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_FocalLength
+    value: 50
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_NormalizedViewPortRect.x
@@ -118,10 +151,6 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_StereoConvergence
     value: 10
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: m_StereoConvergencePoint
-    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_StereoSeparation
