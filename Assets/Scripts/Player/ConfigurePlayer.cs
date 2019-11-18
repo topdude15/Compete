@@ -5,7 +5,7 @@ using Normal.Realtime;
 
 public class ConfigurePlayer : MonoBehaviour
 {
-    private PlayerManagerModel _model;
+    //private PlayerManagerModel _model;
     private Realtime _realtimeObject;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,6 @@ public class ConfigurePlayer : MonoBehaviour
     {
         int clientID = _realtimeObject.clientID;
         uint y = (uint) clientID;
-        print(_model.players[y].username);
+        //print(_model.players[y].username);
     }
 }

@@ -90,7 +90,6 @@
      <Compile Include="Assets\MagicLeap\Examples\Scripts\LightTrackingExample.cs" />
      <Compile Include="Assets\MagicLeap\Examples\Scripts\LocationExample.cs" />
      <Compile Include="Assets\MagicLeap\Examples\Scripts\MediaPlayerExample.cs" />
-     <Compile Include="Assets\MagicLeap\Examples\Scripts\MeshingExample.cs" />
      <Compile Include="Assets\MagicLeap\Examples\Scripts\MobileAppExample.cs" />
      <Compile Include="Assets\MagicLeap\Examples\Scripts\MusicServiceExample.cs" />
      <Compile Include="Assets\MagicLeap\Examples\Scripts\PersistenceExample.cs" />

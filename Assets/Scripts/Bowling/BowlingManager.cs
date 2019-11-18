@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#pragma warning disable 0649
+
+using System.Collections;
 using System.Collections.Generic;
 using Normal.Realtime;
 using UnityEngine;
@@ -42,9 +44,8 @@ public class BowlingManager : MonoBehaviour
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
     [SerializeField] private GameObject mainCam, control, ballPrefab, controlCube, deleteLoader, menuCanvas, handCenter, toggleMicButton, reachedPinLimit, singleSelector, bowlingBallSelector, tenPinSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
-    // All menus
+
     [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
-    
     [SerializeField] private GameObject[] tutorialPage;
 
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
