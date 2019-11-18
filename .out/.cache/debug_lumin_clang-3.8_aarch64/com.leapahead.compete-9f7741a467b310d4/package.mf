@@ -2,16 +2,16 @@
  "entries": [
   {
    "compression": 8,
-   "hash": "8ad33f0662e96c74360e70bc01b6d803f58296ce",
+   "hash": "e107298e57c99c0590363d3d64e35c40dffd6bf2",
    "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
-   "size": 4022136,
+   "size": 3758456,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
   },
   {
    "compression": 8,
-   "hash": "ed82e21995265a183b5d9ed54d3e83039f54c2d9",
+   "hash": "f8c4b30ace92abb58e2202c29afa6b132e7b5a39",
    "pkgpath": "bin/libil2cpp.so",
-   "size": 68227080,
+   "size": 62444000,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
    "xfrm_flags": {
     "signed": {
@@ -23,9 +23,9 @@
      "version": 3
     }
    },
-   "xfrm_hash": "f6df5752a0f7957395a63513cbb3eae93f15783e",
+   "xfrm_hash": "91b83b89d33c062d46352d8afed0e9c8a04731f3",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
-   "xfrm_size": 68227838
+   "xfrm_size": 62444758
   },
   {
    "compression": 8,
@@ -74,20 +74,6 @@
    "pkgpath": "bin/Realtime.dll",
    "size": 58880,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Realtime.dll"
-  },
-  {
-   "compression": 8,
-   "hash": "0c49a81c4586bd52e980ea8f460d755746da9898",
-   "pkgpath": "bin/Unity.Compat.dll",
-   "size": 4608,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Compat.dll"
-  },
-  {
-   "compression": 8,
-   "hash": "cc8f0e9d29bf5c70629818a8e2230974f9930bf3",
-   "pkgpath": "bin/Unity.Tasks.dll",
-   "size": 4608,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Tasks.dll"
   },
   {
    "compression": 8,
@@ -213,21 +199,21 @@
   },
   {
    "compression": 8,
-   "hash": "76bdeae699165e910fd56e569df3e24567a1af0d",
+   "hash": "1d24ae15bb5d24eb7983784bab7207e05cd65cf1",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 99848,
+   "size": 100976,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
    "compression": 8,
-   "hash": "21278e3d91a81c073f4d8618ea4d1ca34b0347d3",
+   "hash": "90c4fc3f7040b0a6eb70f75246d629bad1ccafe5",
    "pkgpath": "Data/globalgamemanagers.assets",
-   "size": 105144,
+   "size": 104040,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers.assets"
   },
   {
    "compression": 8,
-   "hash": "06bdb13260c530c4a94681c66fb7741eb7c407d5",
+   "hash": "a0398e12a0cfd8d26b1037d50d46568313aad0d4",
    "pkgpath": "Data/level0",
    "size": 16256,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level0"
@@ -241,51 +227,44 @@
   },
   {
    "compression": 8,
-   "hash": "7147f59d442dbe7f516e91117f9b3852852997ae",
+   "hash": "1a640c59a620b0f74030018e637d44d917927ac8",
    "pkgpath": "Data/level1",
-   "size": 14692,
+   "size": 14884,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level1"
   },
   {
    "compression": 8,
-   "hash": "f16224ebf2e27d0ef5eb98ff08cf958a7d1f7db3",
+   "hash": "02556f17b24a8ffcbfe4a49ca2f0c035a8666ead",
    "pkgpath": "Data/level2",
-   "size": 100472,
+   "size": 101576,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
   },
   {
    "compression": 8,
-   "hash": "bf6a0a90934511f0ea74cc4fdcb9f190367ed9db",
+   "hash": "b938fd788a83c9ea42da09448736a09429bbcd70",
    "pkgpath": "Data/level3",
-   "size": 103608,
+   "size": 104096,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3"
   },
   {
    "compression": 8,
-   "hash": "43509aca92c470f3336eded6a904081332b3171d",
+   "hash": "6c7b0dde8c18b5d9fef708301dbe5912fec3b40d",
    "pkgpath": "Data/level3.resS",
    "size": 131232,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level3.resS"
   },
   {
    "compression": 8,
-   "hash": "cfd326d17f5f11caa8f9727f475e0bddd0106a4d",
-   "pkgpath": "Data/level4",
-   "size": 103296,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level4"
-  },
-  {
-   "compression": 8,
-   "hash": "7f9802118851d1c9075563836ba4049d170c2dfb",
+   "hash": "f5e9bacdbf50415f6e2dc6cfcd805d0e5c7ba757",
    "pkgpath": "Data/resources.assets",
-   "size": 2618776,
+   "size": 1657104,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
   },
   {
    "compression": 8,
-   "hash": "eb3944224fc29b050052f2c08414a8c9265ededc",
+   "hash": "11c31b2578fd9c7c8b1fab0631a4ca026a956695",
    "pkgpath": "Data/resources.assets.resS",
-   "size": 3156736,
+   "size": 2457672,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets.resS"
   },
   {
@@ -297,9 +276,9 @@
   },
   {
    "compression": 8,
-   "hash": "b57c5cb87a03b5ac950a79ab15fd4a6be3b02527",
+   "hash": "1ae84d6c959d58ec82ac7bf8d8337e476defbff7",
    "pkgpath": "Data/sharedassets0.assets",
-   "size": 5544882,
+   "size": 4969026,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets0.assets"
   },
   {
@@ -311,30 +290,30 @@
   },
   {
    "compression": 8,
-   "hash": "ba516d79dd9003b9824e79f81a3be806e6a33186",
+   "hash": "801d3969416647bbee3060d06dbdcd4df15f2cc6",
    "pkgpath": "Data/sharedassets1.assets",
-   "size": 336680,
+   "size": 348280,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets"
   },
   {
    "compression": 8,
-   "hash": "e8e0a1ff8b7d35ad5624384329f7aef2741e4831",
+   "hash": "c8c3bdb4fd7a304fce9575be346c38fc9b18e880",
    "pkgpath": "Data/sharedassets1.assets.resS",
-   "size": 1048656,
+   "size": 1185872,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets1.assets.resS"
   },
   {
    "compression": 8,
-   "hash": "efdd13c83abca75ebc97d97f752d2bf965fb5372",
+   "hash": "a35a3365b254c671e48ffb71bacf2220167c6bfa",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 5000320,
+   "size": 27000,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
    "compression": 8,
-   "hash": "e58800acae70ccc92b7ccffb93d133faf2f63bf7",
+   "hash": "cdf25e5be25c7baa9c2a65d1a11c2b46f265be30",
    "pkgpath": "Data/sharedassets2.assets.resS",
-   "size": 18739160,
+   "size": 4976392,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets.resS"
   },
   {
@@ -346,9 +325,9 @@
   },
   {
    "compression": 8,
-   "hash": "62c6969d5de3a912f984629a4f51485187656ee3",
+   "hash": "8d385def2d37039e25215da8a6e6400c0cc6e3d7",
    "pkgpath": "Data/sharedassets3.assets",
-   "size": 15700,
+   "size": 14236,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"
   },
   {
@@ -357,20 +336,6 @@
    "pkgpath": "Data/sharedassets3.assets.resS",
    "size": 2097312,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets.resS"
-  },
-  {
-   "compression": 8,
-   "hash": "8ffaed2ee8d2cebe8db6ca4fa068c9db32895073",
-   "pkgpath": "Data/sharedassets4.assets",
-   "size": 13996,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets4.assets"
-  },
-  {
-   "compression": 8,
-   "hash": "ec1ab2d124ee9f73ffc4590218fcaa9961f284e4",
-   "pkgpath": "Data/sharedassets4.assets.resS",
-   "size": 349544,
-   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets4.assets.resS"
   },
   {
    "compression": 8,

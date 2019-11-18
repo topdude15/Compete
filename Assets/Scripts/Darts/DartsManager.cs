@@ -52,7 +52,7 @@ public class DartsManager : MonoBehaviour
     private int currentPage = 0;
     public Realtime _realtimeObject;
 
-    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true;
+    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = true;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
 
@@ -107,7 +107,7 @@ public class DartsManager : MonoBehaviour
             leftHand = false;
         }
 
-        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
+        currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
     }
     private void OnDisable()
     {
@@ -541,7 +541,7 @@ public class DartsManager : MonoBehaviour
         var forcePerSecondAvg = toAverage * 300;
         forcePerSecond = forcePerSecondAvg;
         dart.transform.position = controlOrientationObj.transform.position;
-        //dart.transform.rotation = controller.Orientation;
+
         dart.transform.rotation = controlOrientationObj.transform.rotation;
     }
 
@@ -555,16 +555,16 @@ public class DartsManager : MonoBehaviour
                 {
                     if (!objSelected)
                     {
-                        if (_realtimeObject.connected)
+                        if (joinedLobby)
                         {
                             // Spawn dart while connected to realtime room and gravity is enabled
+                            dart = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
                             //dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
-                            dart.transform.parent = dartHolder;
+                            //dart.transform.parent = dartHolder;
 
-                            dart.GetComponent<RealtimeView>().RequestOwnership();
-                            dart.GetComponent<RealtimeTransform>().RequestOwnership();
+                            holdingDart = true;
 
-                            Transform dartChild = dart.gameObject.transform.GetChild(0);
+                            Transform dartChild = dart.transform;
 
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
                             dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
@@ -1085,7 +1085,7 @@ public class DartsManager : MonoBehaviour
                 currentPage = currentPage - 1;
             }
         }
-        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/" + currentPage);
+        currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/" + currentPage);
         print(currentTutorialPage);
         currentTutorialPage.SetActive(true);
 

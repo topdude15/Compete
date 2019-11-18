@@ -23,8 +23,8 @@ public class PinFallen : MonoBehaviour
                 bManager.UpdateFallen();
             }
         }
-        if (Mathf.Abs(this.gameObject.transform.position.y) > 20.0f) {
-            GameObject.Destroy(this.gameObject);
-        }
+        // if (Mathf.Abs(this.gameObject.transform.position.y) > 20.0f) {
+        //     GameObject.Destroy(this.gameObject);
+        // }
     }
 }

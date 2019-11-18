@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour {
 				// If the dartboard is being pointed at and the trigger is held, load the darts scene
 			    // MLInput.Stop();
 				if (!pressedContinue) {
-					SceneManager.LoadScene("Darts", LoadSceneMode.Single);
+					SceneManager.LoadScene("DartsMultiplayer", LoadSceneMode.Single);
 					//SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 				}
                // SceneManager.UnloadSceneAsync("Main");

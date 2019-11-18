@@ -12,14 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: d2b561eb229bbdd4dbfcbe15f72ec1db
   - enabled: 1
-    path: Assets/Scenes/Bowling.unity
-    guid: b1b41f7eded0e3d4f9e747764b455668
-  - enabled: 1
-    path: Assets/Scenes/Darts.unity
-    guid: 1e4af6a3eac600a479ec2abadca4973d
-  - enabled: 1
     path: Assets/Scenes/BowlingMultiplayer.unity
     guid: 01c59243a97570544ae43a67cbc50682
+  - enabled: 1
+    path: Assets/Scenes/DartsMultiplayer.unity
+    guid: 5cd2eab0529b4c34b8dc4f8d1aea4708
   m_configObjects:
     com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: b9c240d2d15a04069ab40b302dfae3d3,
       type: 2}

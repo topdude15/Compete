@@ -24,14 +24,6 @@
   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Realtime.dll"
  },
  {
-  "dest": "bin/Unity.Compat.dll",
-  "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Compat.dll"
- },
- {
-  "dest": "bin/Unity.Tasks.dll",
-  "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Tasks.dll"
- },
- {
   "dest": "bin/UnityMagicLeap.so",
   "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so"
  },

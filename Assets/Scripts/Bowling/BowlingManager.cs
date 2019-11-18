@@ -43,7 +43,7 @@ public class BowlingManager : MonoBehaviour
     private holdState holding = holdState.single;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    [SerializeField] private GameObject mainCam, control, ballPrefab, controlCube, deleteLoader, menuCanvas, handCenter, toggleMicButton, reachedPinLimit, singleSelector, bowlingBallSelector, tenPinSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint;
+    [SerializeField] private GameObject mainCam, control, ballPrefab, controlCube, deleteLoader, menuCanvas, handCenter, toggleMicButton, reachedPinLimit, singleSelector, bowlingBallSelector, tenPinSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint, transmissionObj, spatialAlignmentObj;
 
     [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
     [SerializeField] private GameObject[] tutorialPage;
@@ -86,7 +86,6 @@ public class BowlingManager : MonoBehaviour
     {
 
         MLInput.Start();
-
         // If the user is new, open the tutorial menu
         CheckNewUser();
 
@@ -129,9 +128,9 @@ public class BowlingManager : MonoBehaviour
             leftHand = false;
         }
 
-        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/0");
+        currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
 
-        holding = holdState.track;
+        // holding = holdState.track;
 
     }
     private void OnDisable()
@@ -529,12 +528,12 @@ public class BowlingManager : MonoBehaviour
                         case "8":
                         case "9":
                             MLNetworking.IsInternetConnected(ref networkConnected);
-                            if (networkConnected == false)
-                            {
-                                multiplayerCodeText.text = ("<color='red'>No Internet</color>");
-                            }
-                            else
-                            {
+                            // if (networkConnected == false)
+                            // {
+                            //     multiplayerCodeText.text = ("<color='red'>No Internet</color>");
+                            // }
+                            // else
+                            // {
                                 multiplayerCodeText.color = Color.white;
                                 if (!pickedNumber && roomCode.Length < 18)
                                 {
@@ -543,7 +542,7 @@ public class BowlingManager : MonoBehaviour
                                     multiplayerCodeText.text = roomCode;
                                     menuAudio.Play();
                                 }
-                            }
+                          // }
 
                             break;
                         case "Delete":
@@ -561,12 +560,12 @@ public class BowlingManager : MonoBehaviour
                             if (!joinedLobby)
                             {
                                 MLNetworking.IsInternetConnected(ref networkConnected);
-                                if (networkConnected == false)
-                                {
-                                    multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
-                                }
-                                else
-                                {
+                                // if (networkConnected == false)
+                                // {
+                                //     multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                                // }
+                                // else
+                                // {
                                     multiplayerCodeText.color = Color.white;
                                     if (roomCode.Length < 1)
                                     {
@@ -575,10 +574,15 @@ public class BowlingManager : MonoBehaviour
                                     else
                                     {
                                         joinedLobby = true;
-                                        _realtime = GameObject.Find("Realtime + VR Player");
+                                        // _realtime = GameObject.Find("Realtime + VR Player");
                                         // Connect to Realtime room
                                         ClearAllObjects();
-                                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+                                        // _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+
+                                        transmissionObj.SetActive(true);
+                                        transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
+                                        
+                                        spatialAlignmentObj.SetActive(true);
 
                                         multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
                                         multiplayerMenu.SetActive(false);
@@ -586,7 +590,7 @@ public class BowlingManager : MonoBehaviour
                                         multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
                                         menuAudio.Play();
                                     }
-                                }
+                              //  }
                             }
                             break;
                         case "Cancel":
@@ -630,10 +634,9 @@ public class BowlingManager : MonoBehaviour
             {
                 if (holding == holdState.single)
                 {
-                    if (_realtimeObject.connected)
+                    if (joinedLobby)
                     {
-                        //pin = Realtime.Instantiate(bowlingPinRealtimePrefab.name, endPosition, Quaternion.Euler(pinOrientation), true, false, true, null);
-                        pin.transform.SetParent(pinHolder, false);
+                        Transmission.Spawn("SingleMultiplayer", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
@@ -645,10 +648,10 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (totalObjs <= objLimit - 10)
                     {
-                        if (_realtimeObject.connected)
+                        if (joinedLobby)
                         {
-                            // pin = Realtime.Instantiate(tenPinRealtimePrefab.name, endPosition, Quaternion.Euler(tenPinOrientation), true, false, true, null);
-                            pin.transform.parent = pinHolder;
+                            Transmission.Spawn("TenPinMultiplayer", endPosition, Quaternion.Euler(tenPinOrientation), Vector3.one);
+
                             GetCount();
                         }
                         else
@@ -663,7 +666,6 @@ public class BowlingManager : MonoBehaviour
                     if (_realtimeObject.connected && realtimeBowlingBall == false)
                     {
                         realtimeBowlingBall = true;
-                        //bowlingBall = Realtime.Instantiate(bowlingBallRealtimePrefab.name, true, false, true, null);
                         bowlingBall.GetComponent<RealtimeView>().RequestOwnership();
                         bowlingBall.GetComponent<RealtimeTransform>().RequestOwnership();
                     }
@@ -676,10 +678,9 @@ public class BowlingManager : MonoBehaviour
             {
                 if (holding == holdState.single)
                 {
-                    if (_realtimeObject.connected)
+                    if (joinedLobby)
                     {
-                        pin = Realtime.Instantiate(singleNoGravityPrefab.name, endPosition, Quaternion.Euler(pinOrientation), true, false, true, null);
-                        pin.transform.parent = pinHolder;
+                        Transmission.Spawn("SingleNoGravity", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
@@ -689,10 +690,9 @@ public class BowlingManager : MonoBehaviour
                 }
                 else if (holding == holdState.tenPin)
                 {
-                    if (_realtimeObject.connected)
+                    if (joinedLobby)
                     {
-                        pin = Realtime.Instantiate(tenPinNoGravityPrefab.name, endPosition, Quaternion.Euler(tenPinOrientation), true, false, true, null);
-                        pin.transform.parent = pinHolder;
+                        Transmission.Spawn("TenPinMultiplayerNoGravity", endPosition, Quaternion.Euler(tenPinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
@@ -1143,7 +1143,7 @@ public class BowlingManager : MonoBehaviour
                 currentPage = currentPage - 1;
             }
         }
-        currentTutorialPage = GameObject.Find("/Menu/Canvas/Tutorial/" + currentPage);
+        currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/" + currentPage);
         print(currentTutorialPage);
         currentTutorialPage.SetActive(true);
 
