@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,7 +149,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349054243134968217}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349054243134968217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -377,8 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 0.002
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -453,7 +453,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -536,7 +536,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349136923483681543}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349136923483681543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -684,8 +684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -776,7 +776,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -859,7 +859,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349861280783203467}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349861280783203467}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -1007,8 +1007,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1099,7 +1099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1182,7 +1182,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349929081706829153}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2349929081706829153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -1330,8 +1330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1422,7 +1422,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1505,7 +1505,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350412958425094561}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350412958425094561}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -1653,8 +1653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1745,7 +1745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1828,7 +1828,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350521750136606869}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -1936,7 +1936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350521750136606869}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -1976,8 +1976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2068,7 +2068,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2151,7 +2151,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350557258829964899}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350557258829964899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -2299,8 +2299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2391,7 +2391,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2474,7 +2474,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350688888439813111}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -2582,7 +2582,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350688888439813111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -2622,8 +2622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2714,7 +2714,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2797,7 +2797,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350737061281566037}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -2905,7 +2905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350737061281566037}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -2945,8 +2945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -3037,7 +3037,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e60ad60f62f87e444a4d15d48603506f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3120,7 +3120,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350825026655641679}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f86af95e34f5411db9422d3d87f6dd5, type: 3}
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2350825026655641679}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
@@ -3268,8 +3268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 1
+  sendFrameRate: 12
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 

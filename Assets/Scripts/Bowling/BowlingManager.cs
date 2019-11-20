@@ -76,7 +76,7 @@ public class BowlingManager : MonoBehaviour
 
     public Realtime _realtimeObject;
 
-    private Vector3 pinOrientation = new Vector3(-90,0,90), tenPinOrientation = new Vector3(0,0,-90);
+    private Vector3 pinOrientation = new Vector3(-90,0,90), tenPinOrientation = new Vector3(0,0,0);
     // AUDIO VARIABLES
 
     public AudioSource menuAudio;
@@ -680,7 +680,7 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleNoGravity", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
+                        Transmission.Spawn("SingleMultiplayerNoGravity", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
@@ -771,7 +771,7 @@ public class BowlingManager : MonoBehaviour
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
-        var forcePerSecondAvg = toAverage * 550;
+        var forcePerSecondAvg = toAverage * 50000;
         forcePerSecond = forcePerSecondAvg;
         bowlingBall.transform.position = controller.Position;
     }
