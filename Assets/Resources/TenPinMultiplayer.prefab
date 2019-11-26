@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -377,8 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.002
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -453,7 +453,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -684,8 +684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -776,7 +776,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1007,8 +1007,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1099,7 +1099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1330,8 +1330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1422,7 +1422,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1653,8 +1653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -1745,7 +1745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1976,8 +1976,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2068,7 +2068,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2299,8 +2299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2391,7 +2391,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2622,8 +2622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -2714,7 +2714,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2945,8 +2945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
@@ -3037,7 +3037,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: de14e5b3c1b3f3e40be0d51a2e1bd8c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3268,8 +3268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 1
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 

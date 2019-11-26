@@ -65,7 +65,7 @@ Transform:
   m_GameObject: {fileID: 4462603036109761039}
   m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.275, y: 0.275, z: 0.275}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 6568401254321788827}
   m_Father: {fileID: 0}
@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 12
+  smoothTime: 0
+  sendFrameRate: 0
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
