@@ -50,6 +50,7 @@ public class BowlingManager : MonoBehaviour
 
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
     private GameObject bowlingBall, _realtime, pinObj, pin, currentTutorialPage;
+    private TransmissionObject bowlingBallMultiplayer;
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
@@ -70,11 +71,11 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check, handLeft, handRight;
 
-    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false;
+    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false, spawnedBallMultiplayer = false;
 
     public Realtime _realtimeObject;
 
-    private Vector3 pinOrientation = new Vector3(-90,0,90), tenPinOrientation = new Vector3(0,0,0);
+    private Vector3 pinOrientation = new Vector3(-90, 0, 90), tenPinOrientation = new Vector3(0, 0, 0);
     // AUDIO VARIABLES
 
     public AudioSource menuAudio;
@@ -521,15 +522,15 @@ public class BowlingManager : MonoBehaviour
                             // }
                             // else
                             // {
-                                multiplayerCodeText.color = Color.white;
-                                if (!pickedNumber && roomCode.Length < 18)
-                                {
-                                    pickedNumber = true;
-                                    roomCode += objGameHit;
-                                    multiplayerCodeText.text = roomCode;
-                                    menuAudio.Play();
-                                }
-                          // }
+                            multiplayerCodeText.color = Color.white;
+                            if (!pickedNumber && roomCode.Length < 18)
+                            {
+                                pickedNumber = true;
+                                roomCode += objGameHit;
+                                multiplayerCodeText.text = roomCode;
+                                menuAudio.Play();
+                            }
+                            // }
 
                             break;
                         case "Delete":
@@ -553,31 +554,31 @@ public class BowlingManager : MonoBehaviour
                                 // }
                                 // else
                                 // {
-                                    multiplayerCodeText.color = Color.white;
-                                    if (roomCode.Length < 1)
-                                    {
-                                        multiplayerCodeText.text = "Please enter a code";
-                                    }
-                                    else
-                                    {
-                                        joinedLobby = true;
-                                        // _realtime = GameObject.Find("Realtime + VR Player");
-                                        // Connect to Realtime room
-                                        ClearAllObjects();
-                                        // _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
+                                multiplayerCodeText.color = Color.white;
+                                if (roomCode.Length < 1)
+                                {
+                                    multiplayerCodeText.text = "Please enter a code";
+                                }
+                                else
+                                {
+                                    joinedLobby = true;
+                                    // _realtime = GameObject.Find("Realtime + VR Player");
+                                    // Connect to Realtime room
+                                    ClearAllObjects();
+                                    // _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
 
-                                        transmissionObj.SetActive(true);
-                                        transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
-                                        
-                                        spatialAlignmentObj.SetActive(true);
+                                    transmissionObj.SetActive(true);
+                                    transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
 
-                                        multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
-                                        multiplayerMenu.SetActive(false);
-                                        multiplayerStatusMenu.SetActive(true);
-                                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-                                        menuAudio.Play();
-                                    }
-                              //  }
+                                    spatialAlignmentObj.SetActive(true);
+
+                                    multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
+                                    multiplayerMenu.SetActive(false);
+                                    multiplayerStatusMenu.SetActive(true);
+                                    multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                                    menuAudio.Play();
+                                }
+                                //  }
                             }
                             break;
                         case "Cancel":
@@ -653,7 +654,7 @@ public class BowlingManager : MonoBehaviour
                     if (joinedLobby && multiplayerBall == false)
                     {
                         multiplayerBall = true;
-                        
+
                     }
 
                     Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
@@ -724,18 +725,6 @@ public class BowlingManager : MonoBehaviour
 
     private void HoldingBall()
     {
-        // Run on LateUpdate if the holdState is ball and the Trigger is held down
-        if (bowlingBall == null)
-        {
-            // Spawn the ball away from the player and set the correct color
-            bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
-            BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
-        }
-        if (_realtimeObject.connected)
-        {
-            bowlingBall.GetComponent<RealtimeView>().RequestOwnership();
-            bowlingBall.GetComponent<RealtimeTransform>().RequestOwnership();
-        }
         // Stop the ball moving on its own while holding
         var rigidbody = bowlingBall.GetComponent<Rigidbody>();
         rigidbody.velocity = Vector3.zero;
@@ -898,7 +887,9 @@ public class BowlingManager : MonoBehaviour
             if (trackEndPosition == Vector3.zero)
             {
                 PlaceTrack();
-            } else {
+            }
+            else
+            {
 
                 Transmission.Spawn("10PinLowPoly", pinPlacement.transform.position, pinPlacement.transform.rotation, Vector3.one);
 
@@ -1080,6 +1071,21 @@ public class BowlingManager : MonoBehaviour
                 holding = holdState.single;
                 break;
             case "BowlingBallSelector":
+                if (joinedLobby)
+                {
+                    if (bowlingBallMultiplayer == null) {
+                        
+                    }
+                }
+                else
+                {
+                    if (bowlingBall == null)
+                    {
+                        // Spawn the ball away from the player and set the correct color
+                        bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
+                        BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
+                    }
+                }
                 objMenu.SetActive(false);
                 holding = holdState.ball;
                 break;
