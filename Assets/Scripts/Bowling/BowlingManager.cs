@@ -64,15 +64,13 @@ public class BowlingManager : MonoBehaviour
 
     public int pinsFallen = 0;
 
-    //public static string ballColor;
-
     private string roomCode = "";
 
     public Image loadingImage;
 
     public Texture2D emptyCircle, check, handLeft, handRight;
 
-    private bool holdingBall = false, ballMenuOpened = false, holdingBallMenu = true, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, realtimeBowlingBall = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false;
+    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false;
 
     public Realtime _realtimeObject;
 
@@ -129,8 +127,6 @@ public class BowlingManager : MonoBehaviour
         }
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
-
-        // holding = holdState.track;
 
     }
     private void OnDisable()
@@ -501,15 +497,6 @@ public class BowlingManager : MonoBehaviour
                 localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
                 bowlingBallSelector.transform.localScale = localObjScale;
             }
-
-            if (!holdingBallMenu)
-            {
-                BowlingColorLoader.GetBallColor(rayHit, controller, ballMenu, ballMenuOpened, holdingBallMenu, bowlingBall, ballMats);
-            }
-            else if (holdingBallMenu && controller.TriggerValue <= 0.2f)
-            {
-                holdingBallMenu = false;
-            }
             if (multiplayerMenu.activeSelf)
             {
                 if (controller.TriggerValue >= 0.9f)
@@ -663,11 +650,10 @@ public class BowlingManager : MonoBehaviour
                 }
                 else if (holding == holdState.ball)
                 {
-                    if (_realtimeObject.connected && realtimeBowlingBall == false)
+                    if (joinedLobby && multiplayerBall == false)
                     {
-                        realtimeBowlingBall = true;
-                        bowlingBall.GetComponent<RealtimeView>().RequestOwnership();
-                        bowlingBall.GetComponent<RealtimeTransform>().RequestOwnership();
+                        multiplayerBall = true;
+                        
                     }
 
                     Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
@@ -978,8 +964,6 @@ public class BowlingManager : MonoBehaviour
                 ballMenu.transform.LookAt(mainCam.transform.position);
                 ballMenu.SetActive(true);
                 menu.SetActive(false);
-                ballMenuOpened = true;
-                holdingBallMenu = true;
                 menuAudio.Play();
                 break;
             case "Modifiers":
@@ -1102,6 +1086,26 @@ public class BowlingManager : MonoBehaviour
             case "TenPinSelector":
                 objMenu.SetActive(false);
                 holding = holdState.tenPin;
+                break;
+            case "0 RedBall":
+                PlayerPrefs.SetInt("ballColorInt", 0);
+                ballMenu.SetActive(false);
+                break;
+            case "1 OrangeBall":
+                PlayerPrefs.SetInt("ballColorInt", 1);
+                ballMenu.SetActive(false);
+                break;
+            case "2 YellowBall":
+                PlayerPrefs.SetInt("ballColorInt", 2);
+                ballMenu.SetActive(false);
+                break;
+            case "3 GreenBall":
+                PlayerPrefs.SetInt("ballColorInt", 3);
+                ballMenu.SetActive(false);
+                break;
+            case "4 BlueBall":
+                PlayerPrefs.SetInt("ballColorInt", 4);
+                ballMenu.SetActive(false);
                 break;
             default:
                 break;
