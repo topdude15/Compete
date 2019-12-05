@@ -651,14 +651,20 @@ public class BowlingManager : MonoBehaviour
                 }
                 else if (holding == holdState.ball)
                 {
-                    if (joinedLobby && multiplayerBall == false)
+                    if (joinedLobby)
                     {
-                        multiplayerBall = true;
-
+                        if (!multiplayerBall)
+                        {
+                            multiplayerBall = true;
+                        }
+                        Rigidbody ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+                        ballRB.useGravity = false;
                     }
-
-                    Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
-                    ballRB.useGravity = false;
+                    else
+                    {
+                        Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
+                        ballRB.useGravity = false;
+                    }
                 }
             }
             else if (noGravity)
@@ -725,13 +731,26 @@ public class BowlingManager : MonoBehaviour
 
     private void HoldingBall()
     {
+        Rigidbody ballRB;
         // Stop the ball moving on its own while holding
-        var rigidbody = bowlingBall.GetComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.zero;
+        if (joinedLobby)
+        {
+            ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            ballRB = bowlingBall.GetComponent<Rigidbody>();
+        }
+        ballRB.velocity = Vector3.zero;
 
         // Reset the bowling ball and then get the bowling ball's previous and current position
-        bowlingBall.transform.rotation = Quaternion.identity;
-        var oldPosition = bowlingBall.transform.position;
+        // bowlingBall.transform.rotation = Quaternion.identity;
+        Vector3 oldPosition;
+        if (joinedLobby) {
+            oldPosition = bowlingBallMultiplayer.transform.position;
+        } else {
+            oldPosition = bowlingBall.transform.position;
+        }
         var newPosition = controller.Position;
 
         var delta = newPosition - oldPosition;
@@ -748,7 +767,14 @@ public class BowlingManager : MonoBehaviour
         toAverage /= Deltas.Count;
         var forcePerSecondAvg = toAverage * 50000;
         forcePerSecond = forcePerSecondAvg;
-        bowlingBall.transform.position = controller.Position;
+        if (joinedLobby)
+        {
+            bowlingBallMultiplayer.transform.position = controller.Position;
+        }
+        else
+        {
+            bowlingBall.transform.position = controller.Position;
+        }
     }
 
     public void GetCount()
@@ -1073,8 +1099,9 @@ public class BowlingManager : MonoBehaviour
             case "BowlingBallSelector":
                 if (joinedLobby)
                 {
-                    if (bowlingBallMultiplayer == null) {
-                        
+                    if (bowlingBallMultiplayer == null)
+                    {
+                        bowlingBallMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f,0.1f,0.1f));
                     }
                 }
                 else
@@ -1124,11 +1151,16 @@ public class BowlingManager : MonoBehaviour
         {
             Deltas.Clear();
             holdingBall = false;
-            var rigidbody = bowlingBall.GetComponent<Rigidbody>();
+            Rigidbody ballRB;
+            if (joinedLobby) {
+                ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+            } else {
+                ballRB = bowlingBall.GetComponent<Rigidbody>();
+            }
             // Enable the rigidbody on the ball, then apply current forces to the ball
-            rigidbody.useGravity = true;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(forcePerSecond);
+            ballRB.useGravity = true;
+            ballRB.velocity = Vector3.zero;
+            ballRB.AddForce(forcePerSecond);
             forcePerSecond = Vector3.zero;
         }
     }
