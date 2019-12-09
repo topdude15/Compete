@@ -31,6 +31,8 @@ public class BowlingManager : MonoBehaviour
     }
 
     // Input
+    [SerializeField] private Pointer pointer;
+    [SerializeField] private GameObject controlPointer, pointerCursor;
     private MLInputController controller;
     public LineRenderer laserLineRenderer;
     RaycastHit rayHit;
@@ -71,7 +73,7 @@ public class BowlingManager : MonoBehaviour
 
     public Texture2D emptyCircle, check, handLeft, handRight;
 
-    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, pickedNumber = true, deletedCharacter = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false, spawnedBallMultiplayer = false;
+    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false, spawnedBallMultiplayer = false;
 
     public Realtime _realtimeObject;
 
@@ -96,10 +98,6 @@ public class BowlingManager : MonoBehaviour
         MLInput.OnTriggerUp += OnTriggerUp;
         MLInput.TriggerDownThreshold = 0.75f;
         MLInput.TriggerUpThreshold = 0.2f;
-
-        // Initialize both line points at Vector3.Zero
-        Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-        laserLineRenderer.SetPositions(initLaserPositions);
 
         MLHands.Start();
         _gestures = new MLHandKeyPose[2];
@@ -170,7 +168,6 @@ public class BowlingManager : MonoBehaviour
         {
             PlayTimer();
         }
-        SetLine();
 
         if (holdingBall)
         {
@@ -426,192 +423,6 @@ public class BowlingManager : MonoBehaviour
         }
 
     }
-    private void SetLine()
-    {
-        Vector3 heading = control.transform.forward;
-
-        // Set the origin of the line to the controller's position.  Occurs every frame
-        laserLineRenderer.SetPosition(0, controller.Position);
-
-        if (Physics.Raycast(controller.Position, heading, out rayHit, 10.0f))
-        {
-            // If the ray hits an object, set the line's end position to the distance between the controller and that point
-            endPosition = controller.Position + (control.transform.forward * rayHit.distance);
-            laserLineRenderer.SetPosition(1, endPosition);
-
-            if (holding == holdState.locationPoint)
-            {
-                if (setLocationPos)
-                {
-                    //locationPointObj.transform.LookAt(endPosition);
-                }
-                else
-                {
-                    //locationPointObj.transform.position = endPosition;
-                }
-            }
-            string objHit = rayHit.transform.gameObject.name;
-            switch (objHit)
-            {
-                case "SinglePinSelector":
-                    if (singleSelector.transform.localScale.x < 4)
-                    {
-                        Vector3 localObjScale = singleSelector.transform.localScale;
-                        localObjScale += new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                        singleSelector.transform.localScale = localObjScale;
-                    }
-                    break;
-                case "BowlingBallSelector":
-                    if (bowlingBallSelector.transform.localScale.x < 4)
-                    {
-                        Vector3 localObjScale = bowlingBallSelector.transform.localScale;
-                        localObjScale += new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                        bowlingBallSelector.transform.localScale = localObjScale;
-                    }
-                    break;
-                case "TenPinSelector":
-                    if (tenPinSelector.transform.localScale.x < 4)
-                    {
-                        Vector3 localObjScale = tenPinSelector.transform.localScale;
-                        localObjScale += new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                        tenPinSelector.transform.localScale = localObjScale;
-                    }
-                    break;
-
-            }
-
-            if (singleSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "SinglePinSelector")
-            {
-                Vector3 localObjScale = singleSelector.transform.localScale;
-                localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                singleSelector.transform.localScale = localObjScale;
-            }
-            if (tenPinSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "TenPinSelector")
-            {
-                Vector3 localObjScale = tenPinSelector.transform.localScale;
-                localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                tenPinSelector.transform.localScale = localObjScale;
-            }
-            if (bowlingBallSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "BowlingBallSelector")
-            {
-                Vector3 localObjScale = bowlingBallSelector.transform.localScale;
-                localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                bowlingBallSelector.transform.localScale = localObjScale;
-            }
-            if (multiplayerMenu.activeSelf)
-            {
-                if (controller.TriggerValue >= 0.9f)
-                {
-                    string objGameHit = rayHit.transform.gameObject.name;
-                    switch (objGameHit)
-                    {
-                        case "0":
-                        case "1":
-                        case "2":
-                        case "3":
-                        case "4":
-                        case "5":
-                        case "6":
-                        case "7":
-                        case "8":
-                        case "9":
-                            MLNetworking.IsInternetConnected(ref networkConnected);
-                            // if (networkConnected == false)
-                            // {
-                            //     multiplayerCodeText.text = ("<color='red'>No Internet</color>");
-                            // }
-                            // else
-                            // {
-                            multiplayerCodeText.color = Color.white;
-                            if (!pickedNumber && roomCode.Length < 18)
-                            {
-                                pickedNumber = true;
-                                roomCode += objGameHit;
-                                multiplayerCodeText.text = roomCode;
-                                menuAudio.Play();
-                            }
-                            // }
-
-                            break;
-                        case "Delete":
-                            if (!deletedCharacter)
-                            {
-                                deletedCharacter = true;
-                                if (roomCode.Length > 0)
-                                {
-                                    roomCode = roomCode.Substring(0, roomCode.Length - 1);
-                                    multiplayerCodeText.text = roomCode;
-                                }
-                            }
-                            break;
-                        case "Join":
-                            if (!joinedLobby)
-                            {
-                                MLNetworking.IsInternetConnected(ref networkConnected);
-                                // if (networkConnected == false)
-                                // {
-                                //     multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
-                                // }
-                                // else
-                                // {
-                                multiplayerCodeText.color = Color.white;
-                                if (roomCode.Length < 1)
-                                {
-                                    multiplayerCodeText.text = "Please enter a code";
-                                }
-                                else
-                                {
-                                    joinedLobby = true;
-                                    // _realtime = GameObject.Find("Realtime + VR Player");
-                                    // Connect to Realtime room
-                                    ClearAllObjects();
-                                    // _realtime.GetComponent<Realtime>().Connect(roomCode + "Bowling");
-
-                                    transmissionObj.SetActive(true);
-                                    transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
-
-                                    spatialAlignmentObj.SetActive(true);
-
-                                    multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
-                                    multiplayerMenu.SetActive(false);
-                                    multiplayerStatusMenu.SetActive(true);
-                                    multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
-                                    menuAudio.Play();
-                                }
-                                //  }
-                            }
-                            break;
-                        case "Cancel":
-                            multiplayerMenu.SetActive(false);
-                            menu.SetActive(true);
-                            roomCode = "";
-                            menuAudio.Play();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if (controller.TriggerValue <= 0.2f)
-                {
-                    pickedNumber = false;
-                    deletedCharacter = false;
-                }
-
-            }
-
-        }
-        else
-        {
-            // If no object is hit, make the length of the line 7 meters out from the controller
-            endPosition = controller.Position + (control.transform.forward * 7.0f);
-            laserLineRenderer.SetPosition(1, endPosition);
-        }
-        if (holding == holdState.ball)
-        {
-            laserLineRenderer.SetPosition(0, mainCam.transform.position);
-            laserLineRenderer.SetPosition(1, mainCam.transform.position);
-        }
-    }
     private void SpawnObject()
     {
 
@@ -624,12 +435,12 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayer", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
+                        Transmission.Spawn("SingleMultiplayer", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(singlePrefab, endPosition, Quaternion.Euler(pinOrientation), pinHolder);
+                        Instantiate(singlePrefab, pointerCursor.transform.position, Quaternion.Euler(pinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
@@ -638,13 +449,13 @@ public class BowlingManager : MonoBehaviour
                     {
                         if (joinedLobby)
                         {
-                            Transmission.Spawn("TenPinMultiplayer", endPosition, Quaternion.Euler(tenPinOrientation), Vector3.one);
+                            Transmission.Spawn("TenPinMultiplayer", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
 
                             GetCount();
                         }
                         else
                         {
-                            Instantiate(tenPinPrefab, endPosition, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
+                            Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
                         }
                     }
 
@@ -673,24 +484,24 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayerNoGravity", endPosition, Quaternion.Euler(pinOrientation), Vector3.one);
+                        Transmission.Spawn("SingleMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(singleNoGravityPrefab, endPosition, Quaternion.Euler(pinOrientation), pinHolder);
+                        Instantiate(singleNoGravityPrefab, pointerCursor.transform.position, Quaternion.Euler(pinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("TenPinMultiplayerNoGravity", endPosition, Quaternion.Euler(tenPinOrientation), Vector3.one);
+                        Transmission.Spawn("TenPinMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(tenPinNoGravityPrefab, endPosition, Quaternion.Euler(tenPinOrientation), pinHolder);
+                        Instantiate(tenPinNoGravityPrefab, pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), pinHolder);
                     }
                 }
                 else if (holding == holdState.ball)
@@ -746,9 +557,12 @@ public class BowlingManager : MonoBehaviour
         // Reset the bowling ball and then get the bowling ball's previous and current position
         // bowlingBall.transform.rotation = Quaternion.identity;
         Vector3 oldPosition;
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             oldPosition = bowlingBallMultiplayer.transform.position;
-        } else {
+        }
+        else
+        {
             oldPosition = bowlingBall.transform.position;
         }
         var newPosition = controller.Position;
@@ -815,6 +629,7 @@ public class BowlingManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
+        controlPointer.SetActive(true);
         currentPage = 1;
         SetTutorialPage(false);
 
@@ -941,20 +756,18 @@ public class BowlingManager : MonoBehaviour
 
         SpawnObject();
 
-        string objGameHit = rayHit.transform.gameObject.name;
+        string objGameHit = pointer.Target.gameObject.name;
         switch (objGameHit)
         {
             case "Home":
                 MLInput.Stop();
                 MLHands.Stop();
                 menu.SetActive(false);
-                Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-                laserLineRenderer.SetPositions(initLaserPositions);
                 MLInput.OnControllerButtonDown -= OnButtonDown;
                 SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 menuAudio.Play();
                 break;
-            case "JoinLobby":
+            case "Multiplayer":
                 if (_realtimeObject.connected)
                 {
                     multiplayerStatusMenu.SetActive(true);
@@ -976,14 +789,14 @@ public class BowlingManager : MonoBehaviour
                 menu.SetActive(true);
                 menuAudio.Play();
                 break;
-            case "ChangeBall":
+            case "BallColor":
                 ballMenu.transform.position = mainCam.transform.position + (mainCam.transform.forward * 1.5f);
                 ballMenu.transform.LookAt(mainCam.transform.position);
                 ballMenu.SetActive(true);
                 menu.SetActive(false);
                 menuAudio.Play();
                 break;
-            case "Modifiers":
+            case "Settings":
                 modifierMenu.SetActive(true);
                 menu.SetActive(false);
                 menuAudio.Play();
@@ -1021,19 +834,16 @@ public class BowlingManager : MonoBehaviour
                 if (micActive == true)
                 {
                     micActive = false;
-                    // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
                     toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
                 }
                 else
                 {
                     micActive = true;
-                    // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
                     toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
                 }
                 break;
             case "LeaveRoom":
                 joinedLobby = false;
-                _realtime.GetComponent<Realtime>().Disconnect();
                 multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
                 multiplayerStatusMenu.SetActive(false);
                 menuAudio.Play();
@@ -1097,11 +907,12 @@ public class BowlingManager : MonoBehaviour
                 holding = holdState.single;
                 break;
             case "BowlingBallSelector":
+                controlPointer.SetActive(false);
                 if (joinedLobby)
                 {
                     if (bowlingBallMultiplayer == null)
                     {
-                        bowlingBallMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f,0.1f,0.1f));
+                        bowlingBallMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f, 0.1f, 0.1f));
                     }
                 }
                 else
@@ -1140,6 +951,81 @@ public class BowlingManager : MonoBehaviour
                 PlayerPrefs.SetInt("ballColorInt", 4);
                 ballMenu.SetActive(false);
                 break;
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+                MLNetworking.IsInternetConnected(ref networkConnected);
+                // if (networkConnected == false)
+                // {
+                //     multiplayerCodeText.text = ("<color='red'>No Internet</color>");
+                // }
+                // else
+                // {
+                multiplayerCodeText.color = Color.white;
+                if (roomCode.Length < 18)
+                {
+                    roomCode += objGameHit;
+                    multiplayerCodeText.text = roomCode;
+                    menuAudio.Play();
+                }
+                else
+                {
+                    // Somehow indicate that the room code is too long to be input
+                }
+                break;
+            case "Delete":
+                if (roomCode.Length > 0)
+                {
+                    roomCode = roomCode.Substring(0, roomCode.Length - 1);
+                    multiplayerCodeText.text = roomCode;
+                }
+                break;
+            case "Join":
+                if (!joinedLobby)
+                {
+                    MLNetworking.IsInternetConnected(ref networkConnected);
+                    // if (networkConnected == false)
+                    // {
+                    //     multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                    // }
+                    // else
+                    // {
+                    multiplayerCodeText.color = Color.white;
+                    if (roomCode.Length < 1)
+                    {
+                        multiplayerCodeText.text = "Please enter a code";
+                    }
+                    else
+                    {
+                        joinedLobby = true;
+                        ClearAllObjects();
+
+                        transmissionObj.SetActive(true);
+                        transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
+
+                        spatialAlignmentObj.SetActive(true);
+
+                        multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
+                        multiplayerMenu.SetActive(false);
+                        multiplayerStatusMenu.SetActive(true);
+                        multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
+                        menuAudio.Play();
+                    }
+                }
+                break;
+            case "Cancel":
+                multiplayerMenu.SetActive(false);
+                menu.SetActive(true);
+                roomCode = "";
+                menuAudio.Play();
+                break;
             default:
                 break;
         }
@@ -1152,9 +1038,12 @@ public class BowlingManager : MonoBehaviour
             Deltas.Clear();
             holdingBall = false;
             Rigidbody ballRB;
-            if (joinedLobby) {
+            if (joinedLobby)
+            {
                 ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
-            } else {
+            }
+            else
+            {
                 ballRB = bowlingBall.GetComponent<Rigidbody>();
             }
             // Enable the rigidbody on the ball, then apply current forces to the ball

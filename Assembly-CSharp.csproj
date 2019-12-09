@@ -263,6 +263,7 @@
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewComponentsModel.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewConfiguration.cs" />
      <Compile Include="Assets\Normal\Realtime\View\RealtimeViewModel.cs" />
+     <Compile Include="Assets\ObjectGrow.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallCollider.cs" />
      <Compile Include="Assets\Scripts\Bowling\BallVelocity.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingColorLoader.cs" />
