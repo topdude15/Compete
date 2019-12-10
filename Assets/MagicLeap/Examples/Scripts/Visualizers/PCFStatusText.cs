@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -84,6 +84,8 @@ namespace MagicLeap
         /// </summary>
         void HandleLost()
         {
+            CancelInvoke("QueuePCFForUpdates");
+            Invoke("QueuePCFForUpdates", 1);
             _statusText.text = "<color=red>Lost</color>";
         }
 
@@ -92,7 +94,9 @@ namespace MagicLeap
         /// </summary>
         void HandleRegain()
         {
-            _statusText.text = "<color=cyan>Regained</color>";
+            _statusText.text = "<color=cyan>Regained</color>\n" + GetPCFStateString();
+            transform.position = _pcf.Position;
+            transform.rotation = _pcf.Orientation;
         }
 
         /// <summary>
@@ -100,11 +104,21 @@ namespace MagicLeap
         /// </summary>
         void HandleUpdate()
         {
-            _statusText.text = "<color=yellow>Updated</color>";
+            _statusText.text = "<color=yellow>Updated</color>\n" + GetPCFStateString();
+            transform.position = _pcf.Position;
+            transform.rotation = _pcf.Orientation;
         }
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Queues pcf for updates from MLPersistentCoordinateFrames
+        /// </summary>
+        void QueuePCFForUpdates()
+        {
+            MLPersistentCoordinateFrames.QueueForUpdates(_pcf);
+        }
+
         /// <summary>
         /// Unregister Event Handlers for given PCF
         /// </summary>
@@ -131,6 +145,15 @@ namespace MagicLeap
                 pcf.OnRegain += HandleRegain;
                 pcf.OnUpdate += HandleUpdate;
             }
+        }
+
+        string GetPCFStateString()
+        {
+            return string.Format("Confidence {0}\nValidRadiusM {1}\nRotationErrDeg {2}\nTranslationErrM {3}",
+                _pcf.Confidence,
+                _pcf.ValidRadiusM,
+                _pcf.RotationErrDeg,
+                _pcf.TranslationErrM);
         }
         #endregion
     }

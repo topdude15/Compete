@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: -617678744, guid: 76117edccecfa334bbc1ceb13d2b649f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_override3DProperties: 0
+  m_override3DProperties: 1
   m_minDistance: 1
   m_maxDistance: 10
   m_rollofFactor: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_OuterGain: 1
   m_OuterGainLF: 0.65
   m_OuterGainMF: 0.4
-  m_OuterGainHF: 0.080000006
+  m_OuterGainHF: 0.08
   m_Gain: 1
   m_DirectGain: 1
   m_DirectGainLF: 1

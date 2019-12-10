@@ -9,7 +9,7 @@
   },
   {
    "compression": 8,
-   "hash": "101187bff8cdbf840f8bbef62dd5f9b8e675f1ed",
+   "hash": "8de8a06badf4f24abfd0284427886f1490078410",
    "pkgpath": "bin/libil2cpp.so",
    "size": 62446368,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Native/libil2cpp.so",
@@ -23,7 +23,7 @@
      "version": 3
     }
    },
-   "xfrm_hash": "37fd1b3c0acc2d2391e733aa0020b048bdde9ffa",
+   "xfrm_hash": "f103fb1c78f42d51b076fab3faa5c6e47a52e53a",
    "xfrm_path": "C:/Users/topdu/Desktop/Compete/.out/.cache/debug_lumin_clang-3.8_aarch64/com.leapahead.compete-9f7741a467b310d4\\libil2cpp.so-c22a262ec12b37f7",
    "xfrm_size": 62447126
   },
@@ -199,9 +199,9 @@
   },
   {
    "compression": 8,
-   "hash": "fa03242cdcf6e7e07ef3485099c4db593a346120",
+   "hash": "87aa2cf42b49b1ef2dbc8247c149d552f3b7a795",
    "pkgpath": "Data/globalgamemanagers",
-   "size": 100592,
+   "size": 100008,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/globalgamemanagers"
   },
   {
@@ -234,7 +234,7 @@
   },
   {
    "compression": 8,
-   "hash": "1b741eddde130099559c5529a255d389163b648a",
+   "hash": "3add1e439a5aab3d4aa29392f7a56c70952776ed",
    "pkgpath": "Data/level2",
    "size": 115480,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/level2"
@@ -255,9 +255,9 @@
   },
   {
    "compression": 8,
-   "hash": "269c23775a3088f078335afd6ffaadfd2c287d58",
+   "hash": "c33cfcc702343bb2760eba344ef266efb9e928b0",
    "pkgpath": "Data/resources.assets",
-   "size": 1655792,
+   "size": 1654880,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/resources.assets"
   },
   {
@@ -304,9 +304,9 @@
   },
   {
    "compression": 8,
-   "hash": "86a9d822aaf2796ad9d92b2d77d9f13dd0fd4731",
+   "hash": "a804315ec37bd7a749c32b36ed1945a4a86a02f6",
    "pkgpath": "Data/sharedassets2.assets",
-   "size": 99640,
+   "size": 99384,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets2.assets"
   },
   {
@@ -325,7 +325,7 @@
   },
   {
    "compression": 8,
-   "hash": "9b33f7f67607d959e7e0fb8890bafda425ff1b57",
+   "hash": "0c0f8bcefc2020ee4b33dcb5b62a8408045604a8",
    "pkgpath": "Data/sharedassets3.assets",
    "size": 14236,
    "src": "C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/sharedassets3.assets"

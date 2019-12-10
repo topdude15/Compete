@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -60,8 +60,8 @@ namespace MagicLeap
                 if (controller.Type == MLInputControllerType.Control)
                 {
                     // For Control, raw input is enough
-                    transform.position = controller.Position;
-                    transform.rotation = controller.Orientation;
+                    transform.localPosition = controller.Position;
+                    transform.localRotation = controller.Orientation;
                 }
                 else if (controller.Type == MLInputControllerType.MobileApp)
                 {
@@ -72,7 +72,7 @@ namespace MagicLeap
 
                     if (_isCalibrated)
                     {
-                        transform.rotation = _calibrationOrientation * controller.Orientation;
+                        transform.localRotation = _calibrationOrientation * controller.Orientation;
                     }
                     else
                     {

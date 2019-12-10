@@ -29,3 +29,7 @@ Available Key Points
 
 The confidence percentage specifies how confident we are that the key pose you
 are performing is the key pose that is detected.
+
+## Privileges
+- GesturesSubscribe
+- GesturesConfig

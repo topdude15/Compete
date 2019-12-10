@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -50,7 +49,6 @@ public class DartsManager : MonoBehaviour
     [SerializeField] private Texture2D emptyCircle, check, handLeft, handRight;
 
     private int currentPage = 0;
-    public Realtime _realtimeObject;
 
     private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = true;
     public static bool lockedDartboard = false;
@@ -88,8 +86,6 @@ public class DartsManager : MonoBehaviour
         _gestures[1] = MLHandKeyPose.Fist;
         MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
         pos = new Vector3[1];
-
-        _realtime = GameObject.Find("Realtime + VR Player");
 
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
@@ -196,33 +192,6 @@ public class DartsManager : MonoBehaviour
         if (controller.Touch1Active == false)
         {
             setHand = false;
-        }
-        if (_realtimeObject.connected)
-        {
-            connectedPlayers = 0;
-            if (getLocalPlayer == false)
-            {
-                getLocalPlayer = true;
-                foreach (GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject)))
-                {
-                    if (obj.name == "VR Player(Clone)")
-                    {
-                        if (obj.GetComponent<RealtimeView>().isOwnedLocally)
-                        {
-                            // localPlayer = obj;
-                        }
-                    }
-                }
-            }
-            foreach (GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject)))
-            {
-                if (obj.name == "VR Player(Clone)")
-                {
-                    connectedPlayers += 1;
-                    connectedPlayersText.text = ("Connected Players: " + connectedPlayers);
-                }
-            }
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='green'>Connected</color>");
         }
         Vector3 camPos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         helpMenu.transform.position = Vector3.SlerpUnclamped(helpMenu.transform.position, camPos, menuMoveSpeed);
@@ -489,18 +458,18 @@ public class DartsManager : MonoBehaviour
             if (!objSelected)
             {
                 // Only triggers if Realtime is connected
-                if (_realtimeObject.connected && realtimeDartboard == false)
-                {
-                    realtimeDartboard = true;
-                    dartboardHolder.transform.position = new Vector3(100, 100, 100);
-                    // TODO: Implement new function to instantiate dartboard for Transmission system
-                    // dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, new Vector3(100, 100, 100), new Quaternion(0, 0, 0, 0), true, false, true, null);
-                    dartboard = dartboardHolder.transform.GetChild(0).gameObject;
-                    var dartboardCollider = dartboard.GetComponent<MeshCollider>();
-                    dartboardCollider.enabled = false;
-                    dartboardHolder.GetComponent<RealtimeView>().RequestOwnership();
-                    dartboardHolder.GetComponent<RealtimeTransform>().RequestOwnership();
-                }
+                // if (_realtimeObject.connected && realtimeDartboard == false)
+                // {
+                //     realtimeDartboard = true;
+                //     dartboardHolder.transform.position = new Vector3(100, 100, 100);
+                //     // TODO: Implement new function to instantiate dartboard for Transmission system
+                //     // dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, new Vector3(100, 100, 100), new Quaternion(0, 0, 0, 0), true, false, true, null);
+                //     dartboard = dartboardHolder.transform.GetChild(0).gameObject;
+                //     var dartboardCollider = dartboard.GetComponent<MeshCollider>();
+                //     dartboardCollider.enabled = false;
+                //     dartboardHolder.GetComponent<RealtimeView>().RequestOwnership();
+                //     dartboardHolder.GetComponent<RealtimeTransform>().RequestOwnership();
+                // }
 
                 if (controller.TriggerValue >= 0.9f && !lockedDartboard)
                 {
@@ -599,22 +568,16 @@ public class DartsManager : MonoBehaviour
                 {
                     if (!objSelected)
                     {
-                        if (_realtimeObject.connected)
+                        if (joinedLobby)
                         {
                             // Spawn dart while connected to realtime room and gravity is NOT enabled
                             // dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
                             dart.transform.parent = dartHolder;
 
-                            dart.GetComponent<RealtimeView>().RequestOwnership();
-                            dart.GetComponent<RealtimeTransform>().RequestOwnership();
-
                             Transform dartChild = dart.gameObject.transform.GetChild(0);
 
                             Renderer dartRender = dartChild.GetComponent<Renderer>();
                             dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
-
-                            UpdateColor _dartCol = dart.GetComponent<UpdateColor>();
-                            _dartCol._objColor = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)].color;
 
                             Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
                             dartRB.useGravity = false;
@@ -777,7 +740,7 @@ public class DartsManager : MonoBehaviour
                 menuAudio.Play();
                 break;
             case "JoinLobby":
-                if (_realtimeObject.connected)
+                if (joinedLobby)
                 {
                     multiplayerStatusMenu.SetActive(true);
                 }
@@ -913,7 +876,6 @@ public class DartsManager : MonoBehaviour
                 }
                 break;
             case "LeaveRoom":
-                _realtime.GetComponent<Realtime>().Disconnect();
                 multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
                 dartboardHolder = GameObject.Find("DartboardHolder");
                 multiplayerStatusMenu.SetActive(false);
@@ -1031,9 +993,7 @@ public class DartsManager : MonoBehaviour
                     }
                     else
                     {
-                        _realtime = GameObject.Find("Realtime + VR Player");
                         // Connect to Realtime room
-                        _realtime.GetComponent<Realtime>().Connect(roomCode + "Darts");
                         multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
                         multiplayerMenu.SetActive(false);
                         multiplayerStatusMenu.SetActive(true);

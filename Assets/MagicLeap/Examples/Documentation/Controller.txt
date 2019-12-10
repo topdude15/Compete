@@ -36,3 +36,6 @@ When you touch the Touchpad:
 - A LED pattern will occur in the controller where the closest LED to your touchpad
   position and the oposite LED will light up.
 - The touchpad gesture is shown on the UI.
+
+## Privileges
+- ControllerPose

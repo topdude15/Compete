@@ -16,3 +16,7 @@ Adjust Vignette Power
 
 ## Home Tap
 Reset
+
+## Privileges
+- WorldReconstruction
+- ControllerPose

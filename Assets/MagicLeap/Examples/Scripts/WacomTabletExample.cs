@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -296,7 +296,7 @@ namespace MagicLeap
             }
 
             // Attempt to start the input service.
-            MLResult result = MLInput.Start();
+            MLResult result = MLInput.Start(new MLInputConfiguration(false));
             if (!result.IsOk)
             {
                 Debug.LogErrorFormat("Error: WacomTabletExample failed starting MLInput, disabling script. Reason: {0}", result);

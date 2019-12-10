@@ -42,3 +42,7 @@ Pull the trigger while pointing to the Forward control:
 ## Volume Slider
 Pull the trigger while pointing to the Volume control:
 - Modifies the volume.
+
+## Privileges
+- Internet
+- ControllerPose

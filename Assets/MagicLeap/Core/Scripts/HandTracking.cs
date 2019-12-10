@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -48,7 +48,7 @@ namespace UnityEngine.XR.MagicLeap
     /// which KeyPoses are currently being tracked by each hand.
     /// KeyPoses can be added and removed from the tracker during runtime.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Hand Tracking")]
+    [AddComponentMenu("XR/MagicLeap/HandTracking")]
     public class HandTracking : MonoBehaviour
     {
         #region Private Variables
@@ -60,6 +60,8 @@ namespace UnityEngine.XR.MagicLeap
 
         [SerializeField]
         private MLPoseFilterLevel _PoseFilterLevel = MLPoseFilterLevel.ExtraRobust;
+
+        private bool _initialized = false;
         #endregion
 
         #region Public Properties
@@ -73,18 +75,18 @@ namespace UnityEngine.XR.MagicLeap
         /// </summary>
         void OnEnable()
         {
-            MLResult result = MLHands.Start();
-            if (!result.IsOk)
+            if (MagicLeapDevice.IsReady() && !_initialized)
             {
-                Debug.LogErrorFormat("Error: HandTracking failed starting MLHands, disabling script. Reason: {0}", result);
-                enabled = false;
-                return;
+                InitializeAPI();
             }
+        }
 
-            UpdateKeyPoseStates(true);
-
-            MLHands.KeyPoseManager.SetKeyPointsFilterLevel(_keyPointFilterLevel);
-            MLHands.KeyPoseManager.SetPoseFilterLevel(_PoseFilterLevel);
+        void Start()
+        {
+            if (!_initialized)
+            {
+                InitializeAPI();
+            }
         }
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace UnityEngine.XR.MagicLeap
         /// </summary>
         void OnDisable()
         {
-            if (MLHands.IsStarted)
+            if (MLHands.IsStarted && _initialized)
             {
                 // Disable all KeyPoses if MLHands was started
                 // and is about to stop
@@ -142,6 +144,27 @@ namespace UnityEngine.XR.MagicLeap
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Initializes the MLHands API and registers required events.
+        /// </summary>
+        private void InitializeAPI()
+        {
+            MLResult result = MLHands.Start();
+            if (!result.IsOk)
+            {
+                Debug.LogErrorFormat("Error: HandTracking failed starting MLHands, disabling script. Reason: {0}", result);
+                enabled = false;
+                return;
+            }
+
+            UpdateKeyPoseStates(true);
+
+            MLHands.KeyPoseManager.SetKeyPointsFilterLevel(_keyPointFilterLevel);
+            MLHands.KeyPoseManager.SetPoseFilterLevel(_PoseFilterLevel);
+
+            _initialized = true;
+        }
+
         /// <summary>
         /// Get the KeyPoses enabled.
         /// </summary>

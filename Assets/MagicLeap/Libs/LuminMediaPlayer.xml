@@ -1085,16 +1085,15 @@
         <member name="F:UnityEngine.XR.MagicLeap.TrackData.mimeType">
             <summary> Mime format type of the track. </summary>
         </member>
-        <member name="T:UnityEngine.XR.MagicLeap.SubtitleInfo">
+        <member name="T:UnityEngine.XR.MagicLeap.MediaPlayerTracks">
             <summary>
-            Structure which contains an array of all supported
-            close captioned track data.
+            Structure which contains an array of track data.
             </summary>
         </member>
-        <member name="F:UnityEngine.XR.MagicLeap.SubtitleInfo.subtitleTracks">
-            <summary>Pointer to array of TrackData.</summary>
+        <member name="F:UnityEngine.XR.MagicLeap.MediaPlayerTracks.tracks">
+            <summary>Pointer to array of MediaPlayerTrackData.</summary>
         </member>
-        <member name="F:UnityEngine.XR.MagicLeap.SubtitleInfo.length">
+        <member name="F:UnityEngine.XR.MagicLeap.MediaPlayerTracks.length">
             <summary>Length of the array.</summary>
         </member>
         <member name="T:UnityEngine.XR.MagicLeap.MLCea608CaptionStyleColor">

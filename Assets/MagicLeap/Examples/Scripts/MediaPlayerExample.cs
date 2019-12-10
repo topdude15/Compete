@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -103,6 +103,7 @@ namespace MagicLeap
         private bool _isSeeking = false;
         private bool _isBuffering = false;
         private float _UIUpdateTimer;
+        private float _animationPositionThisFrame = 0;
         #endregion // Private Variables
 
         #region Unity Methods
@@ -262,10 +263,12 @@ namespace MagicLeap
         {
             if (_mediaPlayer.IsPlaying && !_isSeeking)
             {
+                // Only poll the position once per frame to prevent seeking by miniscule amounts.
+                _animationPositionThisFrame = _mediaPlayer.AnimationPosition;
                 _UIUpdateTimer += Time.deltaTime;
                 if (_UIUpdateTimer > UI_UPDATE_INTERVAL)
                 {
-                    _timelineSlider.Value = _mediaPlayer.AnimationPosition;
+                    _timelineSlider.Value = _animationPositionThisFrame;
                     UpdateElapsedTime(_mediaPlayer.GetElapsedTimeMs());
                     _UIUpdateTimer = 0.0f;
                 }
@@ -312,16 +315,14 @@ namespace MagicLeap
         /// </summary>
         private void HandleEnded()
         {
-            // If we are not looping then treat similar to pause.
-            if (!_mediaPlayer.IsLooping)
-            {
-                _pausePlayButton.Material = _playMaterial;
-            }
-            // Else force a time slider update.
-            else
-            {
-                _UIUpdateTimer = float.MaxValue;
-            }
+            // Ended event is treated the same as Stop event since it results in same underlying
+            // behavior. Playing media after a Stop or Ended will play from the beginning.
+            _pausePlayButton.Material = _playMaterial;
+
+            // Force timeline slider to the end position without triggering a seek.
+            _animationPositionThisFrame = 1.0f;
+            _timelineSlider.Value = _animationPositionThisFrame;
+            UpdateElapsedTime(_mediaPlayer.GetDurationMs());
         }
 
         /// <summary>
@@ -496,7 +497,7 @@ namespace MagicLeap
         /// <param name="sliderValue">Normalized slider value</param>
         private void Seek(float sliderValue)
         {
-            if (Mathf.Approximately(sliderValue, _mediaPlayer.AnimationPosition))
+            if (Mathf.Approximately(sliderValue, _animationPositionThisFrame))
             {
                 return;
             }

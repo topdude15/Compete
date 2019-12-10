@@ -12,3 +12,6 @@ PointerUp, PointerClick, Select, Deselect, Scroll.
 
 ## Trigger or Bumper
 - Register as a 'button click' event
+
+## Privileges
+- ControllerPose

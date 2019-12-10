@@ -56,9 +56,13 @@
      <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\BitMaskPropertyDrawer.cs" />
      <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\MLImageTrackerBehaviorEditor.cs" />
      <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\MLInputModuleEditor.cs" />
+     <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\Movement\MLMovementBehaviorEditor.cs" />
+     <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\Movement\MLMovementColliderEditor.cs" />
+     <Compile Include="Assets\MagicLeap\Core\Scripts\Editor\Movement\MLMovementSettingsManagerEditor.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\BuildMabuWindow.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\BuildPreprocessor.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\CleanExampleProject.cs" />
+     <Compile Include="Assets\MagicLeap\Scripts\Editor\MagicLeapLabExtension.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\MLVersionMenuItem.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\MusicExampleBuilder.cs" />
      <Compile Include="Assets\MagicLeap\Scripts\Editor\StereoVideoExampleSetup.cs" />
@@ -68,13 +72,6 @@
      <Compile Include="Assets\MagicLeap-Tools\Code\Presentation\PlaceOnFloor\Editor\PlaceOnFloorEditor.cs" />
      <Compile Include="Assets\MagicLeap-Tools\Code\Rendering\RampLighting\Editor\RampLightEditor.cs" />
      <Compile Include="Assets\MagicLeap-Tools\Code\Utilities\Editor\EditorUtilities.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeAvatarEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeAvatarManagerEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeModelEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeTransformEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Editor\RealtimeViewEditor.cs" />
-     <Compile Include="Assets\Normal\Realtime\Utility\Editor\ExecutionOrderManager.cs" />
      <None Include="Assets\MagicLeap\Libs\Editor\LuminUnityEditor.xml" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
@@ -346,24 +343,6 @@
  <Reference Include="UnityEditor.Lumin.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/PlaybackEngines/LuminSupport/UnityEditor.Lumin.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="LuminMediaPlayer">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
- </Reference>
- <Reference Include="LuminUnity">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
- </Reference>
- <Reference Include="LuminUnityEditor">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/Editor/LuminUnityEditor.dll</HintPath>
- </Reference>
- <Reference Include="MSA.Runtime">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="MSA.Editor">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/Editor/MSA.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Realtime">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/Normal/Realtime/Core/Realtime.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -378,6 +357,21 @@
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminUnityEditor">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/Editor/LuminUnityEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminUnity">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminMediaPlayer">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
+ </Reference>
+ <Reference Include="MSA.Runtime">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="MSA.Editor">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/Editor/MSA.Editor.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

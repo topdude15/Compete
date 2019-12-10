@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -12,6 +12,7 @@
 
 using UnityEngine;
 using UnityEngine.XR.MagicLeap;
+using System.Collections;
 
 namespace MagicLeap
 {
@@ -54,15 +55,12 @@ namespace MagicLeap
                 {
                     return;
                 }
-
-                _value = value;
-                _handle.localPosition = Vector3.Lerp(_beginRelative, _endRelative, _value);
-                if (OnValueChanged != null)
-                {
-                    OnValueChanged(_value);
-                }
+                ChangeValue(value);
             }
         }
+
+
+
         #endregion // Public Properties
 
         #region Unity Methods
@@ -87,6 +85,11 @@ namespace MagicLeap
             base.OnEnable();
         }
 
+        private void Start()
+        {
+            StartCoroutine(InitializeValue());
+        }
+
         protected override void OnDisable()
         {
             _handle.gameObject.GetComponent<Renderer>().enabled = false;
@@ -101,6 +104,11 @@ namespace MagicLeap
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.TransformPoint(_beginRelative), 0.02f);
             Gizmos.DrawWireSphere(transform.TransformPoint(_endRelative), 0.02f);
+        }
+
+        private void OnValidate()
+        {
+            _value = Mathf.Clamp01(_value);
         }
         #endregion // Unity Methods
 
@@ -143,5 +151,21 @@ namespace MagicLeap
             Value = tNum / tDen;
         }
         #endregion // Event Handlers
+
+        private IEnumerator InitializeValue()
+        {
+            yield return new WaitForEndOfFrame();
+            ChangeValue(_value);
+        }
+
+        private void ChangeValue(float newValue)
+        {
+            _value = newValue;
+            _handle.localPosition = Vector3.Lerp(_beginRelative, _endRelative, _value);
+            if (OnValueChanged != null)
+            {
+                OnValueChanged(_value);
+            }
+        }
     }
 }

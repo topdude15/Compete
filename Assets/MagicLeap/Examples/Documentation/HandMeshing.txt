@@ -14,3 +14,8 @@ Render Modes:
   Wireframe - The hand mesh will be rendered with a wireframe material
   Paused - The hand mesh will stop updating, freezing any mesh previously
     acquired.
+
+## Privileges
+- GesturesSubscribe
+- GesturesConfig
+- HandMesh

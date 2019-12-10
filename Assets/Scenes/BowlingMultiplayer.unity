@@ -5003,6 +5003,46 @@ PrefabInstance:
       propertyPath: maxDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: touchHold.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: bumperHold.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: radialMove.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: forceTouchUp.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: forceTouchDown.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: touchUp.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: touchDown.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: triggerDown.instensity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 222bd9546a0294a4186782eaa063a280, type: 3}
 --- !u!1 &686868497

@@ -64,7 +64,6 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.Management.XRManagerSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
@@ -190,21 +189,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12592}
     - Class: 114
-      Script: {instanceID: 12858}
+      Script: {instanceID: 12844}
     - Class: 114
-      Script: {instanceID: 12954}
+      Script: {instanceID: 12860}
     - Class: 114
-      Script: {instanceID: 13134}
+      Script: {instanceID: 12956}
     - Class: 114
-      Script: {instanceID: 13186}
+      Script: {instanceID: 13136}
     - Class: 114
-      Script: {instanceID: 19030}
+      Script: {instanceID: 13188}
     - Class: 114
-      Script: {instanceID: 19890}
+      Script: {instanceID: 19234}
     - Class: 114
-      Script: {instanceID: 19894}
+      Script: {instanceID: 20102}
     - Class: 114
-      Script: {instanceID: 92664}
+      Script: {instanceID: 20106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -311,17 +310,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12592}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 13012}
     - Class: 114
-      Script: {instanceID: 13228}
+      Script: {instanceID: 13230}
     - Class: 114
-      Script: {instanceID: 19030}
+      Script: {instanceID: 19234}
     - Class: 114
-      Script: {instanceID: 19890}
+      Script: {instanceID: 20102}
     - Class: 114
-      Script: {instanceID: 19894}
+      Script: {instanceID: 20106}
     - Class: 114
-      Script: {instanceID: 24712}
+      Script: {instanceID: 28420}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -400,7 +399,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 13104}
+      Script: {instanceID: 13106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -523,17 +522,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12808}
     - Class: 114
-      Script: {instanceID: 12860}
+      Script: {instanceID: 12862}
     - Class: 114
-      Script: {instanceID: 12954}
+      Script: {instanceID: 12956}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 13012}
     - Class: 114
-      Script: {instanceID: 13074}
+      Script: {instanceID: 13076}
     - Class: 114
-      Script: {instanceID: 19890}
+      Script: {instanceID: 20102}
     - Class: 114
-      Script: {instanceID: 19894}
+      Script: {instanceID: 20106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1827,6 +1826,12 @@ ScriptsOnlyBuild:
     className: ColorSync
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ObjectGrow
+  - hash:
+      serializedVersion: 2
       Hash: ba13f562918d554b61a2783fc3b74335
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeapTools
@@ -2077,12 +2082,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ObjectGrow
   platform: 39
   scenePathNames:
   - Assets/Scenes/Meshing.unity

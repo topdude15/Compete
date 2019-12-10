@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -19,7 +19,7 @@ namespace UnityEngine.XR.MagicLeap
     /// Automatically requests specified privileges. Exposes delegate for when the requests are done.
     /// Fails if at least one privilege is denied.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Privilege Requester")]
+    [AddComponentMenu("XR/MagicLeap/PrivilegeRequester")]
     public class PrivilegeRequester : MonoBehaviour
     {
         // <summary/>
@@ -221,7 +221,7 @@ namespace UnityEngine.XR.MagicLeap
             }
             else
             {
-                Debug.LogErrorFormat("{0} Privilege Error: {1}, disabling example.", privilegeId, result);
+                Debug.LogErrorFormat("{0} Privilege Error: {1}.", privilegeId, result);
                 _state = PrivilegeState.Failed;
             }
         }

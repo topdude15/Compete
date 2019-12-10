@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -63,8 +63,11 @@ namespace MagicLeap
 
         void Update()
         {
-            _vignette.VignettePower = (1 - _controllerConnectionHandler.ConnectedController.TriggerValue) * VIGNETTE_SCALE;
-            UpdateStatusText();
+            if (_controllerConnectionHandler.IsControllerValid())
+            {
+                _vignette.VignettePower = (1 - _controllerConnectionHandler.ConnectedController.TriggerValue) * VIGNETTE_SCALE;
+                UpdateStatusText();
+            }
         }
         #endregion
 

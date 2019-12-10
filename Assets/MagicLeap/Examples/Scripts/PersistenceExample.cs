@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -23,7 +23,6 @@ namespace MagicLeap
     /// the MLPersistence API. This facilitates restoration of existing
     /// and creation of new persistent points.
     /// </summary>
-    [RequireComponent(typeof(PrivilegeRequester))]
     public class PersistenceExample : MonoBehaviour
     {
         #region Private Variables
@@ -54,8 +53,6 @@ namespace MagicLeap
 
         [SerializeField, Tooltip("Distance in front of Controller to create content")]
         float _distance = 0.2f;
-
-        PrivilegeRequester _privilegeRequester;
 
         [SerializeField, Tooltip("PCF Visualizer when debugging")]
         PCFVisualizer _pcfVisualizer = null;
@@ -119,10 +116,13 @@ namespace MagicLeap
             _countRestoredTextFormat = _countRestoredText.text;
             _countRestoredText.text = string.Format(_countRestoredTextFormat, _countRestoredGood, _countRestoredBad);
 
-            // _privilegeRequester is expected to request for PwFoundObjRead privilege
-            _privilegeRequester = GetComponent<PrivilegeRequester>();
-            _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
             _statusText.text = "Status: Requesting Privileges";
+            MagicLeapDevice.RegisterOnHeadTrackingMapEvent(HandleHeadTrackingMapEvent);
+        }
+
+        void Start()
+        {
+            StartAPIs();
         }
 
         /// <summary>
@@ -149,15 +149,11 @@ namespace MagicLeap
                 MLPersistentStore.Stop();
             }
 
-            if (_privilegeRequester != null)
-            {
-                _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
-            }
-
             MLInput.OnControllerButtonDown -= HandleControllerButtonDown;
             MLInput.OnControllerTouchpadGestureStart -= HandleTouchpadGestureStart;
             MLInput.OnControllerTouchpadGestureContinue -= HandleTouchpadGestureContinue;
             MLInput.OnControllerTouchpadGestureEnd -= HandleTouchpadGestureEnd;
+            MagicLeapDevice.UnregisterOnHeadTrackingMapEvent(HandleHeadTrackingMapEvent);
         }
         #endregion // Unity Methods
 
@@ -186,64 +182,6 @@ namespace MagicLeap
         }
 
         /// <summary>
-        /// Responds to privilege requester result.
-        /// </summary>
-        /// <param name="result">MLResult of the privilege request</param>
-        void HandlePrivilegesDone(MLResult result)
-        {
-            _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
-            if (!result.IsOk)
-            {
-                if (result.Code == MLResultCode.PrivilegeDenied)
-                {
-                    Instantiate(Resources.Load("PrivilegeDeniedError"));
-                }
-
-                Debug.LogErrorFormat("Error: PersistenceExample failed to get requested privileges, disabling script. Reason: {0}", result);
-                _statusText.text = "<color=red>Failed to acquire necessary privileges</color>";
-                enabled = false;
-                return;
-            }
-            _statusText.text = "Status: Starting up Systems";
-
-            result = MLPersistentStore.Start();
-            if (!result.IsOk)
-            {
-                if (result.Code == MLResultCode.PrivilegeDenied)
-                {
-                    Instantiate(Resources.Load("PrivilegeDeniedError"));
-                }
-
-                Debug.LogErrorFormat("Error: PersistenceExample failed starting MLPersistentStore, disabling script. Reason: {0}", result);
-                enabled = false;
-                return;
-            }
-
-            result = MLPersistentCoordinateFrames.Start();
-            if (!result.IsOk)
-            {
-                if (result.Code == MLResultCode.PrivilegeDenied)
-                {
-                    Instantiate(Resources.Load("PrivilegeDeniedError"));
-                }
-
-                MLPersistentStore.Stop();
-                Debug.LogErrorFormat("Error: PersistenceExample failed starting MLPersistentCoordinateFrames, disabling script. Reason: {0}", result);
-                enabled = false;
-                return;
-            }
-
-            if (MLPersistentCoordinateFrames.IsReady)
-            {
-                PerformStartup();
-            }
-            else
-            {
-                MLPersistentCoordinateFrames.OnInitialized += HandleInitialized;
-            }
-        }
-
-        /// <summary>
         /// Proceeds with further start up operations if the system successfully initialized.
         /// </summary>
         void HandleInitialized(MLResult status)
@@ -257,8 +195,10 @@ namespace MagicLeap
             else
             {
                 _statusText.text = string.Format("<color=red>{0}</color>", status);
-                Debug.LogErrorFormat("Error: MLPersistentCoordinateFrames failed to initialize, disabling script. Reason: {0}", status);
-                enabled = false;
+                Debug.LogErrorFormat("Error: MLPersistentCoordinateFrames failed to initialize, but will try again. Reason: {0}", status);
+                MLPersistentStore.Stop();
+                MLPersistentCoordinateFrames.Stop();
+                Invoke("StartAPIs", 3);
             }
         }
 
@@ -380,9 +320,70 @@ namespace MagicLeap
                 }
             }
         }
+
+        /// <summary>
+        /// Handle in charge of resetting counters upon a new headpose session
+        /// </summary>
+        /// <param name="mapEvents"> Map Events that happened. </param>
+        private void HandleHeadTrackingMapEvent(MLHeadTrackingMapEvent mapEvents)
+        {
+            if (mapEvents.IsNewSession())
+            {
+                _countCreatedBad = 0;
+                _countCreatedGood = 0;
+                _countRestoredBad = 0;
+                _countRestoredGood = 0;
+                UpdateCreatedCountText();
+                UpdateRestoredCountText();
+            }
+        }
         #endregion // Event Handlers
 
         #region Private Methods
+        /// <summary>
+        /// Attempts to start the MLPersistentStore and MLPersistentCoordinateFrames APIs
+        /// </summary>
+        void StartAPIs()
+        {
+            _statusText.text = "Status: Starting up Systems";
+
+            MLResult result = MLPersistentStore.Start();
+            if (!result.IsOk)
+            {
+                if (result.Code == MLResultCode.PrivilegeDenied)
+                {
+                    Instantiate(Resources.Load("PrivilegeDeniedError"));
+                }
+
+                Debug.LogErrorFormat("Error: PersistenceExample failed starting MLPersistentStore, disabling script. Reason: {0}", result);
+                enabled = false;
+                return;
+            }
+
+            result = MLPersistentCoordinateFrames.Start();
+            if (!result.IsOk)
+            {
+                if (result.Code == MLResultCode.PrivilegeDenied)
+                {
+                    Instantiate(Resources.Load("PrivilegeDeniedError"));
+                }
+
+                MLPersistentStore.Stop();
+                Debug.LogErrorFormat("Error: PersistenceExample failed starting MLPersistentCoordinateFrames, disabling script. Reason: {0}", result);
+                enabled = false;
+                return;
+            }
+
+            if (MLPersistentCoordinateFrames.IsReady)
+            {
+                PerformStartup();
+            }
+            else
+            {
+                MLPersistentCoordinateFrames.OnInitialized += HandleInitialized;
+            }
+        }
+
         /// <summary>
         /// Activate PCF Visualizer, restore content, and update status text
         /// </summary>

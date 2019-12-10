@@ -13,3 +13,7 @@ the microphone detects.
 
 ## Bumper
 - Cycles between Realtime Playback, Delayed Playback, and Inactive Capture.
+
+## Privileges
+- AudioCaptureMic
+- ControllerPose

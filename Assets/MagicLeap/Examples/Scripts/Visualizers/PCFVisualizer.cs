@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -31,10 +31,11 @@ namespace MagicLeap
         [SerializeField, Tooltip("UI Text to show PCF Stored Count")]
         private Text _pcfCountText = null;
         private uint _pcfCount = 0;
-        const string PCF_COUNT_TEXT_FORMAT = "PCF Count: {0}";
+        private const string PCF_COUNT_TEXT_FORMAT = "PCF Count: {0}";
 
-        private int _ongoingQueriesCount = 0;
-        IEnumerator _findAllPCFs = null;
+        private IEnumerator _findAllPCFs = null;
+        private float _secondsBetweenFindAllPCFs = 3.0f;
+
         #endregion
 
         #region Public Properties
@@ -127,23 +128,6 @@ namespace MagicLeap
 
             AddPCFObject(pcf);
         }
-
-        /// <summary>
-        /// Handler when a PCF Position is found. Called in conjunction with MLPersistentCoordinateFrames.GetPCFPosition(...)
-        /// </summary>
-        /// <param name="result">Result of the Query</param>
-        /// <param name="pcf">PCF</param>
-        private void HandlePCFPositionQuery(MLResult result, MLPCF pcf)
-        {
-            if (result.IsOk)
-            {
-                // This is only for demonstration purposes because we want to track all the PCFs found.
-                // Ideally in a production app, we only wish to track PCFs that have virtual content
-                // bound to them - which is already automatically done by MLPersistentBehavior.
-                MLPersistentCoordinateFrames.QueueForUpdates(pcf);
-            }
-            --_ongoingQueriesCount;
-        }
         #endregion // Event Handlers
 
         #region Private Methods
@@ -169,15 +153,15 @@ namespace MagicLeap
         }
 
         /// <summary>
-        /// Coroutine to continuously query for all PCFs and their locations in debug mode.
+        /// Coroutine to query for all PCFs and queue them for updates.
         /// Note: Getting all PCFs is highly inefficient and ill-advised. We are only
         /// doing this for demonstration/debug purposes. Do NOT do this on production code!
         /// </summary>
-        /// <returns>IEnumerator</returns>
         IEnumerator FindAllPCFs()
         {
-            while (IsDebugMode)
+            while (true)
             {
+                yield return new WaitForSeconds(_secondsBetweenFindAllPCFs);
                 List<MLPCF> allPCFs;
                 MLResult result = MLPersistentCoordinateFrames.GetAllPCFs(out allPCFs);
                 if (!result.IsOk)
@@ -188,34 +172,15 @@ namespace MagicLeap
 
                 // MLPersistentCoordinateFrames.GetAllPCFs() returns the PCFs stored in the device.
                 // We don't have their positions yet. In fact, we don't even know if they're in the
-                // same landscape as the user is loaded into.
+                // same landscape as the user is loaded into so we must queue the pcfs for any status updates.
 
-                _ongoingQueriesCount = allPCFs.Count;
                 foreach (MLPCF pcf in allPCFs)
                 {
-                    result = MLPersistentCoordinateFrames.GetPCFPosition(pcf, HandlePCFPositionQuery);
-                    // HandlePCFPositionQuery could execute immediately (when the requested PCF has been requested before)
-                    // or later (when the PCF is completely new).
-                    if (!result.IsOk)
-                    {
-                        Debug.LogErrorFormat("Error: MLPersistentCoordinateFrames failed to get PCF position. Reason: {0}", result);
-                        yield break;
-                    }
-
-                    // When MLPersistentCoordinateFrames.GetPCFPosition() successfully gets the position of the PCF,
-                    // MLPCF.OnCreate() gets triggered which will call HandleCreate()
-                }
-
-                // It is possible for _ongoingQueriesCount to be 0 at this point when no new PCFs have been found.
-                // Such a case would cause an infinite loop in the current frame. The following yield statement
-                // prevents the infinite loop in a single frame.
-                yield return null;
-
-                while (_ongoingQueriesCount > 0)
-                {
+                    MLPersistentCoordinateFrames.QueueForUpdates(pcf);
                     yield return null;
                 }
             }
+
         }
         #endregion // Private Methods
 

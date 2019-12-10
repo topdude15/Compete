@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -213,6 +213,7 @@ namespace MagicLeap
 
                     EnableRenderers(true);
                     _collider.enabled = true;
+                    Unhighlight();
                     break;
                 case MLPersistentBehavior.Status.BINDING_CREATE_FAILED:
                 case MLPersistentBehavior.Status.RESTORE_FAILED:
@@ -220,6 +221,9 @@ namespace MagicLeap
                     break;
                 case MLPersistentBehavior.Status.BINDING_UPDATED:
                     Debug.Log("MLPersistentBehavior " + _persistentBehavior.UniqueId + " updated");
+                    break;
+                case MLPersistentBehavior.Status.BINDING_LOST:
+                    Unhighlight();
                     break;
             }
         }

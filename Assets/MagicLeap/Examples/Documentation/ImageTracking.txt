@@ -21,3 +21,7 @@ Cycle through the different visualizers: TrackingCubeOnly, AxisOnly, DemoOnly, A
 
 ## Trigger
 Enables and disables MLImageTracker API.
+
+## Privileges
+- CameraCapture
+- ControllerPose

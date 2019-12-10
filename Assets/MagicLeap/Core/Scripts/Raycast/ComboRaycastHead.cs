@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -17,7 +17,7 @@ namespace UnityEngine.XR.MagicLeap
     /// <summary>
     /// World and Virtual raycast combination from Head
     /// </summary>
-    [AddComponentMenu("Magic Leap/Raycast/Combo Raycast Head")]
+    [AddComponentMenu("XR/MagicLeap/Raycast/ComboRaycastHead")]
     public class ComboRaycastHead : WorldRaycastHead
     {
         #region Private Variables

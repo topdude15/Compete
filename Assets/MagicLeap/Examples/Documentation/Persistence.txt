@@ -56,3 +56,7 @@ in the real world and will persist between reboots.
 -- PCFs Loaded Count in UI
 -- PCF Visualization (red-green-blue axis)
 -- Line from content to PCF
+
+## Privileges
+- PcfRead
+- ControllerPose

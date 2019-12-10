@@ -43,3 +43,6 @@ When you type on the Keyboard:
   **Submit** on the MLA.
 - The delete key (backspace) removes the last printable character entered. This key does
   not require to tap Submit.
+
+## Privileges
+

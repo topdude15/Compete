@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -18,7 +18,7 @@ namespace UnityEngine.XR.MagicLeap
     /// The class applies a vignette effect to the attached camera.
     /// This effect is achieved by using a material with the Magic Leap/Vignette shader.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Vignette")]
+    [AddComponentMenu("XR/MagicLeap/Vignette")]
     [RequireComponent(typeof(Camera))]
     public class Vignette : MonoBehaviour
     {

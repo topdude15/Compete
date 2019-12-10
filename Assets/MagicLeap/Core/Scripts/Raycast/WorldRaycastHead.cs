@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -17,7 +17,7 @@ namespace UnityEngine.XR.MagicLeap
     /// <summary>
     /// Encapsulates an ML raycast against the physical world from the headpose position and orientation.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Raycast/World Raycast Head")]
+    [AddComponentMenu("XR/MagicLeap/Raycast/WorldRaycastHead")]
     public class WorldRaycastHead : BaseRaycast
     {
         #region Private Variables

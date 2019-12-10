@@ -7,3 +7,8 @@ for video recording.
 - First Press: Start video recording.
 - Second Press: Stop video recording and show preview.
 - Repeat
+
+## Privileges
+- AudioCaptureMic
+- CameraCapture
+- ControllerPose

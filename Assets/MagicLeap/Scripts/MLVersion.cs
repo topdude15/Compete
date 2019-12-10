@@ -33,12 +33,13 @@
 // %BANNER_END%
 
 // Current Version
-#define MLSDK_0_22_0
-#define MLSDK_0_22
+#define MLSDK_0_23_0
+#define MLSDK_0_23
 #define MLSDK_0
 
 // Required Version Information
 // Major_Minor_Revision
+#define MLSDK_0_23_0_OR_NEWER
 #define MLSDK_0_22_0_OR_NEWER
 #define MLSDK_0_21_0_OR_NEWER
 #define MLSDK_0_20_0_OR_NEWER
@@ -59,6 +60,7 @@
 #define MLSDK_0_7_0_OR_NEWER
 
 // Major_Minor
+#define MLSDK_0_23_OR_NEWER
 #define MLSDK_0_22_OR_NEWER
 #define MLSDK_0_21_OR_NEWER
 #define MLSDK_0_20_OR_NEWER
@@ -89,13 +91,13 @@ namespace UnityEngine.XR.MagicLeap
         /// <summary/>
         public const uint MLSDK_VERSION_MAJOR = 0;
         /// <summary/>
-        public const uint MLSDK_VERSION_MINOR = 22;
+        public const uint MLSDK_VERSION_MINOR = 23;
         /// <summary/>
         public const uint MLSDK_VERSION_REVISION = 0;
         /// <summary/>
-        public const string MLSDK_VERSION_BUILD_ID = "20190628";
+        public const string MLSDK_VERSION_BUILD_ID = "20191028";
 
         /// <summary/>
-        public const string MLSDK_VERSION_NAME = "0.22.0.20190628";
+        public const string MLSDK_VERSION_NAME = "0.23.0.20191028";
     }
 }

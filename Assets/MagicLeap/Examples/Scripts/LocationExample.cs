@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -30,8 +30,11 @@ namespace MagicLeap
         [SerializeField, Tooltip("The text used to display status messages.")]
         private Text _statusText = null;
 
-        [SerializeField, Tooltip("The text used to display the location information.")]
-        private Text _locationText = null;
+        [SerializeField, Tooltip("The text used to display the coarse location information.")]
+        private Text _coarseLocationText = null;
+
+        [SerializeField, Tooltip("The text used to display the fine location information.")]
+        private Text _fineLocationText = null;
 
         [SerializeField, Tooltip("The pin to place at the geographic location.")]
         private Transform _pin = null;
@@ -45,6 +48,12 @@ namespace MagicLeap
         [SerializeField, Tooltip("The distance from the camera through its forward vector.")]
         private float _distance = 1.0f;
 
+        private Transform _mainCameraTransform;
+
+        private Quaternion _rotationGlobeToLookCamera;
+        private Quaternion _rotationGlobeToLookPin;
+        private Quaternion _rotationPinToLookCamera;
+
         private bool _placedPin = false;
         private bool _placedGlobe = false;
 
@@ -57,9 +66,16 @@ namespace MagicLeap
                 return;
             }
 
-            if (_locationText == null)
+            if (_coarseLocationText == null)
             {
-                Debug.LogError("Error: LocationExample._locationData is not set, disabling script.");
+                Debug.LogError("Error: LocationExample._coarseLocationText is not set, disabling script.");
+                enabled = false;
+                return;
+            }
+
+            if (_fineLocationText == null)
+            {
+                Debug.LogError("Error: LocationExample._fineLocationText is not set, disabling script.");
                 enabled = false;
                 return;
             }
@@ -78,13 +94,15 @@ namespace MagicLeap
                 return;
             }
 
+            _mainCameraTransform = Camera.main.transform;
+
             _globe.SetActive(false);
             _pin.gameObject.SetActive(false);
 
             _privilegeRequester = GetComponent<PrivilegeRequester>();
             if (_privilegeRequester)
             {
-                // Register event listeners.
+                // Register event listener.
                 _privilegeRequester.OnPrivilegesDone += HandlePrivilegesDone;
             }
         }
@@ -98,16 +116,16 @@ namespace MagicLeap
 
             if (_privilegeRequester != null)
             {
-                // Unregister event listeners.
+                // Unregister event listener.
                 _privilegeRequester.OnPrivilegesDone -= HandlePrivilegesDone;
             }
         }
 
         void Update()
         {
-            if (_placedGlobe && _placedPin && Camera.main.transform.hasChanged)
+            if (_placedGlobe && _placedPin)
             {
-                RotateGlobe();
+                RotateGlobe(Time.deltaTime / _rotationSmoothTime);
             }
         }
 
@@ -138,34 +156,54 @@ namespace MagicLeap
         private void StartupAPI()
         {
             MLLocation.Start();
+            GetLocation();
+            StartCoroutine(GetFineLocationLoop());
+        }
 
-            // Only want to place the pin once
-            if (!_placedPin)
+        /// <summary>
+        /// Coroutine for continous polling for fine location
+        /// </summary>
+        private IEnumerator GetFineLocationLoop()
+        {
+            while (true)
             {
-                GetLocation();
+                GetLocation(true);
+                yield return new WaitForSeconds(20f);
             }
         }
 
         /// <summary>
         /// Polls current location data.
         /// </summary>
-        private void GetLocation()
+        private void GetLocation(bool fineLocation = false)
         {
-            MLLocationData newData = new MLLocationData();
-            MLResult result = MLLocation.GetLastCoarseLocation(out newData);
+            MLLocationData newData;
+            MLResult result = fineLocation ? MLLocation.GetLastFineLocation(out newData) : MLLocation.GetLastCoarseLocation(out newData);
             if (result.IsOk)
             {
-                _locationText.text = String.Format(
+                string formattedString =
                     "Latitude:\t<i>{0}</i>\n" +
                     "Longitude:\t<i>{1}</i>\n" +
-                    "Postal Code:\t<i>{2}</i>",
+                    "Postal Code:\t<i>{2}</i>\n" +
+                    "Timestamp:\t<i>{3}</i>\n" +
+                    (fineLocation ? "Accuracy:\t<i>{4}</i>" : "");
+
+
+                Text locationText = fineLocation ? _fineLocationText : _coarseLocationText;
+
+                locationText.text = String.Format(formattedString,
                     newData.Latitude,
                     newData.Longitude,
-                    newData.HasPostalCode ? newData.PostalCode : "(unknown)"
+                    newData.HasPostalCode ? newData.PostalCode : "(unknown)",
+                    newData.Timestamp,
+                    newData.Accuracy
                 );
 
-                StartCoroutine(PlaceGlobe());
-                PlacePin(GetWorldCartesianCoords(newData.Latitude, newData.Longitude));
+                if (!_placedGlobe && !_placedPin)
+                {
+                    StartCoroutine(PlaceGlobe());
+                    PlacePin(GetWorldCartesianCoords(newData.Latitude, newData.Longitude));
+                }
             }
             else
             {
@@ -215,12 +253,12 @@ namespace MagicLeap
         /// <returns>The created pin's GameObject</returns>
         public void PlacePin(Vector3 position)
         {
+            _placedPin = true;
+
             _pin.transform.parent = _globe.transform;
             _pin.transform.up = position.normalized;
             _pin.transform.position = _globe.transform.position + (position * _globe.transform.localScale.x);
             _pin.gameObject.SetActive(true);
-
-            _placedPin = true;
         }
 
         /// <summary>
@@ -229,9 +267,9 @@ namespace MagicLeap
         public IEnumerator PlaceGlobe()
         {
             yield return new WaitForSeconds(1);
-            PlaceGlobeFromCamera();
-
             _placedGlobe = true;
+
+            PlaceGlobeFromCamera();
         }
 
         /// <summary>
@@ -239,23 +277,25 @@ namespace MagicLeap
         /// </summary>
         private void PlaceGlobeFromCamera()
         {
-            Camera camera = Camera.main;
-            Vector3 targetPosition = camera.transform.position + (camera.transform.forward * _distance);
+            Vector3 targetPosition = _mainCameraTransform.position + (_mainCameraTransform.forward * _distance);
 
-            _globe.SetActive(true);
             _globe.transform.position = targetPosition;
+            _globe.SetActive(true);
+
+            RotateGlobe(1);
         }
 
         /// <summary>
         /// Rotate the globe so that the user can see their location pin.
         /// </summary>
-        public void RotateGlobe()
+        public void RotateGlobe(float rate)
         {
-            Camera camera = Camera.main;
-            // Find the proper rotation needed to view the _currentLocationPin
-            Quaternion targetRotation = Quaternion.LookRotation(camera.transform.position - _pin.transform.position);
-            // Rotate the object to face the camera.
-            _globe.transform.rotation = Quaternion.Slerp(_globe.transform.rotation, targetRotation, Time.deltaTime / _rotationSmoothTime);
+            _rotationGlobeToLookCamera = Quaternion.LookRotation(_mainCameraTransform.position - _globe.transform.position);
+            _rotationGlobeToLookPin = Quaternion.LookRotation(_pin.localPosition);
+
+            _rotationPinToLookCamera = _rotationGlobeToLookCamera * Quaternion.Inverse(_rotationGlobeToLookPin);
+
+            _globe.transform.rotation = Quaternion.Slerp(_globe.transform.rotation, _rotationPinToLookCamera, rate);
         }
     }
 }

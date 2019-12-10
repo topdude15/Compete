@@ -30,3 +30,8 @@ search query. This will invoke a delete contact command but with an invalid id.
 
 ## Home Button
 - Toggle Help Screen on/off
+
+## Privileges
+- AddressBookRead
+- AddressBookWrite
+- ControllerPose

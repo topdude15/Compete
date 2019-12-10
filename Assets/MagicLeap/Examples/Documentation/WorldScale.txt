@@ -11,3 +11,6 @@ unit of measurement.
 ## Touchpad Swipe Up/Down:
 Adjust the distance of the marker within the range of
 (0.25 - 1) Meters or (25 - 100) Centimeters respectively.
+
+## Privileges
+- ControllerPose

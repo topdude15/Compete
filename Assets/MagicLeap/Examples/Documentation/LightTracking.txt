@@ -16,3 +16,8 @@ using world raycast.
 
 ## Bumper
 Toggles the plant model movement between locked and unlocked.
+
+## Privileges
+- CameraCapture
+- WorldReconstruction
+- ControllerPose

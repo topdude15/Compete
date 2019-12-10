@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -38,7 +38,7 @@ namespace UnityEngine.XR.MagicLeap
     /// Planes is a MonoBehaviour meant to handle all communication with the ML API
     /// including querying, parameter construction and callback information.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Planes")]
+    [AddComponentMenu("XR/MagicLeap/Planes")]
     public class Planes : MonoBehaviour
     {
         #region Public Variables

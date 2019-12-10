@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -201,15 +201,20 @@ namespace MagicLeap
         {
             if (_hasStarted && MLImageTracker.IsStarted && _controllerConnectionHandler.IsControllerValid(controllerId))
             {
-                if (MLImageTracker.GetTrackerStatus())
+                // The ImageTracker status before it is changed
+                bool trackerStatus = MLImageTracker.GetTrackerStatus();
+
+                // Try to change the ImageTracker status
+                MLResult result = trackerStatus ? MLImageTracker.Disable() : MLImageTracker.Enable();
+
+                if (!result.IsOk)
                 {
-                    MLImageTracker.Disable();
-                    _trackerStatusLabel.text = "Tracker Status: Disabled";
+                    Debug.LogErrorFormat("Error: Failed to {0} the ImageTracker.", trackerStatus ? "disable" : "enable");
                 }
+
                 else
                 {
-                    MLImageTracker.Enable();
-                    _trackerStatusLabel.text = "Tracker Status: Enabled";
+                    _trackerStatusLabel.text = "Tracker Status: " + (trackerStatus ? "Disabled" : "Enabled");
                 }
             }
         }

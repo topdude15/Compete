@@ -9,3 +9,7 @@ event callback.
 
 ## Bumper
 Press the Bumper to cycle through the raycast modes: controller, head and eyes.
+
+## Privileges
+- WorldReconstruction
+- ControllerPose

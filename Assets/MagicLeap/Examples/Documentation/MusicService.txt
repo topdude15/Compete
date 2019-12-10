@@ -34,3 +34,9 @@ Pull the trigger while pointing at the Play/Pause control:
 ## Volume Slider
 Pull the trigger while pointing to the Volume control:
 - Modifies the volume.
+
+## Privileges
+- MusicService
+- ConnectBackgroundMusicService
+- RegisterBackgroundMusicService
+- ControllerPose

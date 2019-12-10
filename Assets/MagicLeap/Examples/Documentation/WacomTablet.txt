@@ -19,3 +19,5 @@ Used the pen on the tablet surface to draw with the selected color.
 ## Erasing
 - Default Pen:  Use the opposite end of the pen while drawing to erase content.
 - Both Pens:    Hold the [Back] button on the pen while drawing to erase content.
+
+## Privileges

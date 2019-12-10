@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -21,7 +21,7 @@ namespace UnityEngine.XR.MagicLeap
     /// for the closest real world PCF to bind itself to. You can simply put your content you
     /// want to persist under the game object with this behavior attached to it.
     /// </summary>
-    [AddComponentMenu("Magic Leap/Persistent Behavior")]
+    [AddComponentMenu("XR/MagicLeap/MLPersistentBehavior")]
     public class MLPersistentBehavior : MonoBehaviour
     {
         #region Public Enumerations
@@ -44,6 +44,11 @@ namespace UnityEngine.XR.MagicLeap
             /// Binding destroyed succesfully
             /// </summary>
             BINDING_DESTROYED,
+
+            /// <summary>
+            /// Binding lost
+            /// </summary>
+            BINDING_LOST,
 
             /// <summary>
             /// Failed to create binding
@@ -104,7 +109,8 @@ namespace UnityEngine.XR.MagicLeap
 
         #region Private Variables
         bool _done = false;
-        Coroutine _searchForPCF = null;
+        bool _pcfLost = false;
+        bool _pcfRestoring = false;
         #endregion
 
         #region Unity Methods
@@ -113,6 +119,34 @@ namespace UnityEngine.XR.MagicLeap
         /// Note: This requires the privilege to be granted prior to Start()
         /// </summary>
         void Start()
+        {
+            StartAPIs();
+        }
+
+        /// <summary>
+        /// Clean Up
+        /// </summary>
+        void OnDestroy()
+        {
+            if (MLPersistentStore.IsStarted)
+            {
+                MLPersistentStore.Stop();
+            }
+            if (MLPersistentCoordinateFrames.IsStarted)
+            {
+                MLPersistentCoordinateFrames.Stop();
+            }
+
+            UnregisterPCFEventHandlers();
+            StopAllCoroutines();
+        }
+        #endregion // Unity Methods
+
+        #region Private Methods
+        /// <summary>
+        /// Attempts to start the MLPersistentStore and MLPersistentCoordinateFrames APIs
+        /// </summary>
+        void StartAPIs()
         {
             MLResult result = MLPersistentStore.Start();
             if (!result.IsOk)
@@ -154,25 +188,16 @@ namespace UnityEngine.XR.MagicLeap
         }
 
         /// <summary>
-        /// Clean Up
+        /// Queues pcf for updates from MLPersistentCoordinateFrames
         /// </summary>
-        void OnDestroy()
+        void QueuePCFForUpdates()
         {
-            if (MLPersistentStore.IsStarted)
+            if (Binding != null && Binding.PCF != null)
             {
-                MLPersistentStore.Stop();
+                MLPersistentCoordinateFrames.QueueForUpdates(Binding.PCF);
             }
-            if (MLPersistentCoordinateFrames.IsStarted)
-            {
-                MLPersistentCoordinateFrames.Stop();
-            }
-
-            UnregisterPCFEventHandlers();
-            StopAllCoroutines();
         }
-        #endregion // Unity Methods
 
-        #region Private Methods
         /// <summary>
         /// Determine and perform the appropriate action
         /// </summary>
@@ -197,6 +222,7 @@ namespace UnityEngine.XR.MagicLeap
             MLContentBinding binding;
 
             MLResult result = MLPersistentStore.Load(UniqueId, out binding);
+
             if (!result.IsOk)
             {
                 Debug.LogErrorFormat("Error: MLPersistentBehavior failed to load binding. Reason: {0}", result);
@@ -206,9 +232,14 @@ namespace UnityEngine.XR.MagicLeap
             {
                 Binding = binding;
                 Binding.GameObject = this.gameObject;
-                MLContentBinder.Restore(Binding, HandleBindingRestore);
+                result = MLContentBinder.Restore(Binding, HandleBindingRestore);
+                _pcfRestoring = result.IsOk;
+                if(!result.IsOk)
+                {
+                    Debug.LogErrorFormat("Error: MLPersistentBehavior failed to restore binding. Reason: {0}", result);
+                    NotifyChangeOfStatus(Status.RESTORE_FAILED, result);
+                }
             }
-
         }
 
         /// <summary>
@@ -244,10 +275,7 @@ namespace UnityEngine.XR.MagicLeap
                 if (pcfPositionResult.IsOk && pcfWithPosition != null && pcfWithPosition.CurrentResult == MLResultCode.Ok)
                 {
                     Debug.Log("Binding to closest found PCF: " + pcfWithPosition.CFUID);
-                    Binding = MLContentBinder.BindToPCF(UniqueId, gameObject, pcfWithPosition);
-                    MLPersistentStore.Save(Binding);
-                    NotifyChangeOfStatus(Status.BINDING_CREATED, MLResult.ResultOk);
-                    RegisterPCFEventHandlers();
+                    BindToPCF(pcfWithPosition);
                     _done = true;
                 }
                 else
@@ -272,6 +300,21 @@ namespace UnityEngine.XR.MagicLeap
         }
 
         /// <summary>
+        /// Bind this gameObject to a pcf
+        /// </summary>
+        /// <param name="pcf">The pcf to bind to</param>
+        void BindToPCF(MLPCF pcf)
+        {
+            UnregisterPCFEventHandlers();
+            DestroyBinding();
+            Binding = MLContentBinder.BindToPCF(UniqueId, gameObject, pcf);
+            MLPersistentStore.Save(Binding);
+            NotifyChangeOfStatus(Status.BINDING_CREATED, MLResult.ResultOk);
+            RegisterPCFEventHandlers();
+            _pcfLost = false;
+        }
+
+        /// <summary>
         /// Triggers OnStatusUpdate event with the status
         /// </summary>
         /// <param name="status">PersistentBehaviorStatus</param>
@@ -284,26 +327,6 @@ namespace UnityEngine.XR.MagicLeap
         }
 
         /// <summary>
-        /// Try to restore after a delay
-        /// </summary>
-        /// <returns>IEnumerator for delay</returns>
-        IEnumerator TryRestore()
-        {
-            yield return new WaitForSeconds(RetryDelayInSeconds);
-            MLContentBinder.Restore(Binding, HandleBindingRestore);
-        }
-
-        /// <summary>
-        /// Retry finding a reliable PCF after a delay
-        /// </summary>
-        /// <returns>Coroutine</returns>
-        IEnumerator RetryFindPCFToRebind()
-        {
-            yield return new WaitForSeconds(RetryDelayInSeconds);
-            HandlePCFLost();
-        }
-
-        /// <summary>
         /// Register event handlers to the PCF this Persistent Behavior is bound to
         /// </summary>
         void RegisterPCFEventHandlers()
@@ -312,6 +335,7 @@ namespace UnityEngine.XR.MagicLeap
             {
                 Binding.PCF.OnLost += HandlePCFLost;
                 Binding.PCF.OnRegain += HandlePCFRegain;
+                Binding.PCF.OnUpdate += HandlePCFUpdate;
             }
         }
 
@@ -324,6 +348,7 @@ namespace UnityEngine.XR.MagicLeap
             {
                 Binding.PCF.OnLost -= HandlePCFLost;
                 Binding.PCF.OnRegain -= HandlePCFRegain;
+                Binding.PCF.OnUpdate -= HandlePCFUpdate;
             }
         }
 
@@ -335,6 +360,7 @@ namespace UnityEngine.XR.MagicLeap
         {
             if (binding != null)
             {
+                NotifyChangeOfStatus(Status.BINDING_DESTROYED, MLResult.ResultOk);
                 MLPersistentStore.DeleteBinding(binding);
             }
         }
@@ -348,37 +374,24 @@ namespace UnityEngine.XR.MagicLeap
         /// <param name="resultCode">Result code.</param>
         void HandleBindingRestore(MLContentBinding contentBinding, MLResult result)
         {
+            _pcfRestoring = false;
+
             if (!result.IsOk)
             {
-                if (NumRetriesForRestore > 0)
-                {
-                    NumRetriesForRestore--;
-                    Debug.LogWarningFormat("Failed to restore: {0} - {1}. Retries left: {2}. Result Code: {3}",
-                        gameObject.name, contentBinding.PCF.CFUID, NumRetriesForRestore, result);
-                    NotifyChangeOfStatus(Status.RESTORE_RETRY, result);
-                    StartCoroutine(TryRestore());
-                }
-                else
-                {
-                    string logMessage = string.Format("Failed to restore : {0} - {1}. Result code: {2}",
-                        gameObject.name, contentBinding.PCF.CFUID, result);
-                    if (result.Code == MLResultCode.SnapshotPoseNotFound)
-                    {
-                        // Content is bound to a PCF in a different map
-                        Debug.LogWarning(logMessage);
-                    }
-                    else
-                    {
-                        Debug.LogError(logMessage);
-                    }
-
-                    NotifyChangeOfStatus(Status.RESTORE_FAILED, result);
-                }
+                string logMessage = string.Format("Failed to restore : {0} - {1}. Result code: {2}",
+                    gameObject.name, contentBinding.PCF.CFUID, result);
+                Debug.LogError(logMessage);
+                NotifyChangeOfStatus(Status.RESTORE_FAILED, result);
             }
             else
             {
                 NotifyChangeOfStatus(Status.RESTORE_SUCCESSFUL, MLResult.ResultOk);
-                RegisterPCFEventHandlers();
+                if (!_pcfLost)
+                {
+                    // Handles two cases, registering for pcf events on app start and registering for pcf events when a pcf is lost and regained during runtime
+                    UnregisterPCFEventHandlers();
+                    RegisterPCFEventHandlers();
+                }
             }
         }
 
@@ -396,57 +409,46 @@ namespace UnityEngine.XR.MagicLeap
             else
             {
                 Debug.LogErrorFormat("Error: MLPersistentCoordinateFrames failed to initialize, disabling script. Reason: {0}", status);
-                enabled = false;
+                MLPersistentStore.Stop();
+                MLPersistentCoordinateFrames.Stop();
+                Invoke("StartAPIs", 3);
             }
         }
 
         /// <summary>
-        /// Handler when PCF bound to is lost. It tries to look for reliable PCF to bind to. If no PCF
-        /// is available, try again later.
+        /// Handler when PCF bound to is updated.
+        /// </summary>
+        void HandlePCFUpdate()
+        {
+            if (!_pcfRestoring)
+            {
+                UpdateBinding();
+                _pcfLost = false;
+            }
+        }
+
+        /// <summary>
+        /// Handler when PCF bound to is lost.
         /// </summary>
         void HandlePCFLost()
         {
-            _searchForPCF = null;
-            MLResult result = MLPersistentCoordinateFrames.FindClosestPCF(transform.position, (findResult, returnPCF) =>
+            CancelInvoke("QueuePCFForUpdates");
+            Invoke("QueuePCFForUpdates", 1);
+
+            if (!_pcfLost)
             {
-                if (findResult.IsOk && returnPCF != null && returnPCF.CurrentResult == MLResultCode.Ok)
-                {
-                    UnregisterPCFEventHandlers();
-
-                    Debug.LogFormat("Rebinding to closest found PCF: {0}", returnPCF.CFUID);
-                    Binding.PCF = returnPCF;
-                    MLResult bindingUpdateResult = Binding.Update();
-                    if (!bindingUpdateResult.IsOk)
-                    {
-                        MLPersistentStore.Save(Binding);
-                    }
-
-                    RegisterPCFEventHandlers();
-                }
-                else
-                {
-                    Debug.LogFormat("MLPersistentBehavior failed to rebind to closest PCF. Reason: {0}. Retrying in {1} seconds", findResult, RetryDelayInSeconds);
-                    _searchForPCF = StartCoroutine(RetryFindPCFToRebind());
-                }
-            });
-
-            if (!result.IsOk)
-            {
-                Debug.LogWarningFormat("Error: MLPersistentBehavior failed to attempt to find another closest PCF. Reason: {0}", result);
+                NotifyChangeOfStatus(Status.BINDING_LOST, new MLResult(MLResultCode.SnapshotPoseNotFound));
+                _pcfLost = true;
             }
         }
 
         /// <summary>
-        /// Handler when PCF bound to regains. Cancel any on-going search for another PCF.
+        /// Handler when PCF bound to regains.
         /// </summary>
         void HandlePCFRegain()
         {
-            Debug.Log("PCF Regained: " + Binding.PCF.CFUID);
-            if (_searchForPCF != null)
-            {
-                StopCoroutine(_searchForPCF);
-                _searchForPCF = null;
-            }
+            RestoreBinding();
+            _pcfLost = false;
         }
         #endregion // Event Handlers
 
@@ -459,7 +461,6 @@ namespace UnityEngine.XR.MagicLeap
         public void DestroyBinding()
         {
             DestroyBindingInternal(Binding);
-            NotifyChangeOfStatus(Status.BINDING_DESTROYED, MLResult.ResultOk);
         }
 
         /// <summary>
@@ -467,16 +468,9 @@ namespace UnityEngine.XR.MagicLeap
         /// </summary>
         public void UpdateBinding()
         {
-            if (transform.hasChanged)
-            {
-                // Note: this does not change the PCF bound to
-                // Note 2: if the binding doesn't exist, it will be created
-
-                Binding.Update();
-                MLPersistentStore.Save(Binding);
-                transform.hasChanged = false;
-                NotifyChangeOfStatus(Status.BINDING_UPDATED, MLResult.ResultOk);
-            }
+            Binding.Update();
+            MLPersistentStore.Save(Binding);
+            NotifyChangeOfStatus(Status.BINDING_UPDATED, MLResult.ResultOk);
         }
         #endregion
     }

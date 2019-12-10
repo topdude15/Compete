@@ -10,3 +10,8 @@ camera are shown on the side when recording starts.
 - First Press: Displays raw video frames.
 - Second Press: Stops displaying raw video frames.
 - Repeat
+
+## Privileges
+- AudioCaptureMic
+- CameraCapture
+- ComputerVision

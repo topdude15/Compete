@@ -11,3 +11,8 @@ Cycles through the placement objects: Rug, Phonograph, PictureFrame, and Chair.
 
 ## Trigger
 Places an instance of the current object when there is a valid location.
+
+
+## Privileges
+- WorldReconstruction
+- ControllerPose

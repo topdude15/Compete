@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -25,6 +25,39 @@ namespace MagicLeap
     {
         #region Private Variables
         ControllerConnectionHandler _controllerConnectionHandler;
+        bool touchpadPressedOnObject = false;
+        TouchpadCustomEvents touchpadEvents = new TouchpadCustomEvents();
+        class TouchpadCustomEvents
+        {
+            bool _pressed = false;
+            public bool pressed
+            {
+                get
+                {
+                    return _pressed;
+                }
+
+                set
+                {
+                    if (_pressed != value)
+                    {
+                        if (!_pressed)
+                        {
+                            TouchpadPressed?.Invoke();
+                        }
+
+                        else
+                        {
+                            TouchpadReleased?.Invoke();
+                        }
+
+                    }
+                    _pressed = value;
+                }
+            }
+
+            public Action TouchpadPressed, TouchpadReleased;
+        }
         #endregion
 
         #region Public Events
@@ -36,14 +69,27 @@ namespace MagicLeap
 
         #region Unity Methods
         /// <summary>
+        /// Keeps track of when the touchpad is currently pressed
+        /// </summary>
+        private void Update()
+        {
+            if (_controllerConnectionHandler != null && _controllerConnectionHandler.IsControllerValid())
+            {
+                touchpadEvents.pressed = _controllerConnectionHandler.ConnectedController.Touch1Active;
+            }
+        }
+
+        /// <summary>
         /// Clean Up
         /// </summary>
         private void OnDestroy()
         {
             if (_controllerConnectionHandler != null)
             {
-                MLInput.OnControllerTouchpadGestureStart -= HandleControllerTouchpadGestureStart;
                 _controllerConnectionHandler = null;
+                touchpadEvents.TouchpadPressed -= OnTouchpadPressed;
+                touchpadEvents.TouchpadReleased -= OnTouchpadRelease;
+                touchpadPressedOnObject = false;
             }
         }
 
@@ -60,7 +106,10 @@ namespace MagicLeap
             }
 
             _controllerConnectionHandler = controllerConnectionHandler;
-            MLInput.OnControllerTouchpadGestureStart += HandleControllerTouchpadGestureStart;
+            // setting pressed to 'true' here will call the OnTouchpadPressed event before we subscribe to it, forcing the user to both tap and release on this object to destroy it
+            touchpadEvents.pressed = true;
+            touchpadEvents.TouchpadPressed += OnTouchpadPressed;
+            touchpadEvents.TouchpadReleased += OnTouchpadRelease;
         }
 
         /// <summary>
@@ -73,27 +122,30 @@ namespace MagicLeap
             if (_controllerConnectionHandler == controllerConnectionHandler)
             {
                 _controllerConnectionHandler = null;
-                MLInput.OnControllerTouchpadGestureStart -= HandleControllerTouchpadGestureStart;
+                touchpadEvents.TouchpadPressed -= OnTouchpadPressed;
+                touchpadEvents.TouchpadReleased -= OnTouchpadRelease;
+                touchpadPressedOnObject = false;
             }
         }
         #endregion
 
         #region Event Handlers
         /// <summary>
-        /// Handler for Gesture Start events
+        /// Handler for touchpad pressed events
         /// </summary>
-        /// <param name="controllerId">Controller Id</param>
-        /// <param name="gesture">Touchpad Gesture</param>
-        private void HandleControllerTouchpadGestureStart(byte controllerId, MLInputControllerTouchpadGesture gesture)
+        private void OnTouchpadPressed()
         {
-            if (_controllerConnectionHandler != null
-                && _controllerConnectionHandler.IsControllerValid(controllerId)
-                && gesture.Type == MLInputControllerTouchpadGestureType.Tap)
+            touchpadPressedOnObject = true;
+        }
+
+        /// <summary>
+        /// Handler for touchpad released events
+        /// </summary>
+        private void OnTouchpadRelease()
+        {
+            if (touchpadPressedOnObject)
             {
-                if (OnContentDestroy != null)
-                {
-                    OnContentDestroy(gameObject);
-                }
+                OnContentDestroy?.Invoke(gameObject);
             }
         }
         #endregion

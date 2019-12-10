@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -102,12 +102,8 @@ namespace UnityEditor.Experimental.XR.MagicLeap
             process.StartInfo = startInfo;
             process.Start();
 
-            string error = process.StandardError.ReadToEnd();
-            if (error != string.Empty)
-            {
-                UnityEngine.Debug.LogError(error);
-                return false;
-            }
+            // guarantees that process finishes before we look for binary
+            process.StandardOutput.ReadToEnd();
 
             string outputProvider = Path.Combine(_projectRoot, Path.Combine("debug_lumin_clang-3.8_aarch64", "ExampleMusicProvider"));
             if (File.Exists(outputProvider))

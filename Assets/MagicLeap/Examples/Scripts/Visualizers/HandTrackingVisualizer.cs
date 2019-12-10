@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------
 // %COPYRIGHT_BEGIN%
 //
-// Copyright (c) 2019 Magic Leap, Inc. All Rights Reserved.
+// Copyright (c) 2018-present, Magic Leap, Inc. All Rights Reserved.
 // Use of this file is governed by the Creator Agreement, located
 // here: https://id.magicleap.com/creator-terms
 //
@@ -116,49 +116,49 @@ namespace MagicLeap
                 // Pinky
                 for (int i = 0; i < Hand.Pinky.KeyPoints.Count; ++i)
                 {
-                    _pinkyFinger[i].position = Hand.Pinky.KeyPoints[i].Position;
+                    _pinkyFinger[i].localPosition = Hand.Pinky.KeyPoints[i].Position;
                     _pinkyFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Ring
                 for (int i = 0; i < Hand.Ring.KeyPoints.Count; ++i)
                 {
-                    _ringFinger[i].position = Hand.Ring.KeyPoints[i].Position;
+                    _ringFinger[i].localPosition = Hand.Ring.KeyPoints[i].Position;
                     _ringFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Middle
                 for (int i = 0; i < Hand.Middle.KeyPoints.Count; ++i)
                 {
-                    _middleFinger[i].position = Hand.Middle.KeyPoints[i].Position;
+                    _middleFinger[i].localPosition = Hand.Middle.KeyPoints[i].Position;
                     _middleFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Index
                 for (int i = 0; i < Hand.Index.KeyPoints.Count; ++i)
                 {
-                    _indexFinger[i].position = Hand.Index.KeyPoints[i].Position;
+                    _indexFinger[i].localPosition = Hand.Index.KeyPoints[i].Position;
                     _indexFinger[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Thumb
                 for (int i = 0; i < Hand.Thumb.KeyPoints.Count; ++i)
                 {
-                    _thumb[i].position = Hand.Thumb.KeyPoints[i].Position;
+                    _thumb[i].localPosition = Hand.Thumb.KeyPoints[i].Position;
                     _thumb[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Wrist
                 for (int i = 0; i < Hand.Wrist.KeyPoints.Count; ++i)
                 {
-                    _wrist[i].position = Hand.Wrist.KeyPoints[i].Position;
+                    _wrist[i].localPosition = Hand.Wrist.KeyPoints[i].Position;
                     _wrist[i].gameObject.SetActive(Hand.IsVisible);
                 }
 
                 // Hand Center
                 if (_center != null)
                 {
-                    _center.position = Hand.Center;
+                    _center.localPosition = Hand.Center;
                     _center.gameObject.SetActive(Hand.IsVisible);
                 }
             }

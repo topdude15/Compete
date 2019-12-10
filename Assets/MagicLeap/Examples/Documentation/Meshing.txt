@@ -34,3 +34,7 @@ Shoot ball into the scene to demonstrate occlusion and physics.
 ## Touchpad
 Swipe Up:
   - Switch level of detail of the mesh data to minimum, medium or maximum.
+
+## Privileges
+- WorldReconstruction
+- ControllerPose

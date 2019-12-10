@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -51,7 +50,7 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] private GameObject[] tutorialPage;
 
     public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
-    private GameObject bowlingBall, _realtime, pinObj, pin, currentTutorialPage;
+    private GameObject bowlingBall, pinObj, pin, currentTutorialPage;
     private TransmissionObject bowlingBallMultiplayer;
     public Material[] ballMats, meshMats;
 
@@ -75,7 +74,6 @@ public class BowlingManager : MonoBehaviour
 
     private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false, spawnedBallMultiplayer = false;
 
-    public Realtime _realtimeObject;
 
     private Vector3 pinOrientation = new Vector3(-90, 0, 90), tenPinOrientation = new Vector3(0, 0, 0);
     // AUDIO VARIABLES
@@ -195,33 +193,6 @@ public class BowlingManager : MonoBehaviour
             {
                 reachedPinLimit.SetActive(false);
             }
-        }
-        if (_realtimeObject.connected)
-        {
-            connectedPlayers = 0;
-            if (getLocalPlayer == false)
-            {
-                getLocalPlayer = true;
-                foreach (GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject)))
-                {
-                    if (obj.name == "VR Player(Clone)")
-                    {
-                        if (obj.GetComponent<RealtimeView>().isOwnedLocally)
-                        {
-                            // localPlayer = obj;
-                        }
-                    }
-                }
-            }
-            foreach (GameObject obj in GameObject.FindObjectsOfType(typeof(GameObject)))
-            {
-                if (obj.name == "VR Player(Clone)")
-                {
-                    connectedPlayers += 1;
-                    connectedPlayersText.text = ("Connected Players: " + connectedPlayers);
-                }
-            }
-            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='green'>Connected</color>");
         }
         Vector3 pos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         helpMenu.transform.position = Vector3.SlerpUnclamped(helpMenu.transform.position, pos, menuMoveSpeed);
@@ -608,17 +579,17 @@ public class BowlingManager : MonoBehaviour
         foreach (Transform child in pinHolder.transform)
         {
             GameObject.Destroy(child.gameObject);
-            RealtimeView childComponent;
-            childComponent = child.GetComponent<RealtimeView>();
-            // If the pin has a RealtimeView component, then they are a Realtime object and must be removed remotely as well as locally
-            if (childComponent != null)
-            {
-                Realtime.Destroy(child.gameObject);
-            }
-            else
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+            // RealtimeView childComponent;
+            // childComponent = child.GetComponent<RealtimeView>();
+            // // If the pin has a RealtimeView component, then they are a Realtime object and must be removed remotely as well as locally
+            // if (childComponent != null)
+            // {
+            //     Realtime.Destroy(child.gameObject);
+            // }
+            // else
+            // {
+            //     GameObject.Destroy(child.gameObject);
+            // }
         }
         pinsFallen = 0;
         UpdateFallen();
@@ -768,7 +739,7 @@ public class BowlingManager : MonoBehaviour
                 menuAudio.Play();
                 break;
             case "Multiplayer":
-                if (_realtimeObject.connected)
+                if (joinedLobby)
                 {
                     multiplayerStatusMenu.SetActive(true);
                 }

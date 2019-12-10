@@ -25,4 +25,6 @@ Switch plane query extents between bounded and boundless.
 Modify texturing parameters based on the semantic tag of the planes
 the cursor is positioned over.
 
-
+## Privileges
+- WorldReconstruction
+- ControllerPose
