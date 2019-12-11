@@ -16,13 +16,12 @@ public class MeshingMenu : MonoBehaviour {
 	public MeshRenderer mesh;
 	// Use this for initialization
 	void Start () {
-        
-		print("yee");
+
 		MLInput.Start();
 		
 		controller = MLInput.GetController(MLInput.Hand.Left);
-
-		// MLInput.OnControllerButtonDown += OnButtonDown;
+		MLInput.OnTriggerDown += OnTriggerDown;
+		MLInput.TriggerDownThreshold = 0.75f;
 
 		menu.transform.position = _cam.transform.position + _cam.transform.forward * 1.5f;
 		menu.transform.rotation = _cam.transform.rotation;
@@ -35,23 +34,15 @@ public class MeshingMenu : MonoBehaviour {
 		MLInput.Stop();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
-		//print(timer);
 
 		if (welcomeCanvas.alpha < 1 && getTime == false) {
-			welcomeCanvas.alpha += 0.3f * Time.deltaTime;
+			welcomeCanvas.alpha += 0.5f * Time.deltaTime;
 		} else if (welcomeCanvas.alpha >= 1) {
 			if (getTime == false) {
-				print("timer yeet");
 				getTime = true;
 				timer = 0.0f;
-			} else {
-				// if (timer > 5.0f) {
-				// 	print(timer);
-				// 	welcomeCanvas.alpha -= 0.3f * Time.deltaTime;
-				// }
 			}
 		}
 
@@ -79,9 +70,8 @@ public class MeshingMenu : MonoBehaviour {
 
 		Quaternion rot = Quaternion.LookRotation (menu.transform.position - _cam.transform.position);
 		menu.transform.rotation = Quaternion.Slerp (menu.transform.rotation, rot, speed);
-
-		if (controller.TriggerValue >= 0.9f) {
-			SceneManager.LoadScene("Main", LoadSceneMode.Single);
-		}
+	}
+	private void OnTriggerDown(byte controller_Id, float triggerValue) {
+		SceneManager.LoadScene("Main", LoadSceneMode.Single);
 	}
 }

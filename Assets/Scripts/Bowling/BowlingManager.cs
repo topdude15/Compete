@@ -88,6 +88,8 @@ public class BowlingManager : MonoBehaviour
         // If the user is new, open the tutorial menu
         CheckNewUser();
 
+        mesh = GameObject.Find("/MLSpatialMapper/Original").GetComponent<MeshRenderer>();
+
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
         // When the Control's button(s) are pressed, run OnButtonDown
@@ -105,7 +107,6 @@ public class BowlingManager : MonoBehaviour
         pos = new Vector3[1];
 
         menuMoveSpeed = Time.deltaTime * 2f;
-        // tenPinOrientation.transform.rotation = new Quaternion(0, mainCam.transform.rotation.y, 0, 0);
 
         MLNetworking.IsInternetConnected(ref networkConnected);
         if (networkConnected == false)
@@ -713,16 +714,12 @@ public class BowlingManager : MonoBehaviour
             if (setLocationPos)
             {
                 holding = holdState.none;
-                //pinHolder.transform.rotation = locationPointObj.transform.rotation;
-                //locationPointObj.SetActive(false);
             }
             else
             {
                 InputTracking.Recenter();
                 setLocationPos = true;
-                //pinHolder.transform.position = locationPointObj.transform.position;
             }
-            //holding = holdState.none;
         }
 
         SpawnObject();

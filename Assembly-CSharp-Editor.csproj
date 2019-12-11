@@ -328,6 +328,9 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.WebGL.Extensions">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
@@ -343,6 +346,21 @@
  <Reference Include="UnityEditor.Lumin.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/PlaybackEngines/LuminSupport/UnityEditor.Lumin.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="LuminMediaPlayer">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminUnity">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminUnityEditor">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/Editor/LuminUnityEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="MSA.Runtime">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="MSA.Editor">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/Editor/MSA.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -357,21 +375,6 @@
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="LuminUnityEditor">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/Editor/LuminUnityEditor.dll</HintPath>
- </Reference>
- <Reference Include="LuminUnity">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
- </Reference>
- <Reference Include="LuminMediaPlayer">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
- </Reference>
- <Reference Include="MSA.Runtime">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="MSA.Editor">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/Editor/MSA.Editor.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

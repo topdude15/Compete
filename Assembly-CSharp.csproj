@@ -250,6 +250,7 @@
      <Compile Include="Assets\Scripts\Meshing\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Meshing\MeshingMenu.cs" />
      <Compile Include="Assets\Scripts\Utility\Controller.cs" />
+     <Compile Include="Assets\Scripts\Utility\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\Utility\GameManager.cs" />
      <Compile Include="Assets\Scripts\Utility\GetUserGesture.cs" />
      <Compile Include="Assets\Scripts\Utility\PlaneExtract.cs" />
@@ -548,6 +549,15 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
+ <Reference Include="LuminMediaPlayer">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
+ </Reference>
+ <Reference Include="LuminUnity">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
+ </Reference>
+ <Reference Include="MSA.Runtime">
+ <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
@@ -556,15 +566,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>C:/Users/topdu/Desktop/Compete/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="LuminUnity">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminUnity.dll</HintPath>
- </Reference>
- <Reference Include="LuminMediaPlayer">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Libs/LuminMediaPlayer.dll</HintPath>
- </Reference>
- <Reference Include="MSA.Runtime">
- <HintPath>C:/Users/topdu/Desktop/Compete/Assets/MagicLeap/Soundfield/MSA.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
