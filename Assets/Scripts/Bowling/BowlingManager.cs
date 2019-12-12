@@ -33,8 +33,6 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] private Pointer pointer;
     [SerializeField] private GameObject controlPointer, pointerCursor;
     private MLInputController controller;
-    public LineRenderer laserLineRenderer;
-    RaycastHit rayHit;
 
     private enum HandPoses { OpenHand, Fist, NoPose };
     private HandPoses pose = HandPoses.NoPose;
@@ -44,12 +42,12 @@ public class BowlingManager : MonoBehaviour
     private holdState holding = holdState.single;
 
     // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
-    [SerializeField] private GameObject mainCam, control, ballPrefab, controlCube, deleteLoader, menuCanvas, handCenter, toggleMicButton, reachedPinLimit, singleSelector, bowlingBallSelector, tenPinSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint, transmissionObj, spatialAlignmentObj;
+    [SerializeField] private GameObject mainCam, controlCube, deleteLoader, menuCanvas, handCenter, reachedPinLimit, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint, transmissionObj, spatialAlignmentObj;
 
-    [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
+    [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
     [SerializeField] private GameObject[] tutorialPage;
 
-    public Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, pinsFallenText, noGravityText, gestureHandText;
+    [SerializeField] private Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, pinsFallenText, noGravityText, gestureHandText;
     private GameObject bowlingBall, pinObj, pin, currentTutorialPage;
     private TransmissionObject bowlingBallMultiplayer;
     public Material[] ballMats, meshMats;
@@ -62,7 +60,7 @@ public class BowlingManager : MonoBehaviour
 
     List<Vector3> Deltas = new List<Vector3>();
     private int currentPage = 0, totalObjs = 0, objLimit = 100;
-    private float timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f;
+    private float timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, deleteTimer = 0.0f;
 
     public int pinsFallen = 0;
 
@@ -70,9 +68,9 @@ public class BowlingManager : MonoBehaviour
 
     public Image loadingImage;
 
-    public Texture2D emptyCircle, check, handLeft, handRight;
+    [SerializeField] private Texture2D handLeft, handRight;
 
-    private bool holdingBall = false, noGravity = false, tutorialActive = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, joinedLobby = false, helpAppeared = false, micActive = true, getLocalPlayer = false, networkConnected, pinLimitAppeared = false, dontSpawn, leftHand = true, setLocationPos = false, multiplayerBall = false, spawnedBallMultiplayer = false;
+    private bool holdingBall = false, noGravity = false, occlusionActive = true, joinedLobby = false, helpAppeared = false, networkConnected, pinLimitAppeared = false, leftHand = true, setLocationPos = false, multiplayerBall = false;
 
 
     private Vector3 pinOrientation = new Vector3(-90, 0, 90), tenPinOrientation = new Vector3(0, 0, 0);
@@ -154,14 +152,9 @@ public class BowlingManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         CheckGestures();
-
-        if (holding == holdState.track && trackStartPosition != Vector3.zero)
-        {
-            PlaceTrack();
-        }
 
         if (timer < waitTime)
         {
@@ -174,44 +167,14 @@ public class BowlingManager : MonoBehaviour
         }
 
         // Always keep the control GameObject at the Control's position
-        control.transform.position = controller.Position;
-        control.transform.rotation = controller.Orientation;
+        controlCube.transform.position = controller.Position;
+        controlCube.transform.rotation = controller.Orientation;
 
-        // If the user is not reading the tutorial menu, activate the line from the Control and prepare for the user to place objects
-        if (tutorialActive)
-        {
-            // If the user presses anything while the tutorial is active, hide the tutorial and active the pointer
-            if ((controller.Touch1Active || controller.TriggerValue >= 0.2f || tutorialBumperPressed == true || tutorialHomePressed == true) && !tutorialMenu.activeSelf)
-            {
-                tutorialMenu.SetActive(false);
-                CheckNewUser();
-            }
-        }
-
-        if (controller.Touch1Active)
-        {
-            if (pinLimitAppeared)
-            {
-                reachedPinLimit.SetActive(false);
-            }
-        }
         Vector3 pos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         helpMenu.transform.position = Vector3.SlerpUnclamped(helpMenu.transform.position, pos, menuMoveSpeed);
 
         Quaternion rot = Quaternion.LookRotation(helpMenu.transform.position - mainCam.transform.position);
         helpMenu.transform.rotation = Quaternion.Slerp(helpMenu.transform.rotation, rot, menuMoveSpeed);
-
-        if (pinLimitMenu.activeSelf)
-        {
-            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
-            {
-                pinLimitMenu.SetActive(false);
-            }
-            if (controller.IsBumperDown)
-            {
-                pinLimitMenu.SetActive(false);
-            }
-        }
     }
     private void PlayTimer()
     {
@@ -235,10 +198,6 @@ public class BowlingManager : MonoBehaviour
                 helpAppeared = true;
             }
         }
-        else
-        {
-            //
-        }
     }
     private void CheckGestures()
     {
@@ -246,6 +205,9 @@ public class BowlingManager : MonoBehaviour
         {
             if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
             {
+                if (pinLimitMenu.activeSelf) {
+                    pinLimitMenu.SetActive(false);
+                }
                 pose = HandPoses.OpenHand;
                 helpAppeared = true;
             }
@@ -498,7 +460,6 @@ public class BowlingManager : MonoBehaviour
         if (PlayerPrefs.GetInt("hasPlayedBowling") == 1)
         {
             holding = holdState.none;
-            tutorialActive = false;
             tutorialMenu.SetActive(false);
         }
         else
@@ -580,17 +541,6 @@ public class BowlingManager : MonoBehaviour
         foreach (Transform child in pinHolder.transform)
         {
             GameObject.Destroy(child.gameObject);
-            // RealtimeView childComponent;
-            // childComponent = child.GetComponent<RealtimeView>();
-            // // If the pin has a RealtimeView component, then they are a Realtime object and must be removed remotely as well as locally
-            // if (childComponent != null)
-            // {
-            //     Realtime.Destroy(child.gameObject);
-            // }
-            // else
-            // {
-            //     GameObject.Destroy(child.gameObject);
-            // }
         }
         pinsFallen = 0;
         UpdateFallen();
@@ -605,6 +555,15 @@ public class BowlingManager : MonoBehaviour
         currentPage = 1;
         SetTutorialPage(false);
 
+        if (tutorialMenu.activeSelf)
+        {
+            tutorialMenu.SetActive(false);
+            PlayerPrefs.SetInt("hasPlayedBowling", 1);
+        }
+        if (pinLimitMenu.activeSelf) {
+            pinLimitMenu.SetActive(false);
+        }
+
         if (button == MLInputControllerButton.Bumper)
         {
             tutorialMenu.SetActive(false);
@@ -612,11 +571,6 @@ public class BowlingManager : MonoBehaviour
             multiplayerConfirmMenu.SetActive(false);
             multiplayerMenu.SetActive(false);
             modifierMenu.SetActive(false);
-            if (tutorialActive)
-            {
-                tutorialBumperPressed = true;
-                tutorialMenu.SetActive(false);
-            }
             if (menu.activeSelf)
             {
                 menu.SetActive(false);
@@ -785,7 +739,6 @@ public class BowlingManager : MonoBehaviour
             case "YesPlease":
                 PlayerPrefs.SetInt("hasPlayedBowling", 0);
                 CheckNewUser();
-                tutorialActive = true;
                 tutorialHelpMenu.SetActive(false);
                 menuAudio.Play();
                 break;
@@ -796,19 +749,6 @@ public class BowlingManager : MonoBehaviour
             case "NewGame":
                 holding = holdState.track;
                 menuAudio.Play();
-                break;
-            case "ToggleMic":
-                menuAudio.Play();
-                if (micActive == true)
-                {
-                    micActive = false;
-                    toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
-                }
-                else
-                {
-                    micActive = true;
-                    toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
-                }
                 break;
             case "LeaveRoom":
                 joinedLobby = false;
@@ -888,7 +828,7 @@ public class BowlingManager : MonoBehaviour
                     if (bowlingBall == null)
                     {
                         // Spawn the ball away from the player and set the correct color
-                        bowlingBall = Instantiate(ballPrefab, new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
+                        bowlingBall = Instantiate((GameObject)Resources.Load("BowlingBall"), new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
                         BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
                     }
                 }
@@ -943,10 +883,6 @@ public class BowlingManager : MonoBehaviour
                     multiplayerCodeText.text = roomCode;
                     menuAudio.Play();
                 }
-                else
-                {
-                    // Somehow indicate that the room code is too long to be input
-                }
                 break;
             case "Delete":
                 if (roomCode.Length > 0)
@@ -991,7 +927,7 @@ public class BowlingManager : MonoBehaviour
             case "Cancel":
                 multiplayerMenu.SetActive(false);
                 menu.SetActive(true);
-                roomCode = "";
+                roomCode = "Code";
                 menuAudio.Play();
                 break;
             default:
