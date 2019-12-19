@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#pragma warning disable 0649
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +49,6 @@ public class GameManager : MonoBehaviour
                 mainMenu.SetActive(true);
                 break;
 			default:
-				// No GameObject selected
 				break;
         }
     }

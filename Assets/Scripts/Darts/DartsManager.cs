@@ -16,6 +16,17 @@ public class DartsManager : MonoBehaviour
         dart,
         dartboard
     }
+    public enum spawnState
+    {
+        none,
+        bowlingBall,
+        dart,
+        dartNoGravity,
+        dartMultiplayer,
+        dartNoGravityMultiplayer,
+        dartboard,
+        dartboardMultiplayer
+    }
 
     // Input
     private enum HandPoses { OpenHand, Fist, NoPose };
@@ -24,12 +35,18 @@ public class DartsManager : MonoBehaviour
     private MLHandKeyPose[] _gestures;
 
     private MLInputController controller;
-    [SerializeField] private LineRenderer laserLineRenderer;
+    [SerializeField] private Pointer pointer;
+    [SerializeField] private GameObject controlPointer;
+    private MLHand currentHand;
 
     private holdState holding = holdState.none;
+    private spawnState spawning = spawnState.none;
+
+    private Rigidbody dartRB;
+    private MeshRenderer dartRenderer;
 
     [SerializeField] private GameObject menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, objMenu, handMenu, dartLimitMenu;
-    [SerializeField] private GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, dartboard, deleteLoader, menuCanvas, handCenter, toggleMicButton, dartSelector, dartboardSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, controlOrientationObj;
+    [SerializeField] private GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, deleteLoader, menuCanvas, handCenter, toggleMicButton, dartSelector, dartboardSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, controlOrientationObj;
     private GameObject  _realtime, currentTutorialPage;
     [SerializeField] private GameObject[] tutorialPage;
 
@@ -37,7 +54,8 @@ public class DartsManager : MonoBehaviour
 
     [SerializeField] private Transform dartHolder, meshHolder;
 
-    private TransmissionObject dart;
+    private GameObject dart, dartboard;
+    private TransmissionObject dartMultiplayer, dartboardMultiplayer;
 
     [SerializeField] private Material[] dartMats, meshMats;
     [SerializeField] private MeshRenderer mesh;
@@ -50,23 +68,19 @@ public class DartsManager : MonoBehaviour
 
     private int currentPage = 0;
 
-    private bool setHand = false, holdingDart = false, tutorialActive = true, noGravity = false, holdingDartMenu = true, tutorialBumperPressed, tutorialHomePressed, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, micActive = true, getLocalPlayer = false, toggledMic = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = true;
+    private bool holdingDart = false, noGravity = false, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = true;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
 
     public AudioSource menuAudio;
 
-    RaycastHit rayHit;
-
     // Use this for initialization
     void Start()
     {
-        print("Buttonz");
         CheckNewUser();
 
         MLInput.Start();
 
-        print("Getting controller..");
         controller = MLInput.GetController(0);
         MLInput.OnControllerButtonDown += OnButtonDown;
 
@@ -76,9 +90,6 @@ public class DartsManager : MonoBehaviour
         MLInput.OnTriggerUp += OnTriggerUp;
         MLInput.TriggerUpThreshold = 0.2f;
 
-        // Initialize both line points at Vector3.zero
-        Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-        laserLineRenderer.SetPositions(initLaserPositions);
 
         MLHands.Start();
         _gestures = new MLHandKeyPose[2];
@@ -100,7 +111,7 @@ public class DartsManager : MonoBehaviour
         {
             gestureHandText.text = ("Gestures:\n Right Hand");
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
-            leftHand = false;
+            currentHand = MLHands.Right;
         }
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
@@ -131,9 +142,8 @@ public class DartsManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-
         if (holdingDart)
         {
             HoldingDart();
@@ -144,39 +154,12 @@ public class DartsManager : MonoBehaviour
         {
             PlayTimer();
         }
-        SetLine();
 
         control.transform.position = controller.Position;
         control.transform.rotation = controller.Orientation;
 
-        if (objSelected && controller.TriggerValue <= 0.2f)
-        {
-            objSelected = false;
-        }
         menuMoveSpeed = Time.deltaTime * 2f;
-        if (tutorialActive == false)
-        {
-            PlaceObject();
-        }
-        else
-        {
-            if ((controller.Touch1Active || controller.TriggerValue >= 0.2f || tutorialBumperPressed || tutorialHomePressed) && !tutorialMenu.activeSelf)
-            {
-                CheckNewUser();
-            }
-        }
-        if (controller.Touch1Active)
-        {
-            if (menu.activeSelf)
-            {
-                // TODO: Function now has no function, remove
-            }
-            if (setHand == false)
-            {
-                setHand = true;
 
-            }
-        }
         if (dartLimitMenu.activeSelf)
         {
             if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
@@ -188,17 +171,20 @@ public class DartsManager : MonoBehaviour
                 dartLimitMenu.SetActive(false);
             }
         }
-
-        if (controller.Touch1Active == false)
-        {
-            setHand = false;
-        }
         Vector3 camPos = mainCam.transform.position + mainCam.transform.forward * 1.0f;
         helpMenu.transform.position = Vector3.SlerpUnclamped(helpMenu.transform.position, camPos, menuMoveSpeed);
 
         Quaternion rot = Quaternion.LookRotation(helpMenu.transform.position - mainCam.transform.position);
         helpMenu.transform.rotation = Quaternion.Slerp(helpMenu.transform.rotation, rot, menuMoveSpeed);
+
+        if (holding == holdState.dartboard) {
+            dartboardOutline.SetActive(true);
+
+            dartboardOutline.transform.position = endPosition;
+            dartboardOutline.transform.rotation = Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward);
+        }
     }
+
     private void PlayTimer()
     {
         timer += Time.deltaTime;
@@ -221,278 +207,90 @@ public class DartsManager : MonoBehaviour
             }
         }
     }
+
     private void CheckGestures()
     {
-        if (leftHand)
+        if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.OpenHand))
         {
-            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
-            {
-                pose = HandPoses.OpenHand;
-                helpAppeared = true;
-            }
-            else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
-            {
-                pose = HandPoses.Fist;
-            }
-            else
-            {
-                pose = HandPoses.NoPose;
-            }
-
-            if (pose != HandPoses.NoPose) ShowPoints();
-            if (pose != HandPoses.Fist)
-            {
-                deleteTimer = 0.0f;
-                handMenu.SetActive(true);
-            }
-            if (pose == HandPoses.NoPose)
-            {
-                deleteLoader.SetActive(false);
-            }
+            pose = HandPoses.OpenHand;
+            helpAppeared = true;
+        }
+        else if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.Fist))
+        {
+            pose = HandPoses.Fist;
         }
         else
         {
-            if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
-            {
-                pose = HandPoses.OpenHand;
-                helpAppeared = true;
-            }
-            else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
-            {
-                pose = HandPoses.Fist;
-            }
-            else
-            {
-                pose = HandPoses.NoPose;
-            }
-
-            if (pose != HandPoses.NoPose) ShowPoints();
-            if (pose != HandPoses.Fist)
-            {
-                deleteTimer = 0.0f;
-                handMenu.SetActive(true);
-            }
-            if (pose == HandPoses.NoPose)
-            {
-                deleteLoader.SetActive(false);
-            }
+            pose = HandPoses.NoPose;
         }
 
+        if (pose != HandPoses.NoPose) ShowPoints();
+
+        if (pose != HandPoses.Fist)
+        {
+            deleteTimer = 0.0f;
+            handMenu.SetActive(true);
+        }
+        if (pose == HandPoses.NoPose)
+        {
+            deleteLoader.SetActive(false);
+        }
     }
 
     private void ShowPoints()
     {
-        if (leftHand)
+        if (pose == HandPoses.Fist)
         {
-
-            if (pose == HandPoses.Fist)
+            if (!deleteLoader.activeSelf)
             {
-                if (!deleteLoader.activeSelf)
-                {
-                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-                    handCenter.transform.position = pos[0];
-                    handCenter.transform.LookAt(mainCam.transform.position);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                handMenu.SetActive(false);
-                deleteTimer += Time.deltaTime;
-
-                deleteLoader.SetActive(true);
-
-                // Calculate the amount of time that you need to hold your fist to delete all objects
-                float percentComplete = deleteTimer / 3.0f;
-                loadingImage.fillAmount = percentComplete;
-
-                if (deleteTimer > 3.0f)
-                {
-                    ClearAllObjects();
-                    deleteLoader.SetActive(false);
-                }
-            }
-            else if (pose == HandPoses.OpenHand)
-            {
-                deleteLoader.SetActive(false);
-                if (!helpMenu.activeSelf)
-                {
-                    helpMenu.SetActive(true);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                pos[0] = currentHand.Middle.KeyPoints[0].Position;
                 handCenter.transform.position = pos[0];
                 handCenter.transform.LookAt(mainCam.transform.position);
             }
-        }
-        else
-        {
-
-            if (pose == HandPoses.Fist)
+            if (!handCenter.activeSelf)
             {
-                if (!deleteLoader.activeSelf)
-                {
-                    pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
-                    handCenter.transform.position = pos[0];
-                    handCenter.transform.LookAt(mainCam.transform.position);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                handMenu.SetActive(false);
-                deleteTimer += Time.deltaTime;
-
-                deleteLoader.SetActive(true);
-
-                // Calculate the amount of time that you need to hold your fist to delete all objects
-                float percentComplete = deleteTimer / 3.0f;
-                loadingImage.fillAmount = percentComplete;
-
-                if (deleteTimer > 3.0f)
-                {
-                    ClearAllObjects();
-                    deleteLoader.SetActive(false);
-                }
+                handCenter.SetActive(true);
             }
-            else if (pose == HandPoses.OpenHand)
+            handMenu.SetActive(false);
+            deleteTimer += Time.deltaTime;
+
+            deleteLoader.SetActive(true);
+
+            // Calculate the amount of time that you need to hold your fist to delete all objects
+            float percentComplete = deleteTimer / 3.0f;
+            loadingImage.fillAmount = percentComplete;
+
+            if (deleteTimer > 3.0f)
             {
+                ClearAllObjects();
                 deleteLoader.SetActive(false);
-                if (!helpMenu.activeSelf)
-                {
-                    helpMenu.SetActive(true);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
-                handCenter.transform.position = pos[0];
-                handCenter.transform.LookAt(mainCam.transform.position);
             }
         }
-
-    }
-    private void SetLine()
-    {
-        Vector3 heading = control.transform.forward;
-
-        // Set the origin of the line to the controller's position, because the first position does not dynamically change
-        laserLineRenderer.SetPosition(0, controller.Position);
-        if (Physics.Raycast(controller.Position, heading, out rayHit, 10.0f))
+        else if (pose == HandPoses.OpenHand)
         {
-            endPosition = controller.Position + (control.transform.forward * rayHit.distance);
-            laserLineRenderer.SetPosition(1, endPosition);
-
-            if (rayHit.transform.gameObject.name == "DartSelector")
+            deleteLoader.SetActive(false);
+            if (!helpMenu.activeSelf)
             {
-                GameObject selector = GameObject.Find("DartSelector");
-                if (selector.transform.localScale.x < 4)
-                {
-                    Vector3 localObjScale = selector.transform.localScale;
-                    localObjScale += new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                    selector.transform.localScale = localObjScale;
-                }
+                helpMenu.SetActive(true);
             }
-            else if (rayHit.transform.gameObject.name == "DartboardSelector")
+            if (!handCenter.activeSelf)
             {
-                GameObject selector = GameObject.Find("DartboardSelector");
-                if (selector.transform.localScale.x < 4)
-                {
-                    Vector3 localObjScale = selector.transform.localScale;
-                    localObjScale += new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                    selector.transform.localScale = localObjScale;
-                }
+                handCenter.SetActive(true);
             }
-
-            if (!holdingDartMenu)
-            {
-                // DartColorLoader.GetDartColor(rayHit.transform.gameObject.name, controller, dartMenu, holdingDartMenu, dart, dartMats);
-            }
-            else if (holdingDartMenu && controller.TriggerValue <= 0.2f)
-            {
-                holdingDartMenu = false;
-            }
-            if (dartSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "DartSelector")
-            {
-                Vector3 localObjScale = dartSelector.transform.localScale;
-                localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                dartSelector.transform.localScale = localObjScale;
-            }
-            if (dartboardSelector.transform.localScale.x > 3.33f && rayHit.transform.gameObject.name != "DartboardSelector")
-            {
-                Vector3 localObjScale = dartboardSelector.transform.localScale;
-                localObjScale -= new Vector3(Time.deltaTime * 5.0f, Time.deltaTime * 5.0f, Time.deltaTime * 5.0f);
-                dartboardSelector.transform.localScale = localObjScale;
-            }
-        }
-        else
-        {
-            if (holding == holdState.dartboard)
-            {
-                dartboardOutline.SetActive(true);
-
-                dartboardOutline.transform.position = endPosition;
-                dartboardOutline.transform.rotation = Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward);
-            }
-            endPosition = controller.Position + (control.transform.forward * 3.0f);
-            laserLineRenderer.SetPosition(1, endPosition);
-        }
-        if (holding == holdState.dart)
-        {
-            laserLineRenderer.SetPosition(0, mainCam.transform.position);
-            laserLineRenderer.SetPosition(1, mainCam.transform.position);
-        }
-        if (toggledMic == true && controller.TriggerValue < 0.2f)
-        {
-            toggledMic = false;
+            pos[0] = currentHand.Middle.KeyPoints[0].Position;
+            handCenter.transform.position = pos[0];
+            handCenter.transform.LookAt(mainCam.transform.position);
         }
     }
-    private void PlaceObject()
-    {
-        if (holding == holdState.dartboard)
-        {
-            if (!objSelected)
-            {
-                // Only triggers if Realtime is connected
-                // if (_realtimeObject.connected && realtimeDartboard == false)
-                // {
-                //     realtimeDartboard = true;
-                //     dartboardHolder.transform.position = new Vector3(100, 100, 100);
-                //     // TODO: Implement new function to instantiate dartboard for Transmission system
-                //     // dartboardHolder = Realtime.Instantiate(dartboardRealtime.name, new Vector3(100, 100, 100), new Quaternion(0, 0, 0, 0), true, false, true, null);
-                //     dartboard = dartboardHolder.transform.GetChild(0).gameObject;
-                //     var dartboardCollider = dartboard.GetComponent<MeshCollider>();
-                //     dartboardCollider.enabled = false;
-                //     dartboardHolder.GetComponent<RealtimeView>().RequestOwnership();
-                //     dartboardHolder.GetComponent<RealtimeTransform>().RequestOwnership();
-                // }
 
-                if (controller.TriggerValue >= 0.9f && !lockedDartboard)
-                {
-                    lockedDartboard = true;
-                    dartboardHolder.SetActive(true);
-                    dartboardHolder.transform.position = endPosition;
-                    dartboardHolder.transform.rotation = Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward);
-                }
-                else if (controller.TriggerValue <= 0.2f && lockedDartboard)
-                {
-                    lockedDartboard = false;
-                }
-            }
-        }
-        else if (holding == holdState.none && !tutorialMenu.activeSelf)
-        {
-            // TODO: This function is no longer needed
-        }
-    }
     private void HoldingDart()
     {
-        //var oldPosition = dart.transform.position;
-        var oldPosition = dart.transform.position;
+        Vector3 oldPosition;
+        if (joinedLobby) {
+            oldPosition = dartMultiplayer.transform.position;
+        } else {
+            oldPosition = dart.transform.position;
+        }
         var newPosition = controller.Position;
 
         var delta = newPosition - oldPosition;
@@ -509,119 +307,56 @@ public class DartsManager : MonoBehaviour
         toAverage /= Deltas.Count;
         var forcePerSecondAvg = toAverage * 300;
         forcePerSecond = forcePerSecondAvg;
-        dart.transform.position = controlOrientationObj.transform.position;
 
-        dart.transform.rotation = controlOrientationObj.transform.rotation;
+        if (joinedLobby) {
+            dartMultiplayer.transform.position = controlOrientationObj.transform.position;
+            dartMultiplayer.transform.position = controlOrientationObj.transform.rotation;
+        } else {
+            dart.transform.position = controlOrientationObj.transform.position;
+            dart.transform.rotation = controlOrientationObj.transform.rotation;
+        }
     }
 
-    private void SpawnObject()
-    {
-        if (totalObjs < objLimit)
-        {
-            if (!noGravity)
-            {
-                if (holding == holdState.dart)
-                {
-                    if (!objSelected)
-                    {
-                        if (joinedLobby)
-                        {
-                            // Spawn dart while connected to realtime room and gravity is enabled
-                            dart = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
-                            //dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
-                            //dart.transform.parent = dartHolder;
-
-                            holdingDart = true;
-
-                            Transform dartChild = dart.transform;
-
-                            Renderer dartRender = dartChild.GetComponent<Renderer>();
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
-
-                            Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
-                            dartRB.useGravity = false;
-
-                        }
-                        else
-                        {
-                            // Spawn dart while NOT connected to multiplayer room and gravity is enabled
-                            //dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
-                            dart = Transmission.Spawn("Dart", controller.Position, controller.Orientation, Vector3.one);
-                            dart.transform.parent = dartHolder;
-
-                            holdingDart = true;
-
-                            //Transform dartChild = dart.gameObject.transform.GetChild(0);
-
-                            Renderer dartRender = dart.transform.GetComponent<Renderer>();
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
-
-                            Rigidbody dartRB = dart.transform.GetComponent<Rigidbody>();
-                            dartRB.useGravity = false;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (holding == holdState.dart)
-                {
-                    if (!objSelected)
-                    {
-                        if (joinedLobby)
-                        {
-                            // Spawn dart while connected to realtime room and gravity is NOT enabled
-                            // dart = Realtime.Instantiate(dartRealtime.name, controller.Position, controller.Orientation, true, false, true, null);
-                            dart.transform.parent = dartHolder;
-
-                            Transform dartChild = dart.gameObject.transform.GetChild(0);
-
-                            Renderer dartRender = dartChild.GetComponent<Renderer>();
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
-
-                            Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
-                            dartRB.useGravity = false;
-                        }
-                        else
-                        {
-                            // Spawn dart while NOT connected to realtime room and gravity is NOT enabled
-                           // dart = Instantiate(dartPrefab, controller.Position, controller.Orientation, dartHolder);
-                            dart.transform.parent = dartHolder;
-
-                            Transform dartChild = dart.gameObject.transform.GetChild(0);
-
-                            Renderer dartRender = dartChild.GetComponent<Renderer>();
-                            dartRender.material = dartMats[PlayerPrefs.GetInt("dartColorInt", 0)];
-
-                            Rigidbody dartRB = dartChild.GetComponent<Rigidbody>();
-                            dartRB.useGravity = false;
-                        }
-                    }
-                }
-            }
+    private void SpawnObject() {
+        switch (spawning) {
+            case spawnState.dart:
+                dart = Instantiate((GameObject)Instantiate(Resources.Load("Dart")), controller.Position, controller.Orientation, dartHolder);
+                ConfigureDart();
+                break;
+            case spawnState.dartNoGravity:
+                dart = Instantiate((GameObject)Instantiate(Resources.Load("DartNoGravity")), controller.Position, controller.Orientation, dartHolder);
+                ConfigureDart();
+                break;
+            case spawnState.dartMultiplayer:
+                dartMultiplayer = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
+                ConfigureDart();
+                break;
+            case spawnState.dartNoGravityMultiplayer:
+                dartMultiplayer = Transmission.Spawn("DartMultiplayerNoGravity", controller.Position, controller.Orientation, Vector3.one);
+                ConfigureDart();
+                break;
+            case spawnState.dartboard:
+                dartboard = Instantiate((GameObject)Instantiate(Resources.Load("Dartboard"), pointer.transform.position, controller.Orientation));
+                break;
+            case spawnState.dartboardMultiplayer:
+                dartboardMultiplayer = Transmission.Spawn("DartboardMultiplayer", pointer.transform.position, controller.Orientation, Vector3.one);
+                break;
+            default:
+            // Do I need to set dart = null if nothing selected?
+                break;
         }
-        else if (!dartLimitAppeared)
-        {
-            dartLimitAppeared = true;
-            helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 8.0f;
-            helpMenu.transform.rotation = mainCam.transform.rotation;
-            dartLimitMenu.SetActive(true);
-        }
-        else
-        {
-            dart = null;
-        }
-        // Recount the total number of darts currently in the game to ensure that there are never too many on screen (by objLimit)
         GetCount();
     }
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
+        if (tutorialMenu.activeSelf) {
+            tutorialMenu.SetActive(false);
+        }
         currentPage = 1;
         SetTutorialPage(false);
         if (button == MLInputControllerButton.Bumper)
         {
-            print("yee");
             holding = holdState.none;
             dartboardOutline.SetActive(false);
 
@@ -634,12 +369,10 @@ public class DartsManager : MonoBehaviour
 
             if (objMenu.activeSelf)
             {
-                print("inactive");
                 objMenu.SetActive(false);
             }
             else
             {
-                print("ObjMenu");
                 objMenu.transform.position = control.transform.position + control.transform.forward * 0.6f;
                 objMenu.transform.rotation = new Quaternion(control.transform.rotation.x, control.transform.rotation.y, 0, control.transform.rotation.w);
                 menu.SetActive(false);
@@ -704,17 +437,13 @@ public class DartsManager : MonoBehaviour
         // TODO: CHANGE INT BACK TO 1, CURRENT IMPLEMENTATION WILL ALWAYS SHOW TUTORIAL
         if (PlayerPrefs.GetInt("hasPlayedDarts") == 1)
         {
-            print("Played");
-            tutorialActive = false;
             tutorialMenu.SetActive(false);
         }
         else
         {
             menuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
             menuCanvas.transform.LookAt(mainCam.transform.position);
-            Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-            laserLineRenderer.SetPositions(initLaserPositions);
-            print("Not Played");
+
             tutorialMenu.SetActive(true);
             PlayerPrefs.SetInt("hasPlayedDarts", 1);
         }
@@ -724,17 +453,23 @@ public class DartsManager : MonoBehaviour
     {
         if (!holdingDart)
         {
-            SpawnObject();
+            if (totalObjs < objLimit) {
+                SpawnObject();
+            } else if (!dartLimitAppeared) {
+                dartLimitAppeared = true;
+                helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 8.0f;
+                helpMenu.transform.rotation = mainCam.transform.rotation;
+                dartLimitMenu.SetActive(true);
+            }
         }
-        string objGameHit = rayHit.transform.gameObject.name;
+        string objGameHit = pointer.Target.gameObject.name;
         switch (objGameHit)
         {
             case "Home":
                 MLInput.Stop();
                 MLHands.Stop();
                 menu.SetActive(false);
-                Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
-                laserLineRenderer.SetPositions(initLaserPositions);
+
                 MLInput.OnControllerButtonDown -= OnButtonDown;
                 SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 menuAudio.Play();
@@ -762,64 +497,27 @@ public class DartsManager : MonoBehaviour
                 menuAudio.Play();
                 break;
             case "ChangeDart":
-                // dart = Instantiate(dartPrefab, new Vector3(100, 100, 100), controller.Orientation, dartHolder);
                 dart.transform.parent = dartHolder;
                 dartMenu.transform.position = mainCam.transform.position + (mainCam.transform.forward * 1.5f);
                 dartMenu.transform.LookAt(mainCam.transform.position);
                 dartMenu.SetActive(true);
                 menu.SetActive(false);
-                holdingDartMenu = true;
                 menuAudio.Play();
                 break;
             case "Red":
-                if (colorObjSelected == 0)
-                {
-                    PlayerPrefs.SetInt("dartColorInt", 0);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 0);
-                }
+                SetDartColor(0);
                 break;
             case "Yellow":
-                if (colorObjSelected == 0)
-                {
-                    PlayerPrefs.SetInt("dartColorInt", 1);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 1);
-                }
+                SetDartColor(1);
                 break;
             case "Orange":
-                if (colorObjSelected == 0)
-                {
-                    PlayerPrefs.SetInt("dartColorInt", 2);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 2);
-                }
+                SetDartColor(2);
                 break;
             case "Blue":
-                if (colorObjSelected == 0)
-                {
-                    PlayerPrefs.SetInt("dartColorInt", 3);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 3);
-                }
+                SetDartColor(3);
                 break;
             case "Green":
-                if (colorObjSelected == 0)
-                {
-                    PlayerPrefs.SetInt("dartColorInt", 4);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("multiplayerAvatarDartInt", 4);
-                }
+                SetDartColor(4);
                 break;
             case "DartColor":
                 colorObjSelected = 0;
@@ -849,31 +547,12 @@ public class DartsManager : MonoBehaviour
             case "YesPlease":
                 PlayerPrefs.SetInt("hasPlayedDarts", 0);
                 CheckNewUser();
-                tutorialActive = true;
                 tutorialHelpMenu.SetActive(false);
                 menuAudio.Play();
                 break;
             case "NoThanks":
                 tutorialHelpMenu.SetActive(false);
                 menuAudio.Play();
-                break;
-            case "ToggleMic":
-                if (toggledMic == false)
-                {
-                    toggledMic = true;
-                    if (micActive == true)
-                    {
-                        micActive = false;
-                        // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = true;
-                        toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = emptyCircle;
-                    }
-                    else
-                    {
-                        micActive = true;
-                        // localPlayer.GetComponentInChildren<RealtimeAvatarVoice>().mute = false;
-                        toggleMicButton.GetComponent<MeshRenderer>().material.mainTexture = check;
-                    }
-                }
                 break;
             case "LeaveRoom":
                 multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
@@ -899,25 +578,23 @@ public class DartsManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "right");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
                     gestureHandText.text = ("Gestures:\n Right Hand");
-                    leftHand = false;
+                    currentHand = MLHands.Right;
                 }
                 else
                 {
                     PlayerPrefs.SetString("gestureHand", "left");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                     gestureHandText.text = ("Gestures:\n Left Hand");
-                    leftHand = true;
+                    currentHand = MLHands.Left;
                 }
                 break;
             case "DartSelector":
                 objMenu.SetActive(false);
                 holding = holdState.dart;
-                objSelected = true;
                 break;
             case "DartboardSelector":
                 objMenu.SetActive(false);
                 holding = holdState.dartboard;
-                objSelected = true;
                 dart = null;
                 break;
             case "ShowMesh":
@@ -993,7 +670,6 @@ public class DartsManager : MonoBehaviour
                     }
                     else
                     {
-                        // Connect to Realtime room
                         multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='yellow'>Connecting</color>");
                         multiplayerMenu.SetActive(false);
                         multiplayerStatusMenu.SetActive(true);
@@ -1017,14 +693,12 @@ public class DartsManager : MonoBehaviour
         if (holdingDart)
         {
             holdingDart = false;
-            //var rigidbody = dart.transform.GetChild(0).gameObject.GetComponent<Rigidbody>();
             var rigidbody = dart.transform.GetComponent<Rigidbody>();
             if (!noGravity)
             {
                 rigidbody.useGravity = true;
             }
             rigidbody.velocity = Vector3.zero;
-            //rigidbody.AddForce(forcePerSecond, ForceMode.VelocityChange);
             rigidbody.velocity = forcePerSecond;
         }
     }
@@ -1066,5 +740,21 @@ public class DartsManager : MonoBehaviour
             tutorialRight.SetActive(true);
             tutorialRightText.SetActive(true);
         }
+    }
+    private void SetDartColor(int colorChoice) {
+        PlayerPrefs.SetInt("dartColorInt", colorChoice);
+        dartMenu.SetActive(false);
+    }
+    private void ConfigureDart() {
+        int dartColor = PlayerPrefs.GetInt("dartColorInt");
+        if (joinedLobby) {
+            dartRenderer = dartMultiplayer.GetComponent<MeshRenderer>();
+            dartRB = dartMultiplayer.GetComponent<Rigidbody>();
+        } else {
+            dartRenderer = dart.GetComponent<MeshRenderer>();
+            dartRB = dart.GetComponent<Rigidbody>();
+        }
+        dartRenderer.material = dartMats[dartColor];
+        dartRB.useGravity = false;
     }
 }
