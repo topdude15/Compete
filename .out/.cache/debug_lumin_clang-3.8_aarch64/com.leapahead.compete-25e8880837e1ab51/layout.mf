@@ -20,24 +20,8 @@
   "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/MSA.Runtime.dll"
  },
  {
-  "dest": "bin/Realtime.dll",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/Realtime.dll"
- },
- {
-  "dest": "bin/Unity.Compat.dll",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Compat.dll"
- },
- {
-  "dest": "bin/Unity.Tasks.dll",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/Unity.Tasks.dll"
- },
- {
   "dest": "bin/UnityMagicLeap.so",
   "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so"
- },
- {
-  "dest": "bin/libRealtimeClient.so",
-  "src": "/Users/trevorrose/Desktop/Compete/Temp/StagingArea/Data/Plugins/libRealtimeClient.so"
  },
  {
   "dest": "bin/libml_camera_plugin.so",
@@ -57,6 +41,6 @@
  },
  {
   "dest": "bin/libc++_shared.so",
-  "src": "/Users/trevorrose/MagicLeap/mlsdk/v0.22.0/lumin/stl/libc++/lib/libc++_shared.so"
+  "src": "/Users/trevorrose/MagicLeap/mlsdk/v0.23.0/lumin/stl/libc++/lib/libc++_shared.so"
  }
 ]

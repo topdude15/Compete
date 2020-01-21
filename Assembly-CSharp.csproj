@@ -237,9 +237,6 @@
      <Compile Include="Assets\MagicLeap-Tools\Examples\SpatialAlignment\Code\Logic\SpatialAlignmentExample.cs" />
      <Compile Include="Assets\MagicLeap-Tools\Examples\SurfaceDetails\Code\Logic\SurfaceDetailsExample.cs" />
      <Compile Include="Assets\MagicLeap-Tools\Examples\Transmission\Code\Logic\TransmissionExample.cs" />
-     <Compile Include="Assets\Scripts\Bowling\BallCollider.cs" />
-     <Compile Include="Assets\Scripts\Bowling\BallVelocity.cs" />
-     <Compile Include="Assets\Scripts\Bowling\BowlingColorLoader.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingManager.cs" />
      <Compile Include="Assets\Scripts\Bowling\BowlingPlaceObject.cs" />
      <Compile Include="Assets\Scripts\Bowling\PinCollision.cs" />

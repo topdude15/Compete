@@ -21,40 +21,50 @@ public class BowlingManager : MonoBehaviour
         track,
         locationPoint
     }
-    private enum menuState
-    {
+    private enum spawnState {
         none,
-        home,
-        modifiers,
-        changeBall
+        ball,
+        ballMultiplayer,
+        single,
+        singleMultiplayer,
+        tenPin,
+        tenPinMultiplayer,
     }
 
-    // Input
+    // Controller Input
     [SerializeField] private Pointer pointer;
     [SerializeField] private GameObject controlPointer, pointerCursor;
     private MLInputController controller;
 
+    // Hand Input
     private enum HandPoses { OpenHand, Fist, NoPose };
     private HandPoses pose = HandPoses.NoPose;
+    private MLHand currentHand;
     private Vector3[] pos;
     private MLHandKeyPose[] _gestures;
 
     private holdState holding = holdState.single;
+    private spawnState spawning = spawnState.none;
 
-    // Declare GameObjects.  Public GameObjects are set in Unity Editor.  
+    private Rigidbody ballRB;
+    private MeshRenderer ballRenderer;
+
     [SerializeField] private GameObject mainCam, controlCube, deleteLoader, menuCanvas, handCenter, reachedPinLimit, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, track, pinPlacement, startPoint, endPoint, transmissionObj, spatialAlignmentObj;
 
     [SerializeField] private GameObject menu, ballMenu, modifierMenu, tutorialMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, pinLimitMenu, multiplayerStatusMenu, handMenu, objMenu;
     [SerializeField] private GameObject[] tutorialPage;
 
     [SerializeField] private Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, pinsFallenText, noGravityText, gestureHandText;
-    private GameObject bowlingBall, pinObj, pin, currentTutorialPage;
-    private TransmissionObject bowlingBallMultiplayer;
+    
+    private GameObject pinObj, pin, currentTutorialPage;
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
 
     public MeshRenderer mesh;
+
+    private GameObject ball;
+    private TransmissionObject ballMultiplayer;
 
     private Vector3 endPosition, forcePerSecond, trackStartPosition, trackEndPosition;
 
@@ -86,7 +96,7 @@ public class BowlingManager : MonoBehaviour
         // If the user is new, open the tutorial menu
         CheckNewUser();
 
-        mesh = GameObject.Find("/MLSpatialMapper/Original").GetComponent<MeshRenderer>();
+        // mesh = GameObject.Find("/MLSpatialMapper/Original").GetComponent<MeshRenderer>();
 
         // Get input from the Control, accessible via controller
         controller = MLInput.GetController(0);
@@ -119,36 +129,36 @@ public class BowlingManager : MonoBehaviour
         {
             gestureHandText.text = ("Gestures:\n Right Hand");
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
-            leftHand = false;
+            currentHand = MLHands.Right;
         }
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
 
     }
-    private void OnDisable()
-    {
-        MLInput.Stop();
-        MLHands.Stop();
-        MLInput.OnControllerButtonDown -= OnButtonDown;
-    }
-    private void OnDestroy()
-    {
-        MLInput.Stop();
-        MLHands.Stop();
-    }
+    // private void OnDisable()
+    // {
+    //     MLInput.Stop();
+    //     MLHands.Stop();
+    //     MLInput.OnControllerButtonDown -= OnButtonDown;
+    // }
+    // private void OnDestroy()
+    // {
+    //     MLInput.Stop();
+    //     MLHands.Stop();
+    // }
     private void OnEnable()
     {
-        MLInput.Start();
-        MLHands.Start();
-        MLNetworking.IsInternetConnected(ref networkConnected);
-        if (networkConnected == false)
-        {
-            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>No Internet</color>");
-        }
-        else
-        {
-            multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
-        }
+        // MLInput.Start();
+        // MLHands.Start();
+        // MLNetworking.IsInternetConnected(ref networkConnected);
+        // if (networkConnected == false)
+        // {
+        //     multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>No Internet</color>");
+        // }
+        // else
+        // {
+        //     multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
+        // }
     }
 
     // Update is called once per frame
@@ -201,161 +211,79 @@ public class BowlingManager : MonoBehaviour
     }
     private void CheckGestures()
     {
-        if (leftHand)
+        if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.OpenHand))
         {
-            if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.OpenHand))
-            {
-                if (pinLimitMenu.activeSelf) {
-                    pinLimitMenu.SetActive(false);
-                }
-                pose = HandPoses.OpenHand;
-                helpAppeared = true;
+            if (pinLimitMenu.activeSelf) {
+                pinLimitMenu.SetActive(false);
             }
-            else if (GetUserGesture.GetGesture(MLHands.Left, MLHandKeyPose.Fist))
-            {
-                pose = HandPoses.Fist;
-            }
-            else
-            {
-                pose = HandPoses.NoPose;
-            }
-
-            if (pose != HandPoses.NoPose) ShowPoints();
-            if (pose != HandPoses.Fist)
-            {
-                deleteTimer = 0.0f;
-                handMenu.SetActive(true);
-            }
-            if (pose == HandPoses.NoPose)
-            {
-                deleteLoader.SetActive(false);
-            }
+            pose = HandPoses.OpenHand;
+            helpAppeared = true;
+        }
+        else if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.Fist))
+        {
+            pose = HandPoses.Fist;
         }
         else
         {
-            if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.OpenHand))
-            {
-                pose = HandPoses.OpenHand;
-                helpAppeared = true;
-            }
-            else if (GetUserGesture.GetGesture(MLHands.Right, MLHandKeyPose.Fist))
-            {
-                pose = HandPoses.Fist;
-            }
-            else
-            {
-                pose = HandPoses.NoPose;
-            }
-
-            if (pose != HandPoses.NoPose) ShowPoints();
-            if (pose != HandPoses.Fist)
-            {
-                deleteTimer = 0.0f;
-                handMenu.SetActive(true);
-            }
-            if (pose == HandPoses.NoPose)
-            {
-                deleteLoader.SetActive(false);
-            }
+            pose = HandPoses.NoPose;
         }
 
+        if (pose != HandPoses.NoPose) ShowPoints();
+        if (pose != HandPoses.Fist)
+        {
+            deleteTimer = 0.0f;
+            handMenu.SetActive(true);
+        }
+        if (pose == HandPoses.NoPose)
+        {
+            deleteLoader.SetActive(false);
+        }
     }
 
     private void ShowPoints()
     {
-        if (leftHand)
+        if (pose == HandPoses.Fist)
         {
-
-            if (pose == HandPoses.Fist)
+            if (!deleteLoader.activeSelf)
             {
-                if (!deleteLoader.activeSelf)
-                {
-                    pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
-                    handCenter.transform.position = pos[0];
-                    handCenter.transform.LookAt(mainCam.transform.position);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                handMenu.SetActive(false);
-                deleteTimer += Time.deltaTime;
-
-                deleteLoader.SetActive(true);
-
-                // Calculate the amount of time that you need to hold your fist to delete all objects
-                float percentComplete = deleteTimer / 3.0f;
-                loadingImage.fillAmount = percentComplete;
-
-                if (deleteTimer > 3.0f)
-                {
-                    ClearAllObjects();
-                    deleteLoader.SetActive(false);
-                }
-            }
-            else if (pose == HandPoses.OpenHand)
-            {
-                deleteLoader.SetActive(false);
-                if (!helpMenu.activeSelf)
-                {
-                    helpMenu.SetActive(true);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                pos[0] = MLHands.Left.Middle.KeyPoints[0].Position;
+                pos[0] = currentHand.Middle.KeyPoints[0].Position;
                 handCenter.transform.position = pos[0];
                 handCenter.transform.LookAt(mainCam.transform.position);
             }
-        }
-        else
-        {
-
-            if (pose == HandPoses.Fist)
+            if (!handCenter.activeSelf)
             {
-                if (!deleteLoader.activeSelf)
-                {
-                    pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
-                    handCenter.transform.position = pos[0];
-                    handCenter.transform.LookAt(mainCam.transform.position);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                handMenu.SetActive(false);
-                deleteTimer += Time.deltaTime;
+                handCenter.SetActive(true);
+            }
+            handMenu.SetActive(false);
+            deleteTimer += Time.deltaTime;
 
-                deleteLoader.SetActive(true);
+            deleteLoader.SetActive(true);
 
                 // Calculate the amount of time that you need to hold your fist to delete all objects
-                float percentComplete = deleteTimer / 3.0f;
-                loadingImage.fillAmount = percentComplete;
+            float percentComplete = deleteTimer / 3.0f;
+            loadingImage.fillAmount = percentComplete;
 
-                if (deleteTimer > 3.0f)
-                {
-                    ClearAllObjects();
-                    deleteLoader.SetActive(false);
-                }
-            }
-            else if (pose == HandPoses.OpenHand)
+            if (deleteTimer > 3.0f)
             {
+                ClearAllObjects();
                 deleteLoader.SetActive(false);
-                if (!helpMenu.activeSelf)
-                {
-                    helpMenu.SetActive(true);
-                }
-                if (!handCenter.activeSelf)
-                {
-                    handCenter.SetActive(true);
-                }
-                pos[0] = MLHands.Right.Middle.KeyPoints[0].Position;
-                handCenter.transform.position = pos[0];
-                handCenter.transform.LookAt(mainCam.transform.position);
             }
         }
-
+        else if (pose == HandPoses.OpenHand)
+        {
+            deleteLoader.SetActive(false);
+            if (!helpMenu.activeSelf)
+            {
+                helpMenu.SetActive(true);
+            }
+            if (!handCenter.activeSelf)
+            {
+                handCenter.SetActive(true);
+            }
+            pos[0] = currentHand.Middle.KeyPoints[0].Position;
+            handCenter.transform.position = pos[0];
+            handCenter.transform.LookAt(mainCam.transform.position);
+        } 
     }
     private void SpawnObject()
     {
@@ -369,7 +297,7 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayer", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), Vector3.one);
+                        Transmission.Spawn("SingleMultiplayer", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), new Vector3(0.275f,0.275f,0.275f));
                         GetCount();
                     }
                     else
@@ -402,12 +330,12 @@ public class BowlingManager : MonoBehaviour
                         {
                             multiplayerBall = true;
                         }
-                        Rigidbody ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+                        Rigidbody ballRB = ballMultiplayer.GetComponent<Rigidbody>();
                         ballRB.useGravity = false;
                     }
                     else
                     {
-                        Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
+                        Rigidbody ballRB = ball.GetComponent<Rigidbody>();
                         ballRB.useGravity = false;
                     }
                 }
@@ -440,7 +368,7 @@ public class BowlingManager : MonoBehaviour
                 }
                 else if (holding == holdState.ball)
                 {
-                    Rigidbody ballRB = bowlingBall.GetComponent<Rigidbody>();
+                    Rigidbody ballRB = ball.GetComponent<Rigidbody>();
                     ballRB.useGravity = false;
                 }
             }
@@ -479,11 +407,11 @@ public class BowlingManager : MonoBehaviour
         // Stop the ball moving on its own while holding
         if (joinedLobby)
         {
-            ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+            ballRB = ballMultiplayer.GetComponent<Rigidbody>();
         }
         else
         {
-            ballRB = bowlingBall.GetComponent<Rigidbody>();
+            ballRB = ball.GetComponent<Rigidbody>();
         }
         ballRB.velocity = Vector3.zero;
 
@@ -492,11 +420,11 @@ public class BowlingManager : MonoBehaviour
         Vector3 oldPosition;
         if (joinedLobby)
         {
-            oldPosition = bowlingBallMultiplayer.transform.position;
+            oldPosition = ballMultiplayer.transform.position;
         }
         else
         {
-            oldPosition = bowlingBall.transform.position;
+            oldPosition = ball.transform.position;
         }
         var newPosition = controller.Position;
 
@@ -516,11 +444,11 @@ public class BowlingManager : MonoBehaviour
         forcePerSecond = forcePerSecondAvg;
         if (joinedLobby)
         {
-            bowlingBallMultiplayer.transform.position = controller.Position;
+            ballMultiplayer.transform.position = controller.Position;
         }
         else
         {
-            bowlingBall.transform.position = controller.Position;
+            ball.transform.position = controller.Position;
         }
     }
 
@@ -551,6 +479,8 @@ public class BowlingManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
+        print("Controller button detected");
+
         controlPointer.SetActive(true);
         currentPage = 1;
         SetTutorialPage(false);
@@ -799,7 +729,7 @@ public class BowlingManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "right");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
                     gestureHandText.text = ("Gestures:\n Right Hand");
-                    leftHand = false;
+                    currentHand = MLHands.Right;
 
                 }
                 else
@@ -807,29 +737,34 @@ public class BowlingManager : MonoBehaviour
                     PlayerPrefs.SetString("gestureHand", "left");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                     gestureHandText.text = ("Gestures:\n Left Hand");
-                    leftHand = true;
+                    currentHand = MLHands.Left;
                 }
                 break;
             case "SinglePinSelector":
                 objMenu.SetActive(false);
+                if (joinedLobby) {
+                    spawning = spawnState.singleMultiplayer;
+                } else {
+                    spawning = spawnState.single;
+                }
                 holding = holdState.single;
                 break;
             case "BowlingBallSelector":
                 controlPointer.SetActive(false);
                 if (joinedLobby)
                 {
-                    if (bowlingBallMultiplayer == null)
+                    if (ballMultiplayer == null)
                     {
-                        bowlingBallMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f, 0.1f, 0.1f));
+                        ballMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f, 0.1f, 0.1f));
                     }
                 }
                 else
                 {
-                    if (bowlingBall == null)
+                    if (ball == null)
                     {
                         // Spawn the ball away from the player and set the correct color
-                        bowlingBall = Instantiate((GameObject)Resources.Load("BowlingBall"), new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
-                        BowlingColorLoader.LoadBallColor(bowlingBall, ballMats);
+                        ball = Instantiate((GameObject)Resources.Load("BowlingBall"), new Vector3(15, 15, 15), Quaternion.Euler(tenPinOrientation));
+                        ConfigureBall();
                     }
                 }
                 objMenu.SetActive(false);
@@ -837,26 +772,36 @@ public class BowlingManager : MonoBehaviour
                 break;
             case "TenPinSelector":
                 objMenu.SetActive(false);
+                if (joinedLobby) {
+                    spawning = spawnState.tenPinMultiplayer;
+                } else {
+                    spawning = spawnState.tenPin;
+                }
                 holding = holdState.tenPin;
                 break;
-            case "0 RedBall":
+            case "Red":
                 PlayerPrefs.SetInt("ballColorInt", 0);
+                ballRenderer.material = ballMats[0];
                 ballMenu.SetActive(false);
                 break;
-            case "1 OrangeBall":
+            case "Orange":
                 PlayerPrefs.SetInt("ballColorInt", 1);
+                ballRenderer.material = ballMats[1];
                 ballMenu.SetActive(false);
                 break;
-            case "2 YellowBall":
+            case "Yellow":
                 PlayerPrefs.SetInt("ballColorInt", 2);
+                ballRenderer.material = ballMats[2];
                 ballMenu.SetActive(false);
                 break;
-            case "3 GreenBall":
+            case "Green":
                 PlayerPrefs.SetInt("ballColorInt", 3);
+                ballRenderer.material = ballMats[3];
                 ballMenu.SetActive(false);
                 break;
-            case "4 BlueBall":
+            case "Blue":
                 PlayerPrefs.SetInt("ballColorInt", 4);
+                ballRenderer.material = ballMats[4];
                 ballMenu.SetActive(false);
                 break;
             case "0":
@@ -895,12 +840,6 @@ public class BowlingManager : MonoBehaviour
                 if (!joinedLobby)
                 {
                     MLNetworking.IsInternetConnected(ref networkConnected);
-                    // if (networkConnected == false)
-                    // {
-                    //     multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
-                    // }
-                    // else
-                    // {
                     multiplayerCodeText.color = Color.white;
                     if (roomCode.Length < 1)
                     {
@@ -944,11 +883,11 @@ public class BowlingManager : MonoBehaviour
             Rigidbody ballRB;
             if (joinedLobby)
             {
-                ballRB = bowlingBallMultiplayer.GetComponent<Rigidbody>();
+                ballRB = ballMultiplayer.GetComponent<Rigidbody>();
             }
             else
             {
-                ballRB = bowlingBall.GetComponent<Rigidbody>();
+                ballRB = ball.GetComponent<Rigidbody>();
             }
             // Enable the rigidbody on the ball, then apply current forces to the ball
             ballRB.useGravity = true;
@@ -999,5 +938,25 @@ public class BowlingManager : MonoBehaviour
             tutorialRight.SetActive(true);
             tutorialRightText.SetActive(true);
         }
+    }
+    private void SetBallColor(int colorChoice) {
+        // Set PlayerPref to save ball color over sessions 
+        PlayerPrefs.SetInt("ballColorInt", colorChoice);
+        ballMenu.SetActive(false);
+    }
+    private void ConfigureBall() {
+        // Get the saved ball color
+        int ballColor = PlayerPrefs.GetInt("ballColorInt");
+        // Set global variables for ball MeshRenderer and Rigidbody for later access
+        if (joinedLobby) {
+            ballRenderer = ballMultiplayer.GetComponent<MeshRenderer>();
+            ballRB = ballMultiplayer.GetComponent<Rigidbody>();
+        } else {
+            ballRenderer = ball.GetComponent<MeshRenderer>();
+            ballRB = ball.GetComponent<Rigidbody>();
+        }
+        // Set ball color and disble ball gravity
+        ballRenderer.material = ballMats[ballColor];
+        ballRB.useGravity = false;
     }
 }

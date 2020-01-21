@@ -10,20 +10,17 @@ using MagicLeapTools;
 
 public class DartsManager : MonoBehaviour
 {
-    public enum holdState
+    private enum holdState
     {
         none,
         dart,
         dartboard
     }
-    public enum spawnState
+    private enum spawnState
     {
         none,
-        bowlingBall,
         dart,
-        dartNoGravity,
         dartMultiplayer,
-        dartNoGravityMultiplayer,
         dartboard,
         dartboardMultiplayer
     }
@@ -99,6 +96,7 @@ public class DartsManager : MonoBehaviour
         pos = new Vector3[1];
 
         MLNetworking.IsInternetConnected(ref networkConnected);
+
         if (networkConnected == false)
         {
             multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
@@ -310,7 +308,7 @@ public class DartsManager : MonoBehaviour
 
         if (joinedLobby) {
             dartMultiplayer.transform.position = controlOrientationObj.transform.position;
-            dartMultiplayer.transform.position = controlOrientationObj.transform.rotation;
+            dartMultiplayer.transform.rotation = controlOrientationObj.transform.rotation;
         } else {
             dart.transform.position = controlOrientationObj.transform.position;
             dart.transform.rotation = controlOrientationObj.transform.rotation;
@@ -323,16 +321,8 @@ public class DartsManager : MonoBehaviour
                 dart = Instantiate((GameObject)Instantiate(Resources.Load("Dart")), controller.Position, controller.Orientation, dartHolder);
                 ConfigureDart();
                 break;
-            case spawnState.dartNoGravity:
-                dart = Instantiate((GameObject)Instantiate(Resources.Load("DartNoGravity")), controller.Position, controller.Orientation, dartHolder);
-                ConfigureDart();
-                break;
             case spawnState.dartMultiplayer:
                 dartMultiplayer = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
-                ConfigureDart();
-                break;
-            case spawnState.dartNoGravityMultiplayer:
-                dartMultiplayer = Transmission.Spawn("DartMultiplayerNoGravity", controller.Position, controller.Orientation, Vector3.one);
                 ConfigureDart();
                 break;
             case spawnState.dartboard:
@@ -590,10 +580,20 @@ public class DartsManager : MonoBehaviour
                 break;
             case "DartSelector":
                 objMenu.SetActive(false);
+                if (joinedLobby) {
+                    spawning = spawnState.dartMultiplayer;
+                } else  {
+                    spawning = spawnState.dart;
+                }
                 holding = holdState.dart;
                 break;
             case "DartboardSelector":
                 objMenu.SetActive(false);
+                if (joinedLobby) {
+                    spawning = spawnState.dartboardMultiplayer;
+                } else {
+                    spawning = spawnState.dartboard;
+                }
                 holding = holdState.dartboard;
                 dart = null;
                 break;
