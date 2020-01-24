@@ -60,7 +60,8 @@ public class BowlingManager : MonoBehaviour
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
-
+    
+    private Transform tenPinObj;
     public MeshRenderer mesh;
 
     private GameObject ball;
@@ -135,17 +136,13 @@ public class BowlingManager : MonoBehaviour
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
 
     }
-    // private void OnDisable()
-    // {
-    //     MLInput.Stop();
-    //     MLHands.Stop();
-    //     MLInput.OnControllerButtonDown -= OnButtonDown;
-    // }
-    // private void OnDestroy()
-    // {
-    //     MLInput.Stop();
-    //     MLHands.Stop();
-    // }
+    private void OnDisable()
+    {
+        MLInput.Stop();
+        MLHands.Stop();
+        MLInput.OnControllerButtonDown -= OnButtonDown;
+    }
+
     private void OnEnable()
     {
         // MLInput.Start();
@@ -297,12 +294,12 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayer", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), new Vector3(0.275f,0.275f,0.275f));
+                        Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), new Vector3(1.4f, 1.2f, 1.4f));
                         GetCount();
                     }
                     else
                     {
-                        Instantiate(singlePrefab, pointerCursor.transform.position, Quaternion.Euler(pinOrientation), pinHolder);
+                        Instantiate(singlePrefab, new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
@@ -317,7 +314,9 @@ public class BowlingManager : MonoBehaviour
                         }
                         else
                         {
-                            Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
+                            tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
+                            Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
+                            tenPinObj.LookAt(targetPos);
                         }
                     }
 

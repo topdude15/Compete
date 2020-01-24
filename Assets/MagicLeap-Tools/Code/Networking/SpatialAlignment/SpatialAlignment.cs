@@ -127,7 +127,7 @@ namespace MagicLeapTools
             //request poses:
             foreach (var item in _localPCFs)
             {
-                MLPersistentCoordinateFrames.GetPCFPose(item, HandlePCFPoseRetrieval);
+                MLPersistentCoordinateFrames.GetPCFPosition(item, HandlePCFPoseRetrieval);
             }
         }
 

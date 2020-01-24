@@ -184,7 +184,7 @@ namespace MagicLeap
         {
             _statusLabel.text = string.Format("Render Mode: {0}\nBounded Extents: {1}\nLOD: {2}", _renderMode.ToString(),
                                                                                                   _bounded.ToString(),
-                                                                                                  _mlSpatialMapper.density);
+                                                                                                  _mlSpatialMapper.levelOfDetail);
         }
         #endregion
 
@@ -257,7 +257,7 @@ namespace MagicLeap
             if (_controllerConnectionHandler.IsControllerValid(controllerId) &&
                 gesture.Type == MLInputControllerTouchpadGestureType.Swipe && gesture.Direction == MLInputControllerTouchpadGestureDirection.Up)
             {
-                //_mlSpatialMapper.density = ((_mlSpatialMapper.density == MLSpatialMapper.density.maximum) ? MLSpatialMapper.LevelOfDetail.Minimum : (_mlSpatialMapper.levelOfDetail + 1));
+                _mlSpatialMapper.levelOfDetail = ((_mlSpatialMapper.levelOfDetail == MLSpatialMapper.LevelOfDetail.Maximum) ? MLSpatialMapper.LevelOfDetail.Minimum : (_mlSpatialMapper.levelOfDetail + 1));
                 UpdateStatusText();
             }
         }
