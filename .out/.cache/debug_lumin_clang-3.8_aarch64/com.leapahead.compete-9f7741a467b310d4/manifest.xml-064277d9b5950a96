@@ -7,6 +7,7 @@
     <uses-privilege ml:name="ControllerPose" />
     <uses-privilege ml:name="GesturesConfig" />
     <uses-privilege ml:name="GesturesSubscribe" />
+    <uses-privilege ml:name="Internet" />
     <uses-privilege ml:name="PcfRead" />
     <uses-privilege ml:name="WifiStatusRead" />
     <uses-privilege ml:name="WorldReconstruction" />

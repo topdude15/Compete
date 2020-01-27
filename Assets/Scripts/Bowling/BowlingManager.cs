@@ -813,7 +813,7 @@ public class BowlingManager : MonoBehaviour
             case "7":
             case "8":
             case "9":
-                MLNetworking.IsInternetConnected(ref networkConnected);
+               // MLNetworking.IsInternetConnected(ref networkConnected);
                 // if (networkConnected == false)
                 // {
                 //     multiplayerCodeText.text = ("<color='red'>No Internet</color>");
@@ -838,7 +838,7 @@ public class BowlingManager : MonoBehaviour
             case "Join":
                 if (!joinedLobby)
                 {
-                    MLNetworking.IsInternetConnected(ref networkConnected);
+                    //MLNetworking.IsInternetConnected(ref networkConnected);
                     multiplayerCodeText.color = Color.white;
                     if (roomCode.Length < 1)
                     {
@@ -846,6 +846,7 @@ public class BowlingManager : MonoBehaviour
                     }
                     else
                     {
+                        print("Joining lobby");
                         joinedLobby = true;
                         ClearAllObjects();
 
@@ -957,5 +958,8 @@ public class BowlingManager : MonoBehaviour
         // Set ball color and disble ball gravity
         ballRenderer.material = ballMats[ballColor];
         ballRB.useGravity = false;
+    }
+    public void AnnounceNew() {
+        print("Player connected...");
     }
 }

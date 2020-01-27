@@ -686,6 +686,18 @@
       <Project>{fbf21463-aec6-7100-c5f6-27105da45a13}</Project>
       <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UnityEditor.XR.MagicLeap.csproj">
+      <Project>{5d64b9e5-2357-0402-851d-049639240e93}</Project>
+      <Name>UnityEditor.XR.MagicLeap</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.XR.ARSubsystems.csproj">
+      <Project>{604601dc-0afc-519b-c3bc-116de6a2d488}</Project>
+      <Name>Unity.XR.ARSubsystems</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.XR.InteractionSubsystems.csproj">
+      <Project>{e65ccd47-1058-8fcf-f688-1fe468aed91a}</Project>
+      <Name>Unity.XR.InteractionSubsystems</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{74ef77de-5784-1c29-05a3-c5dd5a01981d}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -741,6 +753,10 @@
     <ProjectReference Include="UnityEditor.XR.LegacyInputHelpers.csproj">
       <Project>{a6087c31-37d4-0f74-2f85-91a9d9b58b2d}</Project>
       <Name>UnityEditor.XR.LegacyInputHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.XR.MagicLeap.csproj">
+      <Project>{4b3ed228-7543-adff-6adb-27d6782ba0a0}</Project>
+      <Name>UnityEngine.XR.MagicLeap</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
       <Project>{e191fcd5-dc45-0914-95c8-48dc99bb8512}</Project>

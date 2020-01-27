@@ -47,7 +47,7 @@ MonoBehaviour:
   - name: InAppPurchase
     enabled: 0
   - name: Internet
-    enabled: 0
+    enabled: 1
   - name: MusicService
     enabled: 0
   - name: NormalNotificationsUsage
