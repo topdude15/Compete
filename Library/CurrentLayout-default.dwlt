@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -151,7 +151,7 @@ MonoBehaviour:
     y: 0
     width: 2546
     height: 1343
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -753,9 +753,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 501}
-    m_SelectedIDs: a0380000
-    m_LastClickedID: 14496
-    m_ExpandedIDs: 00000000b0330000de34000036360000d2370000de37000028380000a83800004a3a00007c3d00009e3d00002e3e0000763f0000fc3f00001e4000006e40000088400000ca4000004841000050410000c04100005c420000124c0000144c0000164c0000184c00001a4c00001c4c00001e4c000000ca9a3b
+    m_SelectedIDs: 94380000
+    m_LastClickedID: 14484
+    m_ExpandedIDs: 00000000a4330000d23400002a360000c6370000d23700001c3800009c3800003e3a0000703d0000923d0000223e00006a3f0000f03f000012400000624000007c400000be4000003c41000044410000b4410000504200000c4c00000e4c0000104c0000124c0000144c0000164c0000184c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -783,7 +783,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b0330000de34000036360000d2370000de37000028380000a83800004a3a00007c3d00009e3d00002e3e0000763f0000fc3f00001e4000006e40000088400000ca4000004841000050410000c04100005c420000124c0000144c0000164c0000184c00001a4c00001c4c00001e4c0000
+    m_ExpandedIDs: 00000000a4330000d23400002a360000c6370000d23700001c3800009c3800003e3a0000703d0000923d0000223e00006a3f0000f03f000012400000624000007c400000be4000003c41000044410000b4410000504200000c4c00000e4c0000104c0000124c0000144c0000164c0000184c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -908,7 +908,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 26f4ffff
+      m_ExpandedIDs: 3485ffff6885ffff8488ffffa088ffffe888ffffc889ffff2a8bffff5e8bffffaa8efffff68effff6e8fffff7e90ffff7e9bffffb29bffffce9effffea9effff329fffff12a0ffff8cb6ffffc0b6ffffdcb9fffff8b9ffff40baffff20bbffffd0beffff04bfffff20c2ffff3cc2ffff84c2ffff90c3fffff4c5ffff28c6ffff44c9ffff60c9ffffa8c9ffff88caffff12cbffff46cbffff62ceffff7eceffffc6ceffffa6cfffffc8d1fffffcd1ffff18d5ffff34d5ffff7cd5ffff5cd6fffff0d6ffff24d7ffff40daffff5cdaffffa4daffff84dbffff0cddffff40ddffff5ce0ffff78e0ffffc0e0ffffa0e1ffff2ae2ffff5ee2ffff7ae5ffff96e5ffffdee5ffffbee6ffff02e9ffff36e9ffff52ecffff6eecffffb6ecffff96edffff3aeeffff6eeeffff30f3ffff4cf3ffff9af3ffff88f4ffff6afbffff10c401004ac5010090c60100d4c60100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -961,16 +961,16 @@ MonoBehaviour:
   m_ShowContextualTools: 0
   m_WindowGUID: c36fa58b825a2405ab3e005a26fdf5aa
   m_Gizmos: 1
-  m_SceneIsLit: 0
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.15047172, y: 0.105209306, z: -0.22718814}
+    m_Target: {x: 0.043692924, y: 0.020162124, z: 0.043048397}
     speed: 2
-    m_Value: {x: 0.15047172, y: 0.105209306, z: -0.22718814}
+    m_Value: {x: 0.043692924, y: 0.020162124, z: 0.043048397}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
-    showSkybox: 0
+    showSkybox: 1
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -999,13 +999,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.034672983, y: -0.9493433, z: 0.11302454, w: -0.29117805}
+    m_Target: {x: 0.029366668, y: 0.799271, z: -0.039200775, w: 0.5989921}
     speed: 2
-    m_Value: {x: -0.028421426, y: -0.95814955, z: 0.10242843, w: -0.26580107}
+    m_Value: {x: 0.02901232, y: 0.80461955, z: -0.039463, w: 0.5917672}
   m_Size:
-    m_Target: 0.6079513
+    m_Target: 0.15940066
     speed: 2
-    m_Value: 0.9079513
+    m_Value: 0.15941699
   m_Ortho:
     m_Target: 0
     speed: 2

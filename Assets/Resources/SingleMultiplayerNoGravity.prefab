@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motionSource: {fileID: 0}
-  smoothTime: 0.04
-  sendFrameRate: 24
+  smoothTime: 0.02
+  sendFrameRate: 4
   remotePrefab: {fileID: 0}
   ownershipLocked: 0
   resourceFileName: 
