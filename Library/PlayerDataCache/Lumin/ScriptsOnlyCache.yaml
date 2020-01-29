@@ -28,6 +28,7 @@ ScriptsOnlyBuild:
     - MeshingMenu
     - ObjectGrow
     - PlaneExtract
+    - SetPinParent
     - UITextGradient
     - UnityEngine.XR.MagicLeap.ControllerConnectionHandler
     - UnityEngine.XR.MagicLeap.MagicLeapSceneOptimizer
@@ -51,6 +52,7 @@ ScriptsOnlyBuild:
     - UnityEngine.XR.Management.XRManagerSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.SpatialTracking.dll:
     - UnityEngine.SpatialTracking.TrackedPoseDriver
     UnityEngine.UI.dll:
@@ -255,9 +257,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13054}
     - Class: 114
-      Script: {instanceID: 24472}
+      Script: {instanceID: 24470}
     - Class: 114
-      Script: {instanceID: 24502}
+      Script: {instanceID: 24500}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -457,9 +459,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 19732}
+      Script: {instanceID: 19744}
     - Class: 114
-      Script: {instanceID: 19736}
+      Script: {instanceID: 19748}
+    - Class: 114
+      Script: {instanceID: 52122}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -695,18 +699,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements
-    className: CallbackExecutor
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements.Editor
-    className: Placeholder
   - hash:
       serializedVersion: 2
       Hash: 44d690abb24a66ba3c235ac2ce28d164
@@ -1913,6 +1905,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SetPinParent
   platform: 39
   scenePathNames:
   - Assets/Scenes/Meshing.unity

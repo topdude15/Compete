@@ -243,6 +243,7 @@
      <Compile Include="Assets\Scripts\Utility\GetUserGesture.cs" />
      <Compile Include="Assets\Scripts\Utility\ObjectGrow.cs" />
      <Compile Include="Assets\Scripts\Utility\PlaneExtract.cs" />
+     <Compile Include="Assets\Scripts\Utility\SetPinParent.cs" />
      <Compile Include="Assets\Scripts\Utility\Timer.cs" />
      <Compile Include="Assets\Scripts\Utility\UITextGradient\UIGradientUtils.cs" />
      <Compile Include="Assets\Scripts\Utility\UITextGradient\UITextGradient.cs" />

@@ -21,7 +21,8 @@ public class BowlingManager : MonoBehaviour
         track,
         locationPoint
     }
-    private enum spawnState {
+    private enum spawnState
+    {
         none,
         ball,
         ballMultiplayer,
@@ -55,12 +56,12 @@ public class BowlingManager : MonoBehaviour
     [SerializeField] private GameObject[] tutorialPage;
 
     [SerializeField] private Text pinLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, pinsFallenText, noGravityText, gestureHandText;
-    
+
     private GameObject pinObj, pin, currentTutorialPage;
     public Material[] ballMats, meshMats;
 
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
-    
+
     private Transform tenPinObj;
     public MeshRenderer mesh;
 
@@ -78,6 +79,8 @@ public class BowlingManager : MonoBehaviour
     private string roomCode = "";
 
     public Image loadingImage;
+
+    private TransmissionObject spawnedObj;
 
     [SerializeField] private Texture2D handLeft, handRight;
 
@@ -210,7 +213,8 @@ public class BowlingManager : MonoBehaviour
     {
         if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.OpenHand))
         {
-            if (pinLimitMenu.activeSelf) {
+            if (pinLimitMenu.activeSelf)
+            {
                 pinLimitMenu.SetActive(false);
             }
             pose = HandPoses.OpenHand;
@@ -256,7 +260,7 @@ public class BowlingManager : MonoBehaviour
 
             deleteLoader.SetActive(true);
 
-                // Calculate the amount of time that you need to hold your fist to delete all objects
+            // Calculate the amount of time that you need to hold your fist to delete all objects
             float percentComplete = deleteTimer / 3.0f;
             loadingImage.fillAmount = percentComplete;
 
@@ -280,7 +284,7 @@ public class BowlingManager : MonoBehaviour
             pos[0] = currentHand.Middle.KeyPoints[0].Position;
             handCenter.transform.position = pos[0];
             handCenter.transform.LookAt(mainCam.transform.position);
-        } 
+        }
     }
     private void SpawnObject()
     {
@@ -294,12 +298,12 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), new Vector3(1.4f, 1.2f, 1.4f));
-                        GetCount();
+                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, pointerCursor.transform.position.y, mainCam.transform.position.z);
+                        spawnedObj = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), Quaternion.LookRotation(targetPos, Vector3.down), new Vector3(1.4f, 1.2f, 1.4f));
                     }
                     else
                     {
-                        Instantiate(singlePrefab, new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), pinHolder);
+                        Instantiate(singlePrefab, new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0, 0, 0, 0), pinHolder);
                     }
                 }
                 else if (holding == holdState.tenPin)
@@ -456,8 +460,15 @@ public class BowlingManager : MonoBehaviour
         totalObjs = 0;
         foreach (Transform bowlObj in pinHolder)
         {
-            Transform objectstotal = bowlObj.GetComponentInChildren<Transform>();
-            totalObjs += objectstotal.childCount;
+            if (bowlObj.childCount > 0)
+            {
+                Transform objectstotal = bowlObj.GetComponentInChildren<Transform>();
+                totalObjs += objectstotal.childCount;
+            }
+            else
+            {
+                totalObjs += 1;
+            }
         }
         pinLimitText.text = "<b>Pin Limit:</b>\n " + totalObjs + " of 100";
         pinsFallenText.text = ("<b>Pins Fallen:</b>\n" + pinsFallen + " of " + totalObjs);
@@ -467,7 +478,14 @@ public class BowlingManager : MonoBehaviour
     {
         foreach (Transform child in pinHolder.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.GetComponent("TransmissionObject") != null)
+            {
+                Transmission.Destroy(child.gameObject);
+            }
+            else
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
         pinsFallen = 0;
         UpdateFallen();
@@ -489,7 +507,8 @@ public class BowlingManager : MonoBehaviour
             tutorialMenu.SetActive(false);
             PlayerPrefs.SetInt("hasPlayedBowling", 1);
         }
-        if (pinLimitMenu.activeSelf) {
+        if (pinLimitMenu.activeSelf)
+        {
             pinLimitMenu.SetActive(false);
         }
 
@@ -741,9 +760,12 @@ public class BowlingManager : MonoBehaviour
                 break;
             case "SinglePinSelector":
                 objMenu.SetActive(false);
-                if (joinedLobby) {
+                if (joinedLobby)
+                {
                     spawning = spawnState.singleMultiplayer;
-                } else {
+                }
+                else
+                {
                     spawning = spawnState.single;
                 }
                 holding = holdState.single;
@@ -771,9 +793,12 @@ public class BowlingManager : MonoBehaviour
                 break;
             case "TenPinSelector":
                 objMenu.SetActive(false);
-                if (joinedLobby) {
+                if (joinedLobby)
+                {
                     spawning = spawnState.tenPinMultiplayer;
-                } else {
+                }
+                else
+                {
                     spawning = spawnState.tenPin;
                 }
                 holding = holdState.tenPin;
@@ -813,7 +838,7 @@ public class BowlingManager : MonoBehaviour
             case "7":
             case "8":
             case "9":
-               // MLNetworking.IsInternetConnected(ref networkConnected);
+                // MLNetworking.IsInternetConnected(ref networkConnected);
                 // if (networkConnected == false)
                 // {
                 //     multiplayerCodeText.text = ("<color='red'>No Internet</color>");
@@ -939,19 +964,24 @@ public class BowlingManager : MonoBehaviour
             tutorialRightText.SetActive(true);
         }
     }
-    private void SetBallColor(int colorChoice) {
+    private void SetBallColor(int colorChoice)
+    {
         // Set PlayerPref to save ball color over sessions 
         PlayerPrefs.SetInt("ballColorInt", colorChoice);
         ballMenu.SetActive(false);
     }
-    private void ConfigureBall() {
+    private void ConfigureBall()
+    {
         // Get the saved ball color
         int ballColor = PlayerPrefs.GetInt("ballColorInt");
         // Set global variables for ball MeshRenderer and Rigidbody for later access
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             ballRenderer = ballMultiplayer.GetComponent<MeshRenderer>();
             ballRB = ballMultiplayer.GetComponent<Rigidbody>();
-        } else {
+        }
+        else
+        {
             ballRenderer = ball.GetComponent<MeshRenderer>();
             ballRB = ball.GetComponent<Rigidbody>();
         }
@@ -959,7 +989,8 @@ public class BowlingManager : MonoBehaviour
         ballRenderer.material = ballMats[ballColor];
         ballRB.useGravity = false;
     }
-    public void AnnounceNew() {
+    public void AnnounceNew()
+    {
         print("Player connected...");
     }
 }
