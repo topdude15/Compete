@@ -125,15 +125,16 @@ public class BowlingManager : MonoBehaviour
         {
             multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>No Internet</color>");
         }
-        if (PlayerPrefs.GetString("gestureHand") == null)
+        if (PlayerPrefs.GetString("gestureHand") == "right")
         {
-            PlayerPrefs.SetString("gestureHand", "left");
-        }
-        else if (PlayerPrefs.GetString("gestureHand") == "right")
-        {
-            gestureHandText.text = ("Gestures:\n Right Hand");
+            gestureHandText.text = ("Gestures:\nRight Hand");
             swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             currentHand = MLHands.Right;
+        }
+        else
+        {
+            PlayerPrefs.SetString("gestureHand", "left");
+            currentHand = MLHands.Left;
         }
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
@@ -299,7 +300,7 @@ public class BowlingManager : MonoBehaviour
                     if (joinedLobby)
                     {
                         Vector3 targetPos = new Vector3(mainCam.transform.position.x, pointerCursor.transform.position.y, mainCam.transform.position.z);
-                        spawnedObj = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), Quaternion.LookRotation(targetPos, Vector3.down), new Vector3(1.4f, 1.2f, 1.4f));
+                        spawnedObj = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), new Vector3(1.4f, 1.2f, 1.4f));
                     }
                     else
                     {
@@ -746,7 +747,7 @@ public class BowlingManager : MonoBehaviour
                 {
                     PlayerPrefs.SetString("gestureHand", "right");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
-                    gestureHandText.text = ("Gestures:\n Right Hand");
+                    gestureHandText.text = ("Gestures:\nRight Hand");
                     currentHand = MLHands.Right;
 
                 }
@@ -754,7 +755,7 @@ public class BowlingManager : MonoBehaviour
                 {
                     PlayerPrefs.SetString("gestureHand", "left");
                     swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
-                    gestureHandText.text = ("Gestures:\n Left Hand");
+                    gestureHandText.text = ("Gestures:\nLeft Hand");
                     currentHand = MLHands.Left;
                 }
                 break;
