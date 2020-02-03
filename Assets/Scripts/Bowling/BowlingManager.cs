@@ -67,6 +67,7 @@ public class BowlingManager : MonoBehaviour
 
     private GameObject ball;
     private TransmissionObject ballMultiplayer;
+    public List<TransmissionObject> spawnedPins;
 
     private Vector3 endPosition, forcePerSecond, trackStartPosition, trackEndPosition;
 
@@ -299,8 +300,9 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, pointerCursor.transform.position.y, mainCam.transform.position.z);
-                        spawnedObj = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), new Vector3(1.4f, 1.2f, 1.4f));
+                        spawnedObj = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0, 0, 0, 0), new Vector3(1.4f, 1.2f, 1.4f));
+                        spawnedPins.Add(spawnedObj);
+                        GetCount();
                     }
                     else
                     {
@@ -313,8 +315,8 @@ public class BowlingManager : MonoBehaviour
                     {
                         if (joinedLobby)
                         {
-                            Transmission.Spawn("TenPinMultiplayer", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
-
+                            spawnedObj = Transmission.Spawn("TenPinMultiplayer", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
+                            spawnedPins.Add(spawnedObj);
                             GetCount();
                         }
                         else
@@ -350,7 +352,8 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("SingleMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), Vector3.one);
+                        spawnedObj = Transmission.Spawn("SingleMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(pinOrientation), Vector3.one);
+                        spawnedPins.Add(spawnedObj);
                         GetCount();
                     }
                     else
@@ -362,7 +365,8 @@ public class BowlingManager : MonoBehaviour
                 {
                     if (joinedLobby)
                     {
-                        Transmission.Spawn("TenPinMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
+                        spawnedObj = Transmission.Spawn("TenPinMultiplayerNoGravity", pointerCursor.transform.position, Quaternion.Euler(tenPinOrientation), Vector3.one);
+                        spawnedPins.Add(spawnedObj);
                         GetCount();
                     }
                     else
@@ -459,16 +463,36 @@ public class BowlingManager : MonoBehaviour
     public void GetCount()
     {
         totalObjs = 0;
-        foreach (Transform bowlObj in pinHolder)
+        if (joinedLobby)
         {
-            if (bowlObj.childCount > 0)
+            if (spawnedPins.Count > 0)
             {
-                Transform objectstotal = bowlObj.GetComponentInChildren<Transform>();
-                totalObjs += objectstotal.childCount;
+                foreach (TransmissionObject bowlObj in spawnedPins)
+                {
+                    if (bowlObj.name == "TenPinMultiplayer(Clone)")
+                    {
+                        totalObjs += 10;
+                    }
+                    else
+                    {
+                        totalObjs += 1;
+                    }
+                }
             }
-            else
+        }
+        else
+        {
+            foreach (Transform bowlObj in pinHolder)
             {
-                totalObjs += 1;
+                if (bowlObj.childCount > 0)
+                {
+                    Transform objectstotal = bowlObj.GetComponentInChildren<Transform>();
+                    totalObjs += objectstotal.childCount;
+                }
+                else
+                {
+                    totalObjs += 1;
+                }
             }
         }
         pinLimitText.text = "<b>Pin Limit:</b>\n " + totalObjs + " of 100";
@@ -477,6 +501,13 @@ public class BowlingManager : MonoBehaviour
 
     private void ClearAllObjects()
     {
+        if (joinedLobby) {
+            if (spawnedPins.Count > 0) {
+                foreach (TransmissionObject bowlObj in spawnedPins) {
+                    Transmission.Destroy(bowlObj);
+                }
+            }
+        }
         foreach (Transform child in pinHolder.transform)
         {
             if (child.GetComponent("TransmissionObject") != null)
@@ -873,8 +904,10 @@ public class BowlingManager : MonoBehaviour
                     else
                     {
                         print("Joining lobby");
-                        joinedLobby = true;
                         ClearAllObjects();
+                        GetCount();
+
+                        joinedLobby = true;
 
                         transmissionObj.SetActive(true);
                         transmissionObj.GetComponent<Transmission>().privateKey = roomCode;

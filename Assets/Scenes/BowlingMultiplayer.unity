@@ -419,7 +419,7 @@ MonoBehaviour:
   pinHolder: {fileID: 1264357379}
   singleNoGravityPrefab: {fileID: 5550800922014789440, guid: d8473ca3a7c987e4dae81d084576e317,
     type: 3}
-  tenPinNoGravityPrefab: {fileID: 4817967436732632, guid: 6c03ba1922b6b784eabbae03ce4fea2b,
+  tenPinNoGravityPrefab: {fileID: 173538626204732509, guid: 6c03ba1922b6b784eabbae03ce4fea2b,
     type: 3}
   meshHolder: {fileID: 358540197}
   mesh: {fileID: 0}
@@ -16141,7 +16141,7 @@ PrefabInstance:
     - target: {fileID: 7599050699442747582, guid: 73ecca7d038a8314d8f6e3d68ba973e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3711491077353356965, guid: 73ecca7d038a8314d8f6e3d68ba973e1,
         type: 3}

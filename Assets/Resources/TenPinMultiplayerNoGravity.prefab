@@ -56,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1919690629860723758}
   - component: {fileID: 1919690629860723842}
-  - component: {fileID: 7973551070626881651}
   m_Layer: 0
   m_Name: TenPinMultiplayerNoGravity
   m_TagString: Untagged
@@ -111,18 +110,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
   targetScale: {x: 0, y: 0, z: 0}
---- !u!114 &7973551070626881651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919690629860723931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0476872a13cd9d44db9c7b29b64ccaf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5819149476616935820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,15 +712,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98d06c4847240a74688cb689add5a9a3, type: 3}
---- !u!4 &395660501324335195 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4222894584689426220, guid: 98d06c4847240a74688cb689add5a9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 4604674849611347831}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2523672249269571658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2081496368110315325, guid: 98d06c4847240a74688cb689add5a9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4604674849611347831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &395660501324335195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4222894584689426220, guid: 98d06c4847240a74688cb689add5a9a3,
     type: 3}
   m_PrefabInstance: {fileID: 4604674849611347831}
   m_PrefabAsset: {fileID: 0}
