@@ -33,7 +33,7 @@ public class DartsManager : MonoBehaviour
 
     private MLInputController controller;
     [SerializeField] private Pointer pointer;
-    [SerializeField] private GameObject controlPointer;
+    [SerializeField] private GameObject controlPointer, pointerCursor;
     private MLHand currentHand;
 
     private holdState holding = holdState.none;
@@ -44,7 +44,7 @@ public class DartsManager : MonoBehaviour
 
     [SerializeField] private GameObject menu, modifierMenu, tutorialMenu, dartMenu, multiplayerMenu, multiplayerConfirmMenu, helpMenu, tutorialHelpMenu, deleteMenu, multiplayerStatusMenu, objMenu, handMenu, dartLimitMenu;
     [SerializeField] private GameObject mainCam, control, dartPrefab, dartboardHolder, dartboardOutline, deleteLoader, menuCanvas, handCenter, toggleMicButton, dartSelector, dartboardSelector, swapHandButton, tutorialLeft, tutorialRight, tutorialLeftText, tutorialRightText, controlOrientationObj;
-    private GameObject  _realtime, currentTutorialPage;
+    private GameObject _realtime, currentTutorialPage;
     [SerializeField] private GameObject[] tutorialPage;
 
     [SerializeField] private Text dartLimitText, multiplayerCodeText, multiplayerStatusText, multiplayerMenuCodeText, connectedPlayersText, noGravityText, gestureHandText;
@@ -59,13 +59,13 @@ public class DartsManager : MonoBehaviour
 
     private string roomCode = "";
     private Vector3 endPosition, forcePerSecond;
-    private float  totalObjs = 0, objLimit = 40, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f, bumperTest, colorObjSelected = 0;
+    private float totalObjs = 0, objLimit = 40, timeOfFirstHomePress, timer = 0.0f, waitTime = 30.0f, menuMoveSpeed, connectedPlayers, deleteTimer = 0.0f, bumperTest, colorObjSelected = 0;
     [SerializeField] private Image loadingImage;
     [SerializeField] private Texture2D emptyCircle, check, handLeft, handRight;
 
     private int currentPage = 0;
 
-    private bool holdingDart = false, noGravity = false, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = true;
+    private bool holdingDart = false, noGravity = false, occlusionActive = true, realtimeDartboard = false, helpAppeared = false, networkConnected, objSelected = false, dartLimitAppeared, leftHand = true, joinedLobby = false;
     public static bool lockedDartboard = false;
     List<Vector3> Deltas = new List<Vector3>();
 
@@ -74,9 +74,9 @@ public class DartsManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CheckNewUser();
-
         MLInput.Start();
+
+        CheckNewUser();
 
         controller = MLInput.GetController(0);
         MLInput.OnControllerButtonDown += OnButtonDown;
@@ -126,17 +126,17 @@ public class DartsManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        MLInput.Start();
-        MLHands.Start();
-        MLNetworking.IsInternetConnected(ref networkConnected);
-        if (networkConnected == false)
-        {
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
-        }
-        else
-        {
-            multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
-        }
+        // MLInput.Start();
+        // MLHands.Start();
+        // MLNetworking.IsInternetConnected(ref networkConnected);
+        // if (networkConnected == false)
+        // {
+        //     multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>No Internet</color>");
+        // }
+        // else
+        // {
+        //     multiplayerStatusText.text = ("Multiplayer Status:\n" + "<color='red'>Not Connected</color>");
+        // }
     }
 
     // Update is called once per frame
@@ -175,7 +175,8 @@ public class DartsManager : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(helpMenu.transform.position - mainCam.transform.position);
         helpMenu.transform.rotation = Quaternion.Slerp(helpMenu.transform.rotation, rot, menuMoveSpeed);
 
-        if (holding == holdState.dartboard) {
+        if (holding == holdState.dartboard)
+        {
             dartboardOutline.SetActive(true);
 
             dartboardOutline.transform.position = endPosition;
@@ -283,10 +284,14 @@ public class DartsManager : MonoBehaviour
 
     private void HoldingDart()
     {
+        print("Ye are holding a dart");
         Vector3 oldPosition;
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             oldPosition = dartMultiplayer.transform.position;
-        } else {
+        }
+        else
+        {
             oldPosition = dart.transform.position;
         }
         var newPosition = controller.Position;
@@ -303,23 +308,31 @@ public class DartsManager : MonoBehaviour
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
-        var forcePerSecondAvg = toAverage * 300;
+        var forcePerSecondAvg = toAverage * 10;
         forcePerSecond = forcePerSecondAvg;
 
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             dartMultiplayer.transform.position = controlOrientationObj.transform.position;
             dartMultiplayer.transform.rotation = controlOrientationObj.transform.rotation;
-        } else {
+        }
+        else
+        {
             dart.transform.position = controlOrientationObj.transform.position;
             dart.transform.rotation = controlOrientationObj.transform.rotation;
         }
     }
 
-    private void SpawnObject() {
-        switch (spawning) {
+    private void SpawnObject()
+    {
+        switch (spawning)
+        {
             case spawnState.dart:
-                dart = Instantiate((GameObject)Instantiate(Resources.Load("Dart")), controller.Position, controller.Orientation, dartHolder);
+            print("spawning a dart...");
+                dart = Instantiate((GameObject)Instantiate(Resources.Load("NewDart")), controller.Position, controller.Orientation, dartHolder);
+                controlPointer.SetActive(false);
                 ConfigureDart();
+                holdingDart = true;
                 break;
             case spawnState.dartMultiplayer:
                 dartMultiplayer = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
@@ -332,7 +345,7 @@ public class DartsManager : MonoBehaviour
                 dartboardMultiplayer = Transmission.Spawn("DartboardMultiplayer", pointer.transform.position, controller.Orientation, Vector3.one);
                 break;
             default:
-            // Do I need to set dart = null if nothing selected?
+                // Do I need to set dart = null if nothing selected?
                 break;
         }
         GetCount();
@@ -340,7 +353,11 @@ public class DartsManager : MonoBehaviour
 
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
-        if (tutorialMenu.activeSelf) {
+        controlPointer.SetActive(true);
+        holding = holdState.none;
+        spawning = spawnState.none;
+        if (tutorialMenu.activeSelf)
+        {
             tutorialMenu.SetActive(false);
         }
         currentPage = 1;
@@ -443,9 +460,13 @@ public class DartsManager : MonoBehaviour
     {
         if (!holdingDart)
         {
-            if (totalObjs < objLimit) {
+            if (totalObjs < objLimit)
+            {
+                print("Need to spawn obj");
                 SpawnObject();
-            } else if (!dartLimitAppeared) {
+            }
+            else if (!dartLimitAppeared)
+            {
                 dartLimitAppeared = true;
                 helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 8.0f;
                 helpMenu.transform.rotation = mainCam.transform.rotation;
@@ -579,19 +600,26 @@ public class DartsManager : MonoBehaviour
                 }
                 break;
             case "DartSelector":
-                objMenu.SetActive(false);
-                if (joinedLobby) {
+                controlPointer.SetActive(false);
+                if (joinedLobby)
+                {
                     spawning = spawnState.dartMultiplayer;
-                } else  {
+                }
+                else
+                {
                     spawning = spawnState.dart;
                 }
+                objMenu.SetActive(false);
                 holding = holdState.dart;
                 break;
             case "DartboardSelector":
                 objMenu.SetActive(false);
-                if (joinedLobby) {
+                if (joinedLobby)
+                {
                     spawning = spawnState.dartboardMultiplayer;
-                } else {
+                }
+                else
+                {
                     spawning = spawnState.dartboard;
                 }
                 holding = holdState.dartboard;
@@ -632,20 +660,13 @@ public class DartsManager : MonoBehaviour
             case "7":
             case "8":
             case "9":
-                MLNetworking.IsInternetConnected(ref networkConnected);
-                if (networkConnected == false)
+                multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
+                multiplayerCodeText.color = Color.white;
+                if (roomCode.Length < 18)
                 {
-                    multiplayerCodeText.text = ("<color='red'>No Internet Connection</color>");
-                }
-                else
-                {
-                    multiplayerCodeText.color = Color.white;
-                    if (roomCode.Length < 18)
-                    {
-                        roomCode += objGameHit;
-                        multiplayerCodeText.text = roomCode;
-                        menuAudio.Play();
-                    }
+                    roomCode += objGameHit;
+                    multiplayerCodeText.text = roomCode;
+                    menuAudio.Play();
                 }
                 break;
             case "Delete":
@@ -741,20 +762,25 @@ public class DartsManager : MonoBehaviour
             tutorialRightText.SetActive(true);
         }
     }
-    private void SetDartColor(int colorChoice) {
+    private void SetDartColor(int colorChoice)
+    {
         PlayerPrefs.SetInt("dartColorInt", colorChoice);
         dartMenu.SetActive(false);
     }
-    private void ConfigureDart() {
-        int dartColor = PlayerPrefs.GetInt("dartColorInt");
-        if (joinedLobby) {
-            dartRenderer = dartMultiplayer.GetComponent<MeshRenderer>();
-            dartRB = dartMultiplayer.GetComponent<Rigidbody>();
-        } else {
-            dartRenderer = dart.GetComponent<MeshRenderer>();
-            dartRB = dart.GetComponent<Rigidbody>();
-        }
-        dartRenderer.material = dartMats[dartColor];
-        dartRB.useGravity = false;
+    private void ConfigureDart()
+    {
+        // int dartColor = PlayerPrefs.GetInt("dartColorInt");
+        // if (joinedLobby)
+        // {
+        //     dartRenderer = dartMultiplayer.GetComponent<MeshRenderer>();
+        //     dartRB = dartMultiplayer.GetComponent<Rigidbody>();
+        // }
+        // else
+        // {
+        //     dartRenderer = dart.GetComponent<MeshRenderer>();
+        //     dartRB = dart.GetComponent<Rigidbody>();
+        // }
+        // dartRenderer.material = dartMats[dartColor];
+        // dartRB.useGravity = false;
     }
 }

@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
         MLInput.TriggerDownThreshold = 0.75f;
 
     }
+    private void OnDestroy() {
+        MLInput.OnTriggerDown -= OnTriggerDown;
+    }
     private void OnTriggerDown(byte controller_Id, float triggerValue)
     {
         string objGameHit = pointer.Target.gameObject.name;
@@ -25,9 +28,11 @@ public class GameManager : MonoBehaviour
         {
             case "BowlingPin":
                 SceneManager.LoadScene("BowlingMultiplayer", LoadSceneMode.Single);
+                SceneManager.UnloadSceneAsync("Main");
                 break;
             case "Dartboard":
                 SceneManager.LoadScene("DartsMultiplayer", LoadSceneMode.Single);
+                SceneManager.UnloadSceneAsync("Main");
                 break;
             case "PrivacyPolicy":
                 mainMenu.SetActive(false);

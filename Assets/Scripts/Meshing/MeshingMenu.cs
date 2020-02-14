@@ -8,6 +8,7 @@ public class MeshingMenu : MonoBehaviour {
 
 	// private MLInputController controller;
 	public GameObject _cam, menu, welcomeMenu, meshingMenu, meshObj;
+	private GameObject meshObjects;
 	private MLInputController controller;
 	private float timer;
 	private CanvasGroup welcomeCanvas;
@@ -47,8 +48,8 @@ public class MeshingMenu : MonoBehaviour {
 		}
 
 		if (getTime && welcomeCanvas.alpha >= 0) {
-			if (timer > 5.0f) {
-				welcomeCanvas.alpha -= 0.3f * Time.deltaTime;
+			if (timer > 2.0f) {
+				welcomeCanvas.alpha -= 0.5f * Time.deltaTime;
 			}
 		}
 
@@ -72,6 +73,10 @@ public class MeshingMenu : MonoBehaviour {
 		menu.transform.rotation = Quaternion.Slerp (menu.transform.rotation, rot, speed);
 	}
 	private void OnTriggerDown(byte controller_Id, float triggerValue) {
+		meshObjects = GameObject.Find("MeshObjects");
+		foreach (Transform meshChild in meshObjects.transform) {
+			meshChild.GetComponent<MeshRenderer>().material = meshMats[0];
+		}
 		SceneManager.LoadScene("Main", LoadSceneMode.Single);
 	}
 }

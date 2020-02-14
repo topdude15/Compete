@@ -63,9 +63,8 @@ public class BowlingManager : MonoBehaviour
     public Transform singlePrefab, tenPinPrefab, pinHolder, singleNoGravityPrefab, tenPinNoGravityPrefab, meshHolder;
 
     private Transform tenPinObj;
-    public MeshRenderer mesh;
 
-    private GameObject ball;
+    private GameObject ball, mesh;
     private TransmissionObject ballMultiplayer;
     public List<TransmissionObject> spawnedPins;
 
@@ -140,6 +139,8 @@ public class BowlingManager : MonoBehaviour
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/0");
 
+        mesh = GameObject.Find("MeshObjects");
+        print(mesh.transform.name);
     }
     private void OnDisable()
     {
@@ -501,9 +502,12 @@ public class BowlingManager : MonoBehaviour
 
     private void ClearAllObjects()
     {
-        if (joinedLobby) {
-            if (spawnedPins.Count > 0) {
-                foreach (TransmissionObject bowlObj in spawnedPins) {
+        if (joinedLobby)
+        {
+            if (spawnedPins.Count > 0)
+            {
+                foreach (TransmissionObject bowlObj in spawnedPins)
+                {
                     Transmission.Destroy(bowlObj);
                 }
             }
@@ -732,6 +736,12 @@ public class BowlingManager : MonoBehaviour
                 break;
             case "LeaveRoom":
                 joinedLobby = false;
+
+                spatialAlignmentObj.SetActive(false);
+                transmissionObj.SetActive(false);
+
+                roomCode = "";
+                multiplayerCodeText.text = "Please enter a code";
                 multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='red'>Not Connected</color>");
                 multiplayerStatusMenu.SetActive(false);
                 menuAudio.Play();
@@ -752,22 +762,24 @@ public class BowlingManager : MonoBehaviour
             case "ShowMesh":
                 if (occlusionActive)
                 {
-                    foreach (Transform child in meshHolder)
+                    foreach (Transform child in mesh.transform)
                     {
                         var objectRender = child.GetComponent<MeshRenderer>();
-                        objectRender.material = meshMats[1];
+                        foreach (Transform meshChild in mesh.transform)
+                        {
+                            meshChild.GetComponent<MeshRenderer>().material = meshMats[1];
+                        }
                     }
-                    mesh.material = meshMats[1];
+                    // mesh.material = meshMats[1];
                     occlusionActive = false;
                 }
                 else
                 {
-                    foreach (Transform child in meshHolder)
+                    foreach (Transform meshChild in mesh.transform)
                     {
-                        var objectRender = child.GetComponent<MeshRenderer>();
-                        objectRender.material = meshMats[0];
+                        meshChild.GetComponent<MeshRenderer>().material = meshMats[0];
                     }
-                    mesh.material = meshMats[0];
+                    //mesh.material = meshMats[0];
                     occlusionActive = true;
                 }
                 modifierMenu.SetActive(false);
@@ -893,6 +905,7 @@ public class BowlingManager : MonoBehaviour
                 }
                 break;
             case "Join":
+                ClearAllObjects();
                 if (!joinedLobby)
                 {
                     //MLNetworking.IsInternetConnected(ref networkConnected);
@@ -904,15 +917,12 @@ public class BowlingManager : MonoBehaviour
                     else
                     {
                         print("Joining lobby");
-                        ClearAllObjects();
-                        GetCount();
 
                         joinedLobby = true;
 
+                        spatialAlignmentObj.SetActive(true);
                         transmissionObj.SetActive(true);
                         transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
-
-                        spatialAlignmentObj.SetActive(true);
 
                         multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
                         multiplayerMenu.SetActive(false);
