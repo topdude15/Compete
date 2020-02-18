@@ -6197,24 +6197,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116175347}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1123702575 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7235541112672725370, guid: 222bd9546a0294a4186782eaa063a280,
-    type: 3}
-  m_PrefabInstance: {fileID: 1883047657}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1123702576 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
-    type: 3}
-  m_PrefabInstance: {fileID: 1883047657}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123702575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 068b900c1e26be24cb420dda4369b351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1141999441
 GameObject:
   m_ObjectHideFlags: 0
@@ -7161,12 +7143,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276451567}
   m_Mesh: {fileID: 4300000, guid: 4fb6c60b39dbd1c42b979efd7ee43d9b, type: 3}
---- !u!23 &1286982678 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 23288401035578246, guid: b6af97b52b3429641aa904690975fa80,
-    type: 3}
-  m_PrefabInstance: {fileID: 789759474}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1312280561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9417,12 +9393,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601346981}
   m_CullTransparentMesh: 0
---- !u!1 &1616368867 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8215202950104563153, guid: 222bd9546a0294a4186782eaa063a280,
-    type: 3}
-  m_PrefabInstance: {fileID: 1883047657}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1617476291
 GameObject:
   m_ObjectHideFlags: 0
@@ -9902,7 +9872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &1691687960
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9969,7 +9939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691687959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 2084962432}
@@ -10770,6 +10740,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: bendPredictionMultiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: bendyWeightMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: lineResolution
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: maxDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7235541112672725367, guid: 222bd9546a0294a4186782eaa063a280,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10824,26 +10814,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
-        type: 3}
-      propertyPath: bendPredictionMultiplier
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
-        type: 3}
-      propertyPath: bendyWeightMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
-        type: 3}
-      propertyPath: lineResolution
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
-        type: 3}
-      propertyPath: maxDistance
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7235541112672725360, guid: 222bd9546a0294a4186782eaa063a280,
         type: 3}
@@ -11463,68 +11433,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d3e5ffe1df0c746b9a32ce79675917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 1123702576}
-  controlPointer: {fileID: 1123702575}
-  pointerCursor: {fileID: 1616368867}
-  menu: {fileID: 743596546}
-  modifierMenu: {fileID: 363877452}
-  tutorialMenu: {fileID: 1175907453}
-  dartMenu: {fileID: 1566667645}
-  multiplayerMenu: {fileID: 1540558999}
-  multiplayerConfirmMenu: {fileID: 2055822806}
-  helpMenu: {fileID: 700141149}
-  tutorialHelpMenu: {fileID: 515054989}
-  deleteMenu: {fileID: 1978378108}
-  multiplayerStatusMenu: {fileID: 938495924}
-  objMenu: {fileID: 47292060}
-  handMenu: {fileID: 2084962431}
-  dartLimitMenu: {fileID: 535005211}
-  mainCam: {fileID: 1102690471}
-  control: {fileID: 2070071721}
-  dartPrefab: {fileID: 7508358232649025644, guid: 66a0457b7551a60409794e27f4daa69c,
-    type: 3}
-  dartboardHolder: {fileID: 0}
-  dartboardOutline: {fileID: 232056207}
-  deleteLoader: {fileID: 1637815848}
-  menuCanvas: {fileID: 1110686972}
-  handCenter: {fileID: 1691687959}
-  toggleMicButton: {fileID: 1259142033}
-  dartSelector: {fileID: 717604999}
-  dartboardSelector: {fileID: 2116236713}
-  swapHandButton: {fileID: 728040342}
-  tutorialLeft: {fileID: 1321168701}
-  tutorialRight: {fileID: 1839898485}
-  tutorialLeftText: {fileID: 379417009}
-  tutorialRightText: {fileID: 2125256307}
-  controlOrientationObj: {fileID: 88692265}
-  tutorialPage:
-  - {fileID: 1059083425}
-  - {fileID: 1619498619}
-  - {fileID: 1063853815}
-  - {fileID: 1333704562}
-  dartLimitText: {fileID: 2090816689}
-  multiplayerCodeText: {fileID: 1020363482}
-  multiplayerStatusText: {fileID: 319511437}
-  multiplayerMenuCodeText: {fileID: 1107331363}
-  connectedPlayersText: {fileID: 292238297}
-  noGravityText: {fileID: 292238297}
-  gestureHandText: {fileID: 611810008}
-  dartHolder: {fileID: 459239721}
-  meshHolder: {fileID: 1924753013}
-  dartMats:
-  - {fileID: 2100000, guid: bdddf507c1eaa6140a48f3665316673f, type: 2}
-  - {fileID: 2100000, guid: 991e1e029033b234db3c4179a3bfdf37, type: 2}
-  - {fileID: 2100000, guid: 792aca69a10c4bc41900500bb1f28110, type: 2}
-  - {fileID: 2100000, guid: f1909ebae5300ce409978782d73efaf9, type: 2}
-  - {fileID: 2100000, guid: 409000ab20ea96348b331391cecbf241, type: 2}
-  meshMats: []
-  mesh: {fileID: 1286982678}
-  loadingImage: {fileID: 1398258003}
-  emptyCircle: {fileID: 2800000, guid: 031841696d6a644459ca50b020f6e8dc, type: 3}
-  check: {fileID: 2800000, guid: 2a46b6277a1a740489bce1ca6c0c598e, type: 3}
-  handLeft: {fileID: 2800000, guid: 7c8e4cc8d686bcd4c9f9f7720365b9be, type: 3}
-  handRight: {fileID: 2800000, guid: 8dfde51ab6e12bc47a71c90b36fe6416, type: 3}
-  menuAudio: {fileID: 1102690472}
+  pointer: {fileID: 0}
+  controlPointer: {fileID: 0}
+  pointerCursor: {fileID: 0}
+  handCenter: {fileID: 0}
+  mainMenu: {fileID: 0}
+  handMenu: {fileID: 0}
+  mainCam: {fileID: 0}
+  clearProgress: {fileID: 0}
 --- !u!1 &2021063788
 GameObject:
   m_ObjectHideFlags: 0
@@ -11783,7 +11699,7 @@ GameObject:
   - component: {fileID: 2084962434}
   - component: {fileID: 2084962433}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HandMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

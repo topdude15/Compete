@@ -189,29 +189,6 @@ public class BowlingManager : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(helpMenu.transform.position - mainCam.transform.position);
         helpMenu.transform.rotation = Quaternion.Slerp(helpMenu.transform.rotation, rot, menuMoveSpeed);
     }
-    private void PlayTimer()
-    {
-        timer += Time.deltaTime;
-        if (timer > waitTime)
-        {
-            if (holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menu.activeSelf == false && totalObjs == 0)
-            {
-                if (!helpAppeared)
-                {
-                    helpAppeared = true;
-                    tutorialHelpMenu.SetActive(true);
-
-                    helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
-                    helpMenu.transform.rotation = mainCam.transform.rotation;
-                }
-            }
-            else
-            {
-                waitTime = 999999999999999999f;
-                helpAppeared = true;
-            }
-        }
-    }
     private void CheckGestures()
     {
         if (GetUserGesture.GetGesture(currentHand, MLHandKeyPose.OpenHand))
@@ -230,18 +207,11 @@ public class BowlingManager : MonoBehaviour
         else
         {
             pose = HandPoses.NoPose;
+            deleteLoader.SetActive(false);
         }
 
         if (pose != HandPoses.NoPose) ShowPoints();
-        if (pose != HandPoses.Fist)
-        {
-            deleteTimer = 0.0f;
-            handMenu.SetActive(true);
-        }
-        if (pose == HandPoses.NoPose)
-        {
-            deleteLoader.SetActive(false);
-        }
+        if (pose != HandPoses.Fist) handMenu.SetActive(true);
     }
 
     private void ShowPoints()
@@ -287,6 +257,29 @@ public class BowlingManager : MonoBehaviour
             pos[0] = currentHand.Middle.KeyPoints[0].Position;
             handCenter.transform.position = pos[0];
             handCenter.transform.LookAt(mainCam.transform.position);
+        }
+    }
+    private void PlayTimer()
+    {
+        timer += Time.deltaTime;
+        if (timer > waitTime)
+        {
+            if (holding == holdState.none && tutorialMenu.activeSelf == false && menu.activeSelf == false && menu.activeSelf == false && totalObjs == 0)
+            {
+                if (!helpAppeared)
+                {
+                    helpAppeared = true;
+                    tutorialHelpMenu.SetActive(true);
+
+                    helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
+                    helpMenu.transform.rotation = mainCam.transform.rotation;
+                }
+            }
+            else
+            {
+                waitTime = 999999999999999999f;
+                helpAppeared = true;
+            }
         }
     }
     private void SpawnObject()
