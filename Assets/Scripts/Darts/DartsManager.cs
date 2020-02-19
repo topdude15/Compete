@@ -11,7 +11,8 @@ using MagicLeapTools;
 
 public class DartsManager : MonoBehaviour
 {
-    private enum spawnState {
+    private enum spawnState
+    {
         none,
         dart,
         dartboard
@@ -41,18 +42,18 @@ public class DartsManager : MonoBehaviour
     [Header("Extra")]
 
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, colorDartObj, transmissionObj, spatialAlignmentObj;
+    [SerializeField] private GameObject mainCam, colorDartObj, transmissionObj, spatialAlignmentObj, meshOriginal;
     [SerializeField] private Transform dartHolder;
-    [SerializeField] private Text multiplayerCodeInputText;
+    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText;
     private GameObject meshObjs, spatialMap, spawnedObj;
     private float clearTimer = 0.0f, helpTimer = 0.0f, menuMoveSpeed;
     private int totalObjs = 0, objLimit = 50;
     private spawnState spawning = spawnState.none;
-    private bool allowHelp = true, joinedLobby = true, holdingDart = false;
+    private bool allowHelp = true, joinedLobby = true, holdingDart = false, gravityEnabled = true, occlusionActive = true;
     private string roomCode = "";
     private TransmissionObject spawnedObjMultiplayer;
     private List<TransmissionObject> spawnedObjs;
-    private Material[] dartMats;
+    private Material[] dartMats, meshMats;
     private Rigidbody dartRB;
 
     void Start()
@@ -110,7 +111,8 @@ public class DartsManager : MonoBehaviour
 
         // If the user has not interacted with the game at all in 30 seconds, bring up the help menu
         helpTimer += Time.deltaTime;
-        if (helpTimer > 30.0f && allowHelp) {
+        if (helpTimer > 30.0f && allowHelp)
+        {
             helpMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 10f;
             helpMenu.SetActive(true);
         }
@@ -163,30 +165,35 @@ public class DartsManager : MonoBehaviour
             clearProgress.SetActive(false);
             handMenu.SetActive(true);
         }
-    }   
+    }
     private void ClearAllObjects()
     {
         // TODO: Destroy all user-generated content (darts)
     }
-    void OnButtonDown(byte controller_id, MLInputControllerButton button) {
+    void OnButtonDown(byte controller_id, MLInputControllerButton button)
+    {
         // Disable any spawning
         spawning = spawnState.none;
         // Do not allow the help menu to appear
         allowHelp = false;
         helpMenu.SetActive(false);
     }
-    void OnTriggerDown(byte controller_id, float triggerValue) {
+    void OnTriggerDown(byte controller_id, float triggerValue)
+    {
         // Do not allow the help menu to appear
         allowHelp = false;
         helpMenu.SetActive(false);
-        if (spawning == spawnState.none) {
+        if (spawning == spawnState.none)
+        {
             string objGameHit = pointer.Target.gameObject.name;
             // If the user pulls the Trigger and something is selected, play the "Menu Click" sound
             if (objGameHit != null) menuAudio.Play();
-            switch (objGameHit){
+            switch (objGameHit)
+            {
                 case "Home":
                     SceneManager.LoadScene("Main", LoadSceneMode.Single);
                     break;
+                // Multiplayer menu buttons
                 case "Multiplayer":
                     if (!joinedLobby) multiplayerConfirmMenu.SetActive(true);
                     mainMenu.SetActive(false);
@@ -209,15 +216,17 @@ public class DartsManager : MonoBehaviour
                 case "7":
                 case "8":
                 case "9":
-                // If a number is selected, add it to the roomCode and update the text accordingly
+                    // If a number is selected, add it to the roomCode and update the text accordingly
                     multiplayerCodeInputText.color = Color.white;
-                    if (roomCode.Length < 18) {
+                    if (roomCode.Length < 18)
+                    {
                         roomCode += objGameHit;
                         multiplayerCodeInputText.text = roomCode;
                     }
                     break;
                 case "Delete":
-                    if (roomCode.Length > 0) {
+                    if (roomCode.Length > 0)
+                    {
                         roomCode = roomCode.Substring(0, roomCode.Length - 1);
                         multiplayerCodeInputText.text = roomCode;
                     }
@@ -225,13 +234,33 @@ public class DartsManager : MonoBehaviour
                 case "Join":
                     ClearAllObjects();
                     joinedLobby = true;
-                    if (roomCode.Length < 1) {
+                    if (roomCode.Length < 1)
+                    {
                         multiplayerCodeInputText.text = "Please input a code!";
-                    } else {
+                    }
+                    else
+                    {
+                        spatialAlignmentObj.SetActive(true);
+                        transmissionObj.SetActive(true);
                         transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
-                        
+                        multiplayerCodeMenu.SetActive(false);
+                        multiplayerActiveMenu.SetActive(true);
+                        multiplayerCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
                     }
                     break;
+                case "Cancel":
+                    multiplayerCodeMenu.SetActive(false);
+                    mainMenu.SetActive(true);
+                    break;
+                case "LeaveRoom":
+                    joinedLobby = false;
+                    ClearAllObjects();
+                    spatialAlignmentObj.SetActive(false);
+                    transmissionObj.SetActive(false);
+                    multiplayerActiveMenu.SetActive(false);
+                    mainMenu.SetActive(true);
+                    break;
+                // Dart Color menu buttons
                 case "DartColor":
                     mainMenu.SetActive(false);
                     dartColorMenu.SetActive(true);
@@ -246,21 +275,50 @@ public class DartsManager : MonoBehaviour
                     PlayerPrefs.SetInt("dartColorInt", colorValueInt);
                     colorDartObj.GetComponent<MeshRenderer>().material = dartMats[colorValueInt];
                     break;
+                // Settings menu buttons
+                case "NoGravity":
+                    if (gravityEnabled)
+                    {
+                        gravityEnabled = false;
+                        noGravityText.text = ("Disable Gravity");
+                    }
+                    else
+                    {
+                        gravityEnabled = true;
+                        noGravityText.text = ("Enable Gravity");
+                    }
+                    break;
+                case "ShowMesh":
+                    if (occlusionActive) {
+
+                    } else {
+                        
+                    }
+                    break;
             }
-        } else {
+        }
+        else
+        {
             SpawnObject();
         }
     }
-    void OnTriggerUp(byte controller_id, float triggerValue) {
+    void OnTriggerUp(byte controller_id, float triggerValue)
+    {
         // TODO: Detect when the user has released the Trigger
     }
-    private void SpawnObject() {
-        if (totalObjs < objLimit) {
-            switch (spawning) {
+    private void SpawnObject()
+    {
+        if (totalObjs < objLimit)
+        {
+            switch (spawning)
+            {
                 case spawnState.dart:
-                    if (joinedLobby) {
+                    if (joinedLobby)
+                    {
                         spawnedObjMultiplayer = Transmission.Spawn("DartMultiplayer", controller.Position, controller.Orientation, Vector3.one);
-                    } else {
+                    }
+                    else
+                    {
                         spawnedObj = Instantiate((GameObject)Instantiate(Resources.Load("NewDart")), controller.Position, controller.Orientation, dartHolder);
                     }
                     ConfigureDart();
@@ -272,13 +330,17 @@ public class DartsManager : MonoBehaviour
             }
         }
     }
-    private void ConfigureDart() {
+    private void ConfigureDart()
+    {
         int dartColor = PlayerPrefs.GetInt("dartColorInt");
         MeshRenderer dartMeshRender;
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             dartMeshRender = spawnedObjMultiplayer.GetComponent<MeshRenderer>();
             dartRB = spawnedObjMultiplayer.GetComponent<Rigidbody>();
-        } else {
+        }
+        else
+        {
             dartMeshRender = spawnedObj.GetComponent<MeshRenderer>();
             dartRB = spawnedObj.GetComponent<Rigidbody>();
         }

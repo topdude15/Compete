@@ -901,7 +901,6 @@ public class BowlingManager : MonoBehaviour
                 ClearAllObjects();
                 if (!joinedLobby)
                 {
-                    //MLNetworking.IsInternetConnected(ref networkConnected);
                     multiplayerCodeText.color = Color.white;
                     if (roomCode.Length < 1)
                     {
