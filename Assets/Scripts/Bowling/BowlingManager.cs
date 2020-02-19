@@ -917,7 +917,6 @@ public class BowlingManager : MonoBehaviour
                         transmissionObj.SetActive(true);
                         transmissionObj.GetComponent<Transmission>().privateKey = roomCode;
 
-                        multiplayerStatusText.text = ("<b>Multiplayer Status:</b>\n" + "<color='yellow'>Connecting</color>");
                         multiplayerMenu.SetActive(false);
                         multiplayerStatusMenu.SetActive(true);
                         multiplayerMenuCodeText.text = ("<b>Room Code:</b>\n" + roomCode);
