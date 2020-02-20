@@ -42,10 +42,10 @@ public class DartsManager : MonoBehaviour
     [Header("Extra")]
 
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, colorDartObj, transmissionObj, spatialAlignmentObj, meshOriginal;
+    [SerializeField] private GameObject mainCam, colorDartObj, transmissionObj, spatialAlignmentObj;
     [SerializeField] private Transform dartHolder;
     [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText;
-    private GameObject meshObjs, spatialMap, spawnedObj;
+    private GameObject meshObjs, spatialMap, spawnedObj, meshOriginal;
     private float clearTimer = 0.0f, helpTimer = 0.0f, menuMoveSpeed;
     private int totalObjs = 0, objLimit = 50;
     private spawnState spawning = spawnState.none;
@@ -86,6 +86,7 @@ public class DartsManager : MonoBehaviour
 
         meshObjs = GameObject.Find("MeshObjects");
         spatialMap = GameObject.Find("MLSpatialMapper");
+        meshOriginal = spatialMap.transform.GetChild(0).gameObject;
 
         menuMoveSpeed = Time.deltaTime * 2f;
     }
@@ -289,10 +290,23 @@ public class DartsManager : MonoBehaviour
                     }
                     break;
                 case "ShowMesh":
-                    if (occlusionActive) {
-
-                    } else {
-                        
+                    if (occlusionActive)
+                    {
+                        foreach (Transform meshChild in meshObjs.transform)
+                        {
+                            meshChild.GetComponent<MeshRenderer>().material = meshMats[1];
+                        }
+                        meshOriginal.GetComponent<MeshRenderer>().material = meshMats[1];
+                        occlusionActive = false;
+                    }
+                    else
+                    {
+                        foreach (Transform meshChild in meshObjs.transform)
+                        {
+                            meshChild.GetComponent<MeshRenderer>().material = meshMats[0];
+                        }
+                        meshOriginal.GetComponent<MeshRenderer>().material = meshMats[0];
+                        occlusionActive = true;
                     }
                     break;
             }
