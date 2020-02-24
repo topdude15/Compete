@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12732536, g: 0.13415338, b: 0.121077195, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4655,6 +4655,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 910263776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &910263778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7599050699442747582, guid: 73ecca7d038a8314d8f6e3d68ba973e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 910263776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &931624355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,7 +5846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214550324010282, guid: 24158fb1437dc8e418d893939758764d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4214550324010282, guid: 24158fb1437dc8e418d893939758764d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10754,6 +10760,11 @@ PrefabInstance:
       propertyPath: triggerDown.enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7235541112672725364, guid: 222bd9546a0294a4186782eaa063a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 222bd9546a0294a4186782eaa063a280, type: 3}
 --- !u!4 &1883047658 stripped
@@ -10762,6 +10773,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1883047657}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883047659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8215202950104563153, guid: 222bd9546a0294a4186782eaa063a280,
+    type: 3}
+  m_PrefabInstance: {fileID: 1883047657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1883047660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7235541112672725370, guid: 222bd9546a0294a4186782eaa063a280,
+    type: 3}
+  m_PrefabInstance: {fileID: 1883047657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1883047661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7235541112672725365, guid: 222bd9546a0294a4186782eaa063a280,
+    type: 3}
+  m_PrefabInstance: {fileID: 1883047657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883047660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068b900c1e26be24cb420dda4369b351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916905000
 GameObject:
   m_ObjectHideFlags: 0
@@ -11657,29 +11692,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d3e5ffe1df0c746b9a32ce79675917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointer: {fileID: 0}
-  controlPointer: {fileID: 0}
-  pointerCursor: {fileID: 0}
-  controlObj: {fileID: 0}
-  handCenter: {fileID: 0}
-  clearProgress: {fileID: 0}
-  clearProgressImg: {fileID: 0}
-  mainMenu: {fileID: 0}
-  handMenu: {fileID: 0}
-  helpMenu: {fileID: 0}
-  multiplayerConfirmMenu: {fileID: 0}
-  multiplayerCodeMenu: {fileID: 0}
-  multiplayerActiveMenu: {fileID: 0}
-  dartColorMenu: {fileID: 0}
-  menuAudio: {fileID: 0}
-  mainCam: {fileID: 0}
-  colorDartObj: {fileID: 0}
-  transmissionObj: {fileID: 0}
-  spatialAlignmentObj: {fileID: 0}
-  dartHolder: {fileID: 0}
-  multiplayerCodeInputText: {fileID: 0}
-  multiplayerCodeText: {fileID: 0}
-  noGravityText: {fileID: 0}
+  pointer: {fileID: 1883047661}
+  controlPointer: {fileID: 1883047660}
+  pointerCursor: {fileID: 1883047659}
+  controlObj: {fileID: 2021063788}
+  handCenter: {fileID: 1691687959}
+  clearProgress: {fileID: 1398257999}
+  clearProgressImg: {fileID: 1398258003}
+  mainMenu: {fileID: 743596546}
+  handMenu: {fileID: 2084962431}
+  helpMenu: {fileID: 515054989}
+  tutorialMenu: {fileID: 1175907453}
+  multiplayerConfirmMenu: {fileID: 2055822806}
+  multiplayerCodeMenu: {fileID: 1540558999}
+  multiplayerActiveMenu: {fileID: 938495924}
+  modifierMenu: {fileID: 363877452}
+  dartColorMenu: {fileID: 460266734}
+  dartLimitMenu: {fileID: 535005211}
+  objMenu: {fileID: 47292060}
+  tutorialPage:
+  - {fileID: 1059083425}
+  - {fileID: 1619498619}
+  - {fileID: 1063853815}
+  - {fileID: 1333704562}
+  menuAudio: {fileID: 1102690472}
+  mainCam: {fileID: 1102690471}
+  colorDartObj: {fileID: 1270089940}
+  transmissionObj: {fileID: 910263778}
+  spatialAlignmentObj: {fileID: 392453134}
+  tutorialRight: {fileID: 650394663}
+  tutorialLeft: {fileID: 931624355}
+  dartHolder: {fileID: 459239721}
+  multiplayerCodeInputText: {fileID: 1020363482}
+  multiplayerCodeText: {fileID: 1107331363}
+  noGravityText: {fileID: 611810008}
+  dartLimitText: {fileID: 2090816689}
 --- !u!1 &2021063788
 GameObject:
   m_ObjectHideFlags: 0

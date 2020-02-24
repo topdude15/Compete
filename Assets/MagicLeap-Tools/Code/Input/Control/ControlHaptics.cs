@@ -61,7 +61,7 @@ namespace MagicLeapTools
             controlInput.OnForceTouchUp.AddListener(HandleForceTouchUp);
             controlInput.OnTouchRadialMove.AddListener(HandleRadialMove);
             controlInput.OnTouchUp.AddListener(HandleTouchUp);
-            controlInput.OnTriggerHold.AddListener(HandleTriggerHold);
+            // controlInput.OnTriggerHold.AddListener(HandleTriggerHold);
             controlInput.OnBumperHold.AddListener(HandleBumperHold);
             controlInput.OnTouchHold.AddListener(HandleOnTouchHold);
         }
@@ -75,7 +75,7 @@ namespace MagicLeapTools
             controlInput.OnForceTouchUp.RemoveListener(HandleForceTouchUp);
             controlInput.OnTouchRadialMove.RemoveListener(HandleRadialMove);
             controlInput.OnTouchUp.RemoveListener(HandleTouchUp);
-            controlInput.OnTriggerHold.RemoveListener(HandleTriggerHold);
+            // controlInput.OnTriggerHold.RemoveListener(HandleTriggerHold);
             controlInput.OnBumperHold.RemoveListener(HandleBumperHold);
             controlInput.OnTouchHold.RemoveListener(HandleOnTouchHold);
         }

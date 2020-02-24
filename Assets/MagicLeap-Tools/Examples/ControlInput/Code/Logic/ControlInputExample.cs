@@ -39,7 +39,7 @@ public class ControlInputExample : MonoBehaviour
         controlInput.OnTriggerMove.AddListener(HandleTriggerMove);
         controlInput.OnTriggerPressBegan.AddListener(HandleTriggerPressBegan);
         controlInput.OnTriggerDown.AddListener(HandleTriggerDown);
-        controlInput.OnTriggerHold.AddListener(HandleTriggerHold);
+        // controlInput.OnTriggerHold.AddListener(HandleTriggerHold);
         controlInput.OnTriggerUp.AddListener(HandleTriggerUp);
         controlInput.OnTriggerPressEnded.AddListener(HandleTriggerReleased);
         controlInput.OnDoubleTrigger.AddListener(HandleDoubleTrigger);

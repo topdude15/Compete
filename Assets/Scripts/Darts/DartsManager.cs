@@ -104,8 +104,10 @@ public class DartsManager : MonoBehaviour
         controlObj.transform.position = controller.Position;
         controlObj.transform.rotation = controller.Orientation;
 
-        if (holdingDart) {
-
+        if (holdingDart)
+        {
+            print("holding");
+            HoldingDart();
         }
         // If the user has not interacted with the game at all in 30 seconds, bring up the help menu
         helpTimer += Time.deltaTime;
@@ -169,8 +171,9 @@ public class DartsManager : MonoBehaviour
     {
         if (tutorialMenu.activeSelf) tutorialMenu.SetActive(false);
 
-        if (button == MLInputControllerButton.Bumper) {
-            holding = holdState.none;
+        if (button == MLInputControllerButton.Bumper)
+        {
+            spawning = spawnState.none;
             tutorialMenu.SetActive(false);
             multiplayerConfirmMenu.SetActive(false);
             multiplayerCodeMenu.SetActive(false);
@@ -178,17 +181,25 @@ public class DartsManager : MonoBehaviour
             modifierMenu.SetActive(false);
             mainMenu.SetActive(false);
 
-            if (objMenu.activeSelf){
+            if (objMenu.activeSelf)
+            {
                 objMenu.SetActive(false);
-            } else {
+            }
+            else
+            {
                 objMenu.transform.position = controlObj.transform.position + controlObj.transform.forward * 0.6f;
                 objMenu.transform.rotation = new Quaternion(controlObj.transform.rotation.x, controlObj.transform.rotation.y, 0, controlObj.transform.rotation.w);
                 objMenu.SetActive(true);
             }
-        } else {
-            if (mainMenu.activeSelf) {
+        }
+        else
+        {
+            if (mainMenu.activeSelf)
+            {
                 mainMenu.SetActive(false);
-            } else {
+            }
+            else
+            {
                 mainMenu.SetActive(true);
             }
             tutorialMenu.SetActive(false);
@@ -205,7 +216,7 @@ public class DartsManager : MonoBehaviour
     }
     void OnTriggerDown(byte controller_id, float triggerValue)
     {
-        
+
         // Do not allow the help menu to appear
         allowHelp = false;
         helpMenu.SetActive(false);
@@ -293,6 +304,8 @@ public class DartsManager : MonoBehaviour
                 // Object selection menu
                 case "DartSelector":
                     spawning = spawnState.dart;
+                    objMenu.SetActive(false);
+                    controlPointer.SetActive(false);
                     break;
                 // Dart Color menu buttons
                 case "DartColor":
@@ -346,25 +359,31 @@ public class DartsManager : MonoBehaviour
         }
         else
         {
-            if (totalObjs < objLimit) {
+            if (totalObjs < objLimit)
+            {
                 SpawnObject();
-            } else {
-                
+            }
+            else
+            {
+
                 dartLimitMenu.SetActive(true);
             }
         }
     }
     void OnTriggerUp(byte controller_id, float triggerValue)
     {
-        if (holdingDart) {
+        if (holdingDart)
+        {
             holdingDart = false;
             if (gravityEnabled) dartRB.useGravity = true;
             dartRB.velocity = forcePerSecond;
         }
     }
-    private void GetCount() {
+    private void GetCount()
+    {
         totalObjs = 0;
-        foreach (Transform dartObj in dartHolder) {
+        foreach (Transform dartObj in dartHolder)
+        {
             totalObjs += 1;
         }
         dartLimitText.text = "Dart Limit:\n" + totalObjs + " of 40";
@@ -376,10 +395,14 @@ public class DartsManager : MonoBehaviour
         spawning = spawnState.none;
         GetCount();
     }
-    private void CheckNewUser() {
-        if (PlayerPrefs.GetInt("hasPlayedDarts") == 1) {
+    private void CheckNewUser()
+    {
+        if (PlayerPrefs.GetInt("hasPlayedDarts") == 1)
+        {
             tutorialMenu.SetActive(false);
-        } else {
+        }
+        else
+        {
             mainMenu.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
             mainMenu.transform.LookAt(mainCam.transform.position);
             PlayerPrefs.SetInt("hasPlayedDarts", 1);
@@ -404,8 +427,9 @@ public class DartsManager : MonoBehaviour
         }
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/Canvas/Tutorial/" + currentPage);
         currentTutorialPage.SetActive(true);
-        
-        switch (currentPage) {
+
+        switch (currentPage)
+        {
             case 0:
                 tutorialLeft.SetActive(false);
                 break;
@@ -432,6 +456,7 @@ public class DartsManager : MonoBehaviour
                     else
                     {
                         dart = Instantiate((GameObject)Instantiate(Resources.Load("NewDart")), controller.Position, controller.Orientation, dartHolder);
+                        holdingDart = true;
                     }
                     ConfigureDart();
                     break;
@@ -442,49 +467,59 @@ public class DartsManager : MonoBehaviour
             }
         }
     }
-    private void HoldingDart() {
+    private void HoldingDart()
+    {
+        print("Holding");
         Vector3 oldPosition;
-        if (joinedLobby) {
+        if (joinedLobby)
+        {
             oldPosition = dartMultiplayer.transform.position;
-        } else {
+        }
+        else
+        {
             oldPosition = dart.transform.position;
         }
         var newPosition = controller.Position;
-        var delta =  newPosition - oldPosition;
-        if (Deltas.Count == 15) {
+        var delta = newPosition - oldPosition;
+        if (Deltas.Count == 15)
+        {
             Deltas.RemoveAt(0);
         }
         Deltas.Add(delta);
         Vector3 toAverage = Vector3.zero;
-        foreach (var toAdd in Deltas) {
+        foreach (var toAdd in Deltas)
+        {
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
         forcePerSecond = toAverage * 300;
 
-        if (joinedLobby) {
-            dartMultiplayer.transform.position = controller.Position;
-            dartMultiplayer.transform.rotation = controller.Orientation;
-        } else {
-            dart.transform.position = controller.Position;
-            dart.transform.rotation = controller.Orientation;
-        }
-        
-    }
-    private void ConfigureDart()
-    {
-        int dartColor = PlayerPrefs.GetInt("dartColorInt");
-        MeshRenderer dartMeshRender;
         if (joinedLobby)
         {
-            dartMeshRender = dartMultiplayer.GetComponent<MeshRenderer>();
-            dartRB = dartMultiplayer.GetComponent<Rigidbody>();
+            dartMultiplayer.transform.position = controller.Position;
+            dartMultiplayer.transform.rotation = controller.Orientation;
         }
         else
         {
-            dartMeshRender = dart.GetComponent<MeshRenderer>();
-            dartRB = dart.GetComponent<Rigidbody>();
+            dart.transform.position = controller.Position;
+            dart.transform.rotation = controller.Orientation;
         }
-        dartMeshRender.material = dartMats[dartColor];
+
+    }
+    private void ConfigureDart()
+    {
+        // int dartColor = PlayerPrefs.GetInt("dartColorInt");
+        // MeshRenderer dartMeshRender;
+        // if (joinedLobby)
+        // {
+        //     dartMeshRender = dartMultiplayer.GetComponent<MeshRenderer>();
+        //     dartRB = dartMultiplayer.GetComponent<Rigidbody>();
+        // }
+        // else
+        // {
+        //     dartMeshRender = dart.GetComponent<MeshRenderer>();
+        //     dartRB = dart.GetComponent<Rigidbody>();
+        // }
+        // dartMeshRender.material = dartMats[dartColor];
     }
 }

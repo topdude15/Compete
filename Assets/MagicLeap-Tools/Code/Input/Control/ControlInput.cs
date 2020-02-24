@@ -57,10 +57,10 @@ namespace MagicLeapTools
         /// <summary>
         /// Fired when the trigger has been held for longer than _triggerHoldDuration.
         /// </summary>
-        public UnityEvent OnTriggerHold;
-        /// <summary>
-        /// Fired when the trigger has been released or pulled more since the last frame.
-        /// </summary>
+        // public UnityEvent OnTriggerHold;
+        // /// <summary>
+        // /// Fired when the trigger has been released or pulled more since the last frame.
+        // /// </summary>
         public FloatEvent OnTriggerMove;
         /// <summary>
         /// Fired when the home button is pressed.
@@ -259,7 +259,7 @@ namespace MagicLeapTools
         private readonly float _forceTouchDownThreshold = .8f;
         private readonly float _forceTouchUpThreshold = .2f;
         private readonly float _touchBeganMovingThreshold = 0.04f;
-        private readonly float _triggerHoldDuration = 2;
+        // private readonly float _triggerHoldDuration = 2;
         private readonly float _bumperHoldDuration = 2;
         private readonly float _touchHoldDuration = 2;
         private readonly float _minForceDelta = 0.01f;
@@ -651,11 +651,11 @@ namespace MagicLeapTools
             }
         }
 
-        private IEnumerator TriggerHold()
-        {
-            yield return new WaitForSeconds(_triggerHoldDuration);
-            OnTriggerHold?.Invoke();
-        }
+        // private IEnumerator TriggerHold()
+        // {
+        //     yield return new WaitForSeconds(_triggerHoldDuration);
+        //     OnTriggerHold?.Invoke();
+        // }
 
         private IEnumerator BumperHold()
         {
@@ -721,23 +721,23 @@ namespace MagicLeapTools
 
         private void HandleOnTriggerDown(byte controlId, float triggerValue)
         {
-            //wrong or no control?
-            if (Control == null || controlId != Control.Id)
-            {
-                return;
-            }
+            // //wrong or no control?
+            // if (Control == null || controlId != Control.Id)
+            // {
+            //     return;
+            // }
 
-            Trigger = true;
-            StartCoroutine("TriggerHold");
-            OnTriggerDown?.Invoke();
+            // Trigger = true;
+            // StartCoroutine("TriggerHold");
+            // OnTriggerDown?.Invoke();
 
-            //double?
-            if (Time.realtimeSinceStartup - _triggerLastTime < _triggerDoubleDuration)
-            {
-                OnDoubleTrigger?.Invoke();
-            }
+            // //double?
+            // if (Time.realtimeSinceStartup - _triggerLastTime < _triggerDoubleDuration)
+            // {
+            //     OnDoubleTrigger?.Invoke();
+            // }
 
-            _triggerLastTime = Time.realtimeSinceStartup;
+            // _triggerLastTime = Time.realtimeSinceStartup;
         }
 
         private void HandleOnTriggerUp(byte controlId, float triggerValue)
