@@ -467,9 +467,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12916}
     - Class: 114
-      Script: {instanceID: 19868}
+      Script: {instanceID: 161504}
     - Class: 114
-      Script: {instanceID: 19870}
+      Script: {instanceID: 161508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1661,7 +1661,7 @@ ScriptsOnlyBuild:
     className: ObjectGrow
   - hash:
       serializedVersion: 2
-      Hash: ba13f562918d554b61a2783fc3b74335
+      Hash: 5162eae3f73d9c1b6ea8b74ad6f34981
     assemblyName: Assembly-CSharp.dll
     namespaceName: MagicLeapTools
     className: ControlInput
@@ -1913,7 +1913,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: c18bd76e3365c49b6b3bbba8987b0356
+      Hash: 9125d133198d573962fdb94db898e769
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
