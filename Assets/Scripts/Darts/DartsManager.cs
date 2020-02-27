@@ -48,10 +48,10 @@ public class DartsManager : MonoBehaviour
     [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, dartLimitText, showMeshText;
     private GameObject meshObjs, spatialMap, dart, meshOriginal, currentTutorialPage;
     private GameObject[] tutorialPages;
-    private float clearTimer = 0.0f, helpTimer = 0.0f, menuMoveSpeed;
+    private float clearTimer = 0.0f, helpTimer = 0.0f;
     private int totalObjs = 0, objLimit = 50, currentPage = 0;
     private spawnState spawning = spawnState.none;
-    private bool allowHelp = true, joinedLobby = false, holdingDart = false, gravityEnabled = true, occlusionActive = true, forward;
+    private bool allowHelp = true, joinedLobby = false, holdingDart = false, gravityEnabled = true, occlusionActive = true;
     private string roomCode = "";
     private TransmissionObject dartMultiplayer, dartboardMultiplayer;
     private List<TransmissionObject> spawnedObjs;
@@ -93,8 +93,6 @@ public class DartsManager : MonoBehaviour
         meshOriginal = spatialMap.transform.GetChild(0).gameObject;
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/MainMenuCanvas/Tutorial/0");
-
-        menuMoveSpeed = Time.deltaTime * 2f;
     }
 
     void Update()
@@ -420,7 +418,7 @@ public class DartsManager : MonoBehaviour
         {
             totalObjs += 1;
         }
-        dartLimitText.text = "Dart Limit:\n" + totalObjs + " of 40";
+        dartLimitText.text = "Dart Limit:\n" + totalObjs + " of 50";
     }
     private void ClearAllObjects()
     {
