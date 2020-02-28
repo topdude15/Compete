@@ -40,10 +40,12 @@ public class BowlingManager : MonoBehaviour
 
     [Header("Extra")]
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, increaseButton, decreaseButton, bowlingBallSelectorObj, ballColorObj;
+    [SerializeField] private GameObject mainCam, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, increaseButton, decreaseButton, bowlingBallSelectorObj, ballColorObj, swapHandButton;
     [SerializeField] private Transform pinHolder, singlePinPrefab, tenPinPrefab, ballPrefab;
-    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, pinLimitText, showMeshText, ballWeightText;
-    private GameObject ball, meshObjs, spatialMap, meshOriginal, currentTutorialPage, tenPinObj;
+    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, pinLimitText, showMeshText, swapHandText, ballWeightText;
+    [SerializeField] private Texture2D handLeft, handRight;
+    private GameObject ball, meshObjs, spatialMap, meshOriginal, currentTutorialPage;
+    private Transform tenPinObj;
     private GameObject[] tutorialPages;
     private float clearTimer = 0.0f, helpTimer = 0.0f;
     private int totalObjs = 0, objLimit = 100, currentPage = 0;
@@ -77,6 +79,8 @@ public class BowlingManager : MonoBehaviour
         // Set the currentHand variable used in hand recognition
         if (PlayerPrefs.GetString("gestureHand") == "right")
         {
+            swapHandText.text = ("Gestures:\nRight Hand");
+            swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             currentHand = MLHands.Right;
         }
         else
@@ -146,13 +150,16 @@ public class BowlingManager : MonoBehaviour
     private void ShowPoints()
     {
         // Set handCenter to current hand center to show content
-        handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
-        handCenter.transform.LookAt(mainCam.transform.position);
+
         // Functions for each hand pose
         if (pose == HandPoses.Fist)
         {
+            if (!clearProgress.activeSelf) {
+                handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
+                handCenter.transform.LookAt(mainCam.transform.position);
+                clearProgress.SetActive(true);
+            }
             handMenu.SetActive(false);
-            clearProgress.SetActive(true);
 
             //  Count to 3 seconds for clear timer
             clearTimer += Time.deltaTime;
@@ -161,12 +168,15 @@ public class BowlingManager : MonoBehaviour
 
             if (clearTimer > 3.0f)
             {
-                // ClearAllObjects();
+                ClearAllObjects();
                 clearProgress.SetActive(false);
             }
         }
         else if (pose == HandPoses.OpenHand)
         {
+            handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
+            handCenter.transform.LookAt(mainCam.transform.position);
+            
             clearProgress.SetActive(false);
             handMenu.SetActive(true);
         }
@@ -253,7 +263,11 @@ public class BowlingManager : MonoBehaviour
                     break;
                 // Multiplayer menu buttons
                 case "Multiplayer":
-                    if (!joinedLobby) multiplayerConfirmMenu.SetActive(true);
+                    if (joinedLobby) {
+                        multiplayerActiveMenu.SetActive(true);
+                    } else {
+                        multiplayerConfirmMenu.SetActive(true);
+                    }
                     mainMenu.SetActive(false);
                     break;
                 case "AcceptTerms":
@@ -318,10 +332,6 @@ public class BowlingManager : MonoBehaviour
                     multiplayerActiveMenu.SetActive(false);
                     mainMenu.SetActive(true);
                     break;
-                case "Settings":
-                    mainMenu.SetActive(false);
-                    modifierMenu.SetActive(true);
-                    break;
                 // Object selection menu
                 case "SinglePinSelector":
                     spawning = spawnState.singlePin;
@@ -335,6 +345,10 @@ public class BowlingManager : MonoBehaviour
                     spawning = spawnState.bowlingBall;
                     objMenu.SetActive(false);
                     controlPointer.SetActive(false);
+                    break;
+                case "Settings":
+                    mainMenu.SetActive(false);
+                    modifierMenu.SetActive(true);
                     break;
                 case "BallColor":
                     mainMenu.SetActive(false);
@@ -403,6 +417,19 @@ public class BowlingManager : MonoBehaviour
                         meshOriginal.GetComponent<MeshRenderer>().material = meshMats[0];
                         showMeshText.text = "Show Mesh";
                         occlusionActive = true;
+                    }
+                    break;
+                case "SwapHand":
+                    if (currentHand == MLHands.Left) {
+                        PlayerPrefs.SetString("gestureHand", "right");
+                        swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+                        swapHandText.text  = ("Gestures:\nRight Hand");
+                        currentHand = MLHands.Right;
+                    } else {
+                        PlayerPrefs.SetString("gestureHand", "left");
+                        swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
+                        swapHandText.text = ("Gestures:\nLeft Hand");
+                        currentHand = MLHands.Left;
                     }
                     break;
             }
@@ -535,9 +562,9 @@ public class BowlingManager : MonoBehaviour
                     }
                     else
                     {
-                        // tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0), pinHolder));
-                        // Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
-                        // tenPinObj.LookAt(targetPos);
+                        tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0)), pinHolder);
+                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
+                        tenPinObj.LookAt(targetPos);
                     }
                     break;
                 default:

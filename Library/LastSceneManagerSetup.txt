@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/BowlingMultiplayer.unity
+- path: Assets/Scenes/Meshing.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

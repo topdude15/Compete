@@ -36,16 +36,17 @@ public class DartsManager : MonoBehaviour
     // Menu elements
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject mainMenuCanvas, handMenu, helpMenu, tutorialMenu, multiplayerConfirmMenu, multiplayerCodeMenu, multiplayerActiveMenu, modifierMenu, dartColorMenu, dartLimitMenu, objMenu;
+    [SerializeField] private GameObject mainMenuCanvas, handMenu, helpMenu, tutorialMenu, multiplayerConfirmMenu, multiplayerCodeMenu, multiplayerActiveMenu, modifierMenu, dartColorMenu, dartLimitMenu, objMenu, dartThrowPowerMenu;
     [SerializeField] private GameObject[] tutorialPage;
 
     // Other elements
     [Header("Extra")]
 
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, dartColorObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, dartboardOutline, dartboardHolder, dartSelectorObj;
+    [SerializeField] private GameObject mainCam, dartColorObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, dartboardOutline, dartboardHolder, dartSelectorObj, swapHandButton, increaseButton, decreaseButton;
     [SerializeField] private Transform dartHolder, dartPrefab;
-    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, dartLimitText, showMeshText;
+    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, dartLimitText, swapHandText, showMeshText, dartThrowPowerText;
+    [SerializeField] private Texture2D handLeft, handRight;
     private GameObject meshObjs, spatialMap, dart, meshOriginal, currentTutorialPage;
     private GameObject[] tutorialPages;
     private float clearTimer = 0.0f, helpTimer = 0.0f;
@@ -77,9 +78,13 @@ public class DartsManager : MonoBehaviour
         _gestures[1] = MLHandKeyPose.Fist;
         MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
 
+        CheckNewUser();
+
         // Set the currentHand variable used in hand recognition
         if (PlayerPrefs.GetString("gestureHand") == "right")
         {
+            swapHandText.text = ("Gestures:\nRight Hand");
+            swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
             currentHand = MLHands.Right;
         }
         else
@@ -152,13 +157,15 @@ public class DartsManager : MonoBehaviour
     private void ShowPoints()
     {
         // Set handCenter to current hand center to show content
-        handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
-        handCenter.transform.LookAt(mainCam.transform.position);
         // Functions for each hand pose
         if (pose == HandPoses.Fist)
         {
+            if (!clearProgress.activeSelf)  {
+                handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
+                handCenter.transform.LookAt(mainCam.transform.position);
+                clearProgress.SetActive(true);
+            }
             handMenu.SetActive(false);
-            clearProgress.SetActive(true);
 
             //  Count to 3 seconds for clear timer
             clearTimer += Time.deltaTime;
@@ -173,6 +180,8 @@ public class DartsManager : MonoBehaviour
         }
         else if (pose == HandPoses.OpenHand)
         {
+            handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
+            handCenter.transform.LookAt(mainCam.transform.position);
             clearProgress.SetActive(false);
             handMenu.SetActive(true);
         }
@@ -258,7 +267,11 @@ public class DartsManager : MonoBehaviour
                     break;
                 // Multiplayer menu buttons
                 case "Multiplayer":
-                    if (!joinedLobby) multiplayerConfirmMenu.SetActive(true);
+                    if (joinedLobby)  {
+                        multiplayerActiveMenu.SetActive(true);
+                    } else {
+                        multiplayerConfirmMenu.SetActive(true);
+                    }
                     mainMenu.SetActive(false);
                     break;
                 case "AcceptTerms":
@@ -392,6 +405,19 @@ public class DartsManager : MonoBehaviour
                         occlusionActive = true;
                     }
                     break;
+                case "SwapHand":
+                    if (currentHand == MLHands.Left) {
+                        PlayerPrefs.SetString("gestureHand", "right");
+                        swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
+                        swapHandText.text  = ("Gestures:\nRight Hand");
+                        currentHand = MLHands.Right;
+                    } else {
+                        PlayerPrefs.SetString("gestureHand", "left");
+                        swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
+                        swapHandText.text = ("Gestures:\nLeft Hand");
+                        currentHand = MLHands.Left;
+                    }
+                    break;
             }
         }
         else
@@ -509,7 +535,8 @@ public class DartsManager : MonoBehaviour
                     }
                     else
                     {
-                        dartboardHolder.transform.position = dartboardHolder.transform.position;
+                        dartboardHolder.transform.position = dartboardOutline.transform.position;
+                        dartboardHolder.transform.rotation = dartboardOutline.transform.rotation;
                     }
                     break;
                 default:
@@ -541,6 +568,8 @@ public class DartsManager : MonoBehaviour
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
+
+        int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
         forcePerSecond = toAverage * 300;
 
         if (joinedLobby)
@@ -568,5 +597,23 @@ public class DartsManager : MonoBehaviour
             dart.GetComponentInChildren<MeshRenderer>().material = dartMats[dartColor];
             dartRB = dart.GetComponentInChildren<Rigidbody>();
         }
+    }
+    private void UpdateDartThrowPower(bool increase) {
+        int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
+        if (increase) {
+            if (currentThrowPower >= 1 && currentThrowPower < 10) {
+                currentThrowPower += 1;
+            }
+        } else {
+            if (currentThrowPower <= 10 && currentThrowPower > 1) {
+                currentThrowPower -= 1;
+            }
+        }
+        increaseButton.SetActive(true);
+        decreaseButton.SetActive(true);
+        if (currentThrowPower == 1)  decreaseButton.SetActive(false);
+        if (currentThrowPower == 10) increaseButton.SetActive(false);
+        PlayerPrefs.SetInt("dartThrowPower", currentThrowPower);
+        dartThrowPowerText.text = ("<b>" +  currentThrowPower + "</b>");
     }
 }
