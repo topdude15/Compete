@@ -3,21 +3,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using MagicLeapTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.MagicLeap;
-using MagicLeapTools;
 
 public class BowlingManager : MonoBehaviour
-{ 
-    private enum spawnState {
+{
+    private enum spawnState
+    {
         none,
         bowlingBall,
         singlePin,
         tenPin
     }
-        // Control Input elements
+    // Control Input elements
     [Header("Control")]
     [SerializeField] private Pointer pointer;
     [SerializeField] private GameObject controlPointer, pointerCursor, control, controlObj;
@@ -39,21 +40,21 @@ public class BowlingManager : MonoBehaviour
 
     [Header("Extra")]
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, colorBallObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, tenPinOrientation;
-    [SerializeField] private Transform pinHolder, singlePinPrefab, tenPinPrefab;
+    [SerializeField] private GameObject mainCam, colorBallObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft;
+    [SerializeField] private Transform pinHolder, singlePinPrefab, tenPinPrefab, ballPrefab;
     [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, pinLimitText, showMeshText;
-    private GameObject ball, meshObjs, spatialMap, meshOriginal, currentTutorialPage;
+    private GameObject ball, meshObjs, spatialMap, meshOriginal, currentTutorialPage, tenPinObj;
     private GameObject[] tutorialPages;
     private float clearTimer = 0.0f, helpTimer = 0.0f;
     private int totalObjs = 0, objLimit = 100, currentPage = 0;
-    
+
     private spawnState spawning = spawnState.none;
     private bool holdingBall = false, allowHelp = true, joinedLobby = false, gravityEnabled = true, occlusionActive = true;
     private string roomCode = "";
     private TransmissionObject ballMultiplayer, pinMultiplayer;
     [SerializeField] private Material[] ballMats, meshMats;
     private Rigidbody ballRB;
-    private Vector3 forcePerSecond;
+    private Vector3 forcePerSecond, tenPinOrientation = new Vector3(0, 0, 0);
     List<Vector3> Deltas = new List<Vector3>();
     private List<TransmissionObject> spawnedPins;
     void Start()
@@ -101,7 +102,7 @@ public class BowlingManager : MonoBehaviour
 
         if (holdingBall)
         {
-            // HoldingDart();
+            HoldingBall();
         }
         // If the user has not interacted with the game at all in 30 seconds, bring up the help menu
         helpTimer += Time.deltaTime;
@@ -159,7 +160,7 @@ public class BowlingManager : MonoBehaviour
             handMenu.SetActive(true);
         }
     }
-        void OnButtonDown(byte controller_id, MLInputControllerButton button)
+    void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
         controlPointer.SetActive(true);
         if (tutorialMenu.activeSelf) tutorialMenu.SetActive(false);
@@ -308,16 +309,19 @@ public class BowlingManager : MonoBehaviour
                     modifierMenu.SetActive(true);
                     break;
                 // Object selection menu
-                // case "SingleSelector":
-                //     spawning = spawnState.singlePin;
-                //     objMenu.SetActive(false);
-                //     controlPointer.SetActive(false);
-                //     break;
-                // case "DartboardSelector":
-                //     spawning = spawnState.dartboard;
-                //     objMenu.SetActive(false);
-                //     break;
-                // Dart Color menu buttons
+                case "SinglePinSelector":
+                    spawning = spawnState.singlePin;
+                    objMenu.SetActive(false);
+                    break;
+                case "TenPinSelector":
+                    spawning = spawnState.tenPin;
+                    objMenu.SetActive(false);
+                    break;
+                case "BowlingBallSelector":
+                    spawning = spawnState.bowlingBall;
+                    objMenu.SetActive(false);
+                    controlPointer.SetActive(false);
+                    break;
                 case "BallColor":
                     mainMenu.SetActive(false);
                     ballColorMenu.SetActive(true);
@@ -400,10 +404,13 @@ public class BowlingManager : MonoBehaviour
         totalObjs = 0;
         foreach (Transform pinObj in pinHolder)
         {
-            if (pinObj.childCount > 0) {
+            if (pinObj.childCount > 0)
+            {
                 Transform objectsTotal = pinObj.GetComponentInChildren<Transform>();
                 totalObjs += objectsTotal.childCount;
-            }  else {
+            }
+            else
+            {
                 totalObjs += 1;
             }
         }
@@ -472,31 +479,78 @@ public class BowlingManager : MonoBehaviour
             {
                 case spawnState.bowlingBall:
                     if (joinedLobby && ballMultiplayer == null) ballMultiplayer = Transmission.Spawn("BallMultiplayer", controller.Position, controller.Orientation, Vector3.one);
+                    if (ball == null) ball = Instantiate(ballPrefab.gameObject, controller.Position, controller.Orientation);
                     holdingBall = true;
                     ConfigureBall();
                     break;
                 case spawnState.singlePin:
-                    if (joinedLobby)  {
-                        pinMultiplayer = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), new Vector3(1.4f, 1.2f, 1.4f));
+                    if (joinedLobby)
+                    {
+                        pinMultiplayer = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0, 0, 0, 0), new Vector3(1.4f, 1.2f, 1.4f));
                         spawnedPins.Add(pinMultiplayer);
                         GetCount();
-                    }  else {
-                        Instantiate(singlePinPrefab, new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0,0,0,0), pinHolder);
+                    }
+                    else
+                    {
+                        Instantiate(singlePinPrefab, new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0, 0, 0, 0), pinHolder);
                     }
                     break;
                 case spawnState.tenPin:
-                    if (joinedLobby) {
+                    if (joinedLobby)
+                    {
                         pinMultiplayer = Transmission.Spawn("TenPinMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), Quaternion.Euler(tenPinOrientation), Vector3.one);
                         spawnedPins.Add(pinMultiplayer);
                         GetCount();
-                    } else {
-                        
+                    }
+                    else
+                    {
+                        tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0), pinHolder));
+                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
+                        tenPinObj.LookAt(targetPos);
                     }
                     break;
                 default:
                     break;
             }
         }
+    }
+    private void HoldingBall()
+    {
+        Vector3 oldPosition;
+        if (joinedLobby)
+        {
+            oldPosition = ballMultiplayer.transform.position;
+        }
+        else
+        {
+            oldPosition = ball.transform.position;
+        }
+        var newPosition = controlObj.transform.position;
+        var delta = newPosition - oldPosition;
+        if (Deltas.Count == 15)
+        {
+            Deltas.RemoveAt(0);
+        }
+        Deltas.Add(delta);
+        Vector3 toAverage = Vector3.zero;
+        foreach (var toAdd in Deltas)
+        {
+            toAverage += toAdd;
+        }
+        toAverage /= Deltas.Count;
+        forcePerSecond = toAverage * 300;
+
+        if (joinedLobby)
+        {
+            ballMultiplayer.transform.position = controller.Position;
+            ballMultiplayer.transform.rotation = controller.Orientation;
+        }
+        else
+        {
+            ball.transform.position = controlObj.transform.position;
+            ball.transform.rotation = controlObj.transform.rotation;
+        }
+
     }
     private void ConfigureBall()
     {

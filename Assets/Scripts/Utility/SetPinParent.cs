@@ -11,7 +11,7 @@ public class SetPinParent : MonoBehaviour
         transform.parent = pinParent.transform;
 
         GameObject manage = GameObject.Find("[LOGIC]/GameManager");
-        manage.GetComponent<BowlingManager>().GetCount();
+        // manage.GetComponent<BowlingManager>().GetCount();
     }
 
     // Update is called once per frame

@@ -18,9 +18,9 @@ public class PinFallen : MonoBehaviour
         if (!pinFallen)
         {
             if (Mathf.Abs(Vector3.Angle(transform.up, Vector3.up)) >= 100 || Mathf.Abs(Vector3.Angle(transform.up, Vector3.up)) <= 80 || Mathf.Abs(Vector3.Angle(transform.forward, Vector3.forward)) >= 100 || Mathf.Abs(Vector3.Angle(transform.forward, Vector3.forward)) <= 80) {
-                pinFallen = true;
-                bManager.pinsFallen += 1;
-                bManager.UpdateFallen();
+                // pinFallen = true;
+                // bManager.pinsFallen += 1;
+                // bManager.UpdateFallen();
             }
         }
         // if (Mathf.Abs(this.gameObject.transform.position.y) > 20.0f) {
