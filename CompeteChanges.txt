@@ -1,0 +1,13 @@
+- Update bowling ball/dart inside of ObjectMenu
+- Fix lighting in meshing scene for controller representation
+- Fix dartboard not being placed on Trigger pull
+- Recenter tutorial when opening bowling/darts in front of player
+- Fix ten pin not spawning (bowling)
+- MultiplayerActive menu not appearing when opening from main menu
+- Gesture hand switching is nonfunctional
+- Delete circle should not be updating with hand position
+- Add bowling ball to ball color menu
+- Implement ball color switching
+- Add dart throwing force toggle
+- Update hand menu and multiplayer menu in darts
+- Update bowling pin and dart assets in ObjMenu

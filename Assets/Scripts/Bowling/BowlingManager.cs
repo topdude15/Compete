@@ -35,14 +35,14 @@ public class BowlingManager : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject handMenu, helpMenu, tutorialMenu, multiplayerConfirmMenu, multiplayerCodeMenu, multiplayerActiveMenu, modifierMenu, pinLimitMenu, ballColorMenu, objMenu, mainMenuCanvas;
+    [SerializeField] private GameObject handMenu, helpMenu, tutorialMenu, multiplayerConfirmMenu, multiplayerCodeMenu, multiplayerActiveMenu, modifierMenu, pinLimitMenu, ballColorMenu, ballWeightMenu, objMenu, mainMenuCanvas;
     [SerializeField] private GameObject[] tutorialPage;
 
     [Header("Extra")]
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, colorBallObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft;
+    [SerializeField] private GameObject mainCam, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, increaseButton, decreaseButton, bowlingBallSelectorObj, ballColorObj;
     [SerializeField] private Transform pinHolder, singlePinPrefab, tenPinPrefab, ballPrefab;
-    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, pinLimitText, showMeshText;
+    [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, pinLimitText, showMeshText, ballWeightText;
     private GameObject ball, meshObjs, spatialMap, meshOriginal, currentTutorialPage, tenPinObj;
     private GameObject[] tutorialPages;
     private float clearTimer = 0.0f, helpTimer = 0.0f;
@@ -88,6 +88,17 @@ public class BowlingManager : MonoBehaviour
         meshObjs = GameObject.Find("MeshObjects");
         spatialMap = GameObject.Find("MLSpatialMapper");
         meshOriginal = spatialMap.transform.GetChild(0).gameObject;
+
+        int currentWeight = PlayerPrefs.GetInt("ballWeight");
+        if (currentWeight > 16 || currentWeight < 6)
+        {
+            PlayerPrefs.SetInt("ballWeight", 10);
+        }
+        ballWeightText.text = ("<b>" + PlayerPrefs.GetInt("ballWeight") + " lbs</b>");
+
+        int colorValueInt = PlayerPrefs.GetInt("ballColorInt");
+        ballColorObj.GetComponent<MeshRenderer>().material = ballMats[colorValueInt];
+        bowlingBallSelectorObj.GetComponent<MeshRenderer>().material = ballMats[colorValueInt];
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/MainMenuCanvas/Tutorial/0");
     }
@@ -163,6 +174,7 @@ public class BowlingManager : MonoBehaviour
     void OnButtonDown(byte controller_id, MLInputControllerButton button)
     {
         controlPointer.SetActive(true);
+        objMenu.SetActive(false);
         if (tutorialMenu.activeSelf) tutorialMenu.SetActive(false);
 
         if (button == MLInputControllerButton.Bumper)
@@ -175,6 +187,7 @@ public class BowlingManager : MonoBehaviour
             modifierMenu.SetActive(false);
             mainMenu.SetActive(false);
             ballColorMenu.SetActive(false);
+            ballWeightMenu.SetActive(false);
 
             if (objMenu.activeSelf)
             {
@@ -203,6 +216,7 @@ public class BowlingManager : MonoBehaviour
             multiplayerActiveMenu.SetActive(false);
             modifierMenu.SetActive(false);
             ballColorMenu.SetActive(false);
+            ballWeightMenu.SetActive(false);
         }
         // Disable any spawning
         spawning = spawnState.none;
@@ -334,11 +348,27 @@ public class BowlingManager : MonoBehaviour
                     string colorValue = Regex.Match(objGameHit, @"\d").Value;
                     int colorValueInt = int.Parse(colorValue);
                     PlayerPrefs.SetInt("ballColorInt", colorValueInt);
-                    colorBallObj.GetComponentInChildren<MeshRenderer>().material = ballMats[colorValueInt];
+
+                    ballColorObj.GetComponent<MeshRenderer>().material = ballMats[colorValueInt];
+                    bowlingBallSelectorObj.GetComponent<MeshRenderer>().material = ballMats[colorValueInt];
                     break;
                 case "CloseBallColor":
                     ballColorMenu.SetActive(false);
+                    modifierMenu.SetActive(true);
+                    break;
+                case "BallWeight":
+                    modifierMenu.SetActive(false);
+                    ballWeightMenu.SetActive(true);
+                    break;
+                case "CloseBallWeight":
+                    ballWeightMenu.SetActive(false);
                     mainMenu.SetActive(true);
+                    break;
+                case "Increase":
+                    UpdateBallWeight(true);
+                    break;
+                case "Decrease":
+                    UpdateBallWeight(false);
                     break;
                 // Settings menu buttons
                 case "NoGravity":
@@ -396,6 +426,7 @@ public class BowlingManager : MonoBehaviour
         {
             holdingBall = false;
             if (gravityEnabled) ballRB.useGravity = true;
+            ballRB.velocity = Vector3.zero;
             ballRB.velocity = forcePerSecond;
         }
     }
@@ -504,9 +535,9 @@ public class BowlingManager : MonoBehaviour
                     }
                     else
                     {
-                        tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0), pinHolder));
-                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
-                        tenPinObj.LookAt(targetPos);
+                        // tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0), pinHolder));
+                        // Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
+                        // tenPinObj.LookAt(targetPos);
                     }
                     break;
                 default:
@@ -525,6 +556,8 @@ public class BowlingManager : MonoBehaviour
         {
             oldPosition = ball.transform.position;
         }
+        ballRB.velocity = Vector3.zero;
+
         var newPosition = controlObj.transform.position;
         var delta = newPosition - oldPosition;
         if (Deltas.Count == 15)
@@ -538,7 +571,9 @@ public class BowlingManager : MonoBehaviour
             toAverage += toAdd;
         }
         toAverage /= Deltas.Count;
-        forcePerSecond = toAverage * 300;
+
+        int currentWeight = PlayerPrefs.GetInt("ballWeight");
+        forcePerSecond = toAverage * (950 / currentWeight);
 
         if (joinedLobby)
         {
@@ -557,13 +592,37 @@ public class BowlingManager : MonoBehaviour
         int ballColor = PlayerPrefs.GetInt("ballColorInt");
         if (joinedLobby)
         {
-            // ballMultiplayer.GetComponentInChildren<MeshRenderer>().material = dartMats[dartColor];
+            ballMultiplayer.GetComponent<MeshRenderer>().material = ballMats[ballColor];
             ballRB = ballMultiplayer.GetComponent<Rigidbody>();
         }
         else
         {
-            // ball.GetComponentInChildren<MeshRenderer>().material = dartMats[dartColor];
+            ball.GetComponent<MeshRenderer>().material = ballMats[ballColor];
             ballRB = ball.GetComponentInChildren<Rigidbody>();
         }
+    }
+    private void UpdateBallWeight(bool increase)
+    {
+        int currentWeight = PlayerPrefs.GetInt("ballWeight");
+        if (increase)
+        {
+            if (currentWeight >= 6 && currentWeight < 16)
+            {
+                currentWeight += 1;
+            }
+        }
+        else
+        {
+            if (currentWeight <= 16 && currentWeight > 6)
+            {
+                currentWeight -= 1;
+            }
+        }
+        increaseButton.SetActive(true);
+        decreaseButton.SetActive(true);
+        if (currentWeight == 6) decreaseButton.SetActive(false);
+        if (currentWeight == 16) increaseButton.SetActive(false);
+        PlayerPrefs.SetInt("ballWeight", currentWeight);
+        ballWeightText.text = ("<b>" + currentWeight + " lbs</b>");
     }
 }

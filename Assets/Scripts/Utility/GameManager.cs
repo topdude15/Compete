@@ -9,7 +9,8 @@ using MagicLeapTools;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Pointer pointer;
-    [SerializeField] private GameObject mainMenu, privacyPolicyMenu, quitMenu;
+    [SerializeField] private AudioSource menuAudio;
+    [SerializeField] private GameObject mainMenu, privacyPolicyMenu, quitMenu, mainCam;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private void OnTriggerDown(byte controller_Id, float triggerValue)
     {
         string objGameHit = pointer.Target.gameObject.name;
+        if (objGameHit != null) menuAudio.Play();
         switch (objGameHit)
         {
             case "BowlingPin":

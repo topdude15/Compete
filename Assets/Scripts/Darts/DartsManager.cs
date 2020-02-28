@@ -43,7 +43,7 @@ public class DartsManager : MonoBehaviour
     [Header("Extra")]
 
     [SerializeField] private AudioSource menuAudio;
-    [SerializeField] private GameObject mainCam, colorDartObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, dartboardOutline, dartboardHolder;
+    [SerializeField] private GameObject mainCam, dartColorObj, transmissionObj, spatialAlignmentObj, tutorialRight, tutorialLeft, dartboardOutline, dartboardHolder, dartSelectorObj;
     [SerializeField] private Transform dartHolder, dartPrefab;
     [SerializeField] private Text multiplayerCodeInputText, multiplayerCodeText, noGravityText, dartLimitText, showMeshText;
     private GameObject meshObjs, spatialMap, dart, meshOriginal, currentTutorialPage;
@@ -91,6 +91,10 @@ public class DartsManager : MonoBehaviour
         meshObjs = GameObject.Find("MeshObjects");
         spatialMap = GameObject.Find("MLSpatialMapper");
         meshOriginal = spatialMap.transform.GetChild(0).gameObject;
+        
+        int colorValueInt = PlayerPrefs.GetInt("dartColorInt");
+        dartColorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
+        dartSelectorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/MainMenuCanvas/Tutorial/0");
     }
@@ -346,7 +350,8 @@ public class DartsManager : MonoBehaviour
                     string colorValue = Regex.Match(objGameHit, @"\d").Value;
                     int colorValueInt = int.Parse(colorValue);
                     PlayerPrefs.SetInt("dartColorInt", colorValueInt);
-                    colorDartObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
+                    dartColorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
+                    dartSelectorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
                     break;
                 case "CloseDartColor":
                     dartColorMenu.SetActive(false);
@@ -494,12 +499,16 @@ public class DartsManager : MonoBehaviour
                     ConfigureDart();
                     break;
                 case spawnState.dartboard:
-                    if (joinedLobby) {
-                        if (dartboardMultiplayer == null) {
+                    if (joinedLobby)
+                    {
+                        if (dartboardMultiplayer == null)
+                        {
                             dartboardMultiplayer = Transmission.Spawn("DartboardMultiplayer", controlPointer.transform.position, Quaternion.LookRotation(-mainCam.transform.up, -mainCam.transform.forward), Vector3.one);
                         }
                         dartboardMultiplayer.transform.position = controlPointer.transform.position;
-                    } else {
+                    }
+                    else
+                    {
                         dartboardHolder.transform.position = dartboardHolder.transform.position;
                     }
                     break;

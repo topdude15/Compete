@@ -1,85 +1,85 @@
 ----IL2CPP Arguments----
---convert-to-cpp --emit-null-checks --enable-stacktrace --enable-array-bounds-check --dotnetprofile=unityaot --compile-cpp --libil2cpp-static --platform=Lumin --architecture=ARM64 --configuration=Release --outputpath=C:\Users\Rose Family\Desktop\Compete\Temp/StagingArea/Data\Native\libil2cpp.so --cachedirectory=C:\Users\Rose Family\Desktop\Compete\Assets\..\Library\il2cpp_cache/il2cpp_cache --verbose --enable-stats --stats-output-dir=C:/Users/Rose Family/Desktop/Compete/Assets/../Library/il2cpp_stats --profiler-report --map-file-parser=C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/Tools/MapFileParser/MapFileParser.exe --directory=C:/Users/Rose Family/Desktop/Compete/Temp/StagingArea/Data/Managed --generatedcppdir=C:/Users/Rose Family/Desktop/Compete/Temp/StagingArea/Data/il2cppOutput
+--convert-to-cpp --emit-null-checks --enable-stacktrace --enable-array-bounds-check --dotnetprofile=unityaot --compile-cpp --libil2cpp-static --platform=Lumin --architecture=ARM64 --configuration=Release --outputpath=C:\Users\topdu\Desktop\Compete\Temp/StagingArea/Data\Native\libil2cpp.so --cachedirectory=C:\Users\topdu\Desktop\Compete\Assets\..\Library\il2cpp_cache/il2cpp_cache --verbose --enable-stats --stats-output-dir=C:/Users/topdu/Desktop/Compete/Assets/../Library/il2cpp_stats --profiler-report --map-file-parser=C:/Program Files/Unity/Hub/Editor/2019.2.7f2/Editor/Data/Tools/MapFileParser/MapFileParser.exe --directory=C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/Managed --generatedcppdir=C:/Users/topdu/Desktop/Compete/Temp/StagingArea/Data/il2cppOutput
 
 ----Assemblies Converted-----
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\LuminMediaPlayer.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\LuminUnity.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Mono.Security.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\MSA.Runtime.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\mscorlib.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\netstandard.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Configuration.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Core.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Diagnostics.StackTrace.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Globalization.Extensions.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Xml.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.Subsystem.Registration.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.ARSubsystems.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.InteractionSubsystems.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.Management.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AIModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AndroidJNIModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AnimationModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ARModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AssetBundleModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AudioModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.CoreModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.DirectorModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.GridModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ImageConversionModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.IMGUIModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.InputLegacyModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.InputModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.JSONSerializeModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.LuminModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ParticleSystemModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.Physics2DModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.PhysicsModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.SharedInternalsModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.SpatialTracking.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TerrainModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TextRenderingModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TilemapModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UIElementsModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UIModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UnityAnalyticsModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UnityWebRequestModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VFXModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VideoModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VRModule.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.XR.MagicLeap.dll
-	C:\Users\Rose Family\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.XRModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\LuminMediaPlayer.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\LuminUnity.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Mono.Security.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\MSA.Runtime.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\mscorlib.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\netstandard.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Configuration.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Core.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Diagnostics.StackTrace.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Globalization.Extensions.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\System.Xml.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.Subsystem.Registration.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.ARSubsystems.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.InteractionSubsystems.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\Unity.XR.Management.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AIModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AndroidJNIModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AnimationModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ARModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AssetBundleModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.AudioModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.CoreModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.DirectorModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.GridModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ImageConversionModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.IMGUIModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.InputLegacyModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.InputModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.JSONSerializeModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.LuminModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.ParticleSystemModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.Physics2DModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.PhysicsModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.SharedInternalsModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.SpatialTracking.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TerrainModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TextRenderingModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.TilemapModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UIElementsModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UIModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UnityAnalyticsModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.UnityWebRequestModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VFXModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VideoModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.VRModule.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.XR.MagicLeap.dll
+	C:\Users\topdu\Desktop\Compete\Temp\StagingArea\Data\Managed\UnityEngine.XRModule.dll
 
 ----- il2cpp Statistics -----
 General:
-	Conversion Time: 22.476 s
+	Conversion Time: 19.277 s
 	Files Written: 187
-	String Literals: 5239
+	String Literals: 5246
 Methods:
-	Total Methods: 33214
-	Non-Generic Methods: 18537
+	Total Methods: 33215
+	Non-Generic Methods: 18538
 	Generic Type Methods: 12399
 	Generic Methods: 2278
 	Shared Methods: 14495
 	Methods with Tail Calls : 0
 Metadata:
-	Total: 3,464.09 kb
-	String Literals: 40.93 kb
-	String Literal Data: 170.79 kb
-	Metadata Strings: 431.68 kb
+	Total: 3,464.68 kb
+	String Literals: 40.98 kb
+	String Literal Data: 170.85 kb
+	Metadata Strings: 431.77 kb
 	Events: 2.37 kb
 	Properties: 63.98 kb
-	Methods: 641.22 kb
+	Methods: 641.25 kb
 	Parameter Default Values: 1.96 kb
 	Field Default Values: 60.76 kb
 	Field and Parameter Default Values Data: 75.64 kb
 	Field Marshaled Sizes: 11.88 kb
-	Parameters: 268.24 kb
-	Fields: 169.84 kb
+	Parameters: 268.25 kb
+	Fields: 169.95 kb
 	Generic Parameters: 7.75 kb
 	Generic Parameter Constraints: 0.41 kb
 	Generic Containers: 6.20 kb
@@ -91,17 +91,17 @@ Metadata:
 	Images: 1.99 kb
 	Assemblies: 3.39 kb
 	Metadata Usage Lists: 263.16 kb
-	Metadata Usage Pairs: 612.99 kb
+	Metadata Usage Pairs: 613.13 kb
 	Field Refs: 0.86 kb
 	Referenced Assemblies: 0.98 kb
-	Attribute Types Ranges: 71.43 kb
-	Attribute Types: 46.47 kb
+	Attribute Types Ranges: 71.50 kb
+	Attribute Types: 46.49 kb
 	Unresolved Virtual Call Parameter Types: 7.15 kb
 	Unresolved Virtual Call Parameter Ranges: 5.36 kb
 	Windows Runtime type names: 0.00 kb
 	Exported Types: 6.05 kb
 Codegen:
-	NullChecks : 52571
+	NullChecks : 52592
 Hashing:
 	String Literal Hash Collisions : 0
 	Type Hash Collisions : 0
@@ -118,75 +118,75 @@ Interop:
 	COM callable wrapper methods that were forwarded to call base class method : 0
 Compilation:
 	Total Files: 221
-	Files Compiled: 0
-	Cache Hits: 221
-	Cache Hit %: 100
+	Files Compiled: 1
+	Cache Hits: 220
+	Cache Hit %: 99
 
 
 ----Assembly Conversion Times----
-	Convert Assembly-CSharp (886.325561523438ms)
-	Convert LuminMediaPlayer (220.872909545898ms)
-	Convert LuminUnity (1060.09387207031ms)
-	Convert Mono.Security (16.7676982879639ms)
-	Convert MSA.Runtime (46.6016006469727ms)
-	Convert mscorlib (3493.36157226563ms)
-	Convert netstandard (1.44509994983673ms)
-	Convert System (466.158294677734ms)
-	Convert System.Configuration (15.5167007446289ms)
-	Convert System.Core (9.26599979400635ms)
-	Convert System.Diagnostics.StackTrace (6.10230016708374ms)
-	Convert System.Globalization.Extensions (1.38359999656677ms)
-	Convert System.Xml (1.69500005245209ms)
-	Convert Unity.Subsystem.Registration (11.7452001571655ms)
-	Convert Unity.XR.ARSubsystems (70.0406951904297ms)
-	Convert Unity.XR.InteractionSubsystems (26.4235000610352ms)
-	Convert Unity.XR.Management (31.6655006408691ms)
-	Convert UnityEngine (1.50409996509552ms)
-	Convert UnityEngine.AIModule (10.3440999984741ms)
-	Convert UnityEngine.AndroidJNIModule (62.2220039367676ms)
-	Convert UnityEngine.AnimationModule (43.9612007141113ms)
-	Convert UnityEngine.ARModule (8.52929973602295ms)
-	Convert UnityEngine.AssetBundleModule (11.7562999725342ms)
-	Convert UnityEngine.AudioModule (25.3775997161865ms)
-	Convert UnityEngine.CoreModule (427.272705078125ms)
-	Convert UnityEngine.DirectorModule (9.64840030670166ms)
-	Convert UnityEngine.GridModule (1.69219994544983ms)
-	Convert UnityEngine.ImageConversionModule (7.79059982299805ms)
-	Convert UnityEngine.IMGUIModule (88.1205978393555ms)
-	Convert UnityEngine.InputLegacyModule (35.5662002563477ms)
-	Convert UnityEngine.InputModule (15.0239009857178ms)
-	Convert UnityEngine.JSONSerializeModule (13.5193996429443ms)
-	Convert UnityEngine.LuminModule (8.76550006866455ms)
-	Convert UnityEngine.ParticleSystemModule (14.9147005081177ms)
-	Convert UnityEngine.Physics2DModule (24.9111003875732ms)
-	Convert UnityEngine.PhysicsModule (31.8431015014648ms)
-	Convert UnityEngine.SharedInternalsModule (23.4440002441406ms)
-	Convert UnityEngine.SpatialTracking (31.4703998565674ms)
-	Convert UnityEngine.TerrainModule (27.9118022918701ms)
-	Convert UnityEngine.TextRenderingModule (34.7103996276855ms)
-	Convert UnityEngine.TilemapModule (15.1384000778198ms)
-	Convert UnityEngine.UI (590.429809570313ms)
-	Convert UnityEngine.UIElementsModule (13.8666000366211ms)
-	Convert UnityEngine.UIModule (34.0266990661621ms)
-	Convert UnityEngine.UnityAnalyticsModule (11.8009996414185ms)
-	Convert UnityEngine.UnityWebRequestModule (53.0932006835938ms)
-	Convert UnityEngine.VFXModule (11.9827003479004ms)
-	Convert UnityEngine.VideoModule (16.5986003875732ms)
-	Convert UnityEngine.VRModule (10.768500328064ms)
-	Convert UnityEngine.XR.MagicLeap (222.628814697266ms)
-	Convert UnityEngine.XRModule (83.1809005737305ms)
+	Convert Assembly-CSharp (734.586242675781ms)
+	Convert LuminMediaPlayer (201.534698486328ms)
+	Convert LuminUnity (898.037841796875ms)
+	Convert Mono.Security (15.0047006607056ms)
+	Convert MSA.Runtime (39.7078018188477ms)
+	Convert mscorlib (3081.18896484375ms)
+	Convert netstandard (1.07070004940033ms)
+	Convert System (409.055908203125ms)
+	Convert System.Configuration (13.2152004241943ms)
+	Convert System.Core (7.86089992523193ms)
+	Convert System.Diagnostics.StackTrace (0.98769998550415ms)
+	Convert System.Globalization.Extensions (0.904399991035461ms)
+	Convert System.Xml (1.39170002937317ms)
+	Convert Unity.Subsystem.Registration (10.3849000930786ms)
+	Convert Unity.XR.ARSubsystems (59.8241996765137ms)
+	Convert Unity.XR.InteractionSubsystems (22.9769992828369ms)
+	Convert Unity.XR.Management (28.988000869751ms)
+	Convert UnityEngine (1.01989996433258ms)
+	Convert UnityEngine.AIModule (10.1929998397827ms)
+	Convert UnityEngine.AndroidJNIModule (53.5342025756836ms)
+	Convert UnityEngine.AnimationModule (51.6561965942383ms)
+	Convert UnityEngine.ARModule (7.31080007553101ms)
+	Convert UnityEngine.AssetBundleModule (16.1808986663818ms)
+	Convert UnityEngine.AudioModule (21.5809993743896ms)
+	Convert UnityEngine.CoreModule (342.349914550781ms)
+	Convert UnityEngine.DirectorModule (7.80389976501465ms)
+	Convert UnityEngine.GridModule (1.29069995880127ms)
+	Convert UnityEngine.ImageConversionModule (6.8484001159668ms)
+	Convert UnityEngine.IMGUIModule (75.2685012817383ms)
+	Convert UnityEngine.InputLegacyModule (16.0992984771729ms)
+	Convert UnityEngine.InputModule (13.4482002258301ms)
+	Convert UnityEngine.JSONSerializeModule (11.6027002334595ms)
+	Convert UnityEngine.LuminModule (7.49700021743774ms)
+	Convert UnityEngine.ParticleSystemModule (13.2809000015259ms)
+	Convert UnityEngine.Physics2DModule (22.1919002532959ms)
+	Convert UnityEngine.PhysicsModule (27.351001739502ms)
+	Convert UnityEngine.SharedInternalsModule (19.7300987243652ms)
+	Convert UnityEngine.SpatialTracking (27.7296009063721ms)
+	Convert UnityEngine.TerrainModule (23.8015995025635ms)
+	Convert UnityEngine.TextRenderingModule (31.0990009307861ms)
+	Convert UnityEngine.TilemapModule (12.8411998748779ms)
+	Convert UnityEngine.UI (472.718383789063ms)
+	Convert UnityEngine.UIElementsModule (10.8329000473022ms)
+	Convert UnityEngine.UIModule (30.1833000183105ms)
+	Convert UnityEngine.UnityAnalyticsModule (10.8410997390747ms)
+	Convert UnityEngine.UnityWebRequestModule (46.9491996765137ms)
+	Convert UnityEngine.VFXModule (10.0178003311157ms)
+	Convert UnityEngine.VideoModule (13.8266000747681ms)
+	Convert UnityEngine.VRModule (8.71539974212646ms)
+	Convert UnityEngine.XR.MagicLeap (176.910293579102ms)
+	Convert UnityEngine.XRModule (68.7403030395508ms)
 
 ----Misc Timing----
-	PreProcessStage: 294.255706787109
+	PreProcessStage: 280.502990722656
 	GenericsCollector.Collect: None
-	WriteGenerics: 6238.06201171875
-	AllAssemblyConversion: 8684.2568359375
+	WriteGenerics: 5368.1259765625
+	AllAssemblyConversion: 7471.7158203125
 
 ----Generated Files----
-Assembly-CSharp.cpp	2263733
+Assembly-CSharp.cpp	2279441
 Assembly-CSharp1.cpp	2314122
 Assembly-CSharp2.cpp	2223056
-Assembly-CSharp3.cpp	2770791
+Assembly-CSharp3.cpp	2779232
 Assembly-CSharp4.cpp	1446625
 GenericMethods.cpp	1586441
 GenericMethods1.cpp	2543597
@@ -221,10 +221,10 @@ Generics6.cpp	1995406
 Generics7.cpp	1765123
 Generics8.cpp	1655307
 Generics9.cpp	1471414
-Il2CppAttributes.cpp	6386013
+Il2CppAttributes.cpp	6388893
 Il2CppCodeRegistration.cpp	8007
 Il2CppCompilerCalculateTypeValues.cpp	4511488
-Il2CppCompilerCalculateTypeValues1.cpp	4747730
+Il2CppCompilerCalculateTypeValues1.cpp	4755303
 Il2CppCompilerCalculateTypeValuesTable.cpp	541850
 Il2CppGenericComDefinitions.cpp	214
 Il2CppGenericMethodPointerTable.cpp	3479008

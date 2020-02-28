@@ -8,7 +8,7 @@ public class MeshingMenu : MonoBehaviour {
 
 	// private MLInputController controller;
 	public GameObject _cam, menu, welcomeMenu, meshingMenu, meshObj;
-	private GameObject meshObjects;
+	private GameObject meshObjects, spatialMap, meshOriginal;
 	private MLInputController controller;
 	private float timer;
 	private CanvasGroup welcomeCanvas;
@@ -39,7 +39,7 @@ public class MeshingMenu : MonoBehaviour {
 		timer += Time.deltaTime;
 
 		if (welcomeCanvas.alpha < 1 && getTime == false) {
-			welcomeCanvas.alpha += 0.5f * Time.deltaTime;
+			welcomeCanvas.alpha += 0.5f * Time.deltaTime * 2;
 		} else if (welcomeCanvas.alpha >= 1) {
 			if (getTime == false) {
 				getTime = true;
@@ -49,7 +49,7 @@ public class MeshingMenu : MonoBehaviour {
 
 		if (getTime && welcomeCanvas.alpha >= 0) {
 			if (timer > 2.0f) {
-				welcomeCanvas.alpha -= 0.5f * Time.deltaTime;
+				welcomeCanvas.alpha -= 0.5f * Time.deltaTime * 2;
 			}
 		}
 
@@ -74,9 +74,12 @@ public class MeshingMenu : MonoBehaviour {
 	}
 	private void OnTriggerDown(byte controller_Id, float triggerValue) {
 		meshObjects = GameObject.Find("MeshObjects");
+		spatialMap = GameObject.Find("MLSpatialMapper");
+		meshOriginal = spatialMap.transform.GetChild(0).gameObject;
 		foreach (Transform meshChild in meshObjects.transform) {
 			meshChild.GetComponent<MeshRenderer>().material = meshMats[0];
 		}
+		meshOriginal.GetComponent<MeshRenderer>().material = meshMats[0];
 		SceneManager.LoadScene("Main", LoadSceneMode.Single);
 	}
 }
