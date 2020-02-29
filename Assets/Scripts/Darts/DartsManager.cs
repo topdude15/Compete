@@ -191,6 +191,7 @@ public class DartsManager : MonoBehaviour
     {
         controlPointer.SetActive(true);
         dartboardOutline.SetActive(false);
+        objMenu.SetActive(false);
         if (tutorialMenu.activeSelf) tutorialMenu.SetActive(false);
 
         if (button == MLInputControllerButton.Bumper)
@@ -370,6 +371,20 @@ public class DartsManager : MonoBehaviour
                     dartColorMenu.SetActive(false);
                     mainMenu.SetActive(true);
                     break;
+                case "DartForce":
+                    modifierMenu.SetActive(false);
+                    dartThrowPowerMenu.SetActive(true);
+                    break;
+                case "CloseDartForce":
+                    dartThrowPowerMenu.SetActive(false);
+                    mainMenu.SetActive(false);
+                    break;
+                case "Increase":
+                    UpdateDartThrowPower(true);
+                    break;
+                case "Decrease":
+                    UpdateDartThrowPower(false);
+                    break;
                 // Settings menu buttons
                 case "NoGravity":
                     if (gravityEnabled)
@@ -535,6 +550,7 @@ public class DartsManager : MonoBehaviour
                     }
                     else
                     {
+                        dartboardHolder.SetActive(true);
                         dartboardHolder.transform.position = dartboardOutline.transform.position;
                         dartboardHolder.transform.rotation = dartboardOutline.transform.rotation;
                     }

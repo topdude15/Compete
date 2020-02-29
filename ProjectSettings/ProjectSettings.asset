@@ -604,10 +604,10 @@ PlayerSettings:
   cloudServicesEnabled: {}
   luminIcon:
     m_Name: 
-    m_ModelFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Model
-    m_PortalFolderPath: C:/Users/topdu/Desktop/Compete/ConceptsIcon/Portal
+    m_ModelFolderPath: C:/Users/Rose Family/Desktop/Compete/ConceptsIcon/Model
+    m_PortalFolderPath: C:/Users/Rose Family/Desktop/Compete/ConceptsIcon/Portal
   luminCert:
-    m_CertPath: C:/Users/topdu/Desktop/Keys/ThePortalPC/theportalpc.cert
+    m_CertPath: C:/Users/Rose Family/Downloads/privatekey/homepc.cert
     m_SignPackage: 1
   luminIsChannelApp: 0
   luminVersion:

@@ -152,15 +152,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 12860}
-    - Class: 114
       Script: {instanceID: 12968}
     - Class: 114
       Script: {instanceID: 13014}
-    - Class: 114
-      Script: {instanceID: 22308}
-    - Class: 114
-      Script: {instanceID: 22310}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -443,6 +437,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11252}
     - Class: 114
+      Script: {instanceID: 11358}
+    - Class: 114
       Script: {instanceID: 11622}
     - Class: 114
       Script: {instanceID: 11676}
@@ -476,10 +472,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12860}
     - Class: 114
       Script: {instanceID: 12916}
-    - Class: 114
-      Script: {instanceID: 22308}
-    - Class: 114
-      Script: {instanceID: 22310}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1275,7 +1267,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 584f8bddc8881b5458f076ea4b3de330
+      Hash: 6f421ff3380cb86dfb8076b26e19a74a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BowlingManager
@@ -1923,7 +1915,7 @@ ScriptsOnlyBuild:
     className: DeepSeaExplorerLauncher
   - hash:
       serializedVersion: 2
-      Hash: fc83d7f0d99a5f8a04bfa6db16d99c92
+      Hash: 380bb326207708e5326e22f51011d328
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DartsManager
@@ -1933,4 +1925,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/BowlingMultiplayer.unity
   - Assets/Scenes/DartsMultiplayer.unity
-  playerPath: C:/Users/topdu/Desktop/Compete/Compete_Dev.mpk
+  playerPath: C:/Users/Rose Family/Desktop/Compete/Compete_Dev.mpk

@@ -76,6 +76,8 @@ public class BowlingManager : MonoBehaviour
         _gestures[1] = MLHandKeyPose.Fist;
         MLHands.KeyPoseManager.EnableKeyPoses(_gestures, true, false);
 
+        CheckNewUser();
+
         // Set the currentHand variable used in hand recognition
         if (PlayerPrefs.GetString("gestureHand") == "right")
         {
