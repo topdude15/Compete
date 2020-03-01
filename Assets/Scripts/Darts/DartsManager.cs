@@ -93,6 +93,12 @@ public class DartsManager : MonoBehaviour
             currentHand = MLHands.Left;
         }
 
+        int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
+        if (currentThrowPower < 1 || currentThrowPower >  10) {
+            PlayerPrefs.SetInt("dartThrowPower", 5);
+        }
+        dartThrowPowerText.text = ("" + currentThrowPower);
+
         meshObjs = GameObject.Find("MeshObjects");
         spatialMap = GameObject.Find("MLSpatialMapper");
         meshOriginal = spatialMap.transform.GetChild(0).gameObject;
@@ -586,7 +592,7 @@ public class DartsManager : MonoBehaviour
         toAverage /= Deltas.Count;
 
         int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
-        forcePerSecond = toAverage * 300;
+        forcePerSecond = toAverage * (400 - (currentThrowPower  * 25));
 
         if (joinedLobby)
         {
