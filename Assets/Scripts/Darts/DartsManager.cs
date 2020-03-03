@@ -210,6 +210,7 @@ public class DartsManager : MonoBehaviour
             modifierMenu.SetActive(false);
             mainMenu.SetActive(false);
             dartColorMenu.SetActive(false);
+            dartThrowPowerMenu.SetActive(false);
 
             if (objMenu.activeSelf)
             {
@@ -238,6 +239,7 @@ public class DartsManager : MonoBehaviour
             multiplayerActiveMenu.SetActive(false);
             modifierMenu.SetActive(false);
             dartColorMenu.SetActive(false);
+            dartThrowPowerMenu.SetActive(false);
         }
         // Disable any spawning
         spawning = spawnState.none;
@@ -465,6 +467,7 @@ public class DartsManager : MonoBehaviour
     }
     private void GetCount()
     {
+        print("Counting");
         totalObjs = 0;
         foreach (Transform dartObj in dartHolder)
         {
@@ -565,6 +568,7 @@ public class DartsManager : MonoBehaviour
                     break;
             }
         }
+        GetCount();
     }
     private void HoldingDart()
     {

@@ -156,7 +156,8 @@ public class BowlingManager : MonoBehaviour
         // Functions for each hand pose
         if (pose == HandPoses.Fist)
         {
-            if (!clearProgress.activeSelf) {
+            if (!clearProgress.activeSelf)
+            {
                 handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
                 handCenter.transform.LookAt(mainCam.transform.position);
                 clearProgress.SetActive(true);
@@ -178,7 +179,7 @@ public class BowlingManager : MonoBehaviour
         {
             handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
             handCenter.transform.LookAt(mainCam.transform.position);
-            
+
             clearProgress.SetActive(false);
             handMenu.SetActive(true);
         }
@@ -265,9 +266,12 @@ public class BowlingManager : MonoBehaviour
                     break;
                 // Multiplayer menu buttons
                 case "Multiplayer":
-                    if (joinedLobby) {
+                    if (joinedLobby)
+                    {
                         multiplayerActiveMenu.SetActive(true);
-                    } else {
+                    }
+                    else
+                    {
                         multiplayerConfirmMenu.SetActive(true);
                     }
                     mainMenu.SetActive(false);
@@ -422,12 +426,15 @@ public class BowlingManager : MonoBehaviour
                     }
                     break;
                 case "SwapHand":
-                    if (currentHand == MLHands.Left) {
+                    if (currentHand == MLHands.Left)
+                    {
                         PlayerPrefs.SetString("gestureHand", "right");
                         swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
-                        swapHandText.text  = ("Gestures:\nRight Hand");
+                        swapHandText.text = ("Gestures:\nRight Hand");
                         currentHand = MLHands.Right;
-                    } else {
+                    }
+                    else
+                    {
                         PlayerPrefs.SetString("gestureHand", "left");
                         swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                         swapHandText.text = ("Gestures:\nLeft Hand");
@@ -491,10 +498,9 @@ public class BowlingManager : MonoBehaviour
         }
         else
         {
-            mainMenuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
-            mainMenuCanvas.transform.LookAt(mainCam.transform.position);
             mainMenu.SetActive(false);
             tutorialMenu.SetActive(true);
+            StartCoroutine(SetMenu());
             PlayerPrefs.SetInt("hasPlayedBowling", 1);
         }
     }
@@ -548,7 +554,6 @@ public class BowlingManager : MonoBehaviour
                     {
                         pinMultiplayer = Transmission.Spawn("SingleMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), new Quaternion(0, 0, 0, 0), new Vector3(1.4f, 1.2f, 1.4f));
                         spawnedPins.Add(pinMultiplayer);
-                        GetCount();
                     }
                     else
                     {
@@ -556,23 +561,26 @@ public class BowlingManager : MonoBehaviour
                     }
                     break;
                 case spawnState.tenPin:
-                    if (joinedLobby)
+                    if (totalObjs <= 90)
                     {
-                        pinMultiplayer = Transmission.Spawn("TenPinMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), Quaternion.Euler(tenPinOrientation), Vector3.one);
-                        spawnedPins.Add(pinMultiplayer);
-                        GetCount();
-                    }
-                    else
-                    {
-                        tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0,0,0)), pinHolder);
-                        Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
-                        tenPinObj.LookAt(targetPos);
+                        if (joinedLobby)
+                        {
+                            pinMultiplayer = Transmission.Spawn("TenPinMultiplayer", new Vector3(pointerCursor.transform.position.x, pointerCursor.transform.position.y + 0.1f, pointerCursor.transform.position.z), Quaternion.Euler(tenPinOrientation), Vector3.one);
+                            spawnedPins.Add(pinMultiplayer);
+                        }
+                        else
+                        {
+                            tenPinObj = Instantiate(tenPinPrefab, pointerCursor.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)), pinHolder);
+                            Vector3 targetPos = new Vector3(mainCam.transform.position.x, tenPinObj.transform.position.y, mainCam.transform.position.z);
+                            tenPinObj.LookAt(targetPos);
+                        }
                     }
                     break;
                 default:
                     break;
             }
         }
+        GetCount();
     }
     private void HoldingBall()
     {
@@ -653,5 +661,11 @@ public class BowlingManager : MonoBehaviour
         if (currentWeight == 16) increaseButton.SetActive(false);
         PlayerPrefs.SetInt("ballWeight", currentWeight);
         ballWeightText.text = ("<b>" + currentWeight + " lbs</b>");
+    }
+    IEnumerator SetMenu()
+    {
+        yield return new WaitForSeconds(0.001f);
+        mainMenuCanvas.transform.position = mainCam.transform.position + mainCam.transform.forward * 1.5f;
+        mainMenuCanvas.transform.LookAt(mainCam.transform.position);
     }
 }
