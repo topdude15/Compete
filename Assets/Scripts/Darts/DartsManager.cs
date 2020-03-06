@@ -94,7 +94,8 @@ public class DartsManager : MonoBehaviour
         }
 
         int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
-        if (currentThrowPower < 1 || currentThrowPower >  10) {
+        if (currentThrowPower < 1 || currentThrowPower > 10)
+        {
             PlayerPrefs.SetInt("dartThrowPower", 5);
         }
         dartThrowPowerText.text = ("" + currentThrowPower);
@@ -102,7 +103,7 @@ public class DartsManager : MonoBehaviour
         meshObjs = GameObject.Find("MeshObjects");
         spatialMap = GameObject.Find("MLSpatialMapper");
         meshOriginal = spatialMap.transform.GetChild(0).gameObject;
-        
+
         int colorValueInt = PlayerPrefs.GetInt("dartColorInt");
         dartColorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
         dartSelectorObj.GetComponentInChildren<MeshRenderer>().material = dartMats[colorValueInt];
@@ -166,7 +167,8 @@ public class DartsManager : MonoBehaviour
         // Functions for each hand pose
         if (pose == HandPoses.Fist)
         {
-            if (!clearProgress.activeSelf)  {
+            if (!clearProgress.activeSelf)
+            {
                 handCenter.transform.position = currentHand.Middle.KeyPoints[0].Position;
                 handCenter.transform.LookAt(mainCam.transform.position);
                 clearProgress.SetActive(true);
@@ -276,9 +278,12 @@ public class DartsManager : MonoBehaviour
                     break;
                 // Multiplayer menu buttons
                 case "Multiplayer":
-                    if (joinedLobby)  {
+                    if (joinedLobby)
+                    {
                         multiplayerActiveMenu.SetActive(true);
-                    } else {
+                    }
+                    else
+                    {
                         multiplayerConfirmMenu.SetActive(true);
                     }
                     mainMenu.SetActive(false);
@@ -429,12 +434,15 @@ public class DartsManager : MonoBehaviour
                     }
                     break;
                 case "SwapHand":
-                    if (currentHand == MLHands.Left) {
+                    if (currentHand == MLHands.Left)
+                    {
                         PlayerPrefs.SetString("gestureHand", "right");
                         swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handRight;
-                        swapHandText.text  = ("Gestures:\nRight Hand");
+                        swapHandText.text = ("Gestures:\nRight Hand");
                         currentHand = MLHands.Right;
-                    } else {
+                    }
+                    else
+                    {
                         PlayerPrefs.SetString("gestureHand", "left");
                         swapHandButton.GetComponent<MeshRenderer>().material.mainTexture = handLeft;
                         swapHandText.text = ("Gestures:\nLeft Hand");
@@ -596,7 +604,7 @@ public class DartsManager : MonoBehaviour
         toAverage /= Deltas.Count;
 
         int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
-        forcePerSecond = toAverage * (400 - (currentThrowPower  * 25));
+        forcePerSecond = toAverage * (400 - (currentThrowPower * 25));
 
         if (joinedLobby)
         {
@@ -616,7 +624,7 @@ public class DartsManager : MonoBehaviour
         if (joinedLobby)
         {
             dartMultiplayer.GetComponentInChildren<MeshRenderer>().material = dartMats[dartColor];
-            dartRB = dartMultiplayer.GetComponent<Rigidbody>();
+            dartRB = dartMultiplayer.GetComponentInChildren<Rigidbody>();
         }
         else
         {
@@ -624,22 +632,28 @@ public class DartsManager : MonoBehaviour
             dartRB = dart.GetComponentInChildren<Rigidbody>();
         }
     }
-    private void UpdateDartThrowPower(bool increase) {
+    private void UpdateDartThrowPower(bool increase)
+    {
         int currentThrowPower = PlayerPrefs.GetInt("dartThrowPower");
-        if (increase) {
-            if (currentThrowPower >= 1 && currentThrowPower < 10) {
+        if (increase)
+        {
+            if (currentThrowPower >= 1 && currentThrowPower < 10)
+            {
                 currentThrowPower += 1;
             }
-        } else {
-            if (currentThrowPower <= 10 && currentThrowPower > 1) {
+        }
+        else
+        {
+            if (currentThrowPower <= 10 && currentThrowPower > 1)
+            {
                 currentThrowPower -= 1;
             }
         }
         increaseButton.SetActive(true);
         decreaseButton.SetActive(true);
-        if (currentThrowPower == 1)  decreaseButton.SetActive(false);
+        if (currentThrowPower == 1) decreaseButton.SetActive(false);
         if (currentThrowPower == 10) increaseButton.SetActive(false);
         PlayerPrefs.SetInt("dartThrowPower", currentThrowPower);
-        dartThrowPowerText.text = ("<b>" +  currentThrowPower + "</b>");
+        dartThrowPowerText.text = ("<b>" + currentThrowPower + "</b>");
     }
 }

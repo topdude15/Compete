@@ -91,10 +91,6 @@ public class BowlingManager : MonoBehaviour
             currentHand = MLHands.Left;
         }
 
-        meshObjs = GameObject.Find("MeshObjects");
-        spatialMap = GameObject.Find("MLSpatialMapper");
-        meshOriginal = spatialMap.transform.GetChild(0).gameObject;
-
         int currentWeight = PlayerPrefs.GetInt("ballWeight");
         if (currentWeight > 16 || currentWeight < 6)
         {
@@ -107,6 +103,9 @@ public class BowlingManager : MonoBehaviour
         bowlingBallSelectorObj.GetComponent<MeshRenderer>().material = ballMats[colorValueInt];
 
         currentTutorialPage = GameObject.Find("/[CONTENT]/Menu/MainMenuCanvas/Tutorial/0");
+        meshObjs = GameObject.Find("MeshObjects");
+        spatialMap = GameObject.Find("MLSpatialMapper");
+        meshOriginal = spatialMap.transform.GetChild(0).gameObject;
     }
     void Update()
     {
@@ -544,10 +543,27 @@ public class BowlingManager : MonoBehaviour
             switch (spawning)
             {
                 case spawnState.bowlingBall:
-                    if (joinedLobby && ballMultiplayer == null) ballMultiplayer = Transmission.Spawn("BallMultiplayer", controller.Position, controller.Orientation, Vector3.one);
+                    if (joinedLobby && ballMultiplayer == null) ballMultiplayer = Transmission.Spawn("BowlingBallMultiplayer", controller.Position, controller.Orientation, new Vector3(0.1f, 0.1f, 0.1f));
                     if (ball == null) ball = Instantiate(ballPrefab.gameObject, controller.Position, controller.Orientation);
-                    holdingBall = true;
+                    if (joinedLobby && ball != null)
+                    {
+                        ball.SetActive(false);
+                    }
+                    else if (!joinedLobby && ball != null)
+                    {
+                        ball.SetActive(true);
+                    }
+                    if (joinedLobby && ballMultiplayer != null)
+                    {
+                        ballMultiplayer.Enable();
+                    }
+                    else if (!joinedLobby && ballMultiplayer != null)
+                    {
+                        ballMultiplayer.Disable();
+                    }
+
                     ConfigureBall();
+                    holdingBall = true;
                     break;
                 case spawnState.singlePin:
                     if (joinedLobby)
@@ -630,7 +646,7 @@ public class BowlingManager : MonoBehaviour
         if (joinedLobby)
         {
             ballMultiplayer.GetComponent<MeshRenderer>().material = ballMats[ballColor];
-            ballRB = ballMultiplayer.GetComponent<Rigidbody>();
+            ballRB = ballMultiplayer.GetComponentInChildren<Rigidbody>();
         }
         else
         {
