@@ -1,2 +1,2 @@
 # Compete
-https://world.magicleap.com/en-us
+https://world.magicleap.com/en-us/details/com.leapahead.competeconcept
